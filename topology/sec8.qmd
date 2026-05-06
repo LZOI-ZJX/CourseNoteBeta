@@ -241,7 +241,7 @@ Let $\alpha$ be a sequence in the continuous dual space $X^*$. It *converges* in
 </details>
 :::
 
-![X(twitter)@?](pic\bsj3.jpg)
+![X(twitter)@?](pic/bsj3.jpg)
 
 ## 8.2 Subspace topology.
 

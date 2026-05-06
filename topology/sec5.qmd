@@ -142,7 +142,7 @@ $$f: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y) \tag{39}$$
 ::: {.callout-tip appearance="simple"}
 **5.2.2.6 Theorem:** A topological space $X$ is a retract of $Y$ iff there is a continuous map $i: X \to Y$ (or $r: Y \to X$) such that for any continuous map $f: X \to Z$ there is a continuous map $g: Y \to Z$ making the following diagram on the left (or on the right) commute, that is $g \circ i = f$ (or $f \circ r = g$):
 
-![](pic\5226q.jpg){fig-align="center" width="80%"}
+![](pic/5226q.jpg){fig-align="center" width="80%"}
 
 in which case the map $g$ is unique.
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
@@ -154,7 +154,7 @@ in which case the map $g$ is unique.
 
 *Proof:* For the necessary condition, chase the diagram
 
-![](pic\5226proof.jpg){fig-align="center" width="40%"}
+![](pic/5226proof.jpg){fig-align="center" width="40%"}
 
 For the sufficient condition, for the diagram on the left, choose $f = \mathrm{id}_X$ and then $g$ is a retraction; for the diagram on the right, this is an exercise. ■
 </details>
