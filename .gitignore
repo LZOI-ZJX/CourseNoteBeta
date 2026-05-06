@@ -1,0 +1,8 @@
+_publish/
+**/_book/
+**/_site/
+**/.quarto/
+**/*_files/
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,589 @@
+---
+title: "METRIC SPACES"
+date: "2026-04-18"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 15.1 Metrics | 度量
+
+### 15.1.1 Metric spaces. | 度量空间
+
+::: {.callout-note appearance="simple"}
+**15.1.1.1 Definition:** Let $X$ be a set. A *metric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying
+
+* $\mathbf{M}_1$: Reflexity. $(\forall p \in X)(d(p, p) = 0)$;
+* $\mathbf{M}_2$: Triangle inequality. $(\forall p \in X)(\forall q \in X)(\forall x \in X)(d(p, x) \le d(p, q) + d(q, x))$;
+* $\mathbf{M}_3$: Symmetry. $(\forall p \in X)(\forall q \in X)(d(p, q) = d(q, p))$;
+* $\mathbf{M}_4$: Non-degeneracy. $(\forall p \in X)(\forall q \in X)(d(p, q) = 0 \implies p = q)$.
+
+A *quasimetric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_1$, $\mathbf{M}_2$, and $\mathbf{M}_4$. A *pseudometric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_1$, $\mathbf{M}_2$, and $\mathbf{M}_3$. A *metametric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_2$, $\mathbf{M}_3$, and $\mathbf{M}_4$. A *semimetric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_1$, $\mathbf{M}_3$, and $\mathbf{M}_4$. A *pseudoquasimetric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_1$ and $\mathbf{M}_2$. A *premetric* for $X$ is a function $d: X \times X \to [0, \infty[$ satisfying $\mathbf{M}_1$. For any $p, q \in X$, the number $d(p, q)$ is the distance between $p$ and $q$.
+
+A *metric space* is a pair $(X, d)$ with $d$ a metric for $X$. A *quasimetric space* is a pair $(X, d)$ with $d$ a quasimetric for $X$. A *pseudometric space* is a pair $(X, d)$ with $d$ a pseudometric for $X$. A *metametric space* is a pair $(X, d)$ with $d$ a metametric for $X$. A *semimetric space* is a pair $(X, d)$ with $d$ a semimetric for $X$. A *pseudoquasimetric space* is a pair $(X, d)$ with $d$ a pseudoquasimetric for $X$. A *premetric space* is a pair $(X, d)$ with $d$ a quasimetric for $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.1.1.1 定义：** 设 $X$ 是一个集合。$X$ 上的**度量** (metric) 是一个函数 $d: X \times X \to [0, \infty[$，满足：
+
+* $\mathbf{M}_1$: 自反性。$(\forall p \in X)(d(p, p) = 0)$；
+* $\mathbf{M}_2$: 三角不等式。$(\forall p \in X)(\forall q \in X)(\forall x \in X)(d(p, x) \le d(p, q) + d(q, x))$；
+* $\mathbf{M}_3$: 对称性。$(\forall p \in X)(\forall q \in X)(d(p, q) = d(q, p))$；
+* $\mathbf{M}_4$: 非退化性。$(\forall p \in X)(\forall q \in X)(d(p, q) = 0 \implies p = q)$。
+
+$X$ 上的**准度量** (quasimetric) 是一个满足 $\mathbf{M}_1$, $\mathbf{M}_2$ 和 $\mathbf{M}_4$ 的函数 $d: X \times X \to [0, \infty[$。$X$ 上的**伪度量** (pseudometric) 是一个满足 $\mathbf{M}_1$, $\mathbf{M}_2$ 和 $\mathbf{M}_3$ 的函数 $d: X \times X \to [0, \infty[$。$X$ 上的**元度量** (metametric) 是一个满足 $\mathbf{M}_2$, $\mathbf{M}_3$ 和 $\mathbf{M}_4$ 的函数 $d: X \times X \to [0, \infty[$。$X$ 上的**半度量** (semimetric) 是一个满足 $\mathbf{M}_1$, $\mathbf{M}_3$ 和 $\mathbf{M}_4$ 的函数 $d: X \times X \to [0, \infty[$。$X$ 上的**伪拟度量** (pseudoquasimetric) 是一个满足 $\mathbf{M}_1$ 和 $\mathbf{M}_2$ 的函数 $d: X \times X \to [0, \infty[$。$X$ 上的**前度量** (premetric) 是一个满足 $\mathbf{M}_1$ 的函数 $d: X \times X \to [0, \infty[$。对于任意 $p, q \in X$，数值 $d(p, q)$ 即为 $p$ 和 $q$ 之间的距离。
+
+**度量空间** (metric space) 是由集合 $X$ 和其上的度量 $d$ 组成的二元组 $(X, d)$。**拟度量空间** (quasimetric space) 是配备拟度量 $d$ 的 $(X, d)$。**伪度量空间** (pseudometric space) 是配备伪度量 $d$ 的 $(X, d)$。**元度量空间** (metametric space) 是配备元度量 $d$ 的 $(X, d)$。**半度量空间** (semimetric space) 是配备半度量 $d$ 的 $(X, d)$。**伪拟度量空间** (pseudoquasimetric space) 是配备伪拟度量 $d$ 的 $(X, d)$。**前度量空间** (premetric space) 是一对 $(X, d)$，其中 $d$ 是 $X$ 的准度量（注：遵循原文拼写 quasimetric）。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.1.1.2 Definition:** Let $(X, d)$ be a premetric space. For any $p \in X$ and $r \in [0, \infty[$, the *ball* of radius $r$ around $p$ is the set
+$$B_d(p, r) = \{q \in X : d(p, q) < r\}, \qquad (226)$$
+the *disk* of radius $r$ around $p$ is the set
+$$D_d(p, r) = \{q \in X : d(p, q) \le r\}, \qquad (227)$$
+and the *sphere* of radius $r$ around $p$ is the set
+$$S_d(p, r) = \{q \in X : d(p, q) = r\}. \qquad (228)$$
+For $r = 1$ we also speak of the *unit ball*, *unit disk* and the *unit sphere*.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.1.1.2 定义：** 设 $(X,d)$ 是一个前度量空间。对于任意 $p \in X$ 和 $r \in [0, \infty[$，以 $p$ 为中心、$r$ 为半径的**球** (ball) 是集合
+$$B_d(p, r) = \{q \in X : d(p, q) < r\}, \qquad (226)$$
+以 $p$ 为中心、$r$ 为半径的**圆盘** (disk) 是集合
+$$D_d(p, r) = \{q \in X : d(p, q) \le r\}, \qquad (227)$$
+以 $p$ 为中心、$r$ 为半径的**球面** (sphere) 是集合
+$$S_d(p, r) = \{q \in X : d(p, q) = r\}. \qquad (228)$$
+当 $r = 1$ 时，我们也称其为**单位球** (unit ball)、**单位圆盘** (unit disk) 和**单位球面** (unit sphere)。
+</details>
+:::
+
+## 15.2 Metric topology. | 度量拓扑
+
+::: {.callout-tip appearance="simple"}
+**15.2.0.1 Lemma:** Let $(X, d)$ be a pseudoquasimetric space. For any $q \in B_d(p, r)$ we have $B_d(q, r - d(p, q)) \subseteq B_d(p, r)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.1 引理：** 设 $(X, d)$ 是一个伪拟度量空间。对于任意 $q \in B_d(p, r)$，我们有 $B_d(q, r - d(p, q)) \subseteq B_d(p, r)$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* The $\mathbf{M}_2$-axiom implies that for any $q \in B_d(p, r)$ and any $x \in B_d(q, r_1)$, $d(p, x) \le d(p, q) + d(q, x) < r$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**15.2.0.2 Lemma:** Let $(X, d)$ be a pseudoquasimetric space. Then the collection $\mathcal{B}_d = \{B_d(p, r) : p \in X, r > 0\}$ is a topological base on $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.2 引理：** 设 $(X, d)$ 是一个伪拟度量空间。那么集合族 $\mathcal{B}_d = \{B_d(p, r) : p \in X, r > 0\}$ 是 $X$ 上的一个拓扑基。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* The $\mathbf{M}_1$-axiom implies that $B_d(p, r) \ni p$ for any $p \in X$, as a result of which $\mathcal{B}_d$ satisfies $\mathbf{B}_1$. The $\mathbf{M}_2$-axiom implies that for any $q \in B_d(p_1, r_1) \cap B_d(p_2, r_2)$, we have
+$$B_d(q, \min\{r_1 - d(p_1, q), r_2 - d(p_2, q)\}) \subseteq B_d(p_1, r_1) \cap B_d(p_2, r_2), \qquad (230)$$
+which implies the $\mathbf{B}_2'$-axiom. $\blacksquare$
+</details>
+
+::: {.callout-note appearance="simple"}
+**15.2.0.3 Definition:** The *metric topology* $\mathcal{T}$ on $X$ induced by a metric $d$ is the topology generated by the base $\mathcal{B}_d$. The *quasimetric topology* $\mathcal{T}$ on $X$ induced by a quasimetric $d$ is the topology generated by the base $\mathcal{B}_d$. The *pseudometric topology* $\mathcal{T}$ on $X$ induced by a pseudometric $d$ is the topology generated by the base $\mathcal{B}_d$. A topological space is *metrizable* iff its topology is induced by a metric.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.3 定义：** 由度量 $d$ 诱导的 $X$ 上的**度量拓扑** (metric topology) $\mathcal{T}$ 是由基 $\mathcal{B}_d$ 生成的拓扑。由拟度量 $d$ 诱导的 $X$ 上的**拟度量拓扑** (quasimetric topology) $\mathcal{T}$ 是由基 $\mathcal{B}_d$ 生成的拓扑。由伪度量 $d$ 诱导的 $X$ 上的**伪度量拓扑** (pseudometric topology) $\mathcal{T}$ 是由基 $\mathcal{B}_d$ 生成的拓扑。一个拓扑空间是**可度量化的** (metrizable) 当且仅当它的拓扑是由一个度量诱导的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.0.4 Proposition:** A pseudometric space $(X, d)$ is a metric space iff the pseudometric topology $\mathcal{T}_d$ is $T_0$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.4 命题：** 一个伪度量空间 $(X, d)$ 是度量空间，当且仅当该伪度量拓扑 $\mathcal{T}_d$ 是 $T_0$ 的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.0.5 Proposition:** The standard topology $\mathcal{T}_{\mathbb{R}}$ on $\mathbb{R}$ is the metric topology induced by the *standard metric* $d_{\mathbb{R}}$ given by $d_{\mathbb{R}}(x, y) = |x - y|$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.5 命题：** $\mathbb{R}$ 上的标准拓扑 $\mathcal{T}_{\mathbb{R}}$ 是由**标准度量** (standard metric) $d_{\mathbb{R}}$ 诱导的度量拓扑，其中 $d_{\mathbb{R}}(x, y) = |x - y|$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.0.6 Proposition:** The discrete topology on $X$ is the metric topology induced by the metric $d(p, q) = 1$ if $p \ne q$ and $d(p, p) = 0$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.6 命题：** $X$ 上的离散拓扑是由以下度量诱导的度量拓扑：当 $p \ne q$ 时 $d(p, q) = 1$，且 $d(p, p) = 0$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.2.0.7 Definition:** Let $d_1$ and $d_2$ be two metric on $X$. If there is a $c \in ]0, \infty[$ such that $d_1(p, q) \le c d_2(p, q)$ for any $p, q \in X$, then $d_1$ is *coarser* than $d_2$ and $d_2$ is *finer* than $d_1$. If $d_1$ is coarser and finer than $d_2$, then $d_1$ and $d_2$ are *equivalent*.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.7 定义：** 设 $d_1$ 和 $d_2$ 是 $X$ 上的两个度量。如果存在 $c \in ]0, \infty[$ 使得对于任意 $p, q \in X$ 都有 $d_1(p, q) \le c d_2(p, q)$，那么称 $d_1$ 比 $d_2$ **更粗** (coarser)，且 $d_2$ 比 $d_1$ **更细** (finer)。如果 $d_1$ 既比 $d_2$ 更粗又比 $d_2$ 更细，那么 $d_1$ 和 $d_2$ 是**等价的** (equivalent)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.0.8 Proposition:** A coarser metric induce a coarser topology, and equivalent metrics induce the identical topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.8 命题：** 更粗的度量诱导更粗的拓扑，等价的度量诱导相同的拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.0.9 Proposition:** A neighborhood base of a metric topological space $(X, \mathcal{T}_d)$ at $p \in X$ is $\mathcal{B}_p = \{B_d(p, r) : r > 0\}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.0.9 命题：** 度量拓扑空间 $(X, \mathcal{T}_d)$ 在 $p \in X$ 处的邻域基是 $\mathcal{B}_p = \{B_d(p, r) : r > 0\}$。
+</details>
+:::
+
+### 15.2.1 Points with respect to a set. | 关于集合的点
+
+::: {.callout-note appearance="simple"}
+**15.2.1.1 Definition:** Let $(X, d)$ be a metric space with a subset $A$. Let $p \in X$ and of $A$, $p$ is
+
+* an *adherent point* iff $A \cap B_d(p, r) \ne \emptyset$ for any $r > 0$;
+* an *accumulation point* iff $|A \cap B_d(p, r)| = \infty$ for any $r > 0$;
+* an *isolated point* iff $p \in A$ and $|A \cap B_d(p, r)| < \infty$ for some $r > 0$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.1 定义：** 设 $(X, d)$ 是带有子集 $A$ 的度量空间。设 $p \in X$，且关于 $A$ 而言，$p$ 是
+
+* 一个**附着点** (adherent point)，当且仅当对于任意 $r > 0$ 都有 $A \cap B_d(p, r) \ne \emptyset$；
+* 一个**聚点** (accumulation point)，当且仅当对于任意 $r > 0$ 都有 $|A \cap B_d(p, r)| = \infty$；
+* 一个**孤立点** (isolated point)，当且仅当 $p \in A$ 且对于某些 $r > 0$ 有 $|A \cap B_d(p, r)| < \infty$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.1.2 Proposition:** Let $(X, d)$ be a metric space with a subset $A$. Let $p \in X$ and of $A$, $p$ is
+
+* an *interior point* iff there is an $r > 0$ with $B_d(p, r) \subseteq A$;
+* an *exterior point* iff there is an $r > 0$ with $B_d(p, r) \subseteq A^c$;
+* a *boundary point* iff $A \cap B_d(p, r) \ne \emptyset$ and $A^c \cap B_d(p, r) \ne \emptyset$ for any $r > 0$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+
+**15.2.1.2 命题：** 设 $(X, d)$ 是带有子集 $A$ 的度量空间。设 $p \in X$，且关于 $A$ 而言，$p$ 是
+
+* 一个**内点** (interior point)，当且仅当存在 $r > 0$ 使得 $B_d(p, r) \subseteq A$；
+* 一个**外点** (exterior point)，当且仅当存在 $r > 0$ 使得 $B_d(p, r) \subseteq A^c$；
+* 一个**边界点** (boundary point)，当且仅当对于任意 $r > 0$ 都有 $A \cap B_d(p, r) \ne \emptyset$ 且 $A^c \cap B_d(p, r) \ne \emptyset$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.1.3 Proposition:** A sequence $\{p_n\}_{n \in \mathbb{N}}$ in a metric space $(X, d)$ converges to $p \in X$ iff for any $\varepsilon > 0$ there is $N \in \mathbb{N}$ such that $d(p_n, p) < \varepsilon$ for any $n \ge N$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.3 命题：** 度量空间 $(X, d)$ 中的序列 $\{p_n\}_{n \in \mathbb{N}}$ 收敛到 $p \in X$，当且仅当对于任意 $\varepsilon > 0$，存在 $N \in \mathbb{N}$ 使得对于任意 $n \ge N$ 都有 $d(p_n, p) < \varepsilon$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.1.4 Proposition:** Let $(X, d)$ be a metric space with a subset $A$. Let $p \in X$ and of $A$, $p$ is
+
+* an *adherent point* iff there is a sequence $\{p_n\}_{n \in \mathbb{N}}$ in $A$ convergent to $p$;
+* an *accumulation point* iff there is a nonconstant sequence $\{p_n\}_{n \in \mathbb{N}}$ in $A$ convergent to $p$;
+* an *isolated point* iff the only sequence $\{p_n\}_{n \in \mathbb{N}}$ in $A$ convergent to $p$ is the constant sequence at $p$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.4 命题：** 设 $(X, d)$ 是带有子集 $A$ 的度量空间。设 $p \in X$，且关于 $A$ 而言，$p$ 是
+
+* 一个**附着点**，当且仅当存在 $A$ 中的序列 $\{p_n\}_{n \in \mathbb{N}}$ 收敛于 $p$；
+* 一个**聚点**，当且仅当存在 $A$ 中的非常数序列 $\{p_n\}_{n \in \mathbb{N}}$ 收敛于 $p$；
+* 一个**孤立点**，当且仅当 $A$ 中收敛于 $p$ 的唯一序列 $\{p_n\}_{n \in \mathbb{N}}$ 是在 $p$ 处的常数序列。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.1.5 Proposition:** A subset $A$ of a metric space $(X, d)$ is open iff for any $p \in A$ there is $r > 0$ with $B_d(p, r) \subseteq A$; it is closed iff any convergent sequence in $A$ has a limit in $A$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.5 命题：** 度量空间 $(X, d)$ 的子集 $A$ 是开集，当且仅当对于任意 $p \in A$，存在 $r > 0$ 使得 $B_d(p, r) \subseteq A$；它是闭集，当且仅当 $A$ 中的任何收敛序列的极限都在 $A$ 中。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.2.1.6 Proposition:** Let $(X, d)$ be a pseudoquasimetric space. For any $p \in X$ and $r \in [0, \infty[$, the ball $B_d(p, r)$ is open, the disk $D_d(p, r)$ and the sphere $S_d(p, r)$ is closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.6 命题：** 设 $(X, d)$ 是一个伪拟度量空间。对于任意 $p \in X$ 和 $r \in [0, \infty[$，球 $B_d(p, r)$ 是开的，圆盘 $D_d(p, r)$ 和球面 $S_d(p, r)$ 是闭的。
+</details>
+:::
+
+The closed set $D_d(p, r)$, in general, is merely a superset of $\overline{B}_x(r)$. In fact, we have the lemma.
+
+::: {.callout-tip appearance="simple"}
+**15.2.1.7 Lemma:** For any metric space $(X, d)$, the following are equivalent:
+
+* for any $p \in X$ and $r > 0$, $D_d(p, r) = \overline{B}(p, r)$;
+* for any $p, q \in X$ and $r > 0$, if $p \ne q$ then there is a point $x \in X$ such that $d(x, q) < r$ and $d(p, x) < d(p, q)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.2.1.7 引理：** 对于任何度量空间 $(X, d)$，以下各项等价：
+
+* 对于任意 $p \in X$ 和 $r > 0$，$D_d(p, r) = \overline{B}(p, r)$；
+* 对于任意 $p, q \in X$ 和 $r > 0$，如果 $p \ne q$，则存在点 $x \in X$ 使得 $d(x, q) < r$ 且 $d(p, x) < d(p, q)$。
+</details>
+:::
+
+## 15.3 Maps between metric spaces. | 度量空间之间的映射
+
+::: {.callout-important appearance="simple"}
+**15.3.0.1 Proposition:** A map $f:(X,d_X) \to (Y,d_Y)$
+
+* is continuous at $p \in X$ iff $(\forall \varepsilon > 0)(\exists \delta > 0)(\forall q \in X)(d_X(q,p) < \delta \implies d_Y(f(q),f(p)) < \varepsilon)$;
+* is continuous iff it is continuous at every point $p \in X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.1 命题：** 映射 $f:(X,d_X) \to (Y,d_Y)$
+
+* 在点 $p \in X$ 处连续，当且仅当 $(\forall \varepsilon > 0)(\exists \delta > 0)(\forall q \in X)(d_X(q,p) < \delta \implies d_Y(f(q),f(p)) < \varepsilon)$；
+* 是连续的，当且仅当它在每个点 $p \in X$ 处连续。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.3.0.2 Proposition:** A map $f:(X,d_X) \to (Y,d_Y)$ is continuous at $p \in X$ iff $p_n \to p$ implies $f(p_n) \to f(p)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.2 命题：** 映射 $f:(X,d_X) \to (Y,d_Y)$ 在点 $p \in X$ 处连续，当且仅当 $p_n \to p$ 蕴含 $f(p_n) \to f(p)$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**15.3.0.3 Theorem:** Let $d_0$ and $d_1$ be two metrics on $X$. Then $\text{id}_X: (X,d_0) \to (X,d_1)$ is continuous iff $(\forall p \in X)(\forall \varepsilon > 0)(\exists \delta > 0)(\forall q \in X)(d_0(q,p) < \delta \implies d_1(q,p) < \varepsilon)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.3 定理：** 设 $d_0$ 和 $d_1$ 是 $X$ 上的两个度量。那么恒等映射 $\text{id}_X: (X,d_0) \to (X,d_1)$ 是连续的，当且仅当 $(\forall p \in X)(\forall \varepsilon > 0)(\exists \delta > 0)(\forall q \in X)(d_0(q,p) < \delta \implies d_1(q,p) < \varepsilon)$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.3.0.4 Definition:** A map $f:(X,d_X) \to (Y,d_Y)$
+
+* is *uniformly continuous* iff $(\forall \varepsilon > 0)(\exists \delta > 0)(\forall p,q \in X)(d_X(q,p) < \delta \implies d_Y(f(q),f(p)) < \varepsilon)$;
+* is *L-Lipschitz* for some $L \ge 0$ iff $(\forall p,q \in X)(d_Y(f(q),f(p)) \le L d_X(q,p))$;
+* is a *contraction map* iff is $L$-Lipschitz for some $0 \le L < 1$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.4 定义：** 映射 $f:(X,d_X) \to (Y,d_Y)$
+
+* 是**一致连续的** (uniformly continuous)，当且仅当 $(\forall \varepsilon > 0)(\exists \delta > 0)(\forall p,q \in X)(d_X(q,p) < \delta \implies d_Y(f(q),f(p)) < \varepsilon)$；
+* 对于某个 $L \ge 0$ 是 **$L$-李普希茨的** ($L$-Lipschitz)，当且仅当 $(\forall p,q \in X)(d_Y(f(q),f(p)) \le L d_X(q,p))$；
+* 是一个**压缩映射** (contraction map)，当且仅当对于某个 $0 \le L < 1$ 它是 $L$-李普希茨的。
+</details>
+:::
+
+**15.3.0.5 Uniformly continuous:** A continuous function $f: I \to \mathbb{R}$ on a bounded closed interval $I$ is uniformly continuous.
+
+::: {.callout-note appearance="simple"}
+**15.3.0.6 Definition:** A map $f:(X,d_X) \to (Y,d_Y)$
+
+* is *locally Lipschitz* iff any $p \in X$ has a neighborhood $U$ such that $f|_U$ is Lipschitz.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.6 定义：** 映射 $f:(X,d_X) \to (Y,d_Y)$
+* 是**局部李普希茨的** (locally Lipschitz)，当且仅当任意 $p \in X$ 都有一个邻域 $U$ 使得 $f|_U$ 是李普希茨的。
+</details>
+:::
+
+**15.3.0.7 Example:** Let $U$ be a convex open subset of a Banach space $E$. Then any $f \in C^1(U; F)$ is locally Lipschitz.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* The subset $U$ is locally convex and $f'$, being continuous, is locally bounded. $\blacksquare$
+</details>
+
+::: {.callout-note appearance="simple"}
+**15.3.0.8 Definition:** The *Lipschitz constant* of a Lipschitz map $f:(X,d_X) \to (Y,d_Y)$ is
+$$\inf\{L \ge 0 : (\forall p,q \in X)(d_Y(f(q),f(p)) \le L d_X(q,p))\}. \qquad (231)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.8 定义：** 李普希茨映射 $f:(X,d_X) \to (Y,d_Y)$ 的**李普希茨常数** (Lipschitz constant) 是
+$$\inf\{L \ge 0 : (\forall p,q \in X)(d_Y(f(q),f(p)) \le L d_X(q,p))\}. \qquad (231)$$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.3.0.9 Definition:** A map $f:(X,d_X) \to (Y,d_Y)$
+
+* is *bi-Lipschitz* iff $(\exists L > 0)(\forall p,q \in X)(L^{-1} d_X(q,p) \le d_Y(f(q),f(p)) \le L d_X(q,p))$;
+* is an *isometry* iff $(\forall p,q \in X)(d_Y(f(q),f(p)) = d_X(q,p))$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.9 定义：** 映射 $f:(X,d_X) \to (Y,d_Y)$
+
+* 是**双李普希茨的** (bi-Lipschitz)，当且仅当 $(\exists L > 0)(\forall p,q \in X)(L^{-1} d_X(q,p) \le d_Y(f(q),f(p)) \le L d_X(q,p))$；
+* 是一个**等距映射** (isometry)，当且仅当 $(\forall p,q \in X)(d_Y(f(q),f(p)) = d_X(q,p))$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.3.0.10 Definition:** A map $f:(X,d_X) \to (Y,d_Y)$
+
+* is a *uniform isomorphism* iff $f$ is a bijection and both $f$ and $f^{-1}$ are uniformly continuous;
+* is an *isometric isomorphism* iff $f$ is a bijective isometry.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.10 定义：** 映射 $f:(X,d_X) \to (Y,d_Y)$
+
+* 是一个**一致同构** (uniform isomorphism)，当且仅当 $f$ 是双射且 $f$ 和 $f^{-1}$ 都是一致连续的；
+* 是一个**等距同构** (isometric isomorphism)，当且仅当 $f$ 是双射的等距映射。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.3.0.11 Proposition:** A map $f:(X,d_X) \to (Y,d_Y)$ is a contraction map $\implies$ Lipschitz $\implies$ uniformly continuous $\implies$ continuous, an isometry $\implies$ bi-Lipschitz $\implies$ continuous and open, and an isometric isomorphism $\implies$ bijective and bi-Lipschitz $\implies$ uniform isomorphism $\implies$ a homeomorphism.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.11 命题：** 映射 $f:(X,d_X) \to (Y,d_Y)$ 是压缩映射 $\implies$ 李普希茨 $\implies$ 一致连续 $\implies$ 连续；是等距映射 $\implies$ 双李普希茨 $\implies$ 连续且开；是等距同构 $\implies$ 双射且双李普希茨 $\implies$ 一致同构 $\implies$ 同胚。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**15.3.0.12 Theorem:** Let $d_0$ and $d_1$ be two metrics on $X$. Then $\text{id}_X: (X,d_0) \to (X,d_1)$ is Lipschitz iff $d_0$ is coarser than $d_1$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.3.0.12 定理：** 设 $d_0$ 和 $d_1$ 是 $X$ 上的两个度量。那么恒等映射 $\text{id}_X: (X,d_0) \to (X,d_1)$ 是李普希茨的，当且仅当 $d_0$ 比 $d_1$ 更粗。
+</details>
+:::
+
+
+## 15.4 Induced metrics. | 诱导度量
+
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces.
+
+* If $A \subseteq X$, what is the most natural metric on $A$?
+* What is the most natural metric on the disjoint union $X \sqcup Y$ of $X$ and $Y$?
+* What is the most natural metric on the cartesian product $X \times Y$ of $X$ and $Y$?
+* What is the most natural metric on $S^1$, given a map $\pi: \mathbb{R} \to S^1$ with $\pi(x) = e^{ix}$?
+
+Unlike topologies, the existance of induced metrics is quite restrictive, as a result that most induced topology of metric topologies does not remain metrizable.
+
+::: {.callout-note appearance="simple"}
+**15.4.0.1 Definition:** Let $X$ be a set, $(Y,d_Y)$ be a metric space, and $f: X \to Y$ be an injection. The metric $d$ on $X$ given by
+$$d(p,q) = d_Y(f(p),f(q)) \qquad (232)$$
+for any $p,q \in Y$, called the *initial metric* on $X$ induced by $f$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.0.1 定义：** 设 $X$ 是一个集合，$(Y,d_Y)$ 是一个度量空间，且 $f: X \to Y$ 是一个单射。由下式给出的 $X$ 上的度量 $d$：
+$$d(p,q) = d_Y(f(p),f(q)) \qquad (232)$$
+对于任意 $p,q \in Y$（注：依上下文此处应为 $p,q \in X$），称为由 $f$ 诱导的 $X$ 上的**初度量** (initial metric)。
+</details>
+:::
+
+### 15.4.1 Subspace metrics. | 子空间度量
+
+::: {.callout-note appearance="simple"}
+**15.4.1.1 Definition:** Let $A$ be a subset of a metric space $(X,d_X)$. Then the *subspace metric* $d_A$ on $A$ in $X$ is the initial metric induced by $\{\iota_{A,X}\}$, or equivalently the restriction of $d_X$ in $A \times A$, and then $(A,d_A)$ is a *metric subspace* of $(X,d_X)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.1.1 定义：** 设 $A$ 是度量空间 $(X,d_X)$ 的一个子集。那么 $X$ 中 $A$ 上的**子空间度量** (subspace metric) $d_A$ 是由包含映射 $\{\iota_{A,X}\}$ 诱导的初度量，或等价地，是 $d_X$ 在 $A \times A$ 上的限制，并且此时 $(A,d_A)$ 是 $(X,d_X)$ 的一个**度量子空间** (metric subspace)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.4.1.2 Proposition:** The subspace metric induces the subspace topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.1.2 命题：** 子空间度量诱导子空间拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.4.1.3 Proposition:** An injective map $f: (A,d_A) \to (X,d_X)$ between metric spaces is an *embedding* if $d_A$ is the initial metric induced by $f$. The space $(A,d_A)$ is *embeddable* into $(X,d_X)$ if there is an embedding $f: (A,d_A) \to (X,d_X)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.1.3 命题：** 度量空间之间的单射 $f: (A,d_A) \to (X,d_X)$ 是一个**嵌入** (embedding)，如果 $d_A$ 是由 $f$ 诱导的初度量。如果存在嵌入 $f: (A,d_A) \to (X,d_X)$，则称空间 $(A,d_A)$ 是**可嵌入的** (embeddable) 到 $(X,d_X)$ 中。
+</details>
+:::
+
+### 15.4.2 Product metrics. | 积度量
+
+::: {.callout-note appearance="simple"}
+**15.4.2.1 Definition:** Let $(X_0,d_0)$ and $(X_1,d_1)$ be metric spaces. The *product metric* on $X_0 \times X_1$ is the metric $d_{\text{prod}}$ defined by
+$$d_{\text{prod}}((p_0,p_1), (q_0,q_1)) = d_0(p_0,q_0) + d_1(p_1,q_1). \qquad (233)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.2.1 定义：** 设 $(X_0,d_0)$ 和 $(X_1,d_1)$ 是度量空间。$X_0 \times X_1$ 上的**积度量** (product metric) 是由下式定义的度量 $d_{\text{prod}}$：
+$$d_{\text{prod}}((p_0,p_1), (q_0,q_1)) = d_0(p_0,q_0) + d_1(p_1,q_1). \qquad (233)$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.4.2.2 Proposition:** Let $(X_0,d_0)$ and $(X_1,d_1)$ be metric spaces. A function $F: \mathbb{R}^2 \to \mathbb{R}$ such as add and max yields a metric $d((p_0,p_1), (q_0,q_1)) = F(d_0(p_0,q_0), d_1(p_1,q_1))$ on $X_0 \times X_1$ that induces the product topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.2.2 命题：** 设 $(X_0,d_0)$ 和 $(X_1,d_1)$ 是度量空间。形如加法和取最大值的函数 $F: \mathbb{R}^2 \to \mathbb{R}$ 会在 $X_0 \times X_1$ 上产生一个度量 $d((p_0,p_1), (q_0,q_1)) = F(d_0(p_0,q_0), d_1(p_1,q_1))$，该度量诱导乘积拓扑。
+</details>
+:::
+
+**15.4.2.3 Example:** The standard topology $\mathcal{T}_{\mathbb{R}^2}$ on $\mathbb{R}^2$ is induced by the product metric $d_{\mathbb{R}^2}$ of two $d_{\mathbb{R}}$.
+
+::: {.callout-important appearance="simple"}
+**15.4.2.4 Proposition:** There is a metric on $[0,1]^{\mathbb{N}}$ which generates the product topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.2.4 命题：** 在 $[0,1]^{\mathbb{N}}$ 上存在一个度量，它生成乘积拓扑。
+</details>
+:::
+
+### 15.4.3 Quotient pseudometrics. | 商伪度量
+
+::: {.callout-note appearance="simple"}
+**15.4.3.1 Definition:** Let $(X,d)$ be a (symmetric) premetric space. The (symmetric) premetric $\mathcal{P}(d): \mathcal{P}(X) \times \mathcal{P}(X) \to [0,\infty[$ defined by for $A,B \subseteq X$,
+$$\mathcal{P}(d)(A,B) = \inf_{p \in A, q \in B} d(p,q) \qquad (234)$$
+the *distance function* between subsets of $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.3.1 定义：** 设 $(X,d)$ 是一个（对称）前度量空间。由下式定义的（对称）前度量 $\mathcal{P}(d): \mathcal{P}(X) \times \mathcal{P}(X) \to [0,\infty[$，对于 $A,B \subseteq X$，
+$$\mathcal{P}(d)(A,B) = \inf_{p \in A, q \in B} d(p,q) \qquad (234)$$
+称为 $X$ 的子集之间的**距离函数** (distance function)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.4.3.2 Definition:** Let $b: X \times X \to [0,\infty[$ be a function, and denote by $D_b(X)$ the set of all pseudometrics on $X$ bounded above by $b$. Then $d_b(p,q) = \sup_{d \in D_b(X)} d(p,q)$ is the *maximal pseudometric* with respect to $b$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.3.2 定义：** 设 $b: X \times X \to [0,\infty[$ 是一个函数，并用 $D_b(X)$ 表示 $X$ 上所有在上方被 $b$ 有界的伪度量集合。那么 $d_b(p,q) = \sup_{d \in D_b(X)} d(p,q)$ 是关于 $b$ 的**最大伪度量** (maximal pseudometric)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.4.3.3 Definition:** Let $(X,d)$ be a pseudometric space with an equivalence relation $\sim$. The *quotient pseudometric* on $X/{\sim}$ is the pseudometric $d_{\sim}$ defined by for $[p],[q] \in X/{\sim}$,
+$$d_{\sim}([p],[q]) = d_{\mathcal{P}(d)}([p],[q]), \qquad (235)$$
+where $d_{\mathcal{P}(d)}$ is the maximal pseudometric with respect to $\mathcal{P}(d)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.3.3 定义：** 设 $(X,d)$ 是带有等价关系 $\sim$ 的伪度量空间。$X/{\sim}$ 上的**商伪度量** (quotient pseudometric) 是由下式定义的伪度量 $d_{\sim}$：对于 $[p],[q] \in X/{\sim}$，
+$$d_{\sim}([p],[q]) = d_{\mathcal{P}(d)}([p],[q]), \qquad (235)$$
+其中 $d_{\mathcal{P}(d)}$ 是关于 $\mathcal{P}(d)$ 的最大伪度量。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.4.3.4 Proposition:** Let $(X,d)$ be a pseudometric space with an equivalence relation $\sim$. Then the quotient pseudometric is indeed a pseudometric equal to
+$$d_{\sim}([p],[q]) = \inf \sum_{n=0}^N d(p_n, q_n) \qquad (236)$$
+for $N \in \mathbb{N}$, $(p_n)_{n=0}^N, (q_n)_{n=0}^N \subseteq X$ with $p_0 = p$, $q_N = q$ and $(\forall n \in \{1,...,N\})(p_n \sim q_{n-1})$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.4.3.4 命题：** 设 $(X,d)$ 是带有等价关系 $\sim$ 的伪度量空间。那么商伪度量确实是一个伪度量，等于
+$$d_{\sim}([p],[q]) = \inf \sum_{n=0}^N d(p_n, q_n) \qquad (236)$$
+其中 $N \in \mathbb{N}$，$(p_n)_{n=0}^N, (q_n)_{n=0}^N \subseteq X$，满足 $p_0 = p$，$q_N = q$，且 $(\forall n \in \{1,...,N\})(p_n \sim q_{n-1})$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Let $d_{\text{quot}}([p],[q]) = \inf \sum_{n=0}^N d(p_n, q_n)$. Since
+$$\inf_{p_1 \in [p], q_1 \in [q]} d(p_1, q_1) = \inf\{d(p,p) + d(p_1, q_1) + d(q,q) : p \sim p_1, q_1 \sim q\} \qquad (237)$$
+we obtain that
+$$d_{\mathcal{P}(d)}([p],[q]) \ge \mathcal{P}(d)([p],[q]) = \inf_{p_1 \in [p], q_1 \in [q]} d(p_1, q_1) \ge d_{\text{quot}}([p],[q]). \qquad (238)$$
+We show that $d_{\text{quot}}$ is a pseudometric and prove the triangle inequality. Let $[p],[q],[r] \in X/{\sim}$. For any $\varepsilon > 0$, there are $N,M \in \mathbb{N}$, $(p_n)_{n=0}^N$, $(q_n)_{n=0}^{N+M}$, and $(r_n)_{n=N}^{N+M}$ in $X$ with $p_0 = p$, $q_N = q$, and $r_{N+M} = r$, and $p_n \sim q_{n-1}$ for any $n \in \{1,...,N\}$, $q_n \sim r_{n-1}$ for any $n \in \{N+1,...,N+M\}$, such that
+$$\sum_{n=0}^N d(p_n, q_n) \le d_{\text{quot}}([p],[q]) + \frac{\varepsilon}{2}, \quad \sum_{n=N}^{N+M} d(q_n, r_n) \le d_{\text{quot}}([q],[r]) + \frac{\varepsilon}{2}. \qquad (239)$$
+Then using $q_N \sim q_N$ we have
+$$d_{\text{quot}}([p],[r]) \le \sum_{n=0}^N d(p_n, q_n) + \sum_{n=N}^{N+M} d(q_n, r_n) \le d_{\text{quot}}([p],[q]) + d_{\text{quot}}([q],[r]) + \varepsilon. \qquad (240)$$
+As $\varepsilon \to 0$ we obtain the triangle inequality.
+If $d \le \mathcal{P}(d)$ is a pseudometric on $X/{\sim}$, then for any $[p],[q] \in X/{\sim}$ letting $N \in \mathbb{N}$, $(p_n)_{n=0}^N, (q_n)_{n=0}^N$ in $X$ with $p_0 = p, q_N = q$ and $p_n \sim q_{n-1}$ for any $n \in \{1,...,N\}$ we have
+$$d([p],[q]) \le \sum_{n=0}^N d([p_n], [q_n]) \le \sum_{n=0}^N d(p_n, q_n). \qquad (241)$$
+Taking the infimum we obtain that $d \le d_{\text{quot}}$.
+By the definition of the maximal pseudometric we obtain that $d_{\text{quot}} = d_{\sim}$. $\blacksquare$
+</details>
+
+## 15.5 Complete metrics. | 完备度量
+
+### 15.5.1 Complete metric spaces. | 完备度量空间
+
+::: {.callout-note appearance="simple"}
+**15.5.1.1 Definition:** A sequence $\{p_n\}_{n\in\mathbb{N}}$ in a metric space $(X,d)$ is a *Cauchy sequence* iff for any $\varepsilon > 0$ there is $N \in \mathbb{N}$ such that $d(p_n, p_m) < \varepsilon$ for any $n, m \ge N$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.1 定义：** 序列 $\{p_n\}_{n\in\mathbb{N}}$ 在度量空间 $(X,d)$ 中是一个**柯西列** (Cauchy sequence)，当且仅当对于任意 $\varepsilon > 0$，存在 $N \in \mathbb{N}$ 使得对于任意 $n, m \ge N$ 都有 $d(p_n, p_m) < \varepsilon$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.1.2 Proposition:** A convergent sequence in a metric space is a Cauchy sequence.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.2 命题：** 度量空间中的收敛序列是柯西列。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.5.1.3 Definition:** A metric space $(X,d)$ is *complete* iff every Cauchy sequence is convergent.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.3 定义：** 一个度量空间 $(X,d)$ 是**完备的** (complete)，当且仅当每个柯西列都是收敛的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.5.1.4 Definition:** Let $(X,d)$ be a metric space. A complete metric space $(\hat{X}, \hat{d})$ with an isometric embedding $i: (X,d) \to (\hat{X}, \hat{d})$ is called a *completion* of $(X,d)$ iff $i(X)$ is dense in $(\hat{X}, \mathcal{T}_{\hat{d}})$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.4 定义：** 设 $(X,d)$ 是一个度量空间。带有一个等距嵌入 $i: (X,d) \to (\hat{X}, \hat{d})$ 的完备度量空间 $(\hat{X}, \hat{d})$ 称为 $(X,d)$ 的**完备化** (completion)，当且仅当 $i(X)$ 在 $(\hat{X}, \mathcal{T}_{\hat{d}})$ 中稠密。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.1.5 Proposition:** Completions of a metric space are unique up to a canonical isometry. In other words, if $(Y_0, d_0)$ with $i_0: (X,d) \to (Y_0, d_0)$ and $(Y_1, d_1)$ with $i_1: (X,d) \to (Y_1, d_1)$ are completions of $(X,d)$, then there is an isometry $f: (Y_0, d_0) \to (Y_1, d_1)$ with $f \circ i_0 = i_1$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.5 命题：** 度量空间的完备化在相差一个典范等距映射的意义下是唯一的。换言之，如果带有 $i_0: (X,d) \to (Y_0, d_0)$ 的 $(Y_0, d_0)$ 和带有 $i_1: (X,d) \to (Y_1, d_1)$ 的 $(Y_1, d_1)$ 都是 $(X,d)$ 的完备化，那么存在一个等距映射 $f: (Y_0, d_0) \to (Y_1, d_1)$ 使得 $f \circ i_0 = i_1$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.1.6 Proposition:** Let $(X,d)$ be a metric space. The metric space $(\hat{X}, \hat{d})$ where $\hat{X}$ is the equivalence classes of Cauchy sequences in $(X,d)$ under the relation
+$$\{p_n\}_{n\in\mathbb{N}} \sim \{q_n\}_{n\in\mathbb{N}} \iff \lim_{n\to\infty} d(p_n, q_n) = 0, \qquad (243)$$
+and
+$$\hat{d}\left([p_n]_{\{n\in\mathbb{N}\}}, [q_n]_{\{n\in\mathbb{N}\}}\right) = \lim_{n\to\infty} d(p_n, q_n) \qquad (244)$$
+is a completion of $(X,d)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.6 命题：** 设 $(X,d)$ 是一个度量空间。度量空间 $(\hat{X}, \hat{d})$ 是 $(X,d)$ 的一个完备化，其中 $\hat{X}$ 是 $(X,d)$ 中柯西列在以下等价关系下的等价类：
+$$\{p_n\}_{n\in\mathbb{N}} \sim \{q_n\}_{n\in\mathbb{N}} \iff \lim_{n\to\infty} d(p_n, q_n) = 0, \qquad (243)$$
+并且
+$$\hat{d}\left([p_n]_{\{n\in\mathbb{N}\}}, [q_n]_{\{n\in\mathbb{N}\}}\right) = \lim_{n\to\infty} d(p_n, q_n) \qquad (244)$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.1.7 Proposition:** A metric space $(X,d)$ is complete iff every Cauchy sequence has a convergent subsequence.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.7 命题：** 一个度量空间 $(X,d)$ 是完备的，当且仅当每个柯西列都有一个收敛子列。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.1.8 Proposition:** Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. Any uniformly continuous map $f: (X, d_X) \to (Y, d_Y)$ has a unique extension $\hat{f}: (\hat{X}, \hat{d}_X) \to (\hat{Y}, \hat{d}_Y)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.1.8 命题：** 设 $(X, d_X)$ 和 $(Y, d_Y)$ 是度量空间。任何一致连续映射 $f: (X, d_X) \to (Y, d_Y)$ 都有一个唯一的扩张 $\hat{f}: (\hat{X}, \hat{d}_X) \to (\hat{Y}, \hat{d}_Y)$。
+</details>
+:::
+
+### 15.5.2 The contraction lemma. | 压缩引理.
+
+A fixed point of a map $f: X \to X$ is a point $p \in X$ such that $f(p) = p$.
+
+::: {.callout-tip appearance="simple"}
+**15.5.2.1 Contraction lemma:** Let $(X,d)$ be a nonempty complete metric space. Every contraction $f: (X,d) \to (X,d)$ has a unique fixed point, which equals to $\lim_{n \to \infty} f^{(n)}(p)$ for every $p \in X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.2.1 压缩引理：** 设 $(X,d)$ 是一个非空的完备度量空间。每一个压缩映射 $f: (X,d) \to (X,d)$ 都有唯一的固定点，该固定点对于每一个 $p \in X$ 都等于 $\lim_{n \to \infty} f^{(n)}(p)$。
+</details>
+:::
+
+### 15.5.3 Bounded metric spaces. | 有界度量空间.
+
+::: {.callout-note appearance="simple"}
+**15.5.3.1 Definition:** A metric space $(X,d)$ is *bounded* iff $d$ is a bounded function. A metric space $(X,d)$ is *totally bounded* iff for any $\varepsilon > 0$ there is a finite set $A$ in $X$ such that $\{B_d(p, \varepsilon) : p \in A\}$ covers $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.3.1 定义：** 一个度量空间 $(X,d)$ 是**有界的** (bounded)，当且仅当 $d$ 是一个有界函数。一个度量空间 $(X,d)$ 是**完全有界的** (totally bounded)，当且仅当对于任意 $\varepsilon > 0$，存在 $X$ 中的有限集 $A$ 使得 $\{B_d(p, \varepsilon) : p \in A\}$ 覆盖 $X$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.3.2 Proposition:** A totally bounded metric space is bounded.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.3.2 命题：** 完全有界的度量空间是有界的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**15.5.3.3 Definition:** Let $(X,d)$ be a metric space. Then the function $\overline{d}: X \times X \to [0, \infty[$ given by
+$$\overline{d}(p,q) = \frac{d(p,q)}{1 + d(p,q)} \qquad (245)$$
+for any $p,q \in X$ is a bounded metric on $X$ equivalent to $d$, called the *standed bounded metric* of $d$ on $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.3.3 定义：** 设 $(X,d)$ 是一个度量空间。那么由下式给出的函数 $\overline{d}: X \times X \to [0, \infty[$：
+$$\overline{d}(p,q) = \frac{d(p,q)}{1 + d(p,q)} \qquad (245)$$
+对于任意 $p,q \in X$，它是 $X$ 上一个与 $d$ 等价的有界度量，称为 $d$ 在 $X$ 上的**标准有界度量** (standed bounded metric)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**15.5.3.4 Proposition:** A metric space is compact iff it is complete and totally bounded.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.3.4 命题：** 一个度量空间是紧的，当且仅当它是完备且完全有界的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**15.5.3.5 Banach fixed point theorem:** A contraction map $f: (X,d) \to (X,d)$ has at most one fixed point. If $(X,d)$ is nonempty and complete then the fixed point exists, which is equal to the limit of the iterations $f^{(n)}(p)$ as $n \to \infty$ for any $p \in X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**15.5.3.5 Banach 不动点定理：** 一个压缩映射 $f: (X,d) \to (X,d)$ 至多有一个不动点。如果 $(X,d)$ 是非空且完备的，那么该不动点存在，并且对于任意 $p \in X$，它等于迭代 $f^{(n)}(p)$ 当 $n \to \infty$ 时的极限。
+</details>
+:::
+

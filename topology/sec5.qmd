@@ -1,0 +1,526 @@
+---
+title: "MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES"
+date: "2026-04-06"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+
+## 5.1 The Category of Topological Spaces | 拓扑空间范畴
+
+![pixiv@千寻柳](pic/bsj6.jpg)
+
+The category $\mathsf{Top}$.
+
+
+::: {.callout-note appearance="simple"}
+**5.1.1.1 The category of small topological spaces:** The category $\mathsf{Top}$ is the category of small topological spaces and continuous maps between them as morphisms. The identity takes the identity map at each small topological space, and the composition is the composition of maps.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.1.1 小拓扑空间范畴：** 范畴 $\mathsf{Top}$ 是以小拓扑空间为对象、以它们之间的连续映射为态射的范畴。恒等态射取每个小拓扑空间上的恒等映射，复合运算即为映射的复合。
+</details>
+:::
+
+The category $\mathsf{Top}$ is a large but locally small category.
+
+范畴 $\mathsf{Top}$ 是一个大范畴，但是局部小范畴。
+
+::: {.callout-caution appearance="simple"}
+**5.1.1.2 Remark:** For $X, Y \in \mathsf{Top}$, the hom-set $\mathsf{Top}(X, Y)$ is denoted by $C(X; Y)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.1.2 备注：** 对于 $X, Y \in \mathsf{Top}$，态射集 $\mathsf{Top}(X, Y)$ 记作 $C(X; Y)$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.1.1.3 Proposition:** In $\mathsf{Top}$ the monomorphisms are the continuous injections, the epimorphisms are the continuous surjections, and the bimorphisms are continuous bijections.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.1.3 命题：** 在 $\mathsf{Top}$ 中，单态射是连续单射，满态射是连续满射，而双态射是连续双射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $f: X \to Y$ be a morphism in $\mathsf{Top}$, namely a continuous map.
+If $f$ is monic, then it is left-cancellable. For any $p_0, p_1 \in X$ with $f(p_0) = f(p_1)$, we consider the constant maps $c_{p_0} : * \to X$ and $c_{p_1} : * \to X$ sending the singleton to $p_0$ and $p_1$, respectively; then we have $f \circ c_{p_0} = f \circ c_{p_1} : X \to Y$. Cancelling $f$ on the left we have $c_{p_0} = c_{p_1}$, which implies that $p_0 = p_1$ and $f$ is an injection. If $f$ is injective, then let $h_0, h_1 : Z \to X$ be continuous maps such that $f \circ h_0 = f \circ h_1$. For any $r \in Z$, we have $f(h_0(r)) = f(h_1(r))$, and by injectivity we have $h_0(r) = h_1(r)$, this implies that $h_0 = h_1$. Then, $f$ is left-cancellable and is a monomorphism.
+
+If $f$ is epic, then it is right-cancellable. Let $g_0: Y \to 2_{\text{triv}} = (\{0, 1\}, \mathcal{T}_{\text{triv}})$ be the constant map with value 0. Let $g_1: Y \to 2_{\text{triv}}$ send all members of $f(X)$ to 0 and other ones to 1. Then, $g_0 \circ f = g_1 \circ f : X \to 2_{\text{triv}}$ is the constant map with value 0, but $g_0 = g_1$ only when $f(X) = Y$ and $f$ is a surjection. If $f$ is surjective, then let $g_0, g_1 : Y \to Z$ be continuous maps such that $g_0 \circ f = g_1 \circ f$. For any $q \in Y$, by surjectivity there is $p \in f^{-1}(q)$, and we have $g_0(q) = g_0(f(p)) = g_1(f(p)) = g_1(q)$, this implies that $g_0 = g_1$. Then, $f$ is right-cancellable and is an epimorphism. ■
+</details>
+
+::: {.callout-important appearance="simple"}
+**5.1.1.4 Proposition:** In $\mathsf{Top}$ the empty space $\emptyset$ (Example 3.1.3.1) is the initial object and the point spaces (as representatives of) $*$ (Example 3.1.3.2) are the terminal objects.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.1.4 命题：** 在 $\mathsf{Top}$ 中，空空间 $\emptyset$（例 3.1.3.1）是始对象，而点空间（作为其代表的）$*$（例 3.1.3.2）是终对象。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.1.1.5 Proposition:** In $\mathsf{Top}$ the unique morphism from $\emptyset$ to a topological space $X$ is the empty map; the initial topology on the set $X$ induced by this map is the trivial topology. The unique morphism from a topological space $X$ to (any representative of) $*$ is the constant map; the final topology on the set $X$ induced by this map is the discrete topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.1.5 命题：** 在 $\mathsf{Top}$ 中，从 $\emptyset$ 到拓扑空间 $X$ 的唯一态射是空映射；由该映射诱导的集合 $X$ 上的初始拓扑是平凡拓扑。从拓扑空间 $X$ 到（任何代表）$*$ 的唯一态射是常数映射；由该映射诱导的集合 $X$ 上的最终拓扑是离散拓扑。
+</details>
+:::
+
+### 5.1.2 The category $\mathsf{Top}_*$
+
+::: {.callout-note appearance="simple"}
+**5.1.2.1 The category of small pointed topological spaces:** The category $\mathsf{Top}_*$ is the category of small pointed topological spaces and pointed continuous maps between them as morphisms. The identity takes the identity map at each small pointed topological space, and the composition is the composition of pointed maps.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.1.2.1 小带基点拓扑空间范畴：** 范畴 $\mathsf{Top}_*$ 是以小带基点拓扑空间为对象、以它们之间的带基点连续映射为态射的范畴。恒等态射取每个小带基点拓扑空间上的恒等映射，复合运算即为带基点映射的复合。
+</details>
+:::
+
+
+## 5.2 Maps between topological spaces.
+
+### 5.2.1 Open and closed maps.
+
+::: {.callout-note appearance="simple"}
+**5.2.1.1 Definition:** A map
+$$f: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y) \tag{39}$$
+
+* is *open* iff $(\forall U \in \mathcal{T}_X)(f(U) \in \mathcal{T}_Y)$;
+* is *closed* iff $(\forall A \in \mathcal{C}_X)(f(A) \in \mathcal{C}_Y)$, where $\mathcal{C}_X$ and $\mathcal{C}_Y$ are the collections of closed subsets of $X$ and $Y$, respectively.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.1.1 定义：** 一个映射 $f: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$：
+
+* 是**开映射**，当且仅当 $(\forall U \in \mathcal{T}_X)(f(U) \in \mathcal{T}_Y)$；
+* 是**闭映射**，当且仅当 $(\forall A \in \mathcal{C}_X)(f(A) \in \mathcal{C}_Y)$，其中 $\mathcal{C}_X$ 和 $\mathcal{C}_Y$ 分别是 $X$ 和 $Y$ 的闭子集族。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**5.2.1.2 Theorem:** Let $\mathcal{T}_1$ and $\mathcal{T}_2$ be two topologies on a set $X$. Then $\mathcal{T}_1$ is coarser than $\mathcal{T}_2$ iff the identity map $\mathrm{id}_X: (X, \mathcal{T}_1) \to (X, \mathcal{T}_2)$ is open.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.1.2 定理：** 设 $\mathcal{T}_1$ 和 $\mathcal{T}_2$ 是集合 $X$ 上的两个拓扑。则 $\mathcal{T}_1$ 比 $\mathcal{T}_2$ 粗，当且仅当恒等映射 $\mathrm{id}_X: (X, \mathcal{T}_1) \to (X, \mathcal{T}_2)$ 是开映射。
+</details>
+:::
+
+### 5.2.2 Retractions and sections.
+
+::: {.callout-note appearance="simple"}
+**5.2.2.1 Definition:** A *topological section* is a section in $\mathsf{Top}$. A *topological retraction* is a retraction in $\mathsf{Top}$.
+<details><summary style="color: gray; pointer;">[点击展开翻译]</summary>
+**5.2.2.1 定义：** **拓扑截面**是 $\mathsf{Top}$ 中的截面。**拓扑收缩**是 $\mathsf{Top}$ 中的收缩。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**5.2.2.2 Definition:** A subset $A$ is called a *retract* of a topological space $X$ if the inclusion map $\iota: A \to X$ is a section.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.2.2 定义：** 如果包含映射 $\iota: A \to X$ 是一个截面，则子集 $A$ 称为拓扑空间 $X$ 的**收缩核 (retract)**。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**5.2.2.3 Remark:** A retraction in the sense of [10, Definition 3.13] is a retraction in the sense of Definition 5.2.2.1 with the inclusion map as a section. If $f: X \to Y$ is a retraction in the sense of Definition 5.2.2.1, with a continuous left inverse $g: Y \to X$, we let $\tilde{g}: Y \to g(Y)$ be the submap of $g$ which is a homeomorphism and then $\tilde{g} \circ f$ is retraction in the sense of [10, Definition 3.13] from $X$ to $g(Y)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.2.3 备注：** [10, 定义 3.13] 意义下的收缩是指定义 5.2.2.1 意义下且以包含映射为截面的收缩。如果 $f: X \to Y$ 是定义 5.2.2.1 意义下的收缩，且具有连续左逆 $g: Y \to X$，我们设 $\tilde{g}: Y \to g(Y)$ 为 $g$ 的子映射且是一个同胚，则 $\tilde{g} \circ f$ 是 [10, 定义 3.13] 意义下从 $X$ 到 $g(Y)$ 的收缩。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**5.2.2.4 Remark:** A continuous map $f: X \to Y$ is a homeomorphism iff it is both a retraction and a section. In this case, its inverse $g: Y \to X$ is also continuous, characterized by $g \circ f = \mathrm{id}_X$ and $f \circ g = \mathrm{id}_Y$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.2.4 备注：** 一个连续映射 $f: X \to Y$ 是同胚，当且仅当它既是收缩又是截面。在这种情况下，其逆映射 $g: Y \to X$ 也是连续的，且满足 $g \circ f = \mathrm{id}_X$ 以及 $f \circ g = \mathrm{id}_Y$。
+</details>
+:::
+
+
+::: {.callout-note appearance="simple"}
+**5.2.2.5 Question:** "Being a retract of" satisfies reflexivity and transitivity.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.2.5 问题：** “是...的收缩核”关系满足自反性和传递性。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**5.2.2.6 Theorem:** A topological space $X$ is a retract of $Y$ iff there is a continuous map $i: X \to Y$ (or $r: Y \to X$) such that for any continuous map $f: X \to Z$ there is a continuous map $g: Y \to Z$ making the following diagram on the left (or on the right) commute, that is $g \circ i = f$ (or $f \circ r = g$):
+
+![](pic\5226q.jpg){fig-align="center" width="80%"}
+
+in which case the map $g$ is unique.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.2.6 定理：** 一个拓扑空间 $X$ 是 $Y$ 的收缩核，当且仅当存在连续映射 $i: X \to Y$（或 $r: Y \to X$），使得对于任何连续映射 $f: X \to Z$，都存在唯一的连续映射 $g: Y \to Z$ 使左侧（或右侧）的交换图表成立，即 $g \circ i = f$（或 $f \circ r = g$）。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* For the necessary condition, chase the diagram
+
+![](pic\5226proof.jpg){fig-align="center" width="40%"}
+
+For the sufficient condition, for the diagram on the left, choose $f = \mathrm{id}_X$ and then $g$ is a retraction; for the diagram on the right, this is an exercise. ■
+</details>
+
+### 5.2.3 Embeddings and quotient maps.
+
+In $\mathsf{Top}$, the extremal monomorphisms and epimorphisms have special names.
+
+::: {.callout-note appearance="simple"}
+**5.2.3.1 Definition:** An *embedding* is an extremal monomorphism in $\mathsf{Top}$. A *quotient map* is an extremal epimorphism in $\mathsf{Top}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.2.3.1 定义：** **嵌入 (embedding)** 是 $\mathsf{Top}$ 中的极小单态射。**商映射 (quotient map)** 是 $\mathsf{Top}$ 中的极大满态射。
+</details>
+:::
+
+Embeddings and quotient maps arise from topological subspaces and quotient spaces; see Section 8.2.2 and Section 8.4.2. We will see there that, not all sections are embeddings, and not all retractions are quotient maps. Therefore, in $\mathsf{Top}$, monomorphisms, sections, and extremal monomorphisms are different, and epimorphisms, retractions, and extremal epimorphisms are also different.
+
+
+## 5.3 Closures and interiors | 闭包与内部
+
+### 5.3.1 Points with respect to a subset.
+
+::: {.callout-note appearance="simple"}
+**5.3.1.1 Definition:** Let $X$ be a topological space with $p \in X$. An *open neighborhood* of $p$ in $X$ is an open subset $U$ containing $p$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.1.1 定义：** 设 $X$ 是一个拓扑空间且 $p \in X$。$p$ 在 $X$ 中的一个**开邻域**是一个包含 $p$ 的开子集 $U$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.1.2 Proposition:** Let $p$ be a point of a topological space $X$. A subset $U$ is an open neighborhood of $p$ in $X$ iff $U$ is open and a neighborhood of $p$. A subset $N$ is a neighborhood of $p$ in $X$ iff there is an open neighborhood $U$ of $p$ in $X$ that is contained in $N$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.1.2 命题：** 设 $p$ 是拓扑空间 $X$ 中的一个点。子集 $U$ 是 $p$ 在 $X$ 中的一个开邻域，当且仅当 $U$ 是开集且是 $p$ 的一个邻域。子集 $N$ 是 $p$ 在 $X$ 中的一个邻域，当且仅当存在一个包含在 $N$ 中的 $p$ 的开邻域 $U$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**5.3.1.3 Definition:** Let $X$ be a topological space with $p \in X$. A subset $P$ is a *deleted neighborhood* of $p$ in $X$ if there is a neighborhood $N$ of $p$ in $X$ with $P = N \setminus \{p\}$. We denote by $\mathcal{N}_p^\circ$ the collection of deleted neighborhoods of $p$ in $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.1.3 定义：** 设 $X$ 是一个拓扑空间且 $p \in X$。如果存在 $p$ 在 $X$ 中的一个邻域 $N$ 使得 $P = N \setminus \{p\}$，则子集 $P$ 称为 $p$ 在 $X$ 中的一个**去心邻域**。我们用 $\mathcal{N}_p^\circ$ 表示 $p$ 在 $X$ 中所有去心邻域的族。
+</details>
+:::
+
+The characterization of closed subsets in Definition 2.1.2.7 can be generalized to any topological space. First we generalize Definition 2.1.2.6 and some related concepts, including the closure and the derived set that were considered by Cauchy. Then, a subset is closed iff it coincides with its closure.
+
+::: {.callout-note appearance="simple"}
+**5.3.1.4 Definition:** Let $X$ be a topological space with a subset $A$. Let $p \in X$ and of $A, p$ is
+
+* an *adherent point* iff $A \cap N \neq \emptyset$ for any $N \in \mathcal{N}_{X,p}$;
+* a *limit point* or an *accumulation point* iff $A \cap P \neq \emptyset$ for any $P \in \mathcal{N}_p^\circ$;
+* an *isolated point* iff $p \in A$ and $A \cap P = \emptyset$ for some $P \in \mathcal{N}_p^\circ$.
+
+Then of $A$,
+
+* the *closure* is the set of adherent points of $A$, denoted by $\mathrm{Cl}(A)$ or $\bar{A}$ or $A^-$;
+* the *derived set* is the set of accumulation points of $A$, denoted by $\mathrm{Der}(A)$ or $A'$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.1.4 定义：** 设 $X$ 是一个拓扑空间，$A$ 是其子集。对于 $p \in X$：
+
+* $p$ 是 $A$ 的**触点 (adherent point)**，当且仅当对于任何 $N \in \mathcal{N}_{X,p}$，都有 $A \cap N \neq \emptyset$；
+* $p$ 是 $A$ 的**极限点**或**聚点 (accumulation point)**，当且仅当对于任何 $P \in \mathcal{N}_p^\circ$，都有 $A \cap P \neq \emptyset$；
+* $p$ 是 $A$ 的**孤立点**，当且仅当 $p \in A$ 且对于某个 $P \in \mathcal{N}_p^\circ$，有 $A \cap P = \emptyset$。
+
+对于子集 $A$：
+
+* **闭包**是 $A$ 的所有触点的集合，记作 $\mathrm{Cl}(A)$ 或 $\bar{A}$ 或 $A^-$；
+* **导集**是 $A$ 的所有聚点的集合，记作 $\mathrm{Der}(A)$ 或 $A'$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.1.5 Proposition:** For any subset $A$ of a topological space $X$, we have
+
+* $\mathrm{Cl}(A) = A \cup \mathrm{Der}(A)$;
+* the set of isolated points of $A$ is $A \setminus \mathrm{Der}(A)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+
+**5.3.1.5 命题：** 对于拓扑空间 $X$ 的任何子集 $A$，我们有：
+
+* $\mathrm{Cl}(A) = A \cup \mathrm{Der}(A)$；
+* $A$ 的孤立点集为 $A \setminus \mathrm{Der}(A)$。
+</details>
+:::
+
+Let $I$ be an interval in $\mathbb{R}$ with endpoints $a < b$. The points in $\mathbb{R}$ can be classified into three types with respect to $I$: the interior points of those in $]a, b[$, the endpoints (or boundary points) $a$ and $b$, and the exterior points of those in $]-\infty, a[ \cup ]b, \infty[$. Then purely interior points constitutes an open interval $]a, b[$, while together with endpoints constitutes a closed interval $[a, b]$.
+
+### 5.3.2 Closures and interiors.
+
+::: {.callout-note appearance="simple"}
+**5.3.2.1 Definition:** Let $X$ be a topological space with a subset $A$ and $p \in X$ and
+
+* $p$ is an *interior point* of $A$, iff $A \supseteq N$ for some $N \in \mathcal{N}_{X,p}$;
+* $p$ is an *exterior point* of $A$, iff $A \cap N = \emptyset$ for some $N \in \mathcal{N}_{X,p}$;
+* $p$ is a *boundary point* of $A$, iff $A \cap N \neq \emptyset$ and $A^c \cap N \neq \emptyset$ for any $N \in \mathcal{N}_{X,p}$.
+
+Then of $A$,
+
+* the *interior* is the set of interior points of $A$, denoted by $\mathrm{Int}(A)$ or $A^\circ$;
+* the *exterior* is the set of exterior points of $A$, denoted by $\mathrm{Ext}(A)$ or $A^e$;
+* the *boundary* is the set of boundary points of $A$, denoted by $\mathrm{Bd}(A)$ or $\partial A$ or $A^b$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.1 定义：** 设 $X$ 是一个拓扑空间，$A$ 是其子集，$p \in X$：
+
+* $p$ 是 $A$ 的**内点 (interior point)**，当且仅当对于某个 $N \in \mathcal{N}_{X,p}$，有 $A \supseteq N$；
+* $p$ 是 $A$ 的**外点 (exterior point)**，当且仅当对于某个 $N \in \mathcal{N}_{X,p}$，有 $A \cap N = \emptyset$；
+* $p$ 是 $A$ 的**边界点 (boundary point)**，当且仅当对于任何 $N \in \mathcal{N}_{X,p}$，都有 $A \cap N \neq \emptyset$ 且 $A^c \cap N \neq \emptyset$。
+
+对于 $A$：
+
+* **内部**是 $A$ 的所有内点的集合，记作 $\mathrm{Int}(A)$ 或 $A^\circ$；
+* **外部**是 $A$ 的所有外点的集合，记作 $\mathrm{Ext}(A)$ 或 $A^e$；
+* **边界**是 $A$ 的所有边界点的集合，记作 $\mathrm{Bd}(A)$ 或 $\partial A$ 或 $A^b$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**5.3.2.2 Theorem:** The closure of a subset $A$ of a topological space $X$ is the smallest closed subset of $X$ containing $A$; the interior of $A$ is the largest open subset of $X$ contained in $A$; the exterior of a subset $A$ is the largest open subset of $X$ disjoint from $A$. That is to say
+$$\mathrm{Cl}(A) = \bigcap_{A \subseteq C, C^c \in \mathcal{T}} C, \quad \mathrm{Int}(A) = \bigcup_{A \supseteq U \in \mathcal{T}} U, \quad \mathrm{Ext}(A) = \bigcup_{V \in \mathcal{T}, A \cap V = \emptyset} V \tag{41}$$
+where $\mathcal{T}$ is the topology on $X$ and $\mathcal{C}$ is the collection of closed subsets of $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.2 定理：** 拓扑空间 $X$ 的子集 $A$ 的闭包是包含 $A$ 的最小闭子集；$A$ 的内部是包含在 $A$ 中的最大开子集；子集 $A$ 的外部是与 $A$ 不相交的最大开子集。也就是说：
+$$\mathrm{Cl}(A) = \bigcap_{A \subseteq C, C^c \in \mathcal{T}} C, \quad \mathrm{Int}(A) = \bigcup_{A \supseteq U \in \mathcal{T}} U, \quad \mathrm{Ext}(A) = \bigcup_{V \in \mathcal{T}, A \cap V = \emptyset} V \tag{41}$$
+其中 $\mathcal{T}$ 是 $X$ 上的拓扑，$\mathcal{C}$ 是 $X$ 的闭子集族。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.2.3 Proposition:** A subset $A$ of a topological space $X$ coincides with its closure iff it is closed; it coincides with its interior iff it is open. That is to say
+$$A \in \mathcal{T} \iff A = \mathrm{Int}(A) \iff \mathrm{Bd}(A) \subseteq A^c, \tag{42}$$
+$$A^c \in \mathcal{C} \iff A = \mathrm{Cl}(A) \iff \mathrm{Bd}(A) \subseteq A.$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.3 命题：** 拓扑空间 $X$ 的子集 $A$ 与其闭包重合当且仅当它是闭集；与其内部重合当且仅当它是开集。即：
+$$A \in \mathcal{T} \iff A = \mathrm{Int}(A) \iff \mathrm{Bd}(A) \subseteq A^c, \tag{42}$$
+$$A^c \in \mathcal{C} \iff A = \mathrm{Cl}(A) \iff \mathrm{Bd}(A) \subseteq A.$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.2.4 Proposition:** A set $N$ is a neighborhood of $x$ in $X$ iff $x$ is an interior point of $N$, namely,
+$$N \in \mathcal{N}_x \iff x \in N^\circ. \tag{43}$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.4 命题：** 集合 $N$ 是 $x$ 在 $X$ 中的一个邻域，当且仅当 $x$ 是 $N$ 的一个内点，即：
+$$N \in \mathcal{N}_x \iff x \in N^\circ. \tag{43}$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.2.5 Proposition:** For any subset $A$ of a topological space $X$, we have
+
+* $\mathrm{Int}(A) \subseteq A \subseteq \mathrm{Cl}(A)$;
+* $\mathrm{Cl}(A) = A \cup \mathrm{Bd}(A) = \mathrm{Int}(A) \sqcup \mathrm{Bd}(A)$;
+* $X = \mathrm{Int}(A) \sqcup \mathrm{Bd}(A) \sqcup \mathrm{Ext}(A) = A^\circ \sqcup (\partial A \cap A) \sqcup (\partial A \setminus A) \sqcup A^e$;
+* $\mathrm{Int}(A) = \mathrm{Cl}(A^c)^c, \mathrm{Ext}(A) = \mathrm{Cl}(A)^c, \mathrm{Bd}(A) = \mathrm{Cl}(A) \cap \mathrm{Cl}(A^c)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.5 命题：** 对于拓扑空间 $X$ 的任何子集 $A$，我们有：
+
+* $\mathrm{Int}(A) \subseteq A \subseteq \mathrm{Cl}(A)$；
+* $\mathrm{Cl}(A) = A \cup \mathrm{Bd}(A) = \mathrm{Int}(A) \sqcup \mathrm{Bd}(A)$；
+* $X = \mathrm{Int}(A) \sqcup \mathrm{Bd}(A) \sqcup \mathrm{Ext}(A) = A^\circ \sqcup (\partial A \cap A) \sqcup (\partial A \setminus A) \sqcup A^e$；
+* $\mathrm{Int}(A) = \mathrm{Cl}(A^c)^c, \mathrm{Ext}(A) = \mathrm{Cl}(A)^c, \mathrm{Bd}(A) = \mathrm{Cl}(A) \cap \mathrm{Cl}(A^c)$。
+</details>
+:::
+
+From Proposition 5.3.2.5 one observe that the interior and exterior of a subset can be obtained by successively taking the closure and complement, and would be curious how many different subsets it can generate. The maximal number 14 of distinct subsets is due to Kuratowski; see Exercise 5.3.5.1.
+
+::: {.callout-tip appearance="simple"}
+**5.3.2.6 Theorem:** Let $f: X \to Y$ be a map between topological spaces. The following are equivalent:
+
+(1) $f$ is continuous;
+
+(2) $(\forall \text{ closed } B \subseteq Y)(f^{-1}(B) \text{ is closed in } X)$;
+
+(3) for some subbase $\mathcal{S}_Y$ of the topology on $Y$ we have $(\forall V \in \mathcal{S}_Y)(f^{-1}(V) \text{ is open in } X)$;
+
+(4) $f$ is continuous at every point $p \in X$;
+
+(5) for any subset $A$ of $X$ we have $f(A^-) \subseteq (f(A))^-$;
+
+(6) for any subset $B$ of $Y$ we have $f^{-1}(B)^- \subseteq f^{-1}(B^-)$;
+
+(7) for any subset $B$ of $Y$ we have $f^{-1}(B^\circ) \subseteq f^{-1}(B)^\circ$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.6 定理：** 设 $f: X \to Y$ 是拓扑空间之间的映射。以下各项等价：
+
+(1) $f$ 是连续的；
+(2) 对 $Y$ 的任意闭子集 $B$，$f^{-1}(B)$ 在 $X$ 中是闭集；
+(3) 对于 $Y$ 上拓扑的某个子基 $\mathcal{S}_Y$，对任意 $V \in \mathcal{S}_Y$，$f^{-1}(V)$ 在 $X$ 中是开集；
+(4) $f$ 在 $X$ 的每个点 $p$ 处都连续；
+(5) 对于 $X$ 的任何子集 $A$，有 $f(A^-) \subseteq (f(A))^-$；
+(6) 对于 $Y$ 的任何子集 $B$，有 $f^{-1}(B)^- \subseteq f^{-1}(B^-)$；
+(7) 对于 $Y$ 的任何子集 $B$，有 $f^{-1}(B^\circ) \subseteq f^{-1}(B)^\circ$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* We prove the equivalence of (2), (5), and (6) as an example, and uses the fact for any $A \subseteq X$ and $B \subseteq Y$,
+$$A \subseteq f^{-1}(f(A)), \quad B \supseteq f(f^{-1}(B)). \tag{44}$$
+If (2) is given, then for any $A \subseteq X$, the preimage $f^{-1}(f(A)^-)$ is closed in $X$ and contains $A$, then $f^{-1}(f(A)^-) \supseteq A^-$. By taking the image, we obtain
+$$f(A^-) \subseteq f(f^{-1}(f(A)^-)) \subseteq f(A)^-, \tag{45}$$
+which implies (5). If (5) is given, then for any $B \subseteq Y$, we have
+$$f(f^{-1}(B)^-) \subseteq f(f^{-1}(B))^- \subseteq B^-, \tag{46}$$
+which implies $f^{-1}(B)^-) \subseteq f^{-1}(f(f^{-1}(B)^-)) \subseteq f^{-1}(B^-)$, which is (6).
+If (6) is given, then for any closed $B \subseteq Y$, we have
+$$f^{-1}(B) \subseteq f^{-1}(B)^- \subseteq f^{-1}(B^-) = f^{-1}(B), \tag{47}$$
+which implies that $f^{-1}(B)$ is closed in $X$ and (2) holds. ■
+</details>
+
+::: {.callout-important appearance="simple"}
+**5.3.2.7 Proposition:** If $f: X \to Y$ be a continuous map between topological spaces, then for any $A \subseteq X$ and $B \subseteq Y$ with $B \supseteq f(A)$, the submap $f|_{A,B}: A \to B$ is continuous.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.2.7 命题：** 若 $f: X \to Y$ 是拓扑空间之间的连续映射，则对于满足 $B \supseteq f(A)$ 的任何 $A \subseteq X$ 和 $B \subseteq Y$，子映射 $f|_{A,B}: A \to B$ 也是连续的。
+</details>
+:::
+
+### 5.3.3 Rational and irrational numbers.
+
+The denseness of rational numbers is written in topology terms.
+
+::: {.callout-note appearance="simple"}
+**5.3.3.1 Definition:** A subset $A$ of a topological space $X$ is *dense* if $\mathrm{Cl}(A) = X$; it has empty interior if $\mathrm{Int}(A) = \emptyset$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.3.1 定义：** 拓扑空间 $X$ 的子集 $A$ 如果满足 $\mathrm{Cl}(A) = X$，则称其是**稠密的 (dense)**；如果满足 $\mathrm{Int}(A) = \emptyset$，则称其内部为空。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.3.3.2 Proposition:** The rationals $\mathbb{Q}$ and irrationals $\mathbb{R} \setminus \mathbb{Q}$ are dense in $\mathbb{R}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.3.2 命题：** 有理数集 $\mathbb{Q}$ 和无理数集 $\mathbb{R} \setminus \mathbb{Q}$ 在 $\mathbb{R}$ 中都是稠密的。
+</details>
+:::
+
+### 5.3.4 The Cantor set.
+
+::: {.callout-note appearance="simple"}
+**5.3.4.1 The Cantor set:** Let $C_0 = [0, 1]$. Let $C_1$ be the set $C_0 \setminus ]\frac{1}{3}, \frac{2}{3}[$ formed by deleting the middle third of $C_0$. Form $C_2$ by deleting the middle-thirds $]\frac{1}{9}, \frac{2}{9}[$ and $]\frac{7}{9}, \frac{8}{9}[$ from each component of $C_1$. Inductively, we to define
+$$C_n = C_{n-1} - \bigcup_{k=0}^{3^{n-1}-1} \left] \frac{1 + 3k}{3^n}, \frac{2 + 3k}{3^n} \right[. \tag{48}$$
+The Cantor set is given by $C = \bigcap_{n \in \mathbb{N}} C_n$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.4.1 Cantor 集：** 设 $C_0 = [0, 1]$。令 $C_1$ 为集合 $C_0 \setminus ]\frac{1}{3}, \frac{2}{3}[$，由删去 $C_0$ 的中间三分之一构成。从 $C_1$ 的每个连通分支中删去中间三分之一区间 $]\frac{1}{9}, \frac{2}{9}[$ 和 $]\frac{7}{9}, \frac{8}{9}[$ 得到 $C_2$。以此类推，我们归纳地定义：
+$$C_n = C_{n-1} - \bigcup_{k=0}^{3^{n-1}-1} \left] \frac{1 + 3k}{3^n}, \frac{2 + 3k}{3^n} \right[. \tag{48}$$
+Cantor 集由 $C = \bigcap_{n \in \mathbb{N}} C_n$ 给出。
+</details>
+:::
+
+Note that each $C_n$ Example 5.3.4.1 is the union of $2^n$ disjoint closed intervals of length $\frac{1}{3^n}$.
+
+::: {.callout-important appearance="simple"}
+**5.3.4.2 Proposition:** The Cantor set $C$ is closed in $\mathbb{R}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.3.4.2 命题：** Cantor 集 $C$ 在 $\mathbb{R}$ 中是闭集。
+</details>
+:::
+
+## 5.4 Hausdorff spaces | Hausdorff 空间
+
+::: {.callout-note appearance="simple"}
+**5.4.0.1 Definition:** A topological space $X$ is *Hausdorff*, iff for any distinct $p, q \in X$ there are $U \in \mathcal{N}_{X,p}$ and $V \in \mathcal{N}_{X,q}$ such that $U \cap V = \emptyset$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.4.0.1 定义：** 一个拓扑空间 $X$ 是 **Hausdorff 空间**，当且仅当对于任何不同的点 $p, q \in X$，都存在 $U \in \mathcal{N}_{X,p}$ 和 $V \in \mathcal{N}_{X,q}$，使得 $U \cap V = \emptyset$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**5.4.0.2 Proposition:** The Euclidean space $\mathbb{R}^n$ is Hausdorff for $n \in \mathbb{N}_0$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.4.0.2 命题：** 对于 $n \in \mathbb{N}_0$，欧几里得空间 $\mathbb{R}^n$ 是 Hausdorff 空间。
+</details>
+:::
+
+## 5.5 Countable spaces | 可数空间
+
+::: {.callout-note appearance="simple"}
+**5.5.0.1 Definition:** A topological space $X$ is
+
+* **separable** iff it has a countable dense subset; 
+* **first countable** iff it has a **countable** neighborhood base for every point; 
+* **second countable** iff it has a countable base.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.5.0.1 定义：** 一个拓扑空间 $X$ 称为：
+
+* **可分的 (separable)**，当且仅当它有一个可数的稠密子集；
+* **第一可数的 (first countable)**，当且仅当它的每个点都有一个可数邻域基；
+* **第二可数的 (second countable)**，当且仅当它有一个可数基。
+</details>
+:::
+
+1. **可分的 (Separable)**
+
+* 严谨定义：空间 $X$ 中存在一个子集 $A$，满足 $A$ 是可数集，并且 $A$ 的闭包是整个空间（即 $\overline{A} = X$）。
+* 大白话理解：空间本身可能无限大、不可数（比如整条实数轴），但我能往里面撒一把“小米”（可数个点），这把小米能无限逼近空间中的任何一个位置。换句话说，空间里的任何一个非空开集，里面都至少包含一粒“小米”。
+* 经典例子：实数集 $\mathbb{R}$ 是可分的，因为有理数集 $\mathbb{Q}$ 是可数的，且在 $\mathbb{R}$ 中稠密（任何开区间里都含有理数）。
+
+2. **第一可数的 (First Countable)**
+
+* 严谨定义：空间 $X$ 中的每一个点 $x$，都有一个可数的局部基（邻域基） $\mathcal{B}_x = \{U_1, U_2, U_3, \dots\}$。这意味着对于包含 $x$ 的任何开集 $V$，总能在这个可数基里找到一个 $U_n$，使得 $x \in U_n \subseteq V$。
+* 大白话理解：这是一个局部性质。站在空间里的任意一点，我只需要用按顺序排好的一列开集（比如越来越小的圈），就能完全描述向这个点“无限逼近”的过程。它最重要的作用是保证了序列 (sequences) 足够用来刻画极限和连续性（否则在更一般的空间里，必须用复杂的“网”去刻画）。
+* 经典例子：任何度量空间都是第一可数的。对于任意点 $x$，取半径为 $\frac{1}{n}$ ($n \in \mathbb{N}$) 的开球系列 $\{B(x, \frac{1}{n})\}_{n=1}^\infty$，这自然构成了一个可数邻域基。
+
+3. **第二可数的 (Second Countable)**
+
+* 严谨定义：整个拓扑空间 $X$ 的拓扑 $\mathcal{T}$ 有一个可数基 $\mathcal{B}$。
+* 大白话理解：这是一个极强的全局性质。描述整个空间所有可能的形状，我只需要一本“页数可数的字典”（可数基）。空间里的任何一个开集，无论多么千奇百怪，都可以用这本字典里的词（基元素）并出来。
+* 经典例子：$\mathbb{R}^n$ 是第二可数的。它的可数基可以是：所有中心坐标为有理数、且半径也为有理数的开球的集合。
+
+The base in Example 3.2.1.3 and neighborhood base in Example 3.2.2.5 can be distrilled.
+
+::: {.callout-important appearance="simple"}
+**5.5.0.2 Proposition:** The Euclidean space $\mathbb{R}^n$ is separable, first and second countable for $n \in \mathbb{N}_0$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.5.0.2 命题：** 对于 $n \in \mathbb{N}_0$，欧几里得空间 $\mathbb{R}^n$ 是可分的，且满足第一和第二可数性公理。
+</details>
+:::
+
+## 5.6 Topos. | Topos 范畴
+
+::: {.callout-note appearance="simple"}
+**5.6.0.1 Definition:** An (elementary) *topos* is defined to be a category $\mathsf{E}$ with the following properties:
+
+(1) $\mathsf{E}$ has all finite limits;
+(2) $\mathsf{E}$ has a subobject classifier;
+(3) $\mathsf{E}$ is cartesian closed.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.6.0.1 定义：** 一个（初等）**Topos** 被定义为满足以下性质的范畴 $\mathsf{E}$：
+
+(1) $\mathsf{E}$ 具有所有有限极限；
+(2) $\mathsf{E}$ 具有一个子对象分类器；
+(3) $\mathsf{E}$ 是笛卡尔封闭的。
+</details>
+:::
+
+We recall that requiring $\mathsf{E}$ to be cartesian closed means requiring that each functor "product with $b$" (i.e., $a \to a \times b$) has for all $b$ in $\mathsf{E}$ a right adjoint $c \to c^b$, so that $\mathrm{hom}(a \times b, c) \cong \mathrm{hom}(a, c^b)$. In other words, $\mathsf{E}$ has exponentials.
+
+::: {.callout-note appearance="simple"}
+**5.6.0.2 Example:** The category $\mathsf{Set}$ of all small sets is a topos and so is the category $\mathsf{Set}^{\mathsf{C}^{\mathrm{op}}}$ of all set-valued contravariant functors on a small category $\mathsf{C}$. Such a functor $F : \mathsf{C}^{\mathrm{op}} \to \mathsf{Set}$ is also called a presheaf.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.6.0.2 示例：** 所有小集合构成的范畴 $\mathsf{Set}$ 是一个 Topos，小范畴 $\mathsf{C}$ 上的所有集合值逆变函子构成的范畴 $\mathsf{Set}^{\mathsf{C}^{\mathrm{op}}}$ 也是。此类函子 $F : \mathsf{C}^{\mathrm{op}} \to \mathsf{Set}$ 也被称为前层。
+</details>
+:::
+
+This is in reference to topology, where $\mathsf{C}$ is the set of all open sets $U$ of a topological space $X$. In this case, a presheaf $F$ assigns to each open set $U$ a set $F(U)$, with functorial properties for continuous maps $U \to V$.
+
+::: {.callout-note appearance="simple"}
+**5.6.0.3 Example:** Let $F(U)$ be the set of all continuous real-valued functions on $U$. In this case, $F$ is said to be a sheaf (think of the sheaf of coefficients for a cohomology theory!).
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.6.0.3 示例：** 设 $F(U)$ 为 $U$ 上所有连续实值函数的集合。在这种情况下，$F$ 被称为一个层（可以联想上同调理论中的系数层！）。
+</details>
+:::
+
+This and other categories of sheaves play a central role in algebraic geometry and in algebraic topology; the word "topos" is evidently a derivative of the word "topology", suggesting that a topological structure is essentially described by its topos of sheaves of $\mathsf{Set}$.
+
+This study of categories of sheaves on topological spaces and their generalization has led to the study of toposes (see Mac Lane–Moerdijk [1992]). In particular, various logical properties are reflected in the subobject classifiers $Q$ of a topos. Under many circumstances, a topos provides an alternative view of the foundations of mathematics; for example, the use of "forcing" to prove the independence of the continuum hypothesis can be well organized in terms of constructions on toposes (see Mac Lane–Moerdijk [1992], Chapter VI). Also, suitable toposes can replace the category of sets as a foundation for mathematics.
+
+The axioms for a topos have many useful consequences.
+
+::: {.callout-important appearance="simple"}
+**5.6.0.4 Proposition:** Every topos has all finite colimits.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**5.6.0.4 命题：** 每个 Topos 都具有所有有限上极限。
+</details>
+:::

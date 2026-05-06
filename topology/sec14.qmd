@@ -1,0 +1,178 @@
+---
+title: "COUNTABILITY"
+date: "2026-04-18"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 14.1 Countability.
+
+Note that, a set $X$ is countable if there is an injection $X \to \mathbb{N}$; in particular, $X$ may be finite or countably infinite.
+
+::: {.callout-note appearance="simple"}
+**14.1.0.1 Definition:** The *character* $\chi(p,\mathcal{T})$ of a topology $\mathcal{T}$ on $X$ at $p \in X$ is the minimal cardinarity of neighborhood bases of $\mathcal{T}$ at $p$, and the *character* $\chi(\mathcal{T})$ of $\mathcal{T}$ is the supremum of $\chi(p,\mathcal{T})$ over $p \in X$. The *weight* $w(\mathcal{T})$ of a topology $\mathcal{T}$ is the minimal cardinarity of bases of $\mathcal{T}$. The *density* $d(\mathcal{T})$ of a topology $\mathcal{T}$ on $X$ is the minimal cardinarity of dense subsets of $(X,\mathcal{T})$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.0.1 定义：** 拓扑空间 $X$ 上拓扑 $\mathcal{T}$ 在点 $p \in X$ 处的**特征** (character) $\chi(p,\mathcal{T})$ 是在 $p$ 处 $\mathcal{T}$ 的邻域基的最小基数，而 $\mathcal{T}$ 的**特征** $\chi(\mathcal{T})$ 是 $\chi(p,\mathcal{T})$ 在所有 $p \in X$ 上的上确界。拓扑 $\mathcal{T}$ 的**权重** (weight) $w(\mathcal{T})$ 是 $\mathcal{T}$ 的基的最小基数。拓扑空间 $(X,\mathcal{T})$ 的**密度** (density) $d(\mathcal{T})$ 是 $(X,\mathcal{T})$ 中稠密子集的最小基数。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**14.1.0.2 Proposition:** Let $\mathcal{T}$ be a topology on $X$. Then
+$$\chi(\mathcal{T}) \le w(\mathcal{T}) \ge d(\mathcal{T}). \qquad (224)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.0.2 命题：** 设 $\mathcal{T}$ 是 $X$ 上的一个拓扑。那么
+$$\chi(\mathcal{T}) \le w(\mathcal{T}) \ge d(\mathcal{T}). \qquad (224)$$
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* For any $p \in X$, as $\mathcal{N}_p \cap \mathcal{T} \subseteq \mathcal{T}$ we obtain that $\chi(p,\mathcal{T}) \le w(\mathcal{T})$. Taking supermum over $p$ we have $\chi(\mathcal{T}) \le w(\mathcal{T})$. Give a base $\mathcal{B}$ of $\mathcal{T}$ we obtain a dense subset of $(X,\mathcal{T})$ by collecting a point in each of the member of $\mathcal{B}$. Therefore, $d(\mathcal{T}) \le w(\mathcal{T})$. $\blacksquare$
+</details>
+
+::: {.callout-note appearance="simple"}
+**14.1.0.3 Definition:** A topological space $(X,\mathcal{T})$ is
+
+* *first countable* iff it has countable character, or $\chi(\mathcal{T}) \le |\mathbb{N}|$;
+* *second countable* iff it has countable weight, or $w(\mathcal{T}) \le |\mathbb{N}|$;
+* *separable* iff it has countable density, or $d(\mathcal{T}) \le |\mathbb{N}|$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.0.3 定义：** 一个拓扑空间 $(X,\mathcal{T})$ 是
+
+* **第一可数的** (first countable)，当且仅当它具有可数的特征，即 $\chi(\mathcal{T}) \le |\mathbb{N}|$；
+* **第二可数的** (second countable)，当且仅当它具有可数的权重，即 $w(\mathcal{T}) \le |\mathbb{N}|$；
+* **可分的** (separable)，当且仅当它具有可数的密度，即 $d(\mathcal{T}) \le |\mathbb{N}|$。
+</details>
+:::
+
+### 14.1.1 Separable spaces.
+
+::: {.callout-tip appearance="simple"}
+**14.1.1.1 Theorem:** A subspace of a separable space is separable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.1.1 定理：** 可分空间的子空间是可分的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**14.1.1.2 Theorem:** A countable product of separable spaces is separable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.1.2 定理：** 可分空间的可数乘积是可分的。
+</details>
+:::
+
+**14.1.1.3 Example:** The product space $\mathbb{R}^{[0,1]}$ is separable.
+
+::: {.callout-important appearance="simple"}
+**14.1.1.4 Proposition:** If $X$ is a separable topological space, then every collection of disjoint open subsets in $X$ is countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.1.4 命题：** 如果 $X$ 是一个可分的拓扑空间，那么 $X$ 中任意互不相交的开子集族都是可数的。
+</details>
+:::
+
+### 14.1.2 First countable spaces.
+
+::: {.callout-tip appearance="simple"}
+[7, Theorem 30.2]
+**14.1.2.1 Theorem:** A subspace of a first-countable space is first-countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+[7, 定理 30.2]
+**14.1.2.1 定理：** 第一可数空间的子空间是第一可数的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+[7, Theorem 30.2]
+**14.1.2.2 Theorem:** A countable product of first-countable spaces is first-countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+[7, 定理 30.2]
+**14.1.2.2 定理：** 第一可数空间的可数乘积是第一可数的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+[7, Theorem 30.1]
+**14.1.2.3 Theorem:** Let $X$ be a first countable topological space. Then
+
+* it is Hausdorff iff every sequence in $X$ has at most one limit point;
+* a point $p \in X$ belongs to the closure of a subset $A \subseteq X$ iff there is a sequence in $A$ converging to $p$;
+* a map $f: X \to Y$ is continuous iff it sends convergent sequences to convergent sequences;
+* it is sequentially compact iff it is countably compact.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+[7, 定理 30.1]
+**14.1.2.3 定理：** 设 $X$ 是一个第一可数拓扑空间。那么
+
+* 它是 Hausdorff 空间，当且仅当 $X$ 中的每个序列至多有一个极限点；
+* 点 $p \in X$ 属于子集 $A \subseteq X$ 的闭包，当且仅当存在 $A$ 中的序列收敛到 $p$；
+* 映射 $f: X \to Y$ 是连续的，当且仅当它将收敛序列映射为收敛序列；
+* 它是序列紧的，当且仅当它是可数紧的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* We prove the second item. Let $\mathcal{B}_p = (U_n)_{n\in\mathbb{N}}$ be a countable neighborhood base of $p \in X$. If $p \in \overline{A}$ then there is $p_n \in U_n \cap A$ for any $n \in \mathbb{N}$. By definition of a neighborhood base, we have $p_n \to p$. If there is $(p_k)_{k\in\mathbb{N}} \subseteq A$ with $p_k \to p$, then for any $U \in \mathcal{N}_p$, by definition of a neighborhood base, there is $U_n \subseteq U$ and then there is some $p_k \in U_n \cap A \subseteq U \cap A$. Therefore, $p \in \overline{A}$. $\blacksquare$
+</details>
+
+### 14.1.3 Second countable spaces.
+
+::: {.callout-tip appearance="simple"}
+**14.1.3.1 Theorem:** Any second countable space is first countable, separable, and Lindelöf.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.3.1 定理：** 任何第二可数空间都是第一可数的、可分的且是 Lindelöf 空间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* For the Lindelöfness, note that any open cover has a countable subcover by leaving only one member containing each basic open subset. $\blacksquare$
+</details>
+
+**14.1.3.2 Corollary:** Each base of a second countable space has a countable subbase.
+
+::: {.callout-important appearance="simple"}
+**14.1.3.3 Proposition:** The lexicographical order space $([0,1]^2, \mathcal{T}_{\text{lexi}})$ is separable but not first countable. The excluded point space $(X, \mathcal{T}_p')$ is first countable but not separable if $X$ is uncountable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.3.3 命题：** 字典序空间 $([0,1]^2, \mathcal{T}_{\text{lexi}})$ 是可分的但不是第一可数的。排除点空间 $(X, \mathcal{T}_p')$ 是第一可数的，但如果 $X$ 是不可数的，则它不是可分的。
+</details>
+:::
+
+**14.1.3.4 Example:** The *long line* is not second countable.
+
+**14.1.3.5 Example:** The space $\mathbb{R}_{\text{lower}}$ is first countable, separable, and Lindelöf, but not second countable.
+
+::: {.callout-important appearance="simple"}
+**14.1.3.6 Proposition:** A locally compact, paracompact connected Hausdorff space is second-countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**14.1.3.6 命题：** 局部紧的、仿紧的连通 Hausdorff 空间是第二可数的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+[7, Theorem 30.2]
+**14.1.3.7 Theorem:** A subspace of a second-countable space is second-countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+[7, 定理 30.2]
+**14.1.3.7 定理：** 第二可数空间的子空间是第二可数的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+[7, Theorem 30.2]
+**14.1.3.8 Theorem:** A countable product of second-countable spaces is second-countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+[7, 定理 30.2]
+**14.1.3.8 定理：** 第二可数空间的可数乘积是第二可数的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Let $X$ be a second-countable space with a countable base $\mathcal{B}$. Then $\{B \cap A : B \in \mathcal{B}\}$ is a countable base for the subspace $A$ of $X$. 
+Let $X_i$, $i \in I$, be second-countable spaces with countable base $\mathcal{B}_i$. Then 
+$$\left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{B}_i) \wedge (U_i = X_i \text{ for all but finitely many } i \in I) \right\} \qquad (225)$$
+is a countable base for $\prod_{i \in I} X_i$. $\blacksquare$
+</details>

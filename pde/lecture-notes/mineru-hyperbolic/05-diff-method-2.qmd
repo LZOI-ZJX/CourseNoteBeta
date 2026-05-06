@@ -1,0 +1,6 @@
+---
+title: "常/变系数方程组"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/hyperbolic-05.md >}}

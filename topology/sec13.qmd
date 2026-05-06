@@ -1,0 +1,1118 @@
+---
+title: "COMPACTNESS"
+date: "2026-04-17"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 13.1 Covers | 覆盖
+
+::: {.callout-note appearance="simple"}
+**13.1.0.1 Definition:** A *cover* of a set $X$ is a collection $\mathcal{A} \subseteq \mathcal{P}(X)$ such that $X = \bigcup_{A \in \mathcal{A}} A$ and we say $\mathcal{A}$ *covers* $X$. A *subcover* of $\mathcal{A}$ is a subcollection of $\mathcal{A}$ that is a cover of $X$. A *refinement* of $\mathcal{A}$ is a cover of $X$ each of whose member is a subset of a member of $\mathcal{A}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+集合 $X$ 的一个**覆盖** (cover) 是一个子集族 $\mathcal{A} \subseteq \mathcal{P}(X)$，使得 $X = \bigcup_{A \in \mathcal{A}} A$，此时我们称 $\mathcal{A}$ **覆盖**了 $X$。$\mathcal{A}$ 的一个**子覆盖** (subcover) 是 $\mathcal{A}$ 的一个子集族，且它也是 $X$ 的一个覆盖。$\mathcal{A}$ 的一个**加细** (refinement) 是 $X$ 的一个覆盖，且其每个成员都是 $\mathcal{A}$ 中某个成员的子集。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.1.0.2 Definition:** Let $(X, \mathcal{T})$ be a topological space. A cover $\mathcal{A}$ of $X$ is
+
+* *open* with respect to $\mathcal{T}$ if it consists of open subsets;
+* *closed* with respect to $\mathcal{T}$ if it consists of closed subsets;
+* *locally finite* with respect to $\mathcal{T}$ if $\mathcal{T}$ has a base each of whose member intersects finitely many members of $\mathcal{A}$;
+* *fundamental* with respect to $\mathcal{T}$ if $U \in \mathcal{T}$ is equivalent to $U \cap A \in \mathcal{T}_A$ for any $A \in \mathcal{A}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $(X, \mathcal{T})$ 是一个拓扑空间。$X$ 的一个覆盖 $\mathcal{A}$ 称为
+
+* 关于 $\mathcal{T}$ 是**开**的 (open)，如果它由开子集组成；
+* 关于 $\mathcal{T}$ 是**闭**的 (closed)，如果它由闭子集组成；
+* 关于 $\mathcal{T}$ 是**局部有限**的 (locally finite)，如果 $\mathcal{T}$ 有一个基，其每个成员只与 $\mathcal{A}$ 中的有限个成员相交；
+* 关于 $\mathcal{T}$ 是**基础**的 (fundamental)，如果 $U \in \mathcal{T}$ 等价于对于任意 $A \in \mathcal{A}$ 都有 $U \cap A \in \mathcal{T}_A$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.1.0.3 Proposition:** A base of a topology $\mathcal{T}$ on $X$ is an open cover of $X$ with respect to $\mathcal{T}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$X$ 上拓扑 $\mathcal{T}$ 的基是 $X$ 关于 $\mathcal{T}$ 的一个开覆盖。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.1.0.4 Proposition:** Let $f:Y \to X$ be a continuous map and $\mathcal{A}$ is a cover of $X$. Then $f^*\mathcal{A} = \{f^{-1}(A) : A \in \mathcal{A}\}$ is a cover of $Y$ *induced* from $\mathcal{A}$ by $f$; it is open if $\mathcal{A}$ is open; and it is closed if $\mathcal{A}$ is closed. If the topology on $Y$ is the initial topology induced by $\{f\}$, then $f^*\mathcal{A}$ is locally finite if $\mathcal{A}$ is locally finite.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $f:Y \to X$ 为连续映射，且 $\mathcal{A}$ 是 $X$ 的一个覆盖。则 $f^*\mathcal{A} = \{f^{-1}(A) : A \in \mathcal{A}\}$ 是由 $f$ 从 $\mathcal{A}$ **诱导** (induced) 出的 $Y$ 的覆盖；如果 $\mathcal{A}$ 是开的，则它是开覆盖；如果 $\mathcal{A}$ 是闭的，则它是闭覆盖。如果 $Y$ 上的拓扑是由 $\{f\}$ 诱导的初拓扑 (initial topology)，那么当 $\mathcal{A}$ 局部有限时，$f^*\mathcal{A}$ 也是局部有限的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: We prove the last assertion. Suppose $\mathcal{A}$ is locally finite and therefore the topology on $X$ has a base $\mathcal{B}$ each of whose member intersects finitely many members of $\mathcal{A}$. Note that $f^*\mathcal{B} = \{f^{-1}(U) : U \in \mathcal{B}\}$ is a base of the initial topology on $Y$ which is coarser than $\mathcal{T}_Y$. If it is the case that the topology on $Y$ equals the initial topology, then each $f^{-1}(U)$ could intersect no more members of $f^*\mathcal{A}$ than $U$ can intersect those of $\mathcal{A}$, and $f^*\mathcal{A}$ is locally finite. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.1.0.5 Theorem:** Let $X$ be a topological space with a cover $\mathcal{A}$. Then $\mathcal{A}$ being fundamental is equivalent to either of
+
+* $U$ is open in $X$ if ($\forall A \in \mathcal{A}$)($U \cap A$ is open in $A$);
+* $C$ is closed in $X$ if ($\forall A \in \mathcal{A}$)($C \cap A$ is closed in $A$).
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是带有覆盖 $\mathcal{A}$ 的拓扑空间。则 $\mathcal{A}$ 是基础覆盖等价于以下任意一条：
+
+* $U$ 在 $X$ 中开，如果 ($\forall A \in \mathcal{A}$)($U \cap A$ 在 $A$ 中开)；
+* $C$ 在 $X$ 中闭，如果 ($\forall A \in \mathcal{A}$)($C \cap A$ 在 $A$ 中闭)。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.1.0.6 Theorem:** Let $X$ be a topological space with a cover $\mathcal{A}$. Then $\mathcal{A}$ is fundamental if either of the following holds:
+
+* $\mathcal{A}$ has a fundamental refinement;
+* $\mathcal{A}$ is open;
+* $\mathcal{A}$ is locally finite and closed;
+* there is a fundamental cover $\Sigma$ of $X$ such that for any $S \in \Sigma$ the cover $\iota_S^*\mathcal{A}$ of $S$ is fundamental;
+* the topology on $X$ has a base $\mathcal{B}$ such that for any $U \in \mathcal{B}$ the cover $\iota_U^*\mathcal{A}$ of $U$ is fundamental.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是带有覆盖 $\mathcal{A}$ 的拓扑空间。如果满足以下任一条件，则 $\mathcal{A}$ 是基础覆盖：
+
+* $\mathcal{A}$ 有一个基础加细；
+* $\mathcal{A}$ 是开覆盖；
+* $\mathcal{A}$ 是局部有限且闭的；
+* $X$ 存在一个基础覆盖 $\Sigma$，使得对于任意 $S \in \Sigma$，$S$ 的覆盖 $\iota_S^*\mathcal{A}$ 是基础的；
+* $X$ 上的拓扑有一个基 $\mathcal{B}$，使得对于任意 $U \in \mathcal{B}$，$U$ 的覆盖 $\iota_U^*\mathcal{A}$ 是基础的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.1.0.7 Theorem:** Let $f:X \to Y$ be a map between topological spaces and $\mathcal{A}$ is a cover of $X$. Let $\mathcal{A}$ be a fundamental cover of $X$ such that the restriction $f|_U: U \to Y$ for any $U \in \mathcal{A}$ is continuous. Then $f$ is continuous.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $f:X \to Y$ 是拓扑空间之间的映射，且 $\mathcal{A}$ 是 $X$ 的覆盖。假设 $\mathcal{A}$ 是 $X$ 的基础覆盖，且对于任意 $U \in \mathcal{A}$，限制映射 $f|_U: U \to Y$ 都是连续的。则 $f$ 是连续的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $V$ be an open subset of $Y$. For any $U \in \mathcal{A}$, since $f|_U: U \to Y$ is continuous we have $f^{-1}(V) \cap U = f|_U^{-1}(V)$ open in $U$. Since $\mathcal{A}$ is a fundamental cover, we find $f^{-1}(V)$ open in $X$ and therefore $f$ is continuous. $\blacksquare$
+</details>
+
+## 13.2 Compactness | 紧致性
+
+### 13.2.1 Compact spaces | 紧致空间
+
+::: {.callout-note appearance="simple"}
+**13.2.1.1 Definition:** A topological space $X$ is
+
+* *compact* iff every open cover of $X$ has a finite subcover;
+* *$\sigma$-compact* iff it has a countable cover by compact subspaces;
+* *Lindelöf* iff every open cover of $X$ has a countable subcover;
+* *countably compact* iff every countable open cover of $X$ has a finite subcover.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是
+
+* **紧致的** (compact) 当且仅当 $X$ 的每个开覆盖都有一个有限子覆盖；
+* **$\sigma$-紧致的** ($\sigma$-compact) 当且仅当它有一个由紧致子空间组成的可数覆盖；
+* **林德勒夫的** (Lindelöf) 当且仅当 $X$ 的每个开覆盖都有一个可数子覆盖；
+* **可数紧致的** (countably compact) 当且仅当 $X$ 的每个可数开覆盖都有一个有限子覆盖。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.1.2 Proposition:** A topological space is compact iff it satisfies the *finite intersection property*, namely if every finite subcollection of a collection of closed subsets has nonempty intersection then the intersection of the collection is nonempty.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间是紧致的当且仅当它满足**有限交性质** (finite intersection property)，即如果一个闭子集族的每个有限子族都有非空交集，那么该子集族的交集也是非空的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.1.3 Proposition:** If a topological space $X$ is compact then it satisfies the *nested sequence property*, namely any nested sequence $F_1 \supseteq F_2 \supseteq \cdots$ of nonempty closed subsets of $X$ has nonempty intersection $\bigcap_{n=1}^\infty F_n$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+如果拓扑空间 $X$ 是紧致的，那么它满足**嵌套序列性质** (nested sequence property)，即 $X$ 中非空闭子集的任何嵌套序列 $F_1 \supseteq F_2 \supseteq \cdots$ 具有非空交集 $\bigcap_{n=1}^\infty F_n$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.1.4 Proposition:** The countable compactness of a topological space $X$ is equivalent to each of
+
+* for every infinite $A \subseteq X$ there is $p \in X$ such that $U \cap A$ is infinite for every $U \in \mathcal{N}_p$;
+* every countable collection of closed subsets of $X$ with empty intersection has a finite subcollection with empty intersection;
+* the topology on $X$ has a countable subbasis $\mathcal{S}$ such that every cover of $X$ by members of $\mathcal{S}$ has a finite subcover.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 的可数紧致性等价于以下各项：
+
+* 对于每个无限子集 $A \subseteq X$，存在 $p \in X$ 使得对于每个 $U \in \mathcal{N}_p$，$U \cap A$ 都是无限的；
+* $X$ 中具有空交集的每个可数闭子集族，都有一个具有空交集的有限子族；
+* $X$ 上的拓扑有一个可数子基 $\mathcal{S}$，使得由 $\mathcal{S}$ 中的成员构成的 $X$ 的每个覆盖都有一个有限子覆盖。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**13.2.1.5 Remark:** In compact spaces the following type of generalization from local to global properties is possible. Let $X$ be a compact space and $P$ a property on the open subsets of $X$, and also such that if $U$ and $V$ have $P$ then so does $U \cup V$. Then if $X$ has this property locally, that is every point has a neighborhood with property $P$, then $X$ itself has property $P$. In fact, such open neighborhoods form an open cover of $X$. By compactness we have a finite subcover, and by assumption the property is inductively transferred to finite unions.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+在紧致空间中，可以进行以下从局部性质到全局性质的推广。设 $X$ 是一个紧致空间，$P$ 是 $X$ 的开子集上的一个性质，并且如果 $U$ 和 $V$ 具有性质 $P$，那么 $U \cup V$ 也具有性质 $P$。那么，如果 $X$ 局部具有这个性质，即每个点都有一个具有性质 $P$ 的邻域，那么 $X$ 本身也具有性质 $P$。事实上，这些开邻域构成了 $X$ 的一个开覆盖。根据紧致性，我们有一个有限子覆盖，且根据假设，该性质可以通过归纳法转移到有限并集上。
+</details>
+:::
+
+### 13.2.2 Sequentially compact spaces | 序列紧致空间
+
+::: {.callout-note appearance="simple"}
+**13.2.2.1 Definition:** A *sequence* $(p_n)_{n=1}^\infty$ in a set $X$ is a map $\mathbb{N} \to X, n \mapsto p_n$. A sequence $(p_n)_{n=1}^\infty$ in a topological space $X$ is *convergent* to $q \in X$ iff $(\forall U \in \mathcal{N}_q)(\exists N \in \mathbb{N})(n \ge N \implies p_n \in U)$, and it is *convergent* if it converges to some point of $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+集合 $X$ 中的一个**序列** (sequence) $(p_n)_{n=1}^\infty$ 是一个映射 $\mathbb{N} \to X, n \mapsto p_n$。拓扑空间 $X$ 中的序列 $(p_n)_{n=1}^\infty$ **收敛** (convergent) 于 $q \in X$ 当且仅当 $(\forall U \in \mathcal{N}_q)(\exists N \in \mathbb{N})(n \ge N \implies p_n \in U)$，如果它收敛于 $X$ 中的某个点，则称它是**收敛的** (convergent)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.2.2.2 Definition:** A topological space $X$ is
+
+* *sequentially compact* iff every sequence $(p_n)_{n=1}^\infty$ in $X$ has a convergent subsequence;
+* *pseudocompact* iff every continuous function $X \to \mathbb{R}$ is bounded;
+* *limit point compact* iff every infinite subset $A$ of $X$ has a limit point.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是
+
+* **序列紧致的** (sequentially compact) 当且仅当 $X$ 中的每个序列 $(p_n)_{n=1}^\infty$ 都有一个收敛的子序列；
+* **伪紧致的** (pseudocompact) 当且仅当每个连续函数 $X \to \mathbb{R}$ 都是有界的；
+* **极限点紧致的** (limit point compact) 当且仅当 $X$ 的每个无限子集 $A$ 都有一个极限点。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.2.3 Proposition:** A subspace of $\mathbb{R}^n$ is bounded and closed $\iff$ compact $\iff$ sequentially compact $\iff$ limit point compact $\iff$ pseudocompact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$\mathbb{R}^n$ 的子空间是有界且闭的 $\iff$ 紧致的 $\iff$ 序列紧致的 $\iff$ 极限点紧致的 $\iff$ 伪紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.2.4 Proposition:** In general, a topological space being compact $\implies$ $\sigma$-compact $\implies$ Lindelöf, compact $\implies$ countably compact $\implies$ pseudocompact, and sequentially compact $\implies$ countably compact $\implies$ limit point compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+一般而言，拓扑空间是紧致的 $\implies$ $\sigma$-紧致的 $\implies$ 林德勒夫的，紧致的 $\implies$ 可数紧致的 $\implies$ 伪紧致的，且 序列紧致的 $\implies$ 可数紧致的 $\implies$ 极限点紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.2.5 Proposition:** The space $(X, \mathcal{T}_{\text{cof}})$ for $X$ infinite is compact, sequentially compact, and limit point compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+对于无限集合 $X$，空间 $(X, \mathcal{T}_{\text{cof}})$ 是紧致的、序列紧致的以及极限点紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.2.6 Proposition:** The space $\mathbb{N} \times (\mathbb{N}, \mathcal{T}_{\text{triv}})$ is not compact, not sequentially compact, but limit point compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+空间 $\mathbb{N} \times (\mathbb{N}, \mathcal{T}_{\text{triv}})$ 不是紧致的，不是序列紧致的，但是是极限点紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.2.7 Proposition:** Let $X$ be a topological space.
+* If $X$ is compact, then it is limit point compact.
+* If $X$ is sequentially compact, then it is limit point compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是一个拓扑空间。
+* 如果 $X$ 是紧致的，那么它是极限点紧致的。
+* 如果 $X$ 是序列紧致的，那么它是极限点紧致的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.2.2.8 Definition:** For sets $X$ and $Y$, the power set denoted by $Y^X$ is the set of maps $f: X \to Y$. For any $x \in X$, the at $x$ is
+$$\text{ev}_x: Y^X \to Y, \quad \text{ev}_x(f) = f(x), \qquad (203)$$
+which is nothing but $\text{pr}_x$ written in a more comprehensible way.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+对于集合 $X$ 和 $Y$，$Y^X$ 表示的幂集是映射 $f: X \to Y$ 的集合。对于任何 $x \in X$，在 $x$ 处的是
+$$\text{ev}_x: Y^X \to Y, \quad \text{ev}_x(f) = f(x), \qquad (203)$$
+这只不过是用一种更容易理解的方式写出的 $\text{pr}_x$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.2.2.9 Lemma:** Let $X$ be a set and $Y$ be a topological space. A sequence $(f_n)_{n=1}^\infty$ in the product space $Y^X$ converges to $f$ iff it converges to $f$ pointwisely.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是一个集合且 $Y$ 是一个拓扑空间。乘积空间 $Y^X$ 中的序列 $(f_n)_{n=1}^\infty$ 收敛于 $f$ 当且仅当它逐点收敛于 $f$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: The sequence $(f_n)_{n=1}^\infty$ converges to $f$ iff for any $x \in X$ and any $V \in \mathcal{N}_{f(x)}$ there is $N \in \mathbb{N}$ such that for any $n \in \mathbb{N}$ with $n \ge N$ we have $f_n \in U_x = \text{ev}_x^{-1}(V)$, which is $f_n(x) \in V$, but this is precisely $(f_n)_{n=1}^\infty$ converging to $f(x)$ for any $x \in X$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.2.2.10 Proposition:** The space $[0, 1]^{[0, 1]}$ is compact but not sequentially compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+空间 $[0, 1]^{[0, 1]}$ 是紧致的但不是序列紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: According to Tychonoff theorem (Theorem 13.3.2.6), $[0, 1]^{[0, 1]}$ is compact.
+Define $f_n: [0, 1] \to [0, 1]$ by mapping $x$ to its $n$-th digit in the binary representation.
+$$f_n(x) = \lfloor 2^n x \rfloor - 2 \lfloor 2^{n-1} x \rfloor. \qquad (204)$$
+We claim that no subsequence of $(f_n)_{n=1}^\infty$ converges. In fact, for any subsequence $(f_{n_k})_{k=1}^\infty$ we find $x_0 \in [0, 1]$ such that $f_{n_{2k}}(x_0) = 0$ and $f_{n_{2k+1}}(x_0) = 1$ for $k \in \mathbb{N}$ but $(f_{n_k})_{k=1}^\infty$ does not converge at $x_0$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.2.2.11 Proposition:** The space $[0, 1]^\mathbb{N}$ is compact and sequentially compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+空间 $[0, 1]^\mathbb{N}$ 是紧致且序列紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: According to Tychonoff theorem (Theorem 13.3.2.6), $[0, 1]^\mathbb{N}$ is compact.
+Let $(f_n)_{n=1}^\infty$ be a sequence of functions in $[0, 1]^\mathbb{N}$. Inductively, by the sequential compactness of $[0, 1]$, there is a subsequence $(f_{n_k^1})_{k=1}^\infty$ of $(f_n)_{n=1}^\infty$ such that $(f_{n_k^1}(1))_{k=1}^\infty$ converges to some $a_1 \in [0, 1]$, and then a chain of subsequences
+$$\cdots \subseteq (f_{n_k^{j+1}})_{k=1}^\infty \subseteq (f_{n_k^j})_{k=1}^\infty \subseteq (f_{n_k^1})_{k=1}^\infty \subseteq (f_n)_{n=1}^\infty \qquad (205)$$
+such that $(f_{n_k^j}(j))_{k=1}^\infty$ converges to some $a_j \in [0, 1]$ for any $j \in \mathbb{N}$. Applying a diagonalization trick, we obtain a subsequence $(f_{n_k^k})_{k=1}^\infty$ of $(f_n)_{n=1}^\infty$ convergent to $f: j \mapsto a_j$ pointwisely. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.2.2.12 Proposition:** Let $A$ be the subspace of $[0, 1]^{[0, 1]}$ consisting of those functions that are nonzero at only countably many points; then $A$ is sequentially compact but not compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $A$ 为 $[0, 1]^{[0, 1]}$ 的子空间，由仅在可数多个点处非零的那些函数组成；则 $A$ 是序列紧致的但不是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: To show that $A$ is sequentially compact, let $(f_n)_{n=1}^\infty$ be a sequence in $A$ and then $S = \bigcup_{n=1}^\infty \{f_n \ne 0\}$ is a countable set. Then $(f_n)_{n=1}^\infty$ has a convergent subsequence in $A$ since it lies in $[0, 1]^S$ which is sequentially compact and closedly embedded in $A$.
+For any $x \in [0, 1]$, the set $A_x = \text{ev}_x|_A^{-1}(1)$ is closed (since the evaluation map is continuous) in $A$. However, $\{A_x\}_{x \in [0, 1]}$ violates the finite intersection property as any finite intersection of $A_x$ is nonempty but $\bigcap_{x \in [0, 1]} A_x = \emptyset$. Then $A$ is not compact (actually, not Lindelöf). $\blacksquare$
+</details>
+
+### 13.2.3 Properties of compactness | 紧致性的性质
+
+::: {.callout-important appearance="simple"}
+**13.2.3.1 Proposition:** A finite union of compact spaces is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+紧致空间的有限并是紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.3.2 Proposition:** The empty space, the point space, and any space with finite cardinality is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+空空间，单点空间，以及任何具有有限基数的空间都是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: A finite topological subbase implies a finite topology. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.2.3.3 Proposition:** Any space with a finite topology is compact. Any space with a finite topological base/subbase is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+任何具有有限拓扑的空间都是紧致的。任何具有有限拓扑基/子基的空间都是紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.2.3.4 Proposition:** There is a space with a finite dense subset which is noncompact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+存在一个具有有限稠密子集的空间，该空间不是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $\mathcal{T}$ be a topology on $\mathbb{N}_0$ given by
+$$\mathcal{T} = \{\emptyset, \{0\}, \mathbb{N}_0\} \cup \{\{0, n\} : n \in \mathbb{N}\}. \qquad (206)$$
+Then $\{0\}$ is dense as the only closed subset containing $\{0\}$ is $\mathbb{N}_0$. However, the space $(\mathbb{N}_0, \mathcal{T})$ is not compact since the infinite open cover
+$$\{\{0, n\} : n \in \mathbb{N}\} \qquad (207)$$
+of $\mathbb{N}_0$ has no proper subcover, let alone any finite subcover. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.2.3.5 Proposition:** The compactness is a continuous invariant.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+紧致性是一个连续不变量。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $f: X \to Y$ is a continuous surjection and $X$ is compact. For any open cover $\mathcal{A}_Y$ over $Y$, we obtain an open cover $\mathcal{A} = \{f^{-1}(U) : U \text{ is open in } Y\}$, which has a finite subcover $\{f^{-1}(U_i)\}_{i=1}^N$ for $\{U_i\}_{i=1}^N$ being a finite subcover of $\mathcal{A}_Y$, and then $Y$ is compact. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.2.3.6 Theorem:** The compactness is closed-hereditary; any closed subspace of a compact space is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+紧致性是闭遗传的；紧致空间的任何闭子空间都是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $X$ be a compact space with a closed subset $F$. Let $\mathcal{A}_F$ be an open cover of $F$, then $\mathcal{A} = \mathcal{A}_F \cup \{X \setminus F\}$ is an open cover of $X$. By the compactness of $X$, there is a finite subcover $\mathcal{B}$ of $\mathcal{A}$ over $X$. Then $\mathcal{B}_F = \mathcal{B}$ is a finite subcover of $\mathcal{A}_F$ over $F$. $\blacksquare$
+</details>
+
+## 13.3 The theorem of Tychonoff | 季霍诺夫定理
+
+### 13.3.1 The finite case | 有限情形
+
+::: {.callout-tip appearance="simple"}
+**13.3.1.1 Lemma:** Let $X$ and $Y$ be two topological spaces with $Y$ compact. If $p \in X$ and $W \in \mathcal{N}_{\{p\} \times Y}$ in $X \times Y$, then there is a tube $U \times Y \subseteq W$ with $U \in \mathcal{N}_p$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 和 $Y$ 为两个拓扑空间，且 $Y$ 紧致。如果 $p \in X$ 且在 $X \times Y$ 中 $W \in \mathcal{N}_{\{p\} \times Y}$，那么存在一个管 (tube) $U \times Y \subseteq W$，其中 $U \in \mathcal{N}_p$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: For any $q \in Y$ there are $U_q \in \mathcal{N}_p$ in $X$ and $V_q \in \mathcal{N}_q$ in $Y$ with $U_q \times V_q \subseteq W$. Since $\{V_q\}_{q \in Y}$ covers the compact space $Y$, it has a finite subcover $\{V_{q_i}\}_{i=1}^N$ for $\{q_i\}_{i=1}^N \subseteq Y$ and then let $U = \bigcap_{i=1}^N U_{q_i}$. We obtain that $U \in \mathcal{N}_p$, $Y = \bigcup_{i=1}^N V_{q_i}$, and $U \times Y \subseteq W$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.3.1.2 Lemma:** Let $X$ and $Y$ be two topological spaces with $L$ a compact subspace of $Y$. If $p \in X$ and $W \in \mathcal{N}_{\{p\} \times L}$ in $X \times Y$, then there are $U \in \mathcal{N}_p$ in $X$ and $V \in \mathcal{N}_L$ in $Y$ such that $U \times V \subseteq W$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 和 $Y$ 为两个拓扑空间，且 $L$ 是 $Y$ 的紧致子空间。如果 $p \in X$ 且在 $X \times Y$ 中 $W \in \mathcal{N}_{\{p\} \times L}$，那么在 $X$ 中存在 $U \in \mathcal{N}_p$，在 $Y$ 中存在 $V \in \mathcal{N}_L$，使得 $U \times V \subseteq W$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: For any $q \in L$ there are $U_q \in \mathcal{N}_p$ in $X$ and $V_q \in \mathcal{N}_q$ in $Y$ with $U_q \times V_q \subseteq W$. Since $\{V_q\}_{q \in L}$ covers the compact space $L$, it has a finite subcover $\{V_{q_i}\}_{i=1}^N$ for $\{q_i\}_{i=1}^N \subseteq L$ and then let $U = \bigcap_{i=1}^N U_{q_i}$ and $V = \bigcup_{i=1}^N V_{q_i}$. We obtain that $U \in \mathcal{N}_p$, $V \in \mathcal{N}_L$, and $U \times V \subseteq W$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.3.1.3 Corollary:** Let $K$ be a compact subspace of $X$ and $L$ be a compact subspace of $Y$. If $W \in \mathcal{N}_{K \times L}$ in $X \times Y$, then there are $U \in \mathcal{N}_K$ in $X$ and $V \in \mathcal{N}_L$ in $Y$ such that $U \times V \subseteq W$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $K$ 是 $X$ 的紧致子空间，$L$ 是 $Y$ 的紧致子空间。如果在 $X \times Y$ 中 $W \in \mathcal{N}_{K \times L}$，那么在 $X$ 中存在 $U \in \mathcal{N}_K$，在 $Y$ 中存在 $V \in \mathcal{N}_L$，使得 $U \times V \subseteq W$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: For any $p \in K$ by Lemma 13.3.1.2 there are $U_p \in \mathcal{N}_p$ in $X$ and $V_p \in \mathcal{N}_L$ in $Y$ with $U_p \times V_p \subseteq W$. Since $\{U_p\}_{p \in K}$ covers the compact space $K$, it has a finite subcover $\{U_{p_j}\}_{j=1}^M$ for $\{p_j\}_{j=1}^M \subseteq X$ and then let $U = \bigcup_{j=1}^M U_{p_j}$ and $V = \bigcap_{j=1}^M V_{p_j}$. We obtain that $U \in \mathcal{N}_K$, $V \in \mathcal{N}_L$, and $U \times V \subseteq W$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.3.1.4 Proposition:** The product of two compact spaces is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+两个紧致空间的乘积是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $K$ and $L$ be two compact spaces. Let $\mathcal{A}$ be any open cover of $K \times L$. For any $p \in K$, since $\{p\} \times L$ is compact as the subspace embedded by the slice map, one can find $\{W_{p,i}\}_{i=1}^{N_p} \subseteq \mathcal{A}$ that covers $\{p\} \times L$. By Lemma 13.3.1.1, there is $U_p \in \mathcal{N}_p$ such that $U_p \times L \subseteq \bigcup_{i=1}^{N_p} W_{p,i}$. Since $\{U_p\}_{p \in K}$ covers the compact space $K$, it has a finite subcover $\{U_{p_j}\}_{j=1}^M$ for $\{p_j\}_{j=1}^M \subseteq X$ and then
+$$\{W_{p_j, i}\}_{j \in [1, M] \cap \mathbb{Z}, i \in [1, N_{p_j}] \cap \mathbb{Z}} \qquad (208)$$
+is a finite subcover of $\mathcal{A}$ over $K \times L$ since
+$$\bigcup_{j=1}^M \bigcup_{i=1}^{N_{p_j}} W_{p_j, i} \supseteq \bigcup_{j=1}^M U_{p_j} \times L \supseteq K \times L. \qquad (209)$$
+$\blacksquare$
+</details>
+
+### 13.3.2 The infinite case | 无限情形
+
+::: {.callout-note appearance="simple"}
+**13.3.2.1 Axiom of Choice:** Let $(X_i)_{i \in I}$ be a family of sets. If $X_i \neq \emptyset$ for any $i \in I$ then $\prod_{i \in I} X_i \neq \emptyset$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**选择公理:** 设 $(X_i)_{i \in I}$ 是一族集合。如果对于任意 $i \in I$ 都有 $X_i \neq \emptyset$，那么 $\prod_{i \in I} X_i \neq \emptyset$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.3.2.2 Axiom of Choice, equivalent statement:** Let $\Gamma$ be a partition of a set $X$. Then the natural projection $X \to \Gamma$ has a left inverse.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**选择公理等价表述:** 设 $\Gamma$ 是集合 $X$ 的一个划分。则自然投影 $X \to \Gamma$ 具有左逆。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.3.2.3 Theorem:** A topological space is compact iff every open cover of it has a finite refinement.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间是紧致的当且仅当它的每个开覆盖都有一个有限加细。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: If $(X, \mathcal{T})$ is compact, then every open cover of has a finite subcover, which is a refinement, too.
+If every open cover $\mathcal{A}$ of $(X, \mathcal{T})$ has a finite refinement $\mathcal{F}$, then by the Axiom of Choice there is a map $f: \mathcal{F} \to \mathcal{A}$ such that $U \subseteq f(U)$ for any $U \in \mathcal{F}$. Then $f(\mathcal{F}) \subseteq \mathcal{A}$ is a finite subcover of $\mathcal{A}$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.3.2.4 Theorem:** A topological space $(X, \mathcal{T})$ is compact iff $\mathcal{T}$ has a base $\mathcal{B}$ such that every cover of $X$ by members of $\mathcal{B}$ has a finite subcover.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $(X, \mathcal{T})$ 是紧致的当且仅当 $\mathcal{T}$ 有一个基 $\mathcal{B}$，使得由 $\mathcal{B}$ 中的成员构成的 $X$ 的每个覆盖都有一个有限子覆盖。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: If every cover of $X$ by members of $\mathcal{B}$ has a finite subcover, then given an open cover $\mathcal{A}$ of $X$, we can decompose every member of $\mathcal{A}$ into a union of elements of $\mathcal{B}$, and collect them into a refinement $\mathcal{R}$ of $\mathcal{A}$ which is simultaneously a subcover of $\mathcal{B}$. Then by Theorem 13.3.2.3, $\mathcal{R}$ has a finite refinement $\mathcal{F}$, which is sufficient to show the compactness of $X$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.3.2.5 Alexander's compactness theorem:** A topological space $(X, \mathcal{T})$ is compact iff $\mathcal{T}$ has a subbase $\mathcal{S}$ covering $X$ such that every cover of $X$ by members of $\mathcal{S}$ has a finite subcover.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**亚历山大紧致性定理 (Alexander's compactness theorem):** 拓扑空间 $(X, \mathcal{T})$ 是紧致的当且仅当 $\mathcal{T}$ 有一个覆盖 $X$ 的子基 $\mathcal{S}$，使得由 $\mathcal{S}$ 中的成员构成的 $X$ 的每个覆盖都有一个有限子覆盖。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Suppose $\mathcal{T}$ has a subbase $\mathcal{S}$ covering $X$ such that every cover of $X$ by members of $\mathcal{S}$ has a finite subcover, and $\mathcal{B}$ is the base generated by $\mathcal{S}$. Let
+$$\sqcap = \{\mathcal{A} \subseteq \mathcal{B} : \mathcal{A} \text{ is an open cover of } X \text{ without finite subcover}\}. \qquad (210)$$
+Then $(\sqcap, \subseteq)$ is a partially ordered set. Suppose for the sake of contradiction that $X$ is noncompact and then $\sqcap \neq \emptyset$; we aim to show that $(\sqcap, \subseteq)$ has a maximal element.
+Let $\mathscr{C} \subseteq \sqcap$ be a chain. Let $\mathcal{E} = \bigcup_{\mathcal{A} \in \mathscr{C}} \mathcal{A} \subseteq \mathcal{B}$. Then $\mathcal{E}$ is an open cover of $X$, and we claim that $\mathcal{E} \in \sqcap$. Otherwise, $\mathcal{E}$ has a finite subcover $\mathcal{E}_0 = \{U_i\}_{i=1}^N$. By construction, there is $\{\mathcal{A}_i\}_{i=1}^N \subseteq \mathscr{C}$ such that $U_i \in \mathcal{A}_i$ for $i \in \{1, \dots, N\}$. Since $\{\mathcal{A}_i\}_{i=1}^N$ is linearly ordered, it has a maximal element which is the union of all, namely, has $\mathcal{E}_0$ as a subcover, which contradicts $\mathcal{A}_i \in \sqcap$. Thus, $\mathcal{E}$ is an upper bound for $\sqcap$.
+By Kuratowski–Zorn lemma, $\sqcap$ has a maximal element $\mathcal{A}$. Since $\mathcal{B}$ is the base generated by $\mathcal{S}$, then for any $p \in X$ and any $V \in \mathcal{A} \cap \mathcal{N}_p$, there is a finite collection $\{V_j\}_{j=1}^M \subseteq \mathcal{S}$ such that $V = \bigcap_{j=1}^M V_j$; we claim that at least one of $V_j$ belongs to $\mathcal{A}$. Replacing each such $V$ in $\mathcal{A}$ by $V_j$ we obtain that $\mathcal{S} \cap \mathcal{A}$ is an open cover of $X$.
+Now we prove the claim by contradiction. Suppose that $p \in X$ and $V = \bigcap_{j=1}^M V_j \in \mathcal{A} \cap \mathcal{N}_p$, and none of $V_j$ belongs to $\mathcal{A}$. By the maximality of $\mathcal{A}$ we have $\mathcal{A} \cup \{V_j\} \notin \sqcap$. Then each of $\mathcal{A} \cup \{V_j\}$, $j \in \{1, \dots, M\}$, has a finite subcover $\{V_j\} \cup \{U_{j,i}\}_{i=1}^{N_j}$ over $X$, for $U_{j,i} \in \mathcal{A}$. It follows that
+$$X = \bigcap_{j=1}^M \left( V_j \cup \bigcup_{i=1}^{N_j} U_{j,i} \right) = \bigcap_{j=1}^M V_j \cup \bigcup_{j=1}^M \bigcup_{i=1}^{N_j} U_{j,i} = V \cup \bigcup_{j=1}^M \bigcup_{i=1}^{N_j} U_{j,i}, \qquad (211)$$
+and then $\{V\} \cup \{U_{j,i}\}_{j \in \{1, \dots, M\}, i \in \{1, \dots, N_j\}}$ is a finite subcover of $\mathcal{A}$, which contradicts $\mathcal{A} \in \sqcap$. Then $\mathcal{S} \cap \mathcal{A}$ is an open cover of $X$, which contradicts our hypothesis on $\mathcal{S}$. Therefore, $\sqcap = \emptyset$ and $X$ is compact. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.3.2.6 Tychonoff theorem:** The product of compact spaces is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**季霍诺夫定理 (Tychonoff theorem):** 紧致空间的乘积是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ be a family of compact spaces. We aim to show that the product space $\left( \prod_{i \in I} X_i, \mathcal{T}_{\prod_{i \in I} X_i} \right)$ is compact. By Alexander's compactness theorem it is sufficient to show that every cover $\mathcal{A}$ of $X$ by members of the subbase $\mathcal{S}_{\text{prod}} = \{f_i^{-1}(U_i) : i \in I, U_i \in \mathcal{T}_i\}$ has a finite subcover. Let $\mathcal{A} = \{f_i^{-1}(U_i) : i \in I, U_i \in \mathcal{A}_i\}$ for some subcollections $\mathcal{A}_i \subseteq \mathcal{T}_i$, $i \in I$. Should $\mathcal{A}_i$ covers $X_i$ for some $i \in I$, or otherwise there exists $p = (p_i)_{i \in I} \in \prod_{i \in I} X_i$ with $p_i \notin \bigcup_{U_i \in \mathcal{A}_i} U_i$ for any $i \in I$ which implies that $p \notin \bigcup_{U \in \mathcal{A}} U$. By the compactness of $(X_i, \mathcal{T}_i)$ for which $\mathcal{A}_i$ covers $X_i$, $\mathcal{A}_i$ has a finite subcover $\{U_{i,k}\}_{k=1}^m$, which induces a finite subcover $\{f_i^{-1}(U_{i,k})\}_{k=1}^m$ of $\mathcal{A}$. $\blacksquare$
+</details>
+
+
+### 13.3.3 Applications of the Tychonoff theorem | 季霍诺夫定理的应用
+
+::: {.callout-important appearance="simple"}
+**13.3.3.1 Proposition:** Tychonoff theorem implies the axiom of choice.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+季霍诺夫定理蕴含选择公理。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $Y_i = X_i \sqcup \{p_i\}$ with topology $\mathcal{T}_i = \{\emptyset, X_i, \{p_i\}, Y_i\}$ for $i \in I$. Then $(Y_i, \mathcal{T}_i)$ is compact and by Tychonoff theorem (Theorem 13.3.2.6), the product space $\prod_{i \in I} Y_i$ is also compact. If $X_i \neq \emptyset$ for any $i \in I$ then $\prod_{i \in I} X_i \neq \emptyset$. Observe that $\{\text{pr}_i^{-1}(X_i)\}_{i \in I}$ is a collection of closed subsets enjoying the finite intersection property. Therefore, $\bigcap_{i \in I} \text{pr}_i^{-1}(X_i) = \prod_{i \in I} X_i$ is nonempty by the compactness. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.3.3.2 Proposition:** Let $I$ be a set and some books define the *cube topology* on $\mathbb{R}^I$ as the topology generated by the subbase
+$$\mathcal{S}_{\text{cube}} = \left\{ \prod_{i \in I} ]f_0(p) - \varepsilon, f_0(p) + \varepsilon[ : f_0 \in \mathbb{R}^I, \varepsilon > 0 \right\}. \qquad (212)$$
+Although the elements of $\mathcal{S}_{\text{cube}}$ are strict supersets of the $\varepsilon$-neighborhoods in the uniform metric, the cube topology equals the uniform topology which are strictly coarser than the box topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $I$ 为一个集合，一些书将 $\mathbb{R}^I$ 上的**立方拓扑** (cube topology) 定义为由以下子基生成的拓扑
+$$\mathcal{S}_{\text{cube}} = \left\{ \prod_{i \in I} ]f_0(p) - \varepsilon, f_0(p) + \varepsilon[ : f_0 \in \mathbb{R}^I, \varepsilon > 0 \right\}. \qquad (212)$$
+尽管 $\mathcal{S}_{\text{cube}}$ 的元素是一致度量下 $\varepsilon$-邻域的严格超集，但立方拓扑等于一致拓扑，它们都严格粗于箱拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.3.3.3 Proposition:** Let $\mathcal{T}_{\text{prod}}$, $\mathcal{T}_{\text{uni}}$, and $\mathcal{T}_{\text{box}}$, respectively, be the subspace topology on the closed unit cube $[0, 1]^\mathbb{N}$ of the product, uniform, and box topologies, respectively. Then $\mathcal{T}_{\text{prod}}$ is compact, but neither $\mathcal{T}_{\text{box}}$ or $\mathcal{T}_{\text{uni}}$ is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $\mathcal{T}_{\text{prod}}$、$\mathcal{T}_{\text{uni}}$ 和 $\mathcal{T}_{\text{box}}$ 分别是闭单位立方体 $[0, 1]^\mathbb{N}$ 上作为乘积拓扑、一致拓扑和箱拓扑的子空间拓扑。则 $\mathcal{T}_{\text{prod}}$ 是紧致的，但 $\mathcal{T}_{\text{box}}$ 和 $\mathcal{T}_{\text{uni}}$ 都不是紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.3.3.4 Proposition:** On the unit cube $[0, 1]^\mathbb{N}$, both $\mathcal{T}_{\text{prod}}$ and $\mathcal{T}_{\text{uni}}$ are metrizable but $\mathcal{T}_{\text{box}}$ is not metrizable since it is not first countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+在单位立方体 $[0, 1]^\mathbb{N}$ 上，$\mathcal{T}_{\text{prod}}$ 和 $\mathcal{T}_{\text{uni}}$ 都是可度量化的，但 $\mathcal{T}_{\text{box}}$ 不是可度量化的，因为它不是第一可数的。
+</details>
+:::
+
+## 13.4 Compact and locally compact Hausdorff spaces. | 紧致与局部紧致豪斯多夫空间
+
+### 13.4.1 Compact Hausdorff spaces. | 紧致豪斯多夫空间
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.1 Lemma:** Any disjoint point and compact subspace in a Hausdorff space are separated by neighborhoods.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+豪斯多夫空间中任何不相交的点和紧致子空间都能被邻域分离。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $p$ be a point disjoint from a compact subset $L$ of a Hausdorff space $X$. By the Hausdorffness of $X$, for any $q \in L$ there is $V_q \in \mathcal{N}_q$ that is disjoint from some $U_q \in \mathcal{N}_p$. Since $\{V_q\}_{q \in L}$ covers $L$, it has a finite subcover $\{V_{q_n}\}_{n=1}^N$ for $\{q_n\}_{n=1}^N \subseteq L$ and then let
+$$U = \bigcap_{n=1}^N U_{q_n}, \qquad V = \bigcup_{n=1}^N V_{q_n}. \qquad (213)$$
+We obtain that $U \in \mathcal{N}_p$, $V \in \mathcal{N}_L$, and $U \cap V = \emptyset$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.2 Theorem:** Any compact subspace of a Hausdorff space is closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+豪斯多夫空间的任何紧致子空间都是闭的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Every point outside of a compact subspace has a neighborhood disjoint from it. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.3 Lemma:** Any two disjoint compact subspaces in a Hausdorff space are separated by neighborhoods.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+豪斯多夫空间中任何两个不相交的紧致子空间都能被邻域分离。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $K$ and $L$ be compact subspaces of $X$. For any $p \in K$ there is $U_p \in \mathcal{N}_p$ that is disjoint from some $V_p \in \mathcal{N}_L$. Since $\{U_p\}_{p \in K}$ covers $K$, it has a finite subcover $\{U_{p_n}\}_{n=1}^N$ for $\{p_n\}_{n=1}^N \subseteq K$ and then let
+$$U = \bigcup_{n=1}^N U_{q_n}, \qquad V = \bigcap_{n=1}^N V_{q_n}. \qquad (214)$$
+We obtain that $U \in \mathcal{N}_K$, $V \in \mathcal{N}_L$, and $U \cap V = \emptyset$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.4 Theorem:** Any compact Hausdorff space is normal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+任何紧致豪斯多夫空间都是正规的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: This is a corollary of Lemma 13.4.1.3 $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.5 Theorem:** A continuous map from a compact space to a Hausdorff space is closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+从紧致空间到豪斯多夫空间的连续映射是闭映射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: The image of a closed subset in a compact space which is therefore compact is compact in a Hausdorff space and then the image is closed. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.4.1.6 Theorem:** A continuous bijection from a compact space to a Hausdorff space is a homeomorphism.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+从紧致空间到豪斯多夫空间的连续双射是同胚。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: A closed continuous bijection is a homeomorphism. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.4.1.7 Proposition:** Let $(X, \mathcal{T})$ be a compact space, then
+
+(1) every closed subset in $(X, \mathcal{T})$ is compact;
+(2) if $\mathcal{T}_0 \subseteq \mathcal{T}$ is a topology, then $(X, \mathcal{T}_0)$ is compact;
+(3) $(X, \mathcal{T}_{\text{triv}})$ is always compact.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $(X, \mathcal{T})$ 为紧致空间，则
+
+(1) $(X, \mathcal{T})$ 中的每个闭子集都是紧致的；
+(2) 如果 $\mathcal{T}_0 \subseteq \mathcal{T}$ 是一个拓扑，则 $(X, \mathcal{T}_0)$ 是紧致的；
+(3) $(X, \mathcal{T}_{\text{triv}})$ 总是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: The item (a) has been proven.
+If $\mathcal{T}_0 \subseteq \mathcal{T}$ is a topology, for any open cover $\mathcal{A} \subseteq \mathcal{T}_0$ of $(X, \mathcal{T})$ we have $\mathcal{A} \subseteq \mathcal{T}$ and by the compactness of $\mathcal{T}$ has a subcover which is also open in $\mathcal{T}_0$. Then $(X, \mathcal{T}_0)$ is compact.
+In particular, $\mathcal{T}_{\text{triv}}$ is the coarsest topology on $X$, which has only two open sets and must be compact. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.4.1.8 Proposition:** Let $(X, \mathcal{T})$ be a Hausdorff space, then
+
+(1) every compact subspace in $(X, \mathcal{T})$ is closed;
+(2) if $\mathcal{T}_1 \supseteq \mathcal{T}$ is a topology, then $(X, \mathcal{T}_1)$ is Hausdorff;
+(3) $(X, \mathcal{T}_{\text{disc}})$ is always Hausdorff.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $(X, \mathcal{T})$ 为豪斯多夫空间，则
+
+(1) $(X, \mathcal{T})$ 中的每个紧致子空间都是闭的；
+(2) 如果 $\mathcal{T}_1 \supseteq \mathcal{T}$ 是一个拓扑，则 $(X, \mathcal{T}_1)$ 是豪斯多夫的；
+(3) $(X, \mathcal{T}_{\text{disc}})$ 总是豪斯多夫的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: The item (a) has been proven.
+If $\mathcal{T}_1 \supseteq \mathcal{T}$ is a topology, for any two distinct points $p, q \in X$, whenever the disjoint subsets $U \ni p$ and $V \ni q$ are open in $\mathcal{T}$ they are open in $\mathcal{T}_1$, and then the Hausdorffness of $\mathcal{T}$ implies that of $\mathcal{T}_1$. Then $(X, \mathcal{T}_0)$ is compact.
+In particular, $\mathcal{T}_{\text{disc}}$ is the finest topology on $X$, where any two distinct points are neighborhoods of themselves and must be Hausdorff. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.4.1.9 Proposition:** A compact Hausdorff topology $\mathcal{T}$ on $X$ is maximally compact and minimally Hausdorff, in the sense that, if $\mathcal{T}_0$ and $\mathcal{T}_1$ are topologies on $X$ with $\mathcal{T}_0 \subset \mathcal{T} \subset \mathcal{T}_1$ then $\mathcal{T}_0$ is not Hausdorff and $\mathcal{T}_1$ is not compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$X$ 上的紧致豪斯多夫拓扑 $\mathcal{T}$ 是极大紧致且极小豪斯多夫的，其意义在于，如果 $\mathcal{T}_0$ 和 $\mathcal{T}_1$ 是 $X$ 上的拓扑且满足 $\mathcal{T}_0 \subset \mathcal{T} \subset \mathcal{T}_1$，那么 $\mathcal{T}_0$ 不是豪斯多夫的，且 $\mathcal{T}_1$ 不是紧致的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Were $\mathcal{T}_0$ Hausdorff, the identity map $\text{id}_X: (X, \mathcal{T}) \to (X, \mathcal{T}_0)$ would be a continuous bijection and then a homeomorphism. Were $\mathcal{T}_1$ compact, the identity map $\text{id}: (X, \mathcal{T}_1) \to (X, \mathcal{T})$ would be a continuous bijection and then a homeomorphism. $\blacksquare$
+</details>
+
+Thus, for a compact Hausdorff space,
+
+*增之一分则太长，减之一分则太短；著粉则太白，施朱则太赤。*
+
+### 13.4.2 Locally compact spaces. | 局部紧致空间
+
+::: {.callout-note appearance="simple"}
+**13.4.2.1 Definition:** A subset $A$ in a topological space $X$ is *relatively compact* iff $\overline{A}$ is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 中的子集 $A$ 是**相对紧致的** (relatively compact) 当且仅当 $\overline{A}$ 是紧致的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.4.2.2 Definition:** A topological space $X$ is
+
+* *locally compact* iff every point has a compact neighborhood;
+* *strongly locally compact* iff every point has a relatively compact neighborhood;
+* *$\sigma$-locally compact* iff it is $\sigma$-compact and locally compact.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是
+
+* **局部紧致的** (locally compact) 当且仅当每个点都有一个紧致邻域；
+* **强局部紧致的** (strongly locally compact) 当且仅当每个点都有一个相对紧致的邻域；
+* **$\sigma$-局部紧致的** ($\sigma$-locally compact) 当且仅当它是 $\sigma$-紧致且局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.3 Proposition:** Every compact space is locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+每个紧致空间都是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.4 Proposition:** Every discrete space is locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+每个离散空间都是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.5 Proposition:** Every open topological subspace of a compact Hausdorff space is a locally compact topological space.
+Conversely, every locally compact Hausdorff space arises in this way, since it can be considered an open subspace in its one-point compactification.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+紧致豪斯多夫空间的每个开拓扑子空间都是局部紧致拓扑空间。
+反之，每个局部紧致豪斯多夫空间均以此种方式产生，因为它可被视为其单点紧化中的一个开子空间。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.6 Proposition:** The real numbers, complex numbers, and $p$-adic completions of algebraic number fields are locally compact. In positive characteristic $p$, the field of Laurent series $\mathbb{F}_q((t))$ over a finite field with $q$ elements, topologized with respect to a discrete valuation, is locally compact. In fact, any non-discrete locally compact field must be of one of these types; they are called local fields.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+实数、复数以及代数数域的 $p$-进完备化都是局部紧致的。在正特征 $p$ 下，含有 $q$ 个元素的有限域上的洛朗级数域 $\mathbb{F}_q((t))$（关于离散赋值赋予拓扑）是局部紧致的。事实上，任何非离散的局部紧致域必定是这些类型之一；它们被称为局部域 (local fields)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.7 Proposition:** Finite product topological spaces of locally compact spaces are locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+局部紧致空间的有限乘积拓扑空间是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.8 Proposition:** Closed subspaces of locally compact spaces are locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+局部紧致空间的闭子空间是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.9 Proposition:** The long line is locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+长直线 (long line) 是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.10 Proposition:** Let $X$ be a topological space which is not compact. Then the product topological space of a countably infinite set of copies of $X$ is not locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是一个非紧致的拓扑空间。则可数无限多个 $X$ 的副本的乘积拓扑空间不是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.11 Proposition:** The rational numbers is not locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+有理数空间不是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.12 Proposition:** An open or closed subspace of a locally compact Hausdorff space is locally compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+局部紧致豪斯多夫空间的开子空间或闭子空间是局部紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.13 Corollary:** A space is locally compact Hausdorff iff it is homeomorphic to an open subspace of a compact Hausdorff space.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+一个空间是局部紧致豪斯多夫的，当且仅当它同胚于某个紧致豪斯多夫空间的开子空间。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.2.14 Corollary:** A locally compact Hausdorff space is completely regular, but may not be normal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+局部紧致豪斯多夫空间是完全正则的，但未必是正规的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: A locally compact Hausdorff space is homeomorphic to an open subspace of a compact Hausdorff space, the latter of which is normal and hence completely regular. Since complete regularity is hereditary, the locally compact Hausdorff space is also completely regular.
+An example of a locally compact Hausdorff space that is not normal is $[0, 1[ \times [0, 1]^{[0, 1]}$. $\blacksquare$
+</details>
+
+### 13.4.3 One-point compactification | 单点紧化
+
+::: {.callout-note appearance="simple"}
+**13.4.3.1 Definition:** The *one-point extension* $X^*$ of a topological space $X$ with topology $\mathcal{T}$ is the space $X^* = X \sqcup \{\infty\}$ equipped with the topology
+$$\mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K : K \text{ is closed compact}\}. \qquad (215)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+带有拓扑 $\mathcal{T}$ 的拓扑空间 $X$ 的**单点扩张** (one-point extension) $X^*$ 是空间 $X^* = X \sqcup \{\infty\}$，其上赋予拓扑
+$$\mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K : K \text{ 是闭的紧致子集}\}. \qquad (215)$$
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.4.3.2 Lemma:** The function $f: \mathbb{N}^* \to \mathbb{R}$ sending $n \in \mathbb{N}$ to $1/n$ and $\infty$ to $0$ is an embedding.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+将 $n \in \mathbb{N}$ 映射到 $1/n$ 且将 $\infty$ 映射到 $0$ 的函数 $f: \mathbb{N}^* \to \mathbb{R}$ 是一个嵌入。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.4.3.3 Lemma:** A sequence $(p_n)_{n=1}^\infty$ in a topological space $X$ is convergent to $q \in X$ iff it has an extension $p^*: \mathbb{N}^* \to X$ sending $\infty$ to $q$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 中的序列 $(p_n)_{n=1}^\infty$ 收敛于 $q \in X$ 当且仅当它有一个将 $\infty$ 映射到 $q$ 的扩张 $p^*: \mathbb{N}^* \to X$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.3.4 Proposition:** The one-point extension $X^*$ of a topological space $X$ is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 的单点扩张 $X^*$ 是紧致的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.4.3.5 Definition:** A *compactification* of a topological space $X$ is a compact space $Y$ equipped with an embedding $X \to Y$ with dense image.
+An equivalence of two compactifications $Y_0$ and $Y_1$ of $X$ is a homeomorphism $h: Y_0 \to Y_1$ that preserves the inclusion of $X$.
+A *one-point compactification* of a topological space is a compactification where the complement of the image is a singleton.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 的**紧化** (compactification) 是一个紧致空间 $Y$，带有具有稠密像的嵌入 $X \to Y$。
+$X$ 的两个紧化 $Y_0$ 和 $Y_1$ 的等价是一个保 $X$ 包含映射的同胚 $h: Y_0 \to Y_1$。
+拓扑空间的**单点紧化** (one-point compactification) 是一种像的补集为单元素集的紧化。
+</details>
+:::
+
+In general the one-point compactification is not unique, but a Hausdorff one is unique when exists.
+
+::: {.callout-tip appearance="simple"}
+**13.4.3.6 Theorem:** The one-point extension of a topological space is a compactification iff the original space is noncompact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间的单点扩张是紧化当且仅当原空间是非紧致的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.4.3.7 Theorem:** The one-point extension of a topological space is Hausdorff iff the original space is locally compact and Hausdorff.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间的单点扩张是豪斯多夫的当且仅当原空间是局部紧致且豪斯多夫的。
+</details>
+:::
+
+### 13.4.4 The Stone-Čech compactification | 斯通-切赫紧化
+
+Of particular interest are Hausdorff compactifications, which exists when the topological space is completely regular. In this case, there is a unique maximal Hausdorff compactification, the Stone-Čech compactification of $X$, denoted by $\beta X$.
+
+::: {.callout-note appearance="simple"}
+**13.4.4.1 Definition:** The *Stone-Čech compactification* of the topological space $X$ is a compactification by a continuous map $i_X: X \to \beta X$ that has the universal property that any continuous map $f: X \to K$ into a compact Hausdorff space extends uniquely to a continuous map $\beta f: \beta X \to K$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 的**斯通-切赫紧化** (Stone-Čech compactification) 是通过连续映射 $i_X: X \to \beta X$ 实现的紧化，它具有如下泛性质：任何到紧致豪斯多夫空间 $K$ 的连续映射 $f: X \to K$ 都能唯一地扩张为连续映射 $\beta f: \beta X \to K$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.4.2 Proposition:** Let $X$ be a topological space, denote by $C(X; [0, 1])$ the set of continuous functions from $X$ to $[0, 1]$, and consider the evaluation map $\text{ev}: X \to [0, 1]^{C(X; [0, 1])}$. The closure of $\text{ev}(X)$ in $[0, 1]^{C(X; [0, 1])}$ is the Stone-Čech compactification of $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $X$ 是一个拓扑空间，记 $C(X; [0, 1])$ 为从 $X$ 到 $[0, 1]$ 的连续函数的集合，并考虑求值映射 $\text{ev}: X \to [0, 1]^{C(X; [0, 1])}$。$\text{ev}(X)$ 在 $[0, 1]^{C(X; [0, 1])}$ 中的闭包即为 $X$ 的斯通-切赫紧化。
+</details>
+:::
+
+### 13.4.5 Gelfand-Kolmogorov theorem | 盖尔范德-柯尔莫哥洛夫定理
+
+**13.4.5.1 Example:** $\mathbf{CptHaus}$ is the category of small compact Hausdorff spaces.
+
+Consider the functor (Section 4.6.1)
+$$C(\cdot; \mathbb{R}): \mathbf{Top} \to \mathbb{R}\text{-Alg}^{\text{op}} \qquad (216)$$
+from the category $\mathbf{Top}$ of topological spaces to the opposite category of associative algebras over the real numbers, given by the $\mathbb{R}$-algebras of continuous functions.
+If $X, Y \in \mathbf{CptHaus}$ are two compact Hausdorff spaces, then every algebra homomorphism of the form $C(Y; \mathbb{R}) \to C(X; \mathbb{R})$ arises as pre-composition with a homeomorphism of the form $f: X \to Y$.
+
+::: {.callout-tip appearance="simple"}
+**13.4.5.2 Gelfand-Kolmogorov:** The restriction $C(\cdot; \mathbb{R}): \mathbf{CptHaus} \to \mathbb{R}\text{-Alg}^{\text{op}}$ is a fully faithful functor (Definition 4.6.1.6), called *Gelfand transform*.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**盖尔范德-柯尔莫哥洛夫定理** (Gelfand-Kolmogorov): 限制函子 $C(\cdot; \mathbb{R}): \mathbf{CptHaus} \to \mathbb{R}\text{-Alg}^{\text{op}}$ 是一个全忠实函子（定义 4.6.1.6），称为**盖尔范德变换** (Gelfand transform)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.4.5.3 $C^*$-algebras:** A $C^*$-algebra $A$ is simultaneously a Banach space and an algebra over $\mathbb{C}$ with an involution that the addition $(x,y) \mapsto x+y$, the $\mathbb{C}$-action $(\lambda, x) \mapsto \lambda x$, the norm $x \mapsto \|x\|$, the multiplication $(x,y) \mapsto xy$, and the involution $x \mapsto x^*$ are compatible in the sense that
+
+* $\|xy\| \leq \|x\|\|y\|$ for all $x, y \in A$;
+* $(x+y)^* = x^* + y^*$, $(\lambda x)^* = \bar{\lambda} x^*$, $(xy)^* = y^* x^*$, $x^{**} = x$ for all $x, y \in A$ and $\lambda \in \mathbb{C}$; and
+* $\|x^* x\| = \|x^*\| \|x\|$ for all $x \in A$.
+A $C^*$-algebra is *commutative* if the multiplication is commutative; it is *unital* if it has an element $e$ as the multiplicative identity.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**$C^*$-代数**: 一个 $C^*$-代数 $A$ 同时是一个巴拿赫空间和一个带有对合的 $\mathbb{C}$-代数，其加法 $(x,y) \mapsto x+y$、$\mathbb{C}$-作用 $(\lambda, x) \mapsto \lambda x$、范数 $x \mapsto \|x\|$、乘法 $(x,y) \mapsto xy$ 以及对合 $x \mapsto x^*$ 是相容的，其意义在于：
+
+* 对所有 $x,y \in A$ 有 $\|xy\| \leq \|x\|\|y\|$；
+* 对所有 $x,y \in A$ 且 $\lambda \in \mathbb{C}$ 有 $(x+y)^* = x^* + y^*$，$(\lambda x)^* = \bar{\lambda} x^*$，$(xy)^* = y^* x^*$，$x^{**} = x$；且
+* 对所有 $x \in A$ 有 $\|x^* x\| = \|x^*\| \|x\|$。
+一个 $C^*$-代数是**交换的** (commutative) 如果其乘法是交换的；它是**含幺的** (unital) 如果它包含一个元素 $e$ 作为乘法单位元。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.4.5.4 Definition:** The *spectrum* $\sigma(A)$ of a commutative $C^*$-algebra is the set of continuous multiplicative functionals on $A$, which are nonzero bounded algebra homomorphisms $A \to \mathbb{C}$, topologized as a subspace of the product space $\mathbb{C}^A$ or equivalently with the weak$^*$ topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+交换 $C^*$-代数的**谱** (spectrum) $\sigma(A)$ 是 $A$ 上连续乘法泛函的集合，这些泛函是非零的有界代数同态 $A \to \mathbb{C}$，作为乘积空间 $\mathbb{C}^A$ 的子空间或者等价地赋予弱$^*$拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.4.5.5 Corollary:** Two compact Hausdorff spaces $X$ and $Y$ are homeomorphic precisely if the algebras $C(X; \mathbb{R})$ and $C(Y; \mathbb{R})$ are isomorphic.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+两个紧致豪斯多夫空间 $X$ 和 $Y$ 同胚，当且仅当代数 $C(X; \mathbb{R})$ 和 $C(Y; \mathbb{R})$ 同构。
+</details>
+:::
+
+**13.4.6.15 Gelfand–Kolmogorov theorem:**
+(1) Let $X$ be a compact Hausdorff space and let $C(X; \mathbb{C})$ be the space of continuous complex-valued functions on $X$. Verify that $C(X; \mathbb{C})$ is a commutative unital $C^*$-algebra when equipped with the pointwise algebra operations, the uniform norm, and the involution $f \mapsto \overline{f}$.
+(2) Show that the map $\text{ev}: X \to \sigma(C(X; \mathbb{C}))$, $p \mapsto \text{ev}_p$ is a continuous injection, where $\text{ev}_p(f) = f(p)$ for any $f \in C(X; \mathbb{C})$. The map $\text{ev}$ is in fact a homeomorphism.
+(3) Let $A$ be a commutative $C^*$-algebra. Show that $\sigma(A)$ is a locally compact Hausdorff space which is compact when $A$ is unital. The map $\Gamma_A: A \to C_0(\sigma(A); \mathbb{C})$, $x \mapsto \text{ev}_x$ is in fact an isomorphism.
+
+## 13.5 Paracompactness | 仿紧致性
+
+::: {.callout-note appearance="simple"}
+**13.5.0.1 Definition:** A topological space $X$ is *paracompact* iff every open cover of it has a locally finite refinement.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是**仿紧致的** (paracompact) 当且仅当它的每个开覆盖都有一个局部有限的加细。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.5.0.2 Definition:** Let $\mathcal{A} = (U_i)_{i \in I}$ be an open cover of a topological space $X$. A family $(\phi_i: X \to [0, 1])_{i \in I}$ of continuous functions is a *partition of unity* subordinate to $\mathcal{A}$ if
+* $\phi_i$ is supprted in $U_i$, namely the closure of $\{\phi_i \neq 0\}$ is a subset of $U_i$, for $i \in I$;
+* the supprt is locally finite;
+* $\sum_{i \in I} \phi_i = 1$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $\mathcal{A} = (U_i)_{i \in I}$ 是拓扑空间 $X$ 的一个开覆盖。连续函数族 $(\phi_i: X \to [0, 1])_{i \in I}$ 称为从属于 $\mathcal{A}$ 的**单位分解** (partition of unity)，如果
+* $\phi_i$ 支撑在 $U_i$ 中，即 $\{\phi_i \neq 0\}$ 的闭包是 $U_i$ 的子集，对于 $i \in I$；
+* 该支撑是局部有限的；
+* $\sum_{i \in I} \phi_i = 1$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.3 Shrinking lemma:** Let $X$ be paracompact Hausdorff space with an open cover $\mathcal{A} = \{U_i\}_{i \in I}$. Then there is a locally finite open cover $\{V_i\}_{i \in I}$ of $X$ such that $\overline{V_i} \subseteq U_i$ for $i \in I$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**收缩引理 (Shrinking lemma):** 设 $X$ 是具有开覆盖 $\mathcal{A} = \{U_i\}_{i \in I}$ 的仿紧致豪斯多夫空间。则存在 $X$ 的一个局部有限开覆盖 $\{V_i\}_{i \in I}$，使得对于 $i \in I$ 有 $\overline{V_i} \subseteq U_i$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.4 Theorem:** A finite open cover of a locally compact Hausdorff space has a partition of unity.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+局部紧致豪斯多夫空间的有限开覆盖具有单位分解。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.5 Theorem:** A Hausdorff space is paracompact iff every open cover admits a subordinate partition of unity.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+豪斯多夫空间是仿紧致的当且仅当每个开覆盖都容许一个从属的单位分解。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $X$ be paracompact Hausdorff and $\mathcal{A}$ be an open cover. The it has a locally finite precise refinement. Let $\mathcal{T}_{\mathcal{A}}$ be the collection of all open sets whose closure is contained in some member of $\mathcal{A}$. By $X$ being regular the family $\mathcal{T}_{\mathcal{A}}$ covers $X$. Since $X$ is paracompact, we find a locally finite refinement $\mathcal{B}$ of $\mathcal{A}$. Define a function $r: J \to I$ by $\overline{B_j} \subseteq U_{r(j)}$. Then for $i \in I$, we define $V_i$ as the union of memberes of those $r(j) = i$. Since locally finite, $\overline{V_i} \subseteq U_i$. We apply the shrinking lemma again to find $\overline{W_i} \subseteq V_i$. By normalness, find a continuous function $\psi_i: X \to [0, 1]$ so that $\psi_i(\overline{W_i}) = 1$ and $\psi_i(V_i^c) = 0$.
+On the other hand, let $\mathcal{A} = \{U_i\}_{i \in I}$ be an open cover of $X$. Suppose that $(\phi_i: X \to [0, 1])_{i \in I}$ is a partition of unity subordinate to $\mathcal{A}$, and $\{V_i\}_{i \in I}$ is an open cover of $X$ where $V_i = \{\phi_i \neq 0\} \subseteq \text{supp } \phi_i \subseteq U_i$. Then $\{V_i\}_{i \in I}$ is a locally finite refinement of $\mathcal{A}$ and $X$ is paracompact. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.6 Theorem:** A regular Lindelöf space is normal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+正则林德勒夫空间是正规的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.7 Theorem:** A paracompact Hausdorff space is normal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+仿紧致豪斯多夫空间是正规的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**13.5.0.8 Theorem:** A topological space is normal iff every locally finite open cover admits a subordinate partition of unity.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间是正规的当且仅当每个局部有限开覆盖都容许一个从属的单位分解。
+</details>
+:::
+
+### 13.5.1 Exercises.
+
+## 13.6 Proper maps | 真映射
+
+::: {.callout-note appearance="simple"}
+**13.6.0.1 Definition:** A map $f: X \to Y$ between topological space is *proper* iff for any $B \subseteq Y$ compact $f^{-1}(B) \subseteq X$ is compact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间之间的映射 $f: X \to Y$ 是**真映射** (proper) 当且仅当对于任意紧致的 $B \subseteq Y$，$f^{-1}(B) \subseteq X$ 也是紧致的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.6.0.2 Proposition:** If $f: X \to Y$ is a proper continuous map to a locally compact Hausdorff space $Y$, then it is closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+如果 $f: X \to Y$ 是到局部紧致豪斯多夫空间 $Y$ 的真连续映射，则它是闭映射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: Let $C \subseteq X$ be a closed subset and let $q \in Y \setminus f(C)$. By local compactness of $Y$, there is a compact $K_q \in \mathcal{N}_q$. Since $f$ is proper, then $f^{-1}(K_q) \subseteq X$ is compact. By the Hausdorffness of $Y$, the intersection $C \cap f^{-1}(K_q)$ is compact, and then $f(C \cap f^{-1}(K_q)) = f(C) \cap K_q$ is compact, which is hence closed in $Y$. Now $K_q \setminus f(C)$ is a neighbourhod of $q$ not intersecting $f(C)$. Therefore, $f(C)$ is a closed subset of $Y$ and $f$ is a closed map. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.6.0.3 Proposition:** Let $f: X \to Y$ be a continuous map to a locally compact Hausdorff space $Y$. Then $f$ is a proper injection iff $f$ is a closed embedding.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $f: X \to Y$ 是到局部紧致豪斯多夫空间 $Y$ 的连续映射。则 $f$ 是真单射当且仅当 $f$ 是闭嵌入。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: If $f$ is proper, then it is a closed map by Proposition 13.6.0.2. Now since $f$ is a closed injections, it is a closed embedding.
+Conversely, if $f$ is a closed embedding, we need to verify the properness of $f$. For $C \subseteq Y$ a compact subspace, its preimage $f^{-1}(C) \simeq C \cap f(X)$ is also compact. $\blacksquare$
+</details>
+
+In topology, the notion of properness is that of compact topological space, but generalized from topological spaces to continuous functions between them.
+Just like there are various equivalent ways of characterizing compact topological spaces, there are also various equivalent ways of characterizing proper functions.
+
+::: {.callout-important appearance="simple"}
+**13.6.0.4 Proposition:** A topological space $X$ is compact iff the projection map $\text{pr}: X \times Z \to Z$ is closed for any topological space $Z$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是紧致的当且仅当对于任意拓扑空间 $Z$，投影映射 $\text{pr}: X \times Z \to Z$ 是闭映射。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.6.0.5 Proposition:** A closed continuous map $f: X \to Y$ is proper iff its image under the $f \times \text{id}_Z: X \times Z \to Y \times Z$ is closed for any topological space $Z$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+闭连续映射 $f: X \to Y$ 是真映射当且仅当对于任意拓扑空间 $Z$，它在 $f \times \text{id}_Z: X \times Z \to Y \times Z$ 下的像是闭的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**13.6.0.6 Proposition:** A closed continuous map is proper iff it has compact fibers.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+闭连续映射是真映射当且仅当它具有紧致纤维 (compact fibers)。
+</details>
+:::
+
+A continuous proper map $f: X \to Y$ may not be closed; even when both $X$ and $Y$ are very nice spaces like $T_5$ spaces.
+
+**13.6.0.7 Example:** Let $X$ be an uncountable set and let $p \in X$. Let $\mathcal{T}$ be the topology given by the $(\mathcal{T}_p \cap \mathcal{T}_{\text{coc}}) \cup \mathcal{T}_p'$ where $\mathcal{T}_p$ and $\mathcal{T}_p'$ are the included point topology and the excluded point topology at $p$, respectively. Then $(X, \mathcal{T})$ is a $T_5$ topological space and its compact subsets are all finite. But $\text{id}_X: (X, \mathcal{T}_{\text{disc}}) \to (X, \mathcal{T})$ is not closed.
+
+However this is very often the case in practice: for example when $Y$ is a metric space or a locally compact separated space.
+
+::: {.callout-important appearance="simple"}
+**13.6.0.8 Proposition:** If $f: X \to Y$ is a proper continuous map to a $\sigma$-compact space $Y$; then $f$ is closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+如果 $f: X \to Y$ 是到 $\sigma$-紧致空间 $Y$ 的真连续映射；则 $f$ 是闭映射。
+</details>
+:::
+
+Proper maps enjoy analogous properties as compact spaces do, for example the product of proper maps is again proper.
+
+::: {.callout-tip appearance="simple"}
+**13.6.0.9 Theorem:** Let $(f_i: X_i \to Y_i)_{i \in I}$ be a family of continuous proper maps, then their functor product
+$$\prod_{i \in I} f_i: \prod_{i \in I} X_i \to \prod_{i \in I} Y_i \qquad (217)$$
+is also a proper map.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+设 $(f_i: X_i \to Y_i)_{i \in I}$ 是一族连续真映射，则它们的函子乘积
+$$\prod_{i \in I} f_i: \prod_{i \in I} X_i \to \prod_{i \in I} Y_i \qquad (217)$$
+也是真映射。
+</details>
+:::
+
+### 13.7.1 Compactly generated Hausdorff spaces. | 紧生成豪斯多夫空间
+
+*The category* $\mathbf{CGHaus}$.
+A convenient category of topological spaces should be cartesian closed. The familiar adjunction which makes $\mathbf{Set}$ cartesian closed,
+$$\mathbf{Set}(X \times Y, Z) \to \mathbf{Set}(X, Z^Y), \quad Z^Y = \mathbf{Set}(Y, Z), \qquad (218)$$
+which sends each $f: X \times Y \to Z$ to $f^\sharp: X \to Z^Y$, with $(f^\sharp x)p = f(p, q)$, may be considered also for topological spaces $X$, $Y$, and $Z$. Let $\text{Cop}(Y, Z)$ denote the topological space $\mathbf{Top}(Y, Z)$ by imposing on the set the compact open topology (Definition 19.2.1.1). A standard argument shows that the basic adjunction $f \mapsto f^\sharp$ of the equation above restricts to give an adjunction
+$$\mathbf{Top}(X \times Y, Z) \to \mathbf{Top}(X, \text{Cop}(Y, Z)), \qquad (219)$$
+provided $Y$ is locally compact Hausdorff.
+There have been many attempts to repair this situation for more general spaces $Y$ by using a variety of other topologies on the function space or other topologies on the product space. The best device is to so restrict the category of topological spaces that the product $X \mapsto X \times Y$ does always have a right adjoint, which will be a function space with a uniquely determined topology.
+
+::: {.callout-note appearance="simple"}
+**13.7.1.1 Definition:** A topological space $X$ is *compactly generated* when each subset $A \subseteq X$ which intersects every compact subset $C$ of $X$ in a closed set is itself closed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+拓扑空间 $X$ 是**紧生成的** (compactly generated) 当且仅当对于每个子集 $A \subseteq X$，如果它与 $X$ 的每个紧致子集 $C$ 的交集都是闭的，那么它本身也是闭的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**13.7.1.2 Definition:** A Kelley space is a compactly generated Hausdorff space.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+Kelley 空间 (Kelley space) 是紧生成的豪斯多夫空间。
+</details>
+:::
+
+**13.7.1.3 Example:** By $\mathbf{CGHaus}$ we denote the category with objects all compactly generated Hausdorff spaces, with morphisms all continuous functions.
+
+::: {.callout-important appearance="simple"}
+**13.7.1.4 Proposition:** $\mathbf{CGHaus}$ is a full coreflective subcategory of $\mathbf{Haus}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$\mathbf{CGHaus}$ 是 $\mathbf{Haus}$ 的全上反射子范畴 (full coreflective subcategory)。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: It is a full subcategory by definition. To each Hausdorff space $Y$ we construct a compactly generated space $KY$ with the same points as $Y$ (the “Kelleyfication” of $Y$) by requiring that $A \subset Y$ be closed in $KY$ iff $A \cap C$ is closed in $Y$ for all compact sets $C \subset Y$. Thus all closed sets of $Y$ are closed in $KY$, $KY$ is Hausdorff, and the identity function $\varepsilon_y : KY \to Y$ is continuous. Any continuous map $f : X \to Y$ from a compactly generated Hausdorff space $X$ factors as $f = \varepsilon f'$ where $f' : X \to KY$ is the same function (as $f$) and is continuous because $X$ is compactly generated. This shows that $\varepsilon$ is universal from $K$ to $Y$, so is the co unit of an adjunction which makes $\mathbf{CGHaus}$ coreflective in $\mathbf{Haus}$, as desired.
+The description of $KY$ means also that a function $g : Y \to Z$ to a topological space $Z$ is continuous, on $KY$ as $g\varepsilon : KY \to Z$, iff the original $g$ is continuous on all compact subsets of $Y$. Observe also that metrizable spaces and locally compact Hausdorff spaces are compactly generated. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**13.7.1.5 Proposition:** $\mathbf{CGHaus}$ is (small) complete and cocomplete.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$\mathbf{CGHaus}$ 是（小）完备且余完备的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: The category $\mathbf{Haus}$ is complete [9, Propostion V.9.2] and a right adjoint such as $K$ preserves limits. Hence $\mathbf{CGHaus}$ is complete. In particular, the product (written $\square$) of two spaces $X$ and $Y$ in $\mathbf{CGHaus}$ is obtained from their “ordinary” product $X \times Y$ in $\mathbf{Haus}$ as
+$$X \square Y = K(X \times Y). \qquad (220)$$
+In other words, the $\square$-product of Kelley spaces is the product of the underlying sets, with the Kelleyfication of the usual product topology.
+Cocompleteness follows readily. Since any coproduct in $\mathbf{Haus}$ of compactly generated spaces is also compactly generated, it will suffice to construct the coequalizer of a parallel pair $f, g : Y \rightrightarrows X$ in $\mathbf{CGHaus}$. Take the coequalizer $p : X \to Q$ in $\mathbf{Haus}$ [9, Propostion V.9.2] and form $KQ$. Since $\varepsilon : KQ \to Q$ is universal, there is a unique continuous $p' : X \to KQ$ with $\varepsilon p' = p$ and $p' f = p' g$. Since $p'$ is also a map in $\mathbf{Haus}$, and $p$ is the coequalizer of $f$ and $g$ there, there is a continuous $t : Q \to KQ$ with $p' = tp$. Then $p = \varepsilon p' = \varepsilon tp$, so $\varepsilon t = 1$ and $\varepsilon t \varepsilon = \varepsilon$. But $\varepsilon$ is monic (in $\mathbf{Haus}$), so $t\varepsilon = 1$, and $\varepsilon$ is an isomorphism: The coequalizer in $\mathbf{Haus}$ lies in $\mathbf{CGHaus}$. $\blacksquare$
+</details>
+
+**13.7.1.6 Example:** If $A$ is a subset of a compactly generated Hausdorff space $X$, then we get an identification space $X//A$ as a coequalizer in $\mathbf{CGHaus}$ (collapse all of $A$ to a point in $\mathbf{CGHaus}$). It is the largest Hausdorff quotient of the space $X/A$ (collapsed in $\mathbf{Top}$); its topology is automatically compactly generated.
+
+::: {.callout-tip appearance="simple"}
+**13.7.1.7 Theorem:** $\mathbf{CGHaus}$ is a cartesian closed category.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$\mathbf{CGHaus}$ 是一个笛卡尔闭范畴。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof*: For two compactly generated Hausdorff spaces $X$ and $Y$ define
+$$X^Y = K(\text{Cop}(Y, X)), \qquad (221)$$
+the function space with the Kelleyfication of the compact-open topology. Define $e : X^Y \square Y \to X$, $(f, q) \mapsto fq$ be the evaluation. We claim that $e$ is continuous; it suffices to prove that $e : X^Y \times Y \to X$ is continuous on compact sets.
+Since any compact subset of the product space is contained in the product of its projections, it suffices to show that $e$ is continuous on any set of the form $D \times C$, where $D$ is compact in $\text{Cop}(Y, X)$ and $C$ is compact in $Y$. Consider $(f, q) \in D \times C$, and let $U$ be an open set of $X$ containing $f(q)$. Since $f : Y \to X$ is continuous, there exists a neighborhood $M$ of $q$ in $C$ whose closure satisfies $f(M) \subseteq U$. But $N(M, U)$ as given before is a set of the subbase for $\text{Cop}(Y, X)$ and $(N(M, U) \cap D) \times M$ is open in $D \times C$, contains $(f, q)$, and is mapped by $e$ into $U$. This proves $e$ continuous.
+It remains to show $e$ universal from $- \square Y$ to $X$. Consider any morphism $h : Z \square Y \to X$ in $\mathbf{CGHaus}$. Then we construct $k : Z \to \mathbf{Set}(Y, X)$ as $k = h^\sharp$; that is, so that $(kr)q = h(r, q)$ for all $r \in Z$ and $q \in Y$. A direct proof shows that $kr : Y \to X$ is continuous; thus $kr \in X^Y$. Next, we prove that $Z \to X^Y$, $r \mapsto kr$ is continuous. Since $Z$ is compactly generated, it is enough to show $Z \to \text{Cop}(Y, X)$ continuous. Let $N(C, U)$ be one of the subbasic open sets in the compact-open topology, and suppose that $kr \in N(C, U)$; thus $h(\{z\} \times C) \subseteq U$. Since $U$ is open, $C$ compact, and $h$ continuous, there is a neighborhood $V$ of $r$ such that $h(V \times C) \subseteq U$. This implies that $kV \subseteq N(C, U)$. Therefore $k$ is continuous.
+We now have the commutative diagram by the adjunction in $\mathbf{Set}$, there is at most one $k$ with $e(k \square 1) = h$, and we have just shown this $k$ continuous. Therefore $e$ is universal, and defines the desired adjunction
+$$\mathbf{CGHaus}(Z \square Y, X) \cong \mathbf{CGHaus}(Z, X^Y). \qquad (222)$$
+Since $\square$ designates the product in $\text{cat}$("$\mathbf{CGHaus}$"), this category is cartesian closed. $\blacksquare$
+</details>
+
+This adjunction is a bijection of sets. One also wishes the corresponding homeomorphism
+$$X^{Z \square Y} \to (X^Y)^Z \qquad (223)$$
+of function spaces. This follows from the adjunction for categorical reasons [9, Exercise IV.6.3].
+This summarizes the basic properties of the category $\mathbf{CGHaus}$. More extensive work (Steenrod [1967] and elsewhere) indicates that it is the convenient category for topological studies; Dubuc and Porta [1971] show that it is appropriate for topological algebra (extensions of the Gelfand duality). All told, this suggests that in $\mathbf{Top}$ we have been studying the wrong mathematical objects. The right ones are the spaces in $\mathbf{CGHaus}$.

@@ -1,0 +1,747 @@
+---
+title: "LIMITS AND CONVERGENCE"
+date: "2026-05-02"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+![pixiv@SWKL:D](pic/bsj1.jpg)
+
+We omit the definition of limits. (Remark 7.1.0.1/2/3)
+
+## 7.1 Limits and Prefilters | 极限与前滤子
+
+::: {.callout-tip appearance="simple"}
+**7.1.0.4 Proposition:** Let
+
+* $\mathcal{B}_{\mathbb{N}} = \{ \{n \in \mathbb{N} : n > N\} : N \in \mathbb{N} \} \subseteq \mathcal{P}(\mathbb{N})$ and
+* $\mathcal{B}_{\mathbb{R}, x_0} = \{ \{x \in \mathbb{R} : |x - x_0| < \epsilon\} : \epsilon \in \mathbb{R}, \epsilon > 0 \} \subseteq \mathcal{P}(\mathbb{R})$.
+Then $\lim_{n \to \infty} x_n = x_0$ iff
+$$(\forall V \in \mathcal{B}_{\mathbb{R}, x_0})(\exists U \in \mathcal{B}_{\mathbb{N}})(n \in U \implies x_n \in V). \tag{59}$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.1.0.4 命题：** 设
+
+* $\mathcal{B}_{\mathbb{N}} = \{ \{n \in \mathbb{N} : n > N\} : N \in \mathbb{N} \} \subseteq \mathcal{P}(\mathbb{N})$ 以及
+* $\mathcal{B}_{\mathbb{R}, x_0} = \{ \{x \in \mathbb{R} : |x - x_0| < \epsilon\} : \epsilon \in \mathbb{R}, \epsilon > 0 \} \subseteq \mathcal{P}(\mathbb{R})$。
+则 $\lim_{n \to \infty} x_n = x_0$ 当且仅当
+$$(\forall V \in \mathcal{B}_{\mathbb{R}, x_0})(\exists U \in \mathcal{B}_{\mathbb{N}})(n \in U \implies x_n \in V)。 \tag{59}$$
+
+对于极限点 $x_0$ 周围的任意一个开区间 $V$（无论多小 $\epsilon$），你总能在自然数集里找到一条尾巴 $U$（即当 $n > N$ 时），使得这条尾巴上对应的所有数列项 $x_n$，全都落在这个开区间 $V$ 里面。
+</details>
+:::
+
+The collections $\mathcal{B}_{\mathbb{N}}$ and $\mathcal{B}_{\mathbb{R}, x_0}$ in Proposition 7.1.0.4 would be called **prefilters** using which Eq. (59) would unify the various definitions of limits. If $\mathcal{B}_{\mathbb{N}}$ were empty, then $\lim_{n \to \infty} x_n = x_0$ would never hold; if $\mathcal{B}_{\mathbb{R}, x_0}$ were empty then it would always hold. To introduce the definition of prefilters, we recall the following properties of limits.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+命题 7.1.0.4 中的集合族 $\mathcal{B}_{\mathbb{N}}$ 和 $\mathcal{B}_{\mathbb{R}, x_0}$ 被称为**前滤子 (prefilters)**，利用它们，等式 (59) 可以统一各种极限的定义。如果 $\mathcal{B}_{\mathbb{N}}$ 为空，则 $\lim_{n \to \infty} x_n = x_0$ 永远不成立；如果 $\mathcal{B}_{\mathbb{R}, x_0}$ 为空，则它总是成立。为了引入前滤子的定义，我们回顾极限的以下性质。
+</details>
+
+::: {.callout-tip appearance="simple"}
+**7.1.0.5 Theorem:** If $\lim_{n \to \infty} a_n = a_0$ and $\lim_{n \to \infty} b_n = b_0$ then
+
+* $\lim_{n \to \infty} a_n + b_n = a_0 + b_0$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.1.0.5 定理：** 若 $\lim_{n \to \infty} a_n = a_0$ 且 $\lim_{n \to \infty} b_n = b_0$，则
+
+* $\lim_{n \to \infty} a_n + b_n = a_0 + b_0$。
+</details>
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $V_a \in \mathcal{F}_{\mathbb{R}, a_0}$ and $V_b \in \mathcal{F}_{\mathbb{R}, b_0}$ then by $\lim_{n \to \infty} a_n = a_0$ and $\lim_{n \to \infty} b_n = b_0$ there are $U_a, U_b \in \mathcal{F}_{\mathbb{N}}$ such that $n \in U_a \implies a_n \in V_a$ and $n \in U_b \implies b_n \in V_b$. Therefore,
+$$n \in U_a \cap U_b \implies (a_n \in V_a) \wedge (b_n \in V_b). \tag{60}$$
+Let $c_0 = a_0 + b_0$. Now, given $V_c \in \mathcal{F}_{\mathbb{R}, c_0}$. If $V_c = \{x \in \mathbb{R} : |x - c_0| < \epsilon\}$ then let $V_a = \{x \in \mathbb{R} : |x - a_0| < \frac{\epsilon}{2}\}$ and $V_b = \{x \in \mathbb{R} : |x - b_0| < \frac{\epsilon}{2}\}$ we obtain that $(a_n \in V_a) \wedge (b_n \in V_b)$ implies that $a_n + b_n \in V_c$. We are left to show that
+$$(\exists U_c \in \mathcal{F}_{\mathbb{N}})(U_c \subseteq U_a \cap U_b). \tag{61}$$
+which is true by letting $U_c = U_a \cap U_b$. In this case, if $U_a = ]N_a, \infty[ \cap \mathbb{N}$ and $U_b = ]N_b, \infty[ \cap \mathbb{N}$ then $U_c = ]N_c, \infty[ \cap \mathbb{N}$ with $N_c = \max\{N_a, N_b\}$. ■
+</details>
+:::
+
+Here we have the definition.
+
+::: {.callout-note appearance="simple"}
+**7.1.0.6 Definition:** A *prefilter* in a set $X$ is a collection $\mathcal{B} \subseteq \mathcal{P}(X)$ that satisfies
+
+* *Nonempty.* $\mathcal{B} \neq \emptyset$.
+* *Downward directedness.* For any $A, B \in \mathcal{B}$, there is $C \in \mathcal{B}$ such that $C \subseteq A \cap B$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.1.0.6 定义：** 集合 $X$ 中的**前滤子 (prefilter)** 是满足以下条件的集合族 $\mathcal{B} \subseteq \mathcal{P}(X)$：
+
+* **非空性：** $\mathcal{B} \neq \emptyset$。
+* **向下有向性：** 对于任意 $A, B \in \mathcal{B}$，存在 $C \in \mathcal{B}$ 使得 $C \subseteq A \cap B$。
+</details>
+:::
+
+Next we show how various types of limits encountered in analysis can be defined in terms of prefilters. This shows that prefilters provide a general framework into which many of the various definitions of limits fit.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+接下来我们将展示分析中遇到的各种类型的极限如何通过前滤子来定义。这表明前滤子提供了一个通用框架，许多不同的极限定义都可以纳入其中。
+</details>
+
+::: {.callout-note appearance="simple"}
+**7.1.0.7 Example:**
+
+* $\mathcal{B}_{\mathbb{N}} = \{ \{n \in \mathbb{N} : n > N\} : N \in \mathbb{N} \}$ is a prefilter in $\mathbb{N}$ and
+* $\mathcal{B}_{\mathbb{R}, x_0} = \{ \{x \in \mathbb{R} : |x - x_0| < \epsilon\} : \epsilon \in \mathbb{R}, \epsilon > 0 \}$ is a prefilter in $\mathbb{R}$.
+* $\mathcal{B}_{\mathbb{R}, x_0^\circ} = \{ \{x \in \mathbb{R} : 0 < |x - x_0| < \epsilon\} : \epsilon \in \mathbb{R}, \epsilon > 0 \}$ is a prefilter in $\mathbb{R}$.
+* $\mathcal{B}_{\mathbb{R}, x_0^+} = \{ ]x_0, x_0 + \epsilon[ : \epsilon \in \mathbb{R}, \epsilon > 0 \}$ is a prefilter in $\mathbb{R}$.
+* $\mathcal{B}_{\mathbb{R}, \infty} = \{ ]A, \infty[ : A \in \mathbb{R}, A > 0 \}$ is a prefilter in $\mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.1.0.7 示例：**
+
+* $\mathcal{B}_{\mathbb{N}}$ 是 $\mathbb{N}$ 中的一个前滤子；
+* $\mathcal{B}_{\mathbb{R}, x_0}$ 是 $\mathbb{R}$ 中的一个前滤子；
+* $\mathcal{B}_{\mathbb{R}, x_0^\circ}$（去心邻域族）是 $\mathbb{R}$ 中的一个前滤子；
+* $\mathcal{B}_{\mathbb{R}, x_0^+}$（右邻域族）是 $\mathbb{R}$ 中的一个前滤子；
+* $\mathcal{B}_{\mathbb{R}, \infty}$（无穷远邻域族）是 $\mathbb{R}$ 中的一个前滤子。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.1.0.8 Example:** Let $f: \mathbb{R} \to \mathbb{R}$ be a function. Then $\lim_{x \to x_0^+} f(x) = \infty$ iff
+$$(\forall V \in \mathcal{B}_{\mathbb{R}, \infty})(\exists U \in \mathcal{B}_{\mathbb{R}, x_0^+})(x \in U \implies f(x) \in V). \tag{62}$$
+
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.1.0.8 示例：** 设 $f: \mathbb{R} \to \mathbb{R}$ 为一个函数。则 $\lim_{x \to x_0^+} f(x) = \infty$ 当且仅当
+$$(\forall V \in \mathcal{B}_{\mathbb{R}, \infty})(\exists U \in \mathcal{B}_{\mathbb{R}, x_0^+})(x \in U \implies f(x) \in V)。 \tag{62}$$
+
+</details>
+:::
+
+
+## 7.2 Filters | 滤子
+
+::: {.callout-note appearance="simple"}
+**7.2.0.1 Definition:** A *filter* in a set $X$ is a collection $\mathcal{F} \subseteq \mathcal{P}(X)$ satisfying the following conditions:
+
+* *Nonempty.* $\mathcal{F} \neq \emptyset$.
+* *Finite intersection is closed.* For any $A, B \in \mathcal{F}$, the intersection $A \cap B \in \mathcal{F}$.
+* *Isotony.* For any $A \in \mathcal{F}$ and $B \in \mathcal{P}(X)$, if $A \subseteq B$ then $B \in \mathcal{F}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.1 定义：** 集合 $X$ 中的一个**滤子 (filter)** 是一个满足以下条件的集合族 $\mathcal{F} \subseteq \mathcal{P}(X)$：
+
+* **非空性：** $\mathcal{F} \neq \emptyset$。
+* **有限交封闭性：** 对于任意 $A, B \in \mathcal{F}$，其交集 $A \cap B \in \mathcal{F}$。
+* **等张性/向上封闭性 (Isotony)：** 对于任意 $A \in \mathcal{F}$ 且 $B \in \mathcal{P}(X)$，若 $A \subseteq B$，则 $B \in \mathcal{F}$。
+</details>
+:::
+
+Note that, being closed under finite intersection implies that the universe $X \in \mathcal{F}$ (by an empty intersection). Also, isotony and nonempty implies that $X \in \mathcal{F}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+请注意，在有限交下封闭意味着全集 $X \in \mathcal{F}$（通过空交集得出）。此外，等张性和非空性也意味着 $X \in \mathcal{F}$。
+</details>
+
+::: {.callout-note appearance="simple"}
+**7.2.0.2 Definition:** Let $\mathcal{B} \subseteq \mathcal{P}(X)$ be a collection. Then
+
+* the *upward closure* $\mathcal{B}^{\uparrow X}$ of $\mathcal{B}$ in $X$ is $\mathcal{B}^{\uparrow X} = \{S \subseteq X : (\exists B \in \mathcal{B})(B \subseteq S)\}$ and
+* the *downward closure* $\mathcal{B}^{\downarrow}$ of $\mathcal{B}$ is $\mathcal{B}^{\downarrow} = \{S \subseteq B : B \in \mathcal{B}\}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.2 定义：** 设 $\mathcal{B} \subseteq \mathcal{P}(X)$ 为一个集合族。则
+
+* $\mathcal{B}$ 在 $X$ 中的**向上闭包 (upward closure)** $\mathcal{B}^{\uparrow X}$ 为 $\mathcal{B}^{\uparrow X} = \{S \subseteq X : (\exists B \in \mathcal{B})(B \subseteq S)\}$ （满足滤子第三条公理）；
+* $\mathcal{B}$ 的**向下闭包 (downward closure)** $\mathcal{B}^{\downarrow}$ 为 $\mathcal{B}^{\downarrow} = \{S \subseteq B : B \in \mathcal{B}\}$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.2.0.3 Proposition:** Let $\mathcal{B}$ be a prefilter in a set $X$. Then $\mathcal{F} = \mathcal{B}^{\uparrow X}$ is a filter in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.3 命题：** 设 $\mathcal{B}$ 是集合 $X$ 中的一个前滤子。则 $\mathcal{F} = \mathcal{B}^{\uparrow X}$ 是 $X$ 中的一个滤子。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.4 Definition:** Any prefilter $\mathcal{B}$ in a set $X$ is a *base* for the filter $\mathcal{B}^{\uparrow X}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.4 定义：** 集合 $X$ 中的任何前滤子 $\mathcal{B}$ 都是滤子 $\mathcal{B}^{\uparrow X}$ 的一个**基 (base)**。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.5 Definition:** Let $\mathcal{F}$ and $\mathcal{G}$ be prefilters in $X$ and $Y$, respectively. We say that $f: X \to Y$ is *convergent* to $\mathcal{G}$ along $\mathcal{F}$ iff
+$$(\forall V \in \mathcal{G})(\exists U \in \mathcal{F})(f(U) \subseteq V). \tag{63}$$
+
+<details><summary style="color: gray; pointer;">[点击展开翻译]</summary>
+**7.2.0.5 定义：** 设 $\mathcal{F}$ 和 $\mathcal{G}$ 分别是 $X$ 和 $Y$ 中的前滤子。我们称 $f: X \to Y$ 沿 $\mathcal{F}$ **收敛 (convergent)** 于 $\mathcal{G}$，当且仅当
+$$(\forall V \in \mathcal{G})(\exists U \in \mathcal{F})(f(U) \subseteq V)。 \tag{63}$$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.6 Definition:** Let $f: X \to Y$ be a map and let $\mathcal{F}$ be a filter in $X$. The *pushforward* of $\mathcal{F}$ is a filter on $Y$ given by
+$$f_*\mathcal{F} = \{V \in \mathcal{P}(Y) : f^{-1}(V) \in \mathcal{F}\}. \tag{64}$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.6 定义：** 设 $f: X \to Y$ 为一个映射，且 $\mathcal{F}$ 为 $X$ 上的一个滤子。$\mathcal{F}$ 的**前推 (pushforward)** 是 $Y$ 上的一个滤子，由下式给出：
+$$f_*\mathcal{F} = \{V \in \mathcal{P}(Y) : f^{-1}(V) \in \mathcal{F}\}。 \tag{64}$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.2.0.7 Proposition:** Let $\mathcal{F}$ and $\mathcal{G}$ be filters in $X$ and $Y$, respectively. A map $f: X \to Y$ is convergent to $\mathcal{G}$ along $\mathcal{F}$ iff $f_*\mathcal{F} \supseteq \mathcal{G}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.7 命题：** 设 $\mathcal{F}$ 和 $\mathcal{G}$ 分别是 $X$ 和 $Y$ 中的滤子。映射 $f: X \to Y$ 沿 $\mathcal{F}$ 收敛于 $\mathcal{G}$ 当且仅当 $f_*\mathcal{F} \supseteq \mathcal{G}$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.2.0.8 Proposition:** Let $\mathcal{F}, \mathcal{G}$, and $\mathcal{H}$ be prefilters in $X, Y$, and $Z$, respectively. If $f: X \to Y$ is convergent to $\mathcal{G}$ along $\mathcal{F}$ and $g: Y \to Z$ is convergent to $\mathcal{H}$ along $\mathcal{G}$ then $g \circ f: X \to Z$ is convergent to $\mathcal{H}$ along $\mathcal{F}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.8 命题：** 设 $\mathcal{F}, \mathcal{G}$ 和 $\mathcal{H}$ 分别是 $X, Y$ 和 $Z$ 中的前滤子。若 $f: X \to Y$ 沿 $\mathcal{F}$ 收敛于 $\mathcal{G}$，且 $g: Y \to Z$ 沿 $\mathcal{G}$ 收敛于 $\mathcal{H}$，则 $g \circ f: X \to Z$ 沿 $\mathcal{F}$ 收敛于 $\mathcal{H}$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.9 Definition:** An *ultrafilter* $\mathcal{F}$ in $X$ is a filter in $X$ iff it is properly contained in no filter in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.9 定义：** $X$ 中的**超滤子 (ultrafilter)** $\mathcal{F}$ 是指不被包含于 $X$ 中任何其它滤子之内的滤子。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.2.0.10 Proposition:** If $\mathcal{F}$ is an ultrafilter in $X$ and $A \cup B \in \mathcal{F}$, then either $A \in \mathcal{F}$ or $B \in \mathcal{F}$. In particular, for any $A \subseteq X$ either $A \in \mathcal{F}$ or $X \setminus A \in \mathcal{F}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.10 命题：** 若 $\mathcal{F}$ 是 $X$ 中的超滤子且 $A \cup B \in \mathcal{F}$，则 $A \in \mathcal{F}$ 或 $B \in \mathcal{F}$ 必居其一。特别地，对于任何 $A \subseteq X$，要么 $A \in \mathcal{F}$，要么其补集 $X \setminus A \in \mathcal{F}$。
+</details>
+:::
+
+Filters can also express the idea of things happening often and things happening eventually.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>滤子也可以用来表达“经常发生”和“最终发生”的概念。</details>
+
+::: {.callout-note appearance="simple"}
+**7.2.0.11 Example:**
+
+* $\mathcal{F}_{\mathbb{N}} = \{S \subseteq \mathbb{N} : (\exists N \in \mathbb{N})(\forall n \in \mathbb{N})(n > N \implies n \in S)\} = \mathcal{B}_{\mathbb{N}}^{\uparrow \mathbb{N}}$ is a filter in $\mathbb{N}$.
+* $\mathcal{F}_{\mathbb{R}, x_0^+} = \{S \subseteq \mathbb{R} : (\exists \epsilon \in ]0, \infty[)(\forall x \in ]x_0, x_0 + \epsilon[ \implies x \in S)\} = \mathcal{B}_{\mathbb{R}, x_0^+}^{\uparrow \mathbb{R}}$ is a filter in $\mathbb{R}$.
+* $\mathcal{F}_{\mu, \text{ae}} = \{E \subseteq X : \mu(X \setminus E) = 0\}$ is a filter in a set $X$ where $\mu$ is a measure on $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.11 示例：**
+
+* $\mathcal{F}_{\mathbb{N}}$（Fréchet 滤子）是 $\mathbb{N}$ 中的一个滤子，包含所有补集为有限集的集合。
+* $\mathcal{F}_{\mathbb{R}, x_0^+}$ 是 $\mathbb{R}$ 中的右侧邻域滤子。
+* $\mathcal{F}_{\mu, \text{ae}}$ 是几乎处处成立的滤子，其中 $\mu$ 是 $X$ 上的测度。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.12 Definition:** The *principal ultrafilter* in $S$ at $x \in S$ consists of every subset of $S$ to which $x$ belongs.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.12 定义：** 在 $x \in S$ 处的**主超滤子 (principal ultrafilter)** 由包含元素 $x$ 的 $S$ 的所有子集组成。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.2.0.13 Theorem:** Let $\mathcal{B}$ be a base of a filter $\mathcal{F}$ in $X$ and $\mathcal{C}$ be a base of a filter $\mathcal{G}$ in $Y$. Then the following are equivalent for a map $f: X \to Y$,
+
+* it converges to $\mathcal{C}$ along $\mathcal{B}$;
+* it converges to $\mathcal{C}$ along $\mathcal{F}$;
+* it converges to $\mathcal{G}$ along $\mathcal{B}$;
+* it converges to $\mathcal{G}$ along $\mathcal{F}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.13 定理：** 设 $\mathcal{B}$ 是 $X$ 中滤子 $\mathcal{F}$ 的一个基，$\mathcal{C}$ 是 $Y$ 中滤子 $\mathcal{G}$ 的一个基。对于映射 $f: X \to Y$，以下各项是等价的：
+
+* $f$ 沿 $\mathcal{B}$ 收敛于 $\mathcal{C}$；
+* $f$ 沿 $\mathcal{F}$ 收敛于 $\mathcal{C}$；
+* $f$ 沿 $\mathcal{B}$ 收敛于 $\mathcal{G}$；
+* $f$ 沿 $\mathcal{F}$ 收敛于 $\mathcal{G}$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.2.0.14 Definition:** Let $\mathcal{F}$ be a filter in and $q$ be a point of a topological space $X$. Then
+
+* $p$ is a *limit point* of $\mathcal{F}$ or $\mathcal{F}$ *converges* at $p$ iff $\mathcal{N}_{X,p} \subseteq \mathcal{F}$;
+* $p$ is an *accumulation point* of $\mathcal{F}$ iff for any $U \in \mathcal{N}_{X,q}$, there is $A \in \mathcal{F}$ with $U \cap A \neq \emptyset$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.14 定义：** 设 $\mathcal{F}$ 是拓扑空间 $X$ 中的滤子，$q$ 是 $X$ 中的一点。则：
+
+* $p$ 是 $\mathcal{F}$ 的一个**极限点 (limit point)** 或称 $\mathcal{F}$ **收敛**于 $p$，当且仅当邻域系 $\mathcal{N}_{X,p} \subseteq \mathcal{F}$；
+* $p$ 是 $\mathcal{F}$ 的一个**聚点 (accumulation point)**，当且仅当对于任何邻域 $U \in \mathcal{N}_{X,q}$，存在 $A \in \mathcal{F}$ 使得 $U \cap A \neq \emptyset$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**7.2.0.15 Remark:** A *cluster point* is a synonym of an accumulation point, in which case we say the filter (and later the set/sequence/net) *clusters* at the point $p$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.15 备注：** **聚点 (cluster point)** 是累积点 (accumulation point) 的同义词，在这种情况下，我们称该滤子（以及后来的集合/序列/网）在点 $p$ 处**聚群 (clusters)**。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**7.2.0.16 Theorem:** Let $X$ be a topological space. Let $A \subseteq X$. Then
+
+* $A$ is open in $X$ iff whenever $p \in A$ is a limit point of a filter $\mathcal{F}$ we have $A \in \mathcal{F}$;
+* a point $q \in X$ is an accumulation point of $A$ iff there is a filter $\mathcal{F}$ converging to $q$ with $A \setminus \{q\} \in \mathcal{F}$;
+* the intersection of all filters converging to $p$ is equal to $\mathcal{N}_{X,p}$;
+* if a filter $\mathcal{F}$ converges to $p$ and $\mathcal{G} \supseteq \mathcal{F}$ is a filter then $\mathcal{G}$ converges to $p$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.2.0.16 定理：** 设 $X$ 为一拓扑空间。设 $A \subseteq X$。则：
+
+* $A$ 在 $X$ 中是开集，当且仅当只要 $p \in A$ 是滤子 $\mathcal{F}$ 的极限点，就有 $A \in \mathcal{F}$；
+* 点 $q \in X$ 是 $A$ 的累积点，当且仅当存在一个收敛于 $q$ 的滤子 $\mathcal{F}$ 满足 $A \setminus \{q\} \in \mathcal{F}$；
+* 所有收敛于 $p$ 的滤子的交集等于邻域系 $\mathcal{N}_{X,p}$；
+* 若滤子 $\mathcal{F}$ 收敛于 $p$，且 $\mathcal{G} \supseteq \mathcal{F}$ 也是一个滤子，则 $\mathcal{G}$ 也收敛于 $p$。
+</details>
+:::
+
+---
+
+## 7.3 Bases and subbases | 基与子基
+
+In the definition of the real line we have used the collection of unions of open intervals. This is not very convenient and we want to start with the collection $\mathcal{B}$ of open intervals which is not a topology, but we shall generate a topology out of $\mathcal{B}$ by taking unions of its members. It is possible by Theorem 3.1.5.3, and $\mathcal{B}$ is a base of the standard topology.
+
+Let $X = \{a, b, c\}$ and $\mathcal{S} = \{\{a, b\}, \{b, c\}\}$ is not a topology on $X$. We could add some subsets and then $\mathcal{T} = \{\emptyset, \{b\}, \{a, b\}, \{b, c\}, \{a, b, c\}\}$ is the minimal topology containing $\mathcal{S}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+在实直线的定义中，我们使用了开区间并集的集合族。这并不十分方便，我们希望从开区间的集合族 $\mathcal{B}$ 开始，它本身不是一个拓扑，但我们可以通过对其成员取并集来由 $\mathcal{B}$ 生成一个拓扑。根据定理 3.1.5.3，这是可能的，且 $\mathcal{B}$ 是标准拓扑的一个基。
+
+设 $X = \{a, b, c\}$，则 $\mathcal{S} = \{\{a, b\}, \{b, c\}\}$ 不是 $X$ 上的拓扑。我们可以添加一些子集，使得 $\mathcal{T} = \{\emptyset, \{b\}, \{a, b\}, \{b, c\}, \{a, b, c\}\}$ 成为包含 $\mathcal{S}$ 的极小拓扑。
+</details>
+
+::: {.callout-note appearance="simple"}
+**7.3.0.1 Definition:** For any subcollection $\mathcal{S} \subseteq \mathcal{P}(X)$ we let
+$$\mathcal{T}(\mathcal{S}) = \bigcap_{\mathcal{T} \text{ is a topology on } X, \mathcal{T} \supseteq \mathcal{S}} \mathcal{T} \tag{65}$$
+be called *topology generated* by $\mathcal{S}$, and $\mathcal{S}$ is a *subbase* for the topology $\mathcal{T}(\mathcal{S})$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.1 定义：** 对于任何子族 $\mathcal{S} \subseteq \mathcal{P}(X)$，我们称
+$$\mathcal{T}(\mathcal{S}) = \bigcap_{\mathcal{T} \text{ 是 } X \text{ 上的拓扑}, \mathcal{T} \supseteq \mathcal{S}} \mathcal{T} \tag{65}$$
+为由 $\mathcal{S}$ **生成的拓扑 (topology generated by S)**，并称 $\mathcal{S}$ 是拓扑 $\mathcal{T}(\mathcal{S})$ 的一个**子基 (subbase)**。
+</details>
+:::
+
+By Theorem 3.1.5.3 (1), $\mathcal{T}(\mathcal{S})$ is indeed a topology on $X$.
+
+::: {.callout-caution appearance="simple"}
+**7.3.0.2 Remark:** An element of a topological base is often called a *basic open subset*, and an element of a topological subbase is often called a *subbasic open subset* of the topological space.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.2 备注：** 拓扑基的元素通常被称为**基本开子集 (basic open subset)**，而拓扑子基的元素通常被称为拓扑空间的**子基开子集 (subbasic open subset)**。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.3.0.3 Proposition:** For any subcollection $\mathcal{S} \subseteq \mathcal{P}(X)$ we have that $\mathcal{T}(\mathcal{S})$ is the collection of unions of finite intersections of members of $\mathcal{S}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+
+第一步： 从子基 $\mathcal{S}$ 里随便挑有限个集合，求它们的交集。这些交集构成的集合族，其实就是拓扑的基 (Base)。
+
+第二步： 把第一步造出来的所有交集，拿来做任意的并集（不管是有限并还是无限并）。拼出来的所有结果，就是最终的拓扑 $\mathcal{T}(\mathcal{S})$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.3.0.4 Proposition:** If $\mathcal{B} \subseteq \mathcal{P}(X)$ is a base for the topology  $\mathcal{T}$ on $X$ , then $\mathcal{T}=\mathcal{T}(\mathcal{B})$.
+:::
+
+::: {.callout-tip appearance="simple"}
+**7.3.0.5 Theorem:** A subcollection $\mathcal{B} \subseteq \mathcal{P}(X)$ is a topological base iff
+
+* **$\mathbf{B}_1$:** $\bigcup_{U \in \mathcal{B}} U = X$; and
+* **$\mathbf{B}_2$:** $(\forall U_1, U_2 \in \mathcal{B})(\exists \mathcal{A} \subseteq \mathcal{B})(U_1 \cap U_2 = \bigcup_{W \in \mathcal{A}} W)$.
+
+The axiom $\mathbf{B}_2$ is equivalent to
+
+* **$\mathbf{B}_2'$:** $(\forall U_1, U_2 \in \mathcal{B})(\forall x \in U_1 \cap U_2)(\exists U \in \mathcal{B})(x \in U \subseteq U_1 \cap U_2)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.5 定理：** 子族 $\mathcal{B} \subseteq \mathcal{P}(X)$ 是拓扑基当且仅当满足：
+
+* **$\mathbf{B}_1$：** $\mathcal{B}$ 中所有元素的并集等于 $X$；
+* **$\mathbf{B}_2$：** 对于 $\mathcal{B}$ 中的任意两个元素 $U_1, U_2$，存在 $\mathcal{B}$ 的子族 $\mathcal{A}$ 使得它们的交集等于 $\mathcal{A}$ 中元素的并集。
+
+公理 $\mathbf{B}_2$ 等价于：
+
+* **$\mathbf{B}_2'$：** 对于 $\mathcal{B}$ 中的任意两个元素 $U_1, U_2$ 及其交集中的任意点 $x$，存在 $\mathcal{B}$ 中的元素 $U$ 使得 $x \in U \subseteq U_1 \cap U_2$。
+</details>
+:::
+
+::: {.callout-question appearance="simple"}
+**7.3.0.6 Question:** For any subcollection $\mathcal{S} \subseteq \mathcal{P}(X)$ show that $\{ \bigcap_{O \in \mathcal{A}} O : \mathcal{A} \subseteq \mathcal{S}, |\mathcal{A}| < \infty \}$ is a topological base. Do all topological bases arise from this?
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.6 问题：** 证明对于任何子族 $\mathcal{S} \subseteq \mathcal{P}(X)$，集合族 $\{ \bigcap_{O \in \mathcal{A}} O : \mathcal{A} \subseteq \mathcal{S}, |\mathcal{A}| < \infty \}$（即由 $\mathcal{S}$ 中有限个元素构成的交集的全体）是一个拓扑基。是否所有的拓扑基都以此种方式产生？
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.3.0.7 Example:** The collection $\{ ]a, b[ : a \in \mathbb{R}, b \in \mathbb{R}, a < b \} \cup \emptyset$ is a base of the standard topology $\mathcal{T}_{\mathbb{R}}$ defined in Example 3.1.2.2, and $\{ ]a, \infty[ : a \in \mathbb{R} \} \cup \{ ]-\infty, b[ : b \in \mathbb{R} \}$ is a subbase of $\mathcal{T}_{\mathbb{R}}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.7 示例：** 集合族 $\{ ]a, b[ : a \in \mathbb{R}, b \in \mathbb{R}, a < b \} \cup \emptyset$ 是示例 3.1.2.2 中定义的标准拓扑 $\mathcal{T}_{\mathbb{R}}$ 的一个基；而 $\{ ]a, \infty[ : a \in \mathbb{R} \} \cup \{ ]-\infty, b[ : b \in \mathbb{R} \}$ 是 $\mathcal{T}_{\mathbb{R}}$ 的一个子基。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.3.0.8 Example:** The *Zariski topology* $\mathcal{T}_{\text{Zar}}$ on $\mathbb{R}^2$ is the topology generated by the base
+$$\mathcal{B}_{\text{Zar}} = \{ \{(x_1, x_2) \in \mathbb{R}^2 : f(x_1, x_2) \neq 0\} : f \in \mathbb{R}[X_1, X_2] \}. \tag{73}$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.8 示例：** $\mathbb{R}^2$ 上的 **Zariski 拓扑** $\mathcal{T}_{\text{Zar}}$ 是由以下基生成的拓扑：
+$$\mathcal{B}_{\text{Zar}} = \{ \{(x_1, x_2) \in \mathbb{R}^2 : f(x_1, x_2) \neq 0\} : f \in \mathbb{R}[X_1, X_2] \}。 \tag{73}$$
+（即由所有二元实系数多项式的非零点集构成的族）。
+</details>
+:::
+
+Zariski 拓扑中的一个基本开子集（基元素），就是整个二维平面，仅仅挖掉某条（或几条）代数曲线后剩下的极其广阔的区域。
+
+如果你有两个基本开集，一个是 $U_f$（由 $f \neq 0$ 定义），另一个是 $U_g$（由 $g \neq 0$ 定义）。
+它们的交集 $U_f \cap U_g$ 就是 $f(x) \neq 0$ 且 $g(x) \neq 0$ 的区域。
+在实数域中，这等价于它们的乘积 $f(x) \cdot g(x) \neq 0$。
+
+因为两个多项式的乘积 $f \cdot g$ 依然是一个多项式，所以两个基本开集的交集，刚好就是另一个基本开集！这甚至比 $\mathbf{B_2}$ 要求的还要强（交集直接就是基元素本身），完美满足了构成基的条件
+
+::: {.callout-question appearance="simple"}
+**7.3.0.9 Question:** Here are some questions about bases.
+
+(1) Describe a smallest base for an indiscrete space.
+(2) Describe a smallest base for a discrete space. Is it unique?
+(3) Describe a smallest base for the standard topology on $\mathbb{R}^2$. Is it unique?
+(4) Why is the $\mathcal{B}$ in the definition of Zariski topology on $\mathbb{R}^2$ a base?
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.9 问题：** 以下是关于基的一些问题：
+
+(1) 描述平凡拓扑（离散空间）的最小基。
+(2) 描述离散空间的最小基。它是唯一的吗？
+(3) 描述 $\mathbb{R}^2$ 标准拓扑的最小基。它是唯一的吗？
+(4) 为什么 $\mathbb{R}^2$ 上 Zariski 拓扑定义中的 $\mathcal{B}$ 确实是一个基？
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**7.3.0.10 Remark:** As an answer to Question 7.3.0.9 (3), there are different bases that generates the standard topology on $\mathbb{R}^2$.
+
+(1) the collection $\mathcal{B}_B$ of open balls (disks) $B_p^2(r)$ for $p = (x_1, x_2) \in \mathbb{R}^2, r > 0$, where $B_{(x_1, x_2)}^2(r) = \{ (y_1, y_2) \in \mathbb{R}^2 : \sqrt{(y_1 - x_1)^2 + (y_2 - x_2)^2} < r \}$;
+(2) the collection $\mathcal{B}_C$ of open cubes (squares) $C_p^2(r)$ for $p = (x_1, x_2) \in \mathbb{R}^2, r > 0$, where $C_{(x_1, x_2)}^2(r) = \{ (y_1, y_2) \in \mathbb{R}^2 : |y_1 - x_1| < r, |y_2 - x_2| < r \}$;
+(3) the collection $\mathcal{B}_D$ of open diamonds $D_p^2(r)$ for $p = (x_1, x_2) \in \mathbb{R}^2, r > 0$, where $D_{(x_1, x_2)}^2(r) = \{ (y_1, y_2) \in \mathbb{R}^2 : |y_1 - x_1| + |y_2 - x_2| < r \}$;
+(4) the collection $\mathcal{B}_{\mathbb{Q}}$ of rational open balls (disks) $B_p^2(r)$ for $p = (x_1, x_2) \in \mathbb{Q}^2, r \in (0, \infty) \cap \mathbb{Q}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.10 备注：** 作为问题 7.3.0.9 (3) 的回答，有多种不同的基可以生成 $\mathbb{R}^2$ 上的标准拓扑：
+
+(1) 开球（圆盘）族 $\mathcal{B}_B$；
+(2) 开立方体（正方形）族 $\mathcal{B}_C$；
+(3) 开菱形族 $\mathcal{B}_D$；
+(4) 有理开球族 $\mathcal{B}_{\mathbb{Q}}$（球心坐标和半径均为有理数）。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.3.0.11 Definition:** The minimum cardinality of bases of a topology $\mathcal{T}$ is called the *weight* of $\mathcal{T}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.11 定义：** 拓扑 $\mathcal{T}$ 的基的最小基数称为该拓扑的**权 (weight)**。
+</details>
+:::
+
+It is interesting to find although the Zariski topology is coarser than the standard one, the weight of the former one (the continuum cardinal) is larger than that of the latter one (the countable cardinal).
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+有趣的是，尽管 Zariski 拓扑比标准拓扑更粗，但前者的权（连续统基数）却比后者（可列基数）更大。
+</details>
+
+::: {.callout-important appearance="simple"}
+**7.3.0.12 Theorem:** The standard topology $\mathcal{T}_{\mathbb{R}}$ on $\mathbb{R}$ has no minimal bases; namely, for any base $\mathcal{B}$ of $\mathcal{T}_{\mathbb{R}}$, there is $U \in \mathcal{B}$ such that $\mathcal{B} \setminus \{U\}$ is a base of $\mathcal{T}_{\mathbb{R}}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.12 定理：** $\mathbb{R}$ 上的标准拓扑 $\mathcal{T}_{\mathbb{R}}$ 没有极小基；也就是说，对于 $\mathcal{T}_{\mathbb{R}}$ 的任何一个基 $\mathcal{B}$，总能找到一个元素 $U \in \mathcal{B}$，使得 $\mathcal{B} \setminus \{U\}$ 仍然是 $\mathcal{T}_{\mathbb{R}}$ 的基。
+</details>
+:::
+
+In contrast to Euclid’s classical proof of the infinitude of’s recorded in the *Elements*, Hillel Furstenberg published a topological proof in 1955, when he was an undergraduate student at Yeshiva University. 
+
+Let $\mathcal{B} = \{ \{a + nd : n \in \mathbb{Z}\} : a \in \mathbb{Z}, d \in \mathbb{N} \}$ be the collection of *arithmetic progressions*.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+与欧几里得在《几何原本》中记载的关于素数无穷性的经典证明不同，Hillel Furstenberg 在 1955 年（当时他还是叶史瓦大学的一名本科生）发表了一个拓扑证明。
+
+设 $\mathcal{B} = \{ \{a + nd : n \in \mathbb{Z}\} : a \in \mathbb{Z}, d \in \mathbb{N} \}$ 为所有**等差数列**构成的集合族。
+</details>
+
+::: {.callout-important appearance="simple"}
+**7.3.0.13 Lemma:** The collection of arithmetic progressions is a topological base on $\mathbb{Z}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.13 引理：** 等差数列族是 $\mathbb{Z}$ 上的一个拓扑基。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.3.0.14 Example:** The *evenly spaced integer topology* $\mathcal{T}$ on $\mathbb{Z}$ is the topology generated by the base consisting of arithmetic progressions.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.3.0.14 示例：** $\mathbb{Z}$ 上的**均匀间隔整数拓扑 (evenly spaced integer topology)** $\mathcal{T}$ 是由等差数列构成的基所生成的拓扑。
+</details>
+:::
+
+在这个奇妙的拓扑里，任何一个等差数列既是开集，又是闭集。如果素数只有有限个，那么所有素数生成的等差数列的并集就是一个有限的闭集组合，推导到最后会得出一个“有限个闭集的并集覆盖了除了 $\{-1, 1\}$ 之外所有整数”的荒谬拓扑结论，从而证明素数必须有无限多个。
+
+---
+
+# 7.4 Neighborhood filters | 邻域滤子
+
+Sometimes we want to separate local matter from global one, and we have seen this in Theorem 3.2.1.2.
+
+::: {.callout-tip appearance="simple"}
+**7.4.0.1 Proposition:** Let $X$ be a topological space with $p \in X$. The collection $\mathcal{N}_{X,p}$ of neighborhoods of $p$ in $X$ is a filter in $X$, called the *neighborhood filter* of $p$ in $X$, and the collection of open neighborhoods $\mathcal{N}_{X,p} \cap \mathcal{T}$ is a prefilter in $X$.
+
+*Proof:* For any $p \in X$, the collection $\mathcal{N}_{X,p} \ni X$ is nonempty. To be finished. ■
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.0.1 命题：** 设 $X$ 为一拓扑空间且 $p \in X$。$p$ 在 $X$ 中的所有邻域构成的族 $\mathcal{N}_{X,p}$ 是 $X$ 上的一个滤子，称为 $p$ 在 $X$ 中的**邻域滤子 (neighborhood filter)**；而开邻域族 $\mathcal{N}_{X,p} \cap \mathcal{T}$ 是 $X$ 上的一个滤子基。
+</details>
+:::
+
+---
+
+拓扑基的判定
+
+::: {.callout-tip appearance="simple"}
+**7.4.0.2 Theorem:** A collection $\mathcal{B} \subseteq \mathcal{P}(X)$ is a base for a topology $\mathcal{T}$ iff $\mathcal{B} \subseteq \mathcal{T}$ and for any $p \in X$ and any neighborhood $N \in \mathcal{N}_{X,p}$, there is $U \in \mathcal{B}$ such that $p \in U \subseteq N$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.0.2 定理：** 子族 $\mathcal{B} \subseteq \mathcal{P}(X)$ 是拓扑 $\mathcal{T}$ 的基，当且仅当 $\mathcal{B} \subseteq \mathcal{T}$，且对于任何 $p \in X$ 及其任何邻域 $N \in \mathcal{N}_{X,p}$，都存在 $U \in \mathcal{B}$ 使得 $p \in U \subseteq N$。
+</details>
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* If $\mathcal{B}$ is a base for $\mathcal{T}$, then $\mathcal{B} \subseteq \mathcal{T}$ and for any $p \in X$ with a neighborhood $N \in \mathcal{N}_{X,p}$, there is a $U \in \mathcal{T}$ such that $p \in U \subseteq N$. Then by Theorem 3.2.1.2, there is $W \in \mathcal{B}$ such that $p \in W \subseteq U \subseteq N$.
+
+If $\mathcal{B} \subseteq \mathcal{T}$ and $(\forall p \in X)(\forall N \in \mathcal{N}_{X,p})(\exists U \in \mathcal{B})(p \in U \subseteq N)$, since $\mathcal{T}(\mathcal{B})$ is a topology, it is sufficient to show that $\mathcal{T} \subseteq \{ \bigcup_{W \in \mathcal{A}} W : \mathcal{A} \subseteq \mathcal{B} \}$ for $\mathcal{B}$ to be a base of $\mathcal{T}$, by Definition 3.2.1.1. Let $U \in \mathcal{T}(\mathcal{B})$. For any $p \in U$, since $U \in \mathcal{N}_{X,p}$, there is $W_p \in \mathcal{B}$ such that $p \in W_p \subseteq U$. Then we have $U = \bigcup_{p \in U} W_p$. The proof is complete. ■
+</details>
+:::
+
+---
+
+::: {.callout-tip appearance="simple"}
+**7.4.0.3 Proposition:** A *neighborhood base* of a topological space $X$ at $p \in X$ is a base $\mathcal{B}_{X,p}$ for the neighborhood filter $\mathcal{N}_{X,p}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.0.3 命题：** 拓扑空间 $X$ 在点 $p \in X$ 处的**邻域基 (neighborhood base)** 是邻域滤子 $\mathcal{N}_{X,p}$ 的一个基 $\mathcal{B}_{X,p}$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**7.4.0.4 Proposition:** At $x \in \mathbb{R}^2$, $\{ D(f) : f \in \mathbb{R}[X_1, X_2], f(x) \neq 0 \}$ is a neighborhood base for the Zariski topology on $\mathbb{R}^2$, where $D(f) = \{ y \in \mathbb{R}^2 : f(y) \neq 0 \}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.0.4 命题：** 在点 $x \in \mathbb{R}^2$ 处，集合族 $\{ D(f) : f \in \mathbb{R}[X_1, X_2], f(x) \neq 0 \}$ 是 $\mathbb{R}^2$ 上 Zariski 拓扑的一个邻域基，其中 $D(f) = \{ y \in \mathbb{R}^2 : f(y) \neq 0 \}$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**7.4.0.5 Proposition:** The collection $\mathcal{N}_p^\circ$ is a filter in $X$, called the *deleted neighborhood filter* of $p$ in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.0.5 命题：** 集合族 $\mathcal{N}_p^\circ$ 是 $X$ 上的一个滤子，称为 $p$ 在 $X$ 中的**去心邻域滤子 (deleted neighborhood filter)**。
+</details>
+:::
+
+---
+
+### 7.4.0.6 Discrimination of terminologies | 术语辨析
+
+::: {.callout-warning appearance="simple"}
+Let $\mathcal{S}, \mathcal{B} \subseteq \mathcal{P}(X)$ be subcollections. The following statements are equivalent:
+
+1.  **$\mathcal{B}$ is a topological base on $X$**;
+2.  $\mathcal{T}(\mathcal{B}) = \{ \bigcup_{W \in \mathcal{A}} W : \mathcal{A} \subseteq \mathcal{B} \}$ (Definition 3.2.1.1);
+3.  There is a topology $\mathcal{T}$ on $X$ such that $\mathcal{B}$ is a base for $\mathcal{T}$;
+4.  $\mathcal{B}$ satisfies $\mathbf{B}_1$ and $\mathbf{B}_2$ (Theorem 7.3.0.5);
+5.  $\mathcal{B}$ satisfies $\mathbf{B}_1$ and $\mathbf{B}_2'$ (Theorem 7.3.0.5).
+
+Let $\mathcal{T} \subseteq \mathcal{P}(X)$ be a topology. The following statements are equivalent:
+
+1.  **$\mathcal{S}$ is a subbase for $\mathcal{T}$**;
+2.  $\mathcal{T}$ is the topology generated by $\mathcal{S}$ (Definition 7.3.0.1);
+3.  $\mathcal{T} = \mathcal{T}(\mathcal{S}) := \bigcap \{ \mathcal{T} : \mathcal{T} \text{ is a topology on } X, \mathcal{T} \supseteq \mathcal{S} \}$ (Definition 7.3.0.1);
+4.  $\mathcal{T}$ is the smallest topology containing $\mathcal{S}$ (Theorem 3.1.5.3 (1));
+5.  $\mathcal{T}$ is the collection of unions of finite intersections of members of $\mathcal{S}$ (Proposition 7.3.0.3).
+
+Let $\mathcal{T} \subseteq \mathcal{P}(X)$ be a topology. The following statements are equivalent:
+
+1.  **$\mathcal{B}$ is a base for $\mathcal{T}$**;
+2.  $\mathcal{T} = \{ U \subseteq X : (\forall x \in U)(\exists W \in \mathcal{B})(x \in W \subseteq U) \}$ (Theorem 3.2.1.2);
+3.  $\mathcal{B}$ is a topological base on $X$ and $\mathcal{B}$ is a subbase for $\mathcal{T}$;
+4.  $\mathcal{B}$ is a topological base on $X$ and $\mathcal{T} = \mathcal{T}(\mathcal{B})$ (Definition 3.2.1.1);
+5.  $\mathcal{T} = \{ \bigcup_{W \in \mathcal{A}} W : \mathcal{A} \subseteq \mathcal{B} \}$ (Definition 3.2.1.1).
+
+The following statements are equivalent:
+
+1.  **$\mathcal{B}$ is a prefilter in $X$**;
+2.  $\mathcal{B}$ is a filter base in $X$;
+3.  $\mathcal{B}$ is nonempty and downward directed (Definition 7.1.0.6);
+4.  There is a filter $\mathcal{F}$ in $X$ such that $\mathcal{B}$ is a base for $\mathcal{F}$;
+5.  $\mathcal{B}^{\uparrow X}$ is a filter in $X$ (Proposition 7.2.0.3).
+
+Let $\mathcal{F} \subseteq \mathcal{P}(X)$ be a filter. The following statements are equivalent:
+
+1.  **$\mathcal{B}$ is a base for $\mathcal{F}$** (Definition 7.2.0.4);
+2.  $\mathcal{B}$ is a prefilter in $X$ and $\mathcal{F}$ is the filter generated by $\mathcal{B}$;
+3.  $\mathcal{B}$ is a prefilter in $X$ and $\mathcal{F} = \bigcap \{ \mathcal{F} : \mathcal{F} \text{ is a filter in } X, \mathcal{F} \supseteq \mathcal{B} \}$;
+4.  $\mathcal{B}$ is a prefilter in $X$ and $\mathcal{F}$ is the smallest filter containing $\mathcal{B}$;
+5.  $\mathcal{B}$ is a prefilter in $X$ and $\mathcal{F}$ is the upward closure of $\mathcal{B}$ in $X$;
+6.  $\mathcal{B}$ is a prefilter in $X$ and $\mathcal{F} = \mathcal{B}^{\uparrow X}$ (Proposition 7.2.0.3).
+:::
+
+
+
+
+**模块一：怎么判断一堆集合能不能当“基”？**
+
+这个模块的核心是：我随便给你一堆“积木”（集合族 $\mathcal{B}$），你如何检验它们是否具备盖房子（生成拓扑）的资格？
+
+*   **白话等价条件**：
+    *   **直观定义法 (第 2/3 条)**：如果把这堆积木做任意并集，拼出来的所有结果刚好完美符合拓扑的三大公理，那它自然就是个合法的基。
+    *   **实战检验法 (第 4/5 条) 最常用**：不需要真去拼房子，只要检验这堆积木满不满足两个硬指标：
+        1.  $\mathbf{B_1}$ (覆盖性)：所有的积木全倒出来，能铺满整个地基 $X$。
+        2.  $\mathbf{B_2'}$ (相容性)：随便拿两块积木重叠，在它们交叉的区域里随便选一点 $x$，你总能在积木库里找到一块更小的积木 $U$，刚好垫在 $x$ 下面，且完全不出交叉区域的边界。
+
+**模块二：子基是如何“生成”拓扑的？**
+
+这个模块的核心是：给你一堆最原始的“边角料”（子基 $\mathcal{S}$），它和最终建成的华丽房子（拓扑 $\mathcal{T}$）到底是什么关系？
+
+*   **白话等价条件**：
+    *   **上帝视角法 (第 3/4 条)**：在所有能把这些边角料 $\mathcal{S}$ 包容进去的拓扑中，$\mathcal{T}$ 是**最小、最精简**的那个。它是各种包容 $\mathcal{S}$ 的拓扑的交集。
+    *   **车间加工法 (第 5 条) 最常用**：这是标准流水线操作。把边角料 $\mathcal{S}$ 拿来，先做**有限次交集**（加工成标准基），然后再做**任意次并集**（拼成开集），最终产出的所有产品，正好构成了拓扑 $\mathcal{T}$。
+
+**模块三：怎么证明它是“指定拓扑”的基？**
+
+**考试排雷**：模块一只是问“能不能当基”，这里问的是“是不是恰好就是**指定拓扑 $\mathcal{T}$** 的基”。
+
+*   **白话等价条件**：
+    *   **局部塞砖法 (第 2 条) 核心考点**：这是点集拓扑里最霸道的定理。怎么证明 $\mathcal{B}$ 是 $\mathcal{T}$ 的基？对于 $\mathcal{T}$ 里的任何一个开集 $U$（房子里的一个房间），以及房间里的任何一点 $x$，你都能从 $\mathcal{B}$ 里精准掏出一块积木 $W$，使得 **$x \in W \subseteq U$**（积木包住人，且没顶破房间的墙）。
+    *   **生成确认法 (第 4/5 条)**：确认 $\mathcal{B}$ 本身是个合格的基，并且用它做任意并集，拼出来的结果**不多不少刚好等于 $\mathcal{T}$**。
+
+**模块四：怎么判断它是不是“合格的滤子骨架”？**
+
+这个模块脱离了拓扑，进入了极限理论。前滤子（prefilter / filter base）就是描述收敛趋势的核心骨架。
+
+*   **白话等价条件**：
+    *   **向下探底法 (第 3 条) 最常用**：要成为合格的极限骨架，它里面不能是空的，且必须具有**“向下定向”**的趋势。意思是：骨架里的任何两个集合，它们相交之后的核心区域内部，必定还藏着骨架里的第三个、更小的集合。这就保证了逼近的过程可以无限往中心缩小。
+    *   **闭包生成法 (第 5 条)**：你把它进行“向上闭包”操作（把包含它的所有超集全拉进来），如果拉进来的这一大团东西刚好满足滤子的三条死规矩，那它就是前滤子。
+
+**模块五：怎么证明这副骨架生成了“指定的滤子”？**
+
+和模块三类似，这里是验证“从骨架长成完全体”的对应关系。
+
+*   **白话等价条件**：
+    *   **向上闭包法 (第 5/6 条) 最直观**：证明这副骨架 $\mathcal{B}$ 加上它所有的超集（向上闭包 $\mathcal{B}^{\uparrow X}$）之后，结果**正好等于**你指定的那个庞大滤子 $\mathcal{F}$。
+    *   **极小包含法 (第 3/4 条)**：在所有包含了这副骨架 $\mathcal{B}$ 的滤子里，$\mathcal{F}$ 是**最小、最干净**的那个（即所有包含 $\mathcal{B}$ 的滤子的交集）。
+
+---
+
+### 7.4.1 Alternative definitions to topological spaces | 拓扑空间的等价定义
+
+除了使用开集公理，我们还可以通过定义点邻域的性质来构造拓扑空间。
+
+::: {.callout-tip appearance="simple"}
+**7.4.1.1 Theorem:** Let $X$ be a set. Let $(\mathcal{B}_{X,p})_{p \in X}$ be a family of prefilters in $X$. Assume that:
+
+* **$\mathbf{NB}_1$:** $(\forall p \in X)(\forall A \in \mathcal{B}_{X,p})(p \in A)$;
+* **$\mathbf{NB}_2$:** $(\forall p \in X)(\forall A \in \mathcal{B}_{X,p})(\exists B \in \mathcal{B}_{X,q})(\exists B \in \mathcal{B}_q)(B \subseteq A)$; (Note: Typo in original text, usually refers to the existence of a neighborhood $V$ of $p$ such that $V$ is a neighborhood of each of its points).
+* **$\mathbf{NB}_3$:** $(\forall p \in X)(\forall A, B \in \mathcal{B}_{X,p})(\exists W \in \mathcal{B}_{X,p})(W \subseteq A \cap B)$.
+
+Then $(X, \mathcal{T})$ is a topological space where
+$$\mathcal{T} = \left\{ O \subseteq X : \mathcal{P}(O) \cap \bigcap_{\forall p \in O} \mathcal{B}_{X,p} \neq \emptyset \right\} \tag{74}$$
+with $\mathcal{B}_{X,p}$ a neighborhood base at any $p \in X$ of $\mathcal{T}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.1.1 定理：** 设 $X$ 为一个集合，$(\mathcal{B}_{X,p})_{p \in X}$ 是 $X$ 中的一组滤子基族。假设满足以下条件：
+
+* **$\mathbf{NB}_1$：** 每个点都在其预邻域基的每个元素中；
+* **$\mathbf{NB}_2$：** 邻域的传递性（每个邻域包含一个开邻域）；
+* **$\mathbf{NB}_3$：** 滤子基的向下定向性。
+则 $(X, \mathcal{T})$ 构成一个拓扑空间，且 $\mathcal{B}_{X,p}$ 成为该拓扑下 $p$ 点的邻域基。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**7.4.1.2 Theorem:** Let $X$ be a set. Let $(\mathcal{N}_{X,p})_{p \in X}$ be a family of filters in $X$. Assume that:
+
+* **$\mathbf{N}_1$:** $(\forall p \in X)(\forall A \in \mathcal{N}_{X,p})(p \in A)$;
+* **$\mathbf{N}_2$:** $(\forall p \in X)(\forall A \in \mathcal{N}_{X,p})(\forall B \in \mathcal{P}(X))(B \supseteq A \Rightarrow B \in \mathcal{N}_{X,q})$;
+* **$\mathbf{N}_3$:** $(\forall p \in X)(\forall A, B \in \mathcal{N}_{X,p})(A \cap B \in \mathcal{N}_{X,p})$;
+* **$\mathbf{N}_4$:** $(\forall p \in X)(\forall A \in \mathcal{N}_{X,p})(\exists B \in \mathcal{N}_{X,p})(\forall q \in X)(q \in B \Rightarrow A \in \mathcal{N}_{X,q})$.
+
+Then $(X, \mathcal{T})$ is a topological space where
+$$\mathcal{T} = \{ O \subseteq X : (\forall p \in O)(O \in \mathcal{N}_{X,p}) \} \tag{75}$$
+with $\mathcal{N}_{X,p}$ the neighborhood filter at any $p \in X$ of $\mathcal{T}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.4.1.2 定理：** 设 $X$ 为一集合，$(\mathcal{N}_{X,p})_{p \in X}$ 是 $X$ 中的一组滤子族。若满足上述四条公理（点包含、向上闭合、交集闭合、邻域的邻域性），则它们定义了 $X$ 上的一个拓扑，使得 $\mathcal{N}_{X,p}$ 恰好是该拓扑下的邻域滤子。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**7.4.1.3 Remark:** Note that $\mathbf{NB}_3$ is included in the definition of a prefilter, and $\mathbf{N}_2$ and $\mathbf{N}_3$ are included in the definition of a filter.
+:::
+
+
+
+# 7.5 Sequence convergence | 序列收敛
+
+This section is devoted to the study of **Moore–Smith convergence** (nets), but starts with the familiar case of sequences. Recall that a sequence is a function $p: \mathbb{N} \to X, n \mapsto p_n$, which is:
+
+* **in a set $A$** iff $p_n \in A$ for each $n \in \mathbb{N}$;
+* **eventually in a set $A$** iff $(\exists N \in \mathbb{N})(\forall n \geq N)(p_n \in A)$;
+* **frequently in a set $A$** iff $(\forall N \in \mathbb{N})(\exists n \geq N)(p_n \in A)$.
+
+::: {.callout-tip appearance="simple"}
+**7.5.0.1 Definition:** Let $p$ be a sequence in and $q$ be a point of a topological space $X$. Then:
+
+* $q$ is a **limit point** of $p$ (or $p$ **converges** at $q$) iff $p$ is *eventually* in each neighborhood of $q$;
+* $q$ is an **accumulation point** of $p$ iff $p$ is *frequently* in each neighborhood of $q$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.5.0.1 定义：** 设 $p$ 为拓扑空间 $X$ 中的一个序列，$q$ 为 $X$ 中的一个点：
+
+* 若序列 $p$ **最终落在** $q$ 的每一个邻域内，则称 $q$ 是 $p$ 的一个**极限点**（或称 $p$ **收敛**于 $q$）；
+* 若序列 $p$ **频繁落在** $q$ 的每一个邻域内，则称 $q$ 是 $p$ 的一个**聚点**（或累积点）。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**7.5.0.2 Theorem:** Let $A$ be a subset of $\mathbb{R}$. Then
+
+* a point $q \in \mathbb{R}$ is an **adherent point** of $A$ iff there is a sequence $p$ in $A$ which converges to $q$;
+* a point $q \in \mathbb{R}$ is an **accumulation point** of $A$ iff there is a sequence $p$ in $A \setminus \{q\}$ which converges to $q$;
+* $A$ is **closed** iff no sequence $p$ in $A$ converges to a point of $\mathbb{R} \setminus A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**7.5.0.2 定理：** 设 $A$ 为 $\mathbb{R}$ 的子集，则：
+
+* 点 $q \in \mathbb{R}$ 是 $A$ 的**粘附点**，当且仅当存在 $A$ 中的序列 $p$ 收敛于 $q$；
+* 点 $q \in \mathbb{R}$ 是 $A$ 的**聚点**，当且仅当存在 $A \setminus \{q\}$ 中的序列 $p$ 收敛于 $q$；
+* $A$ 是**闭集**，当且仅当 $A$ 中没有序列收敛于 $A$ 之外（即 $\mathbb{R} \setminus A$ 中）的点。
+</details>
+:::
+
+When we apply these definitions to any topological space, the theorems may fail to hold. Therefore, the sequences are not adequate to describe the topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+当我们把这些定义应用到一般的拓扑空间时，上述定理可能不再成立。因此，序列不足以完整地描述一般拓扑空间的拓扑性质。
+</details>

@@ -1,0 +1,48 @@
+# Quarto book：手写笔记（拆章）+ Notes_MD 课件（按方程类型分列子笔记）
+project:
+  type: book
+
+website:
+  site-url: https://LZOI-ZJX.github.io/CourseNoteBeta/pde/
+
+book:
+  title: "偏微分方程数值解"
+  subtitle: "差分方法与变分原理讲义汇编"
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - part: "理论基础"
+      chapters:
+        - lecture-notes/ch01-fourier-stability.qmd
+    - part: "双曲型方程"
+      chapters:
+        - lecture-notes/ch02-hyperbolic-schemes-overview.qmd
+        - lecture-notes/mineru-hyperbolic/05-diff-method-2.qmd
+        - lecture-notes/mineru-hyperbolic/06-diff-method-3.qmd
+        - lecture-notes/mineru-hyperbolic/07-diff-method-4.qmd
+    - part: "抛物型方程"
+      chapters:
+        - lecture-notes/mineru-parabolic/08-diff-method-1.qmd
+        - lecture-notes/mineru-parabolic/09-diff-method-2-3.qmd
+        - lecture-notes/mineru-parabolic/10-diff-method-4.qmd
+        - lecture-notes/mineru-parabolic/11-diff-method-5.qmd
+    - part: "椭圆型方程"
+      chapters:
+        - lecture-notes/mineru-elliptic/12-diff-method-1.qmd
+        - lecture-notes/mineru-elliptic/13-diff-method-2-3.qmd
+        - lecture-notes/mineru-elliptic/14-diff-method-4-6.qmd
+    - part: "变分问题"
+      chapters:
+        - lecture-notes/mineru-variational/15-intro.qmd
+        - lecture-notes/mineru-variational/16-1d.qmd
+
+execute:
+  echo: false
+  warning: false
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    html-math-method: mathjax

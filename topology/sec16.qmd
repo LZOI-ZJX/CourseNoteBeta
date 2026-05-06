@@ -1,0 +1,246 @@
+---
+title: "LENGTH SPACES"
+date: "2026-04-06"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 16.1 Length spaces. | 长度空间
+
+### 16.1.1 Length structures. | 长度结构
+
+Intuitively, a length structure consists of a class of admissible paths for which we can measure their length, and the length itself, which is a correspondence assigning a nonnegative number to every path from the class. Both the class and the correspondence have to possess several natural properties.
+
+Recall that a path $\gamma$ in a topological space $X$ is a continuous map $\gamma: I \to X$ defined on an interval $I \subseteq \mathbb{R}$.
+
+::: {.callout-note appearance="simple"}
+**16.1.1.1 Definition:** **Length structures**: A *length structure* on a topological space $X$ is a class $\mathcal{A}$ of admissible paths, which is a subset of all continuous paths in $X$, together with a *length functional* $L: \mathcal{A} \to [0, \infty]$. The class $\mathcal{A}$ is closed under these operations:
+
+(1) *Restrictions.* If $\gamma: I \to X$ is an admissible path and $[a, b] \subseteq I$, then the restriction $\gamma|_{[a,b]}$ is also admissible.
+(2) *Concatenations.* If a path $\gamma: [a, b] \to X$ is such that its restrictions $\gamma|_{[a,c]}$ and $\gamma|_{[c,b]}$ are both admissible paths, then so is $\gamma$.
+(3) *Linear reparameterizations.* For an admissible path $\gamma: I \to X$ and a homeomorphism $\varphi: J \to I$ of the form $\varphi(t) = at + b$ for some $a, b \in \mathbb{R}$, the composition $\gamma \circ \varphi$ is also an admissible path.
+The functional $L$ possesses the following properties, denoting $L(\gamma, a, b) = -L(\gamma, b, a) = L(\gamma|_{[a,b]})$ for any $[a, b] \subseteq I$:
+(1) *Additivity.* $L(\gamma, a, b) = L(\gamma, a, c) + L(\gamma, c, b)$ for any $a, b, c \in I$.
+(2) *Continuous dependence on parameter.* For a path $\gamma: I \to X$, the function $L(\gamma, \cdot, \cdot): I^2 \to [0, \infty]$ is continuous.
+(3) *Invariance under reparameterization.* $L(\gamma \circ \varphi) = L(\gamma)$ for a linear homeomorphism $\varphi$.
+The length structures agree with the topology of $X$ in the following sense: for a neighborhood $U_p$ of a point $p$, the length of paths connecting $p$ with points of the complement of $U_p$ is separated from zero: $\inf\{L(\gamma) : \gamma(a) = p, \gamma(b) \in X \setminus U_p\} > 0$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.1.1 定义：** **长度结构** (Length structures)：拓扑空间 $X$ 上的**长度结构**是容许路径的一个类 $\mathcal{A}$（它是 $X$ 中所有连续路径的子集），连同一个**长度泛函** (length functional) $L: \mathcal{A} \to [0, \infty]$。类 $\mathcal{A}$ 在以下运算下是封闭的：
+
+(1) **限制** (Restrictions)。如果 $\gamma: I \to X$ 是一条容许路径且 $[a, b] \subseteq I$，那么限制 $\gamma|_{[a,b]}$ 也是容许的。
+(2) **拼接** (Concatenations)。如果路径 $\gamma: [a, b] \to X$ 使得它的限制 $\gamma|_{[a,c]}$ 和 $\gamma|_{[c,b]}$ 都是容许路径，那么 $\gamma$ 也是容许的。
+(3) **线性重新参数化** (Linear reparameterizations)。对于容许路径 $\gamma: I \to X$ 和形如 $\varphi(t) = at + b$（其中 $a, b \in \mathbb{R}$）的同胚 $\varphi: J \to I$，复合 $\gamma \circ \varphi$ 也是一条容许路径。
+泛函 $L$ 具有以下性质，对于任何 $[a, b] \subseteq I$，记 $L(\gamma, a, b) = -L(\gamma, b, a) = L(\gamma|_{[a,b]})$：
+(1) **可加性** (Additivity)。对于任意 $a, b, c \in I$，$L(\gamma, a, b) = L(\gamma, a, c) + L(\gamma, c, b)$。
+(2) **对参数的连续依赖性** (Continuous dependence on parameter)。对于路径 $\gamma: I \to X$，函数 $L(\gamma, \cdot, \cdot): I^2 \to [0, \infty]$ 是连续的。
+(3) **重新参数化下的不变性** (Invariance under reparameterization)。对于线性同胚 $\varphi$，$L(\gamma \circ \varphi) = L(\gamma)$。
+长度结构在以下意义上与 $X$ 的拓扑相容：对于点 $p$ 的邻域 $U_p$，连接 $p$ 与 $U_p$ 的补集中点的路径的长度有正的下界：$\inf\{L(\gamma) : \gamma(a) = p, \gamma(b) \in X \setminus U_p\} > 0$。
+</details>
+:::
+
+In fact, all reasonable length structures are invariant under arbitrary reparameterizations: $L(\gamma \circ \varphi) = L(\gamma)$ for any homeomorphism $\varphi$ such that both $\gamma$ and $\gamma \circ \varphi$ are admissible. However, it is not necessary to verify this in the beginning.
+
+::: {.callout-caution appearance="simple"}
+**16.1.1.2 Remark:** Every natural class of paths comes with its own class of reparameterizations. For example, consider the class of all continuous paths and the class of homeomorphisms, the class of piecewise smooth paths and the class of diffeomorphisms. We only require that this class of reparameterizations includes all linear maps.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.1.2 备注：** 每个自然的路径类都伴随着它自己的重新参数化类。例如，考虑所有连续路径的类和同胚的类，分段光滑路径的类和微分同胚的类。我们只要求这个重新参数化类包含所有线性映射。
+</details>
+:::
+
+**16.1.1.3 Example:** Examples of classes of admissible paths include: all continuous paths; piecewise smooth paths (on a smooth manifold); broken lines in $\mathbb{R}^n$.
+
+### 16.1.2 Intrinsic metrics. | 内蕴度量
+
+Once we have a length structure, we are ready to define a metric associated with the structure.
+
+::: {.callout-note appearance="simple"}
+**16.1.2.1 Definition:** Let $X$ be a Hausdorff space with a length structure $(\mathcal{A}, L)$. For two points $p, q \in X$ the associated distance between them is the infimum of lengths of admissible paths connecting these points:
+$$d_L(p, q) = \inf\{L(\gamma) : \gamma: [a, b] \to X, \gamma \in \mathcal{A}, \gamma(a) = p, \gamma(b) = q\}. \qquad (246)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.1 定义：** 设 $X$ 是一个带有长度结构 $(\mathcal{A}, L)$ 的 Hausdorff 空间。对于两个点 $p, q \in X$，它们之间的关联距离是连接这两点的容许路径长度的下确界：
+$$d_L(p, q) = \inf\{L(\gamma) : \gamma: [a, b] \to X, \gamma \in \mathcal{A}, \gamma(a) = p, \gamma(b) = q\}. \qquad (246)$$
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**16.1.2.2 Remark:** If it is clear from the context which length structure $L$ gives rise to $d_L$, we usually drop $L$ in the notation $d_L$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.2 备注：** 如果从上下文中可以清楚地看出是哪个长度结构 $L$ 导出了 $d_L$，我们通常在记号 $d_L$ 中省略 $L$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**16.1.2.3 Proposition:** Let $X$ be a Hausdorff space with a length structure $(\mathcal{A}, L)$. The associated distance $d_L$ is a (generalized) metric on $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.3 命题：** 设 $X$ 是带有长度结构 $(\mathcal{A}, L)$ 的 Hausdorff 空间。关联距离 $d_L$ 是 $X$ 上的一个（广义）度量。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**16.1.2.4 Remark:** Note that $d_L$ is not necessarily a finite metric. For instance, if $X$ is a disconnected union of two components, no continuous path can go from one component to the other and therefore the distance between points of different components is infinite. On the other hand, there may be points such that continuous paths connecting them exist but all have infinite length.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.4 备注：** 注意 $d_L$ 不一定是有限度量。例如，如果 $X$ 是两个连通分支的不连通并集，没有连续路径可以从一个分支走到另一个分支，因此不同分支的点之间的距离是无穷大。另一方面，也可能存在这样的点：连接它们的连续路径存在，但长度都是无穷大。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**16.1.2.5 Definition:** Let $X$ be a Hausdorff space with a length structure $(\mathcal{A}, L)$. Two points $p, q \in X$ belong to the same *accessibility component* if they can be connected by a path of finite length.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.5 定义：** 设 $X$ 是带有长度结构 $(\mathcal{A}, L)$ 的 Hausdorff 空间。如果两点 $p, q \in X$ 可以被一条有限长度的路径连接，则它们属于同一个**可达分支** (accessibility component)。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**16.1.2.6 Lemma:** Let $X$ be a Hausdorff space with a length structure $(\mathcal{A}, L)$. Admissible paths of finite length are continuous in the metric topology induced by $d_L$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.1.2.6 引理：** 设 $X$ 是带有长度结构 $(\mathcal{A}, L)$ 的 Hausdorff 空间。有限长度的容许路径在由 $d_L$ 诱导的度量拓扑中是连续的。
+</details>
+:::
+
+## 16.2 Topology associated to the length structure. | 关联于长度结构的拓扑
+
+This lemma deals with the topology determined by the metric $d_L$ rather than the original topology on $X$.
+
+::: {.callout-important appearance="simple"}
+**16.2.0.1 Proposition:** The topology determined by $d_L$ is finer than that of $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.2.0.1 命题：** 由 $d_L$ 决定的拓扑比 $X$ 的拓扑更细。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**16.2.0.2 Definition:** **Length spaces**: A metric obtained as the distance function associated to a length structure is called an *intrinsic*, or length, metric. A metric space whose metric is intrinsic is called a *length space*.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.2.0.2 定义：** **长度空间** (Length spaces)：作为关联于长度结构的距离函数而获得的度量称为**内蕴度量** (intrinsic metric) 或长度度量。其度量是内蕴度量的度量空间称为**长度空间** (length space)。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**16.2.0.3 Remark:** Not every metric can arise as a length metric.
+Even if $(X, d)$ is a length space and $A \subseteq X$, the restriction of $d|_A$ is not necessarily intrinsic. For example, consider a circle in the plane.
+Moreover, not every metrizable topology can be induced by intrinsic metrics.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.2.0.3 备注：** 并非所有的度量都能作为长度度量出现。即使 $(X, d)$ 是一个长度空间且 $A \subseteq X$，限制 $d|_A$ 也不一定是内蕴的。例如，考虑平面上的一个圆。此外，并非所有可度量化的拓扑都可以由内蕴度量诱导。
+</details>
+:::
+
+**16.2.0.4 Example:** (1) The rationals $\mathbb{Q}$ is not homeomorphic to a length space.
+(2) The space $X = \{(x, y) : y = \sin \frac{1}{x}, x > 0\} \cup \mathbb{R} \times \{0\} \subseteq \mathbb{R}^2$ is not homeomorphic to a length space.
+
+There can be more delicate reasons why a topological space may be not homeomorphic to a length space.
+
+[16, Exercises 2.1.8]
+**16.2.0.5 Example:** Consider the union of segments
+$$X = \bigcup_{n \in \mathbb{N}} \left[ (0,0), \left(\cos \frac{1}{n}, \sin \frac{1}{n}\right) \right] \cup [(0,0), (1,0)] \subseteq \mathbb{R}^2. \qquad (247)$$
+This topological space is not homeomorphic to a length space.
+
+::: {.callout-important appearance="simple"}
+**16.2.0.6 Proposition:** A length space is locally-path connected.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.2.0.6 命题：** 长度空间是局部路径连通的。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**16.2.0.7 Remark:** The infimum in Definition 16.1.2.1 cannot be replaced by the minimum since there may be no shortest path between two points.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.2.0.7 备注：** 定义 16.1.2.1 中的下确界不能被最小值代替，因为两点之间可能不存在最短路径。
+</details>
+:::
+
+For instance, consider the Euclidean plane with an open segment removed; then for the endpoints of the segment, the shortest path does not exist: it is just removed. Still, its length can be approximated with a given precision by other paths connecting the points. Such situations rarely arise in “real-life” examples; in most cases they will be also prohibited by imposing completeness-compactness type assumptions. On the other hand, existence of shortest paths helps to avoid tedious and nonessential complications. For the simplicity of our exposition we will often restrict ourselves to complete length structures.
+
+## 16.3 Geodesics. | 测地线
+
+### 16.3.1 Geodesics. | 测地线
+
+::: {.callout-note appearance="simple"}
+**16.3.1.1 Definition:** **Geodesics:** A curve $\gamma: [a, b] \to X$ is a called a *shortest path* if its length is minimal among the curves with the same endpoints; that is $L(\eta) \ge L(\gamma)$ for any curve $\eta$ connecting $\gamma(a)$ and $\gamma(b)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.1 定义：** **测地线：** 如果曲线 $\gamma: [a, b] \to X$ 的长度在具有相同端点的曲线中是最小的，那么它被称为**最短路径** (shortest path)；也就是说，对于任何连接 $\gamma(a)$ 和 $\gamma(b)$ 的曲线 $\eta$，都有 $L(\eta) \ge L(\gamma)$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**16.3.1.2 Definition:** **Geodesics:** Let $X$ be a length space. A curve $\gamma: I \to X$ is called a *geodesic* if for every $t \in I$ there exists a neighborhood $J$ of $t$ in $I$ such that $\gamma|_J$ is a shortest path.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.2 定义：** **测地线：** 设 $X$ 是一个长度空间。曲线 $\gamma: I \to X$ 被称为**测地线** (geodesic)，如果对于每一个 $t \in I$，在 $I$ 中都存在一个 $t$ 的邻域 $J$，使得 $\gamma|_J$ 是一条最短路径。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**16.3.1.3 Remark:** The example of the sphere shows that there are geodesics that are not shortest paths: whereas every segment of a great circle on a sphere is a geodesic, it fails to be shortest as soon as it is longer than half of the equator. Although the spherical example suggests that a shortest path between two points should be unique at least locally, this is also not true in general. To see an example, consider the surface of a cube with its intrinsic metric induced by the Euclidean metric of its ambient space. We suggest that the reader shows that any neighborhood of a vertex contains points with multiple shortest paths between them. Another natural conjecture that turns out to be wrong is that a limit of geodesics is a geodesic; give a counterexample to this on the surface of the cube. We will see later that these phenomena are caused by nonsmoothness of the surface and that indeed such things never happen to smooth examples.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.3 备注：** 球面的例子表明，存在不是最短路径的测地线：虽然球面上大圆的每一段都是测地线，但一旦它长于赤道的一半，就不再是最短的。尽管球面的例子暗示两点之间的最短路径至少在局部应该是唯一的，但这在一般情况下也是不成立的。为了看一个例子，考虑一个立方体的表面，其内蕴度量由其所在空间的欧几里得度量诱导。我们建议读者证明，顶点的任何邻域都包含它们之间具有多条最短路径的点。另一个被证明是错误的自然猜想是，测地线的极限是测地线；请在立方体表面上给出一个反例。我们稍后将看到，这些现象是由表面的不光滑性引起的，实际上在光滑的例子中绝对不会发生这种事情。
+</details>
+:::
+
+It is clear that a shortest path always admits a natural parameterization, and hence so does a geodesic.
+
+::: {.callout-note appearance="simple"}
+**16.3.1.4 Definition:** **Complete length spaces:** A length structure $(\mathcal{A}, L)$ on $X$ is *complete* if for every $p, q \in X$ there exists an admissible path $\gamma$ joining them with $L(\gamma) = d_L(p, q)$. Intrinsic metrics associated with complete length structures are said to be *strictly intrinsic*.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.4 定义：** **完备长度空间：** $X$ 上的一个长度结构 $(\mathcal{A}, L)$ 是**完备的** (complete)，如果对于每一个 $p, q \in X$，都存在一条连接它们的容许路径 $\gamma$，满足 $L(\gamma) = d_L(p, q)$。与完备长度结构相关联的内蕴度量被称为**严格内蕴的** (strictly intrinsic)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**16.3.1.5 Proposition:** A length structure is complete iff there is a shortest path between every two points.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.5 命题：** 一个长度结构是完备的，当且仅当每两点之间都存在一条最短路径。
+</details>
+:::
+
+Intuitively, a space is noncomplete if a point is missing. One may suspect that this absence of a point can be noticed by moving along a geodesic that would end at this point: the interval for which our motion is well-defined is not closed. The theorem below formalizes this observation.
+Before formulating it, we generalize the notion of a shortest path so as to include paths defined on nonclosed intervals.
+
+::: {.callout-note appearance="simple"}
+**16.3.1.6 Definition:** **Minimal geodesics:** A curve $\gamma: I \to X$ in a metric space is a *shortest path*, or a *minimal geodesic*, if its restriction to any interval $[a, b] \subseteq I$ is a shortest path (Definition 16.3.1.1).
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.1.6 定义：** **最小测地线：** 度量空间中的曲线 $\gamma: I \to X$ 是**最短路径** (shortest path) 或**最小测地线** (minimal geodesic)，如果它在任何区间 $[a, b] \subseteq I$ 上的限制都是一条最短路径（定义 16.3.1.1）。
+</details>
+:::
+
+### 16.3.2 The Hopf–Rinow theorem. | Hopf-Rinow 定理
+
+The next theorem generalizes the classical Hopf–Rinow theorem for Riemannian manifolds.
+
+::: {.callout-tip appearance="simple"}
+**16.3.2.1 Theorem:** **Hopf–Rinow–Cohn-Vossen:** For a locally compact length space $(X, d)$, the following four assertions are equivalent:
+
+(1) $X$ is complete.
+(2) $X$ is boundedly compact, i.e., every closed metric ball in $X$ is compact.
+(3) Every geodesic $\gamma: [0, a[ \to X$ can be extended to a continuous path $\overline{\gamma}: [0, a] \to X$.
+(4) There is a point $p \in X$ such that every shortest path $\gamma: [0, a[ \to X$ with $\gamma(0) = p$ can be extended to a continuous path $\overline{\gamma}: [0, a] \to X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**16.3.2.1 定理：** **Hopf–Rinow–Cohn-Vossen：** 对于局部紧的长度空间 $(X, d)$，以下四个断言是等价的：
+
+(1) $X$ 是完备的。
+(2) $X$ 是有界紧的，即 $X$ 中的每个闭度量球都是紧的。
+(3) 每条测地线 $\gamma: [0, a[ \to X$ 都可以扩张为连续路径 $\overline{\gamma}: [0, a] \to X$。
+(4) 存在一点 $p \in X$，使得每条满足 $\gamma(0) = p$ 的最短路径 $\gamma: [0, a[ \to X$ 都可以扩张为连续路径 $\overline{\gamma}: [0, a] \to X$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Implications $(2) \implies (1) \implies (3) \implies (4)$ are left as easy exercises. We will prove that $(4)$ implies $(2)$.
+
+Since $X$ is locally compact, sufficiently small closed balls $D_d(p, r)$ are compact. Assuming that there are noncompact closed balls for the sake of contradiction, assume that
+$$R = \sup\{r : D_d(p, r) \text{ is compact}\} < \infty. \qquad (248)$$
+The argument consists of two steps.
+
+First, we prove that the open ball $B_d(p, R)$ is pre-compact. It suffices to show that every sequence $\{p_i\}$ in this ball contains a converging subsequence. Let $r_i = d(p, p_i)$ for $i \in \mathbb{N}$. One may assume that $r_i \to R$ as $i \to \infty$; otherwise a subsequence of $\{p_i\}$ is contained in a ball $D_d(p, r)$ for some $r < R$, and then there is a converging subsequence because this smaller ball is compact by the choice of $R$.
+
+Let $\gamma_i: [0, r_i] \to X$ be an arc-length parameterized shortest path connecting $p$ to $p_i$. Such a shortest path exists because $p_i$ belongs to a compact ball centered at $p$. We can choose a subsequence of $\{\gamma_i\}$ such that the restrictions of the paths to $[0, r_1]$ converge. From this subsequence, we choose a further subsequence of paths whose restrictions to $[0, r_2]$ converge, and so on. Then the Cantor diagonal procedure yields a sequence $\{\gamma_{i_n}\}$ (for all large enough $n$) such that for every $t \in [0, R[$ the sequence $\{\gamma_{i_n}(t)\}$ converges in $X$.
+
+Define $\gamma(t) = \lim_{n \to \infty} \gamma_{i_n}(t)$; then $\gamma: [0, R[ \to X$ is a nonexpanding map and a shortest path. By the assertion $(4)$, there is a continuous extension $\overline{\gamma}: [0, R] \to X$. Then the points $p_{i_n}$ converge to $\overline{\gamma}(R)$.
+
+Second, since the open ball $B_d(p, R)$ is pre-compact, the closed ball $D_d(p, R)$ in a length space, being the closure of the respective open ball, is compact. Now we show that a ball $B_{R+\varepsilon}(p)$ is pre-compact for some $\varepsilon > 0$. Since $X$ is locally compact, for every $q \in D_d(p, R)$ there is an $r(q) > 0$ such that the ball $B_d(q, r(q))$ is precompact. Choose $\{q_i\}_{i=1}^N \subseteq D_d(p, R)$ so that $D = \bigcup_{i=1}^N D_d(q_i, r(p_i)) \supseteq D_d(q, R)$. Since $D$ is pre-compact and contains the ball $B_d(p, R + \varepsilon)$ for $\varepsilon = \min r_i > 0$, it contradicts the choice of $R$. $\blacksquare$
+</details>

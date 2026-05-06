@@ -1,0 +1,53 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "拓扑学讲义翻译"
+  site-url: https://LZOI-ZJX.github.io/CourseNoteBeta/topology/
+  sidebar:
+    style: "floating"
+    collapse-level: 2
+    contents:
+      - text: "BASIC TOPOLOGY"
+        href: index.qmd
+      - text: "4. CATEGORY THEORY"
+        href: sec4.qmd
+      - text: "5. MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES"
+        href: sec5.qmd
+      - text: "6. TOPOLOGICAL SUBSPACES"
+        href: sec6.qmd
+      - text: "7. LIMITS AND CONVERGENCE"
+        href: sec7.qmd
+      - text: "8. INDUCED TOPOLOGIES"
+        href: sec8.qmd
+      - text: "9. ORDERS"
+        href: sec9.qmd
+      - text: "10. IDENTIFYING AND ATTACHING SPACES"
+        href: sec10.qmd
+      - text: "11. CONNECTEDNESS"
+        href: sec11.qmd
+      - text: "12. SEPARATION"
+        href: sec12.qmd
+      - text: "13. COMPACTNESS"
+        href: sec13.qmd
+      - text: "14. COUNTABILITY"
+        href: sec14.qmd
+      - text: "15. METRIC SPACES"
+        href: sec15.qmd
+      - text: "16. LENGTH SPACES"
+        href: sec16.qmd
+      - text: "17. SPACES OF METRICS"
+        href: sec17.qmd
+      - text: "18. METRIZING TOPOLOGICAL SPACES"
+        href: sec18.qmd
+      - text: "19. TOPOLOGY OF FUNCTION SPACES"
+        href: sec19.qmd
+      - text: "Exercise"
+        href: Probset.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    css: custom.css

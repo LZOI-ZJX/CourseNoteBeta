@@ -1,0 +1,6 @@
+---
+title: "一维变分问题（1）"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/variational-16.md >}}

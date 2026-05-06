@@ -1,0 +1,6 @@
+---
+title: "初边值问题及二维问题"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/hyperbolic-07.md >}}

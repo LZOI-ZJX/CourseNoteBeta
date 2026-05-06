@@ -1,0 +1,29 @@
+/* Definition - 浅绿 (对应 .callout-note) */
+.callout-note.callout-style-simple {
+    background-color: #f0fff0;
+    border-left: 5px solid #2e8b57;
+}
+
+/* Proposition - 浅红 (对应 .callout-important) */
+.callout-important.callout-style-simple {
+    background-color: #fff5f5;
+    border-left: 5px solid #cd5c5c;
+}
+
+/* Theorem - 浅紫 (对应 .callout-tip) */
+.callout-tip.callout-style-simple {
+    background-color: #f8f0ff;
+    border-left: 5px solid #9370db;
+}
+
+/* Remark - 浅黄 (对应 .callout-caution) */
+.callout-caution.callout-style-simple {
+    background-color: #fffdf0;
+    border-left: 5px solid #daa520;
+}
+
+/* Lemma - 浅紫 (对应 .callout-tip) */
+.callout-tip.callout-style-simple {
+    background-color: #f8f0ff;
+    border-left: 5px solid #9370db;
+}

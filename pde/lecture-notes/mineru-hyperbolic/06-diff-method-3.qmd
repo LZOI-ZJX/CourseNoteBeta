@@ -1,0 +1,6 @@
+---
+title: "二阶双曲型方程"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/hyperbolic-06.md >}}

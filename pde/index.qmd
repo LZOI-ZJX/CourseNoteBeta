@@ -1,0 +1,27 @@
+---
+title: "前言"
+number-sections: false
+---
+
+本项目将两部分材料整合为可分章阅览的讲义：
+
+1. **手写整理章节**：原仓库根目录 `Notes.qmd` 中的 Fourier 稳定性分析与双曲型方程常用格式概要已拆分为第 1–2 章（`lecture-notes/ch01-*.qmd`、`ch02-*.qmd`），正文与该文件对应段落一致时可同步维护。
+2. **课件 OCR**：`Notes_MD/` 内 MinerU 导出的 Markdown，按内容分块为双曲 / 抛物 / 椭圆 / 变分四组；每组下各有一份 `.qmd` 子笔记，通过 `{{< include >}}` 引入对应源码，目录由 `_quarto.yml` 的 `part` 与 `chapters` 编排。
+
+## 编译
+
+在本仓库的 `pde/` 目录（含 `_quarto.yml`）下执行：
+
+```bash
+cd pde
+quarto preview
+```
+
+或生成静态站点：
+
+```bash
+cd pde
+quarto render
+```
+
+产物默认输出到 `pde/_book/`。若在 CI 中构建，会使用 `--output-dir` 写入站点子路径。

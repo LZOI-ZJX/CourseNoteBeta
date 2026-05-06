@@ -1,0 +1,116 @@
+---
+title: "SPACES OF METRICS"
+date: "2026-04-18"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 17.1 Distances between subsets. | 子集之间的距离
+
+::: {.callout-note appearance="simple"}
+**17.1.0.1 Definition:** Let $(X, d)$ be a premetric space. Let $p \in X$, and $A, B \subseteq X$. The distance $d(p, A)$ between $p$ and $A$ and the distance $d(A, B)$ between $A$ and $B$ are
+$$d(p, B) = \inf_{q \in B} d(p, q),$$
+$$d(A, q) = \inf_{p \in A} d(p, q), \qquad (249)$$
+$$d(A, B) = \inf_{p \in A} d(p, B) = \inf_{p \in A, q \in B} d(p, q).$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.1.0.1 定义：** 设 $(X, d)$ 是一个前度量空间。设 $p \in X$，且 $A, B \subseteq X$。$p$ 与 $A$ 之间的距离 $d(p, A)$ 以及 $A$ 与 $B$ 之间的距离 $d(A, B)$ 为
+$$d(p, B) = \inf_{q \in B} d(p, q),$$
+$$d(A, q) = \inf_{p \in A} d(p, q), \qquad (249)$$
+$$d(A, B) = \inf_{p \in A} d(p, B) = \inf_{p \in A, q \in B} d(p, q).$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**17.1.0.2 Proposition:** The distance between a point and a set satisfies a version of the triangle inequality
+$$d(p, A) \le d(p, q) + d(q, A). \qquad (250)$$
+The distance between sets is a (symmetric) premetric on $\mathcal{P}(X)$ when $d$ is a (symmetric) premetric on $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.1.0.2 命题：** 点与集合之间的距离满足一种形式的三角不等式
+$$d(p, A) \le d(p, q) + d(q, A). \qquad (250)$$
+当 $d$ 是 $X$ 上的（对称）前度量时，集合之间的距离是幂集 $\mathcal{P}(X)$ 上的一个（对称）前度量。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**17.1.0.3 Proposition:** In a metric space $(X, d)$, for $p \in X$ and $A \subseteq X$, the distance $d(p, A) = 0$ iff $p \in \text{Cl}(A)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.1.0.3 命题：** 在度量空间 $(X, d)$ 中，对于 $p \in X$ 和 $A \subseteq X$，距离 $d(p, A) = 0$ 当且仅当 $p \in \text{Cl}(A)$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**17.1.0.4 Proposition:** In a metric space $(X, d)$, if $(A, \mathcal{T}_A)$ is a compact subspace and $B$ is a closed subset, then $d(A, B) = 0$ iff $A \cap B \ne \emptyset$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.1.0.4 命题：** 在度量空间 $(X, d)$ 中，如果 $(A, \mathcal{T}_A)$ 是紧子空间且 $B$ 是闭子集，那么 $d(A, B) = 0$ 当且仅当 $A \cap B \ne \emptyset$。
+</details>
+:::
+
+## 17.2 Hausdorff distances. | Hausdorff 距离
+
+::: {.callout-note appearance="simple"}
+**17.2.0.1 Definition:** Let $(X, d)$ be a premetric space with $\mathcal{CB}$ be the collection of nonempty, closed, and bounded subsets. Let $A, B \in \mathcal{CB}$. The *Hausdorff distance* $d_{\text{H}}(A, B)$ between $A$ and $B$ is
+$$d_{\text{H}}(A, B) = \max \left( \sup_{p \in A} d(p, B), \sup_{q \in B} d(A, q) \right). \qquad (251)$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.2.0.1 定义：** 设 $(X, d)$ 是一个前度量空间，$\mathcal{CB}$ 为非空有界闭子集的收集。设 $A, B \in \mathcal{CB}$。$A$ 与 $B$ 之间的**Hausdorff 距离** (Hausdorff distance) $d_{\text{H}}(A, B)$ 为
+$$d_{\text{H}}(A, B) = \max \left( \sup_{p \in A} d(p, B), \sup_{q \in B} d(A, q) \right). \qquad (251)$$
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**17.2.0.2 Theorem:** In a metric space $(X, d)$, the Hausdorff distance $d_{\text{H}}$ is a metric on $\mathcal{CB}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.2.0.2 定理：** 在度量空间 $(X, d)$ 中，Hausdorff 距离 $d_{\text{H}}$ 是 $\mathcal{CB}$ 上的一个度量。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* The finiteness and other properties of $d_{\text{H}}$ are left as exercises. For $A, B \in \mathcal{CB}$ let $r(A, B) = \sup_{p \in A} d(p, B)$. We deduce the triangle inequality. Let $A, B, C \in \mathcal{CB}$. For any $p \in A$, since $d(p, C) \le d(p, q) + d(q, C) \le d(p, q) + r(B, C)$, by the arbitrarity of $q \in B$, we obtain $d(p, C) \le d(p, B) + r(B, C)$. Taking the supremum over $p \in A$ we have $r(A, C) \le r(A, B) + r(B, C)$, which is sufficient for the triangle inequality. $\blacksquare$
+</details>
+
+## 17.3 The Gromov–Hausdorff distance. | Gromov-Hausdorff 距离
+
+::: {.callout-note appearance="simple"}
+**17.3.0.1 Definition:** Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. The *Gromov–Hausdorff distance* between $(X, d_X)$ and $(Y, d_Y)$ is
+$$d_{\text{GH}}((X, d_X), (Y, d_Y)) = \inf_{i, j} d_{\text{H}}(i(X), j(Y)) \qquad (252)$$
+where the infimum is taken among all metric spaces $(Z, d_Z)$ and isometries $i: (X, d_X) \to (Z, d_Z), j: (Y, d_Y) \to (Z, d_Z)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.3.0.1 定义：** 设 $(X, d_X)$ 和 $(Y, d_Y)$ 是度量空间。$(X, d_X)$ 与 $(Y, d_Y)$ 之间的**Gromov-Hausdorff 距离** (Gromov-Hausdorff distance) 为
+$$d_{\text{GH}}((X, d_X), (Y, d_Y)) = \inf_{i, j} d_{\text{H}}(i(X), j(Y)) \qquad (252)$$
+其中下确界取遍所有度量空间 $(Z, d_Z)$ 以及等距映射 $i: (X, d_X) \to (Z, d_Z), j: (Y, d_Y) \to (Z, d_Z)$。
+</details>
+:::
+
+It turns out that, to define the Gromov–Hausdorff distance, it suffices to consider only metric spaces of the form $(X \sqcup Y, \rho)$, where $\rho$ extends $d_X$ and $d_Y$, called an *admissible metric*, and the set of all admissible metrics is denoted by $D(X, Y)$.
+
+::: {.callout-tip appearance="simple"}
+**17.3.0.2 Lemma:** Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. Then
+$$d_{\text{GH}}((X, d_X), (Y, d_Y)) = \inf_{\rho} \rho_{\text{H}}(X, Y) \qquad (253)$$
+where $\rho_{\text{H}}$ is the Hausdorff distance in $(X \sqcup Y, \rho)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.3.0.2 引理：** 设 $(X, d_X)$ 和 $(Y, d_Y)$ 是度量空间。那么
+$$d_{\text{GH}}((X, d_X), (Y, d_Y)) = \inf_{\rho} \rho_{\text{H}}(X, Y) \qquad (253)$$
+其中 $\rho_{\text{H}}$ 是 $(X \sqcup Y, \rho)$ 中的 Hausdorff 距离。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**17.3.0.3 Theorem:** The Gromov–Hausdorff distance $d_{\text{GH}}$ is a metric among the isometric isomorphism classes of compact metric spaces. Moreover, the metric is complete.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**17.3.0.3 定理：** Gromov-Hausdorff 距离 $d_{\text{GH}}$ 是紧度量空间的等距同构类之间的一个度量。此外，该度量是完备的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Let $(X, d_X)$, $(Y, d_Y)$, and $(Z, d_Z)$ be compact metric spaces. We prove the triangle inequality
+$$d_{\text{GH}}((X, d_X), (Z, d_Z)) \le d_{\text{GH}}((X, d_X), (Y, d_Y)) + d_{\text{GH}}((Y, d_Y), (Z, d_Z)) \qquad (254)$$
+Let $\mu \in D(X, Y)$ and $\nu \in D(Y, Z)$ be admissible metrics. Consider the metric space $A = X \sqcup Y \sqcup Z$ with metric $\rho$ extending both $\mu$ and $\nu$, and therefore
+$$\rho(p, r) = \inf_{q \in Y} \{\mu(p, q) + \nu(q, r)\}, \quad \forall p \in X, r \in Z. \qquad (255)$$
+We leave to the reader that $\rho$ is a metric. Then the inclusions $i: (X \sqcup Y, \mu) \to (A, \rho)$ and $j: (Y \sqcup Z, \nu) \to (A, \rho)$ are isometries.
+$$d_{\text{GH}}((X, d_X), (Z, d_Z)) \le \rho_{\text{H}}(X, Z) \le \mu_{\text{H}}(X, Y) + \nu_{\text{H}}(Y, Z). \qquad (256)$$
+Taking the infimums over all $\mu \in D(X, Y)$ and $\nu \in D(Y, Z)$ we obtain the triangle inequality. $\blacksquare$
+</details>

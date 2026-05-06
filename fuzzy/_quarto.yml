@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "模糊数学"
+  site-url: https://LZOI-ZJX.github.io/CourseNoteBeta/fuzzy/
+  navbar:
+    left:
+      - text: 首页
+        href: index.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    html-math-method: mathjax

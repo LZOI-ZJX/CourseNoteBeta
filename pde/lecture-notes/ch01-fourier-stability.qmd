@@ -1,0 +1,125 @@
+---
+title: "Fourier 方法与差分格式稳定性"
+number-sections: false
+---
+
+
+
+## Fourier方法
+
+以一维对流方程为例：
+
+$$
+\begin{cases}
+\frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0, & x \in \mathbb{R},\; t>0,\; a>0 \\[6pt]
+u(x,0) = f(x), & x \in \mathbb{R}
+\end{cases}
+\tag{1.1}
+$$
+
+左偏差分格式：
+
+$$
+\begin{cases}
+u_j^{n+1} = u_j^n - a\lambda (u_j^n - u_{j-1}^n), & \lambda = \frac{\tau}{h} \\[6pt]
+u_j^0 = f_j = f(x_j)
+\end{cases}
+\tag{1.2}
+$$
+
+为了应用Fourier方法，将网格函数延拓为分段常数函数：
+
+$$
+U(x,t_n) = u_j^n, \quad (x_j-\tfrac12)h \le x < (x_j+\tfrac12)h
+$$
+
+则 $U(x,t_n)$ 满足
+
+$$
+U(x,t_{n+1}) = U(x,t_n) - a\lambda \big[U(x,t_n) - U(x-h,t_n)\big], \quad x\in\mathbb{R}.
+$$
+
+对等式两边作Fourier积分，可得**增长因子（传播因子）**
+
+$$
+G(\tau,k) = 1 - a\lambda (1 - e^{-i k h}).
+$$
+
+记 $\omega = kh$，则
+
+$$
+G(\tau,k) = 1 - a\lambda (1 - e^{-i\omega}).
+$$
+
+---
+
+### 稳定性条件
+
+差分格式稳定的必要条件是：存在常数 $\tau_0>0,\;K>0$，使得当 $\tau\le\tau_0$，$n\tau\le T$，$k\in\mathbb{R}$ 时
+
+$$
+|\,[G(\tau,k)]^{\,n}\,| \le K .
+$$
+
+若增长因子任意次幂有界，则格式稳定。
+
+### 增长矩阵与Von Neumann条件
+
+对于线性方程组或多层格式，离散形式为
+
+$$
+U_j^{n+1} = C(x_j,\tau) U_j^n \tag{1.3}
+$$
+
+经Fourier分析得到增长矩阵 $G(\tau,k)$，此时稳定性条件为
+
+$$
+\|\,[G(\tau,k)]^{\,n}\,\| \le K .
+$$
+
+**定理3.1（Von Neumann条件）**：差分格式 (1.3) 稳定的必要条件是当 $\tau\le\tau_0$，$n\tau\le T$，对所有 $k\in\mathbb{R}$ 有
+
+$$
+| \lambda_j(G(\tau,k)) | \le 1 + M\tau \qquad (*)
+$$
+
+其中 $\lambda_j$ 表示 $G(\tau,k)$ 的特征值，$M$ 为常数。
+
+**定理3.2**：若增长矩阵 $G(\tau,k)$ 是正规矩阵，则Von Neumann条件是稳定性的充分必要条件。
+
+特别地，当 $G$ 为实对称矩阵、酉矩阵、Hermite矩阵时，Von Neumann条件即为充要条件。
+
+### Fourier方法的具体应用（离散形式）
+
+直接令 $u_j^n = v^n e^{i k j h}$ 代入差分方程，可避免繁琐的延拓与积分步骤。
+
+以左偏格式 (1.2) 为例，代入得
+
+$$
+v^{n+1} e^{i k j h} = v^n e^{i k j h} - a\lambda \big( v^n e^{i k j h} - v^n e^{i k (j-1)h} \big)
+$$
+
+整理后得到
+
+$$
+v^{n+1} = \big[1 - a\lambda (1 - e^{-i k h})\big] v^n .
+$$
+
+增长因子与前述相同。
+
+### 稳定性的分类
+
+1. **条件稳定**：稳定性对步长有限制，如对流方程的左偏显式格式（要求 $a\lambda\le1$）。
+2. **无条件稳定（绝对稳定）**：对任何步长均稳定，如隐式格式。
+3. **无条件不稳定（绝对不稳定）**：对任何步长均不稳定，如对流方程的中心显式格式。
+
+---
+
+### 练习
+
+对一维对流方程 (1.1)：
+
+1. 写出右偏差分格式、中心差分格式并给出截断误差。
+2. 用Fourier方法分析两种差分格式的稳定性，并说明收敛性。
+
+---

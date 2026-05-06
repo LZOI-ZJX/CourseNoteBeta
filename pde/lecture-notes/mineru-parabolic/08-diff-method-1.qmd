@@ -1,0 +1,6 @@
+---
+title: "抛物型方程的差分方法（1）"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/parabolic-08.md >}}

@@ -1,0 +1,721 @@
+---
+title: "Fuzzy Mathematics"
+date: "2026-04-06"
+format:
+  html:
+    toc: true
+    number-sections: true
+    html-math-method: mathjax
+---
+
+
+## 模糊集合的基本概念与表示
+
+**定义**：设论域为 $X$，若对任意 $x \in X$，存在唯一确定的 $\mu_{\underset{\sim}{A}}(x) \in [0, 1]$ 与之对应，则称映射：
+$$
+\mu_{\underset{\sim}{A}}: X \to [0, 1], \quad x \mapsto \mu_{\underset{\sim}{A}}(x)
+$$
+
+确定了一个 $X$ 上的**模糊集合** $\underset{\sim}{A}$。
+
+对任意的 $x \in X$，$\mu_{\underset{\sim}{A}}$ 在 $x$ 处的函数值 $\mu_{\underset{\sim}{A}}(x)$ 称为 $x$ 对 $\underset{\sim}{A}$ 的**隶属度**，而映射 $\mu_{\underset{\sim}{A}}$ 称为模糊集合 $\underset{\sim}{A}$ 的**隶属函数**。
+
+### 模糊集合的表示方法
+
+记 $\underset{\sim}{A} \in \mathcal{F}(X)$（$\mathcal{F}(X)$ 表示 $X$ 的模糊幂集）。
+
+**1. Zadeh 记法**
+对于有限集 $X = \{x_1, x_2, \dots, x_n\}$：
+$$
+\underset{\sim}{A} = \frac{\mu_{\underset{\sim}{A}}(x_1)}{x_1} + \frac{\mu_{\underset{\sim}{A}}(x_2)}{x_2} + \dots + \frac{\mu_{\underset{\sim}{A}}(x_n)}{x_n} = \sum_{i=1}^n \frac{\mu_{\underset{\sim}{A}}(x_i)}{x_i}
+$$
+对无穷集类似，若 $X = [a, b] \subseteq \mathbb{R}$，则：
+$$
+\underset{\sim}{A} = \int_X \frac{\mu_{\underset{\sim}{A}}(x)}{x}
+$$
+*(注：这里的“$+$”、“$\sum$”、“$\int$”以及分数线均为形式记号，不代表常规的加法、积分和除法运算。)*
+
+**2. 序对表示法**
+$$
+\underset{\sim}{A} = \{(x, \mu_{\underset{\sim}{A}}(x)) \mid x \in X\}
+$$
+
+**3. 向量表示法**（隶属度为 0 的项不可省略）
+当 $X = \{x_1, x_2, \dots, x_n\}$ 时：
+$$
+\underset{\sim}{A} = (\mu_{\underset{\sim}{A}}(x_1), \mu_{\underset{\sim}{A}}(x_2), \dots, \mu_{\underset{\sim}{A}}(x_n))
+$$
+
+---
+
+## 分明集合与模糊集合的关系
+
+### 分明集合及其特征函数
+对于 $A \in \mathscr{P}(X)$（$\mathscr{P}(X)$ 为经典幂集），定义 $\chi_A: X \to \{0, 1\}, x \mapsto \chi_A(x)$，其中：
+$$
+\chi_A(x) = \begin{cases} 
+1 & x \in A \\ 
+0 & x \notin A 
+\end{cases}
+$$
+$\chi_A$ 称为集合 $A$ 的特征函数。
+
+* 空集 $\emptyset$ 的特征函数：$\chi_{\emptyset}(x) = 0 \quad (\forall x \in X)$
+* 全集 $X$ 的特征函数：$\chi_X(x) = 1 \quad (\forall x \in X)$
+
+**集合的相关关系**：
+
+* **相等**：$A = B \iff \chi_A(x) = \chi_B(x) \quad (\forall x \in X)$
+* **包含**：$A \subseteq B \iff \chi_A(x) \le \chi_B(x) \quad (\forall x \in X)$
+* **真包含**：$A \subsetneq B \iff A \subseteq B \text{ 且 } A \neq B \iff \chi_A(x) \le \chi_B(x) \ (\forall x \in X) \text{ 且 } \exists x_0 \in X \text{ s.t. } \chi_A(x_0) \neq \chi_B(x_0)$
+
+### 模糊集合的包含与相等
+设 $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，则：
+
+* **包含**：$\underset{\sim}{A} \subseteq \underset{\sim}{B} \iff \mu_{\underset{\sim}{A}}(x) \le \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)$
+* **相等**：$\underset{\sim}{A} = \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{B} \subseteq \underset{\sim}{A} \iff \mu_{\underset{\sim}{A}}(x) = \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)$
+* **真包含**：$\underset{\sim}{A} \subsetneq \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{A} \neq \underset{\sim}{B}$
+
+---
+
+## 截集与模糊度
+
+### 截集 (Cut Sets)
+
+* **$\lambda$-截集**：
+$$
+A_\lambda = \{x \in X \mid \mu_{\underset{\sim}{A}}(x) \ge \lambda\}
+$$
+
+* **强 $\lambda$-截集**：
+$$
+    A_{\dot{\lambda}} = \{x \in X \mid \mu_{\underset{\sim}{A}}(x) > \lambda\}
+$$
+
+**截集的性质**：
+若 $\lambda_1 < \lambda_2$，则有：
+$$
+A_{\lambda_2} \subseteq A_{\dot{\lambda}_1} \subseteq A_{\lambda_1}
+$$
+
+### Hamming 模糊度
+**定义**：
+$$
+d_1(\underset{\sim}{A}) = \frac{2}{n} \sum_{i=1}^n |\mu_{\underset{\sim}{A}}(x_i) - \chi_{A_{0.5}}(x_i)|
+$$
+
+其中，$\chi_{A_{0.5}}(x_i)$ 是分明集合 $A_{0.5}$（即 0.5-截集）的特征函数：
+
+$$
+\chi_{A_{0.5}}(x_i) = \begin{cases} 
+1 & \mu_{\underset{\sim}{A}}(x_i) \ge 0.5 \\ 
+0 & \mu_{\underset{\sim}{A}}(x_i) < 0.5 
+\end{cases}
+$$
+
+---
+
+## 偏序集与格 (基础补充)
+
+**定义**：设 $(X, \le)$ 是一个偏序集， $A \subseteq X$。
+
+* **上界 (下界)**：若存在 $\alpha \in X$，s.t. $\forall x \in A$，$x \le \alpha$ ($\alpha \le x$)，则称 $\alpha$ 是 $A$ 的一个上界 (下界)。
+* **上确界 (下确界)**：若 $\alpha$ 是 $A$ 的一个上界 (下界)，且对于 $A$ 的任意上界 (下界) $u$，都有 $\alpha \le u$ ($u \le \alpha$)，则称 $\alpha$ 是 $A$ 的上确界 (下确界)。
+    * $\alpha = \sup \{x \mid x \in A\}$
+    * ($\alpha = \inf \{x \mid x \in A\}$)
+* 若 $A$ 的上、下确界都存在，记：
+    * $\vee A = \vee \{x \mid x \in A\} = \sup A$
+    * $\wedge A = \wedge \{x \mid x \in A\} = \inf A$
+
+**格 (Lattice) 的定义**：
+
+$(X, \le)$ 是偏序集，若对 $\forall x, y \in X$，子集 $\{x, y\}$ 的上下确界都存在，则称 $(X, \le)$ 是一个格。
+
+
+## 模糊集合的运算规律
+
+设 <mark>$\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)$</mark>
+
+*   <mark>幂等律</mark>：
+    $$ \underset{\sim}{A} \cup \underset{\sim}{A} = \underset{\sim}{A}, \quad \underset{\sim}{A} \cap \underset{\sim}{A} = \underset{\sim}{A} $$
+*   <mark>交换律</mark>：
+    $$ \underset{\sim}{A} \cup \underset{\sim}{B} = \underset{\sim}{B} \cup \underset{\sim}{A}, \quad \underset{\sim}{A} \cap \underset{\sim}{B} = \underset{\sim}{B} \cap \underset{\sim}{A} $$
+*   <mark>结合律</mark>：
+    $$ (\underset{\sim}{A} \cup \underset{\sim}{B}) \cup \underset{\sim}{C} = \underset{\sim}{A} \cup (\underset{\sim}{B} \cup \underset{\sim}{C}) $$
+    $$ (\underset{\sim}{A} \cap \underset{\sim}{B}) \cap \underset{\sim}{C} = \underset{\sim}{A} \cap (\underset{\sim}{B} \cap \underset{\sim}{C}) $$
+*   <mark>吸收律</mark>：
+    $$ \underset{\sim}{A} \cup (\underset{\sim}{A} \cap \underset{\sim}{B}) = \underset{\sim}{A}, \quad \underset{\sim}{A} \cap (\underset{\sim}{A} \cup \underset{\sim}{B}) = \underset{\sim}{A} $$
+*   <mark>分配律</mark>：
+    $$ \underset{\sim}{A} \cap (\underset{\sim}{B} \cup \underset{\sim}{C}) = (\underset{\sim}{A} \cap \underset{\sim}{B}) \cup (\underset{\sim}{A} \cap \underset{\sim}{C}) $$
+    $$ \underset{\sim}{A} \cup (\underset{\sim}{B} \cap \underset{\sim}{C}) = (\underset{\sim}{A} \cup \underset{\sim}{B}) \cap (\underset{\sim}{A} \cup \underset{\sim}{C}) $$
+*   <mark>两极律</mark>：
+    $$ \underset{\sim}{A} \cup X = X, \quad \underset{\sim}{A} \cap \emptyset = \emptyset $$
+    $$ \underset{\sim}{A} \cap X = \underset{\sim}{A}, \quad \underset{\sim}{A} \cup \emptyset = \underset{\sim}{A} $$
+*   <mark>对偶律</mark>：
+    $$ (\underset{\sim}{A} \cup \underset{\sim}{B})^c = \underset{\sim}{A}^c \cap \underset{\sim}{B}^c, \quad (\underset{\sim}{A} \cap \underset{\sim}{B})^c = \underset{\sim}{A}^c \cup \underset{\sim}{B}^c $$
+
+---
+
+## 偏序集的特殊元素与哈斯图
+
+<mark>def.</mark> $(X, \le)$ 是一个偏序集。
+
+*   若存在 $u \in X$，s.t. 对 $\forall x \in X$ 有 $x \le u \ (u \le x)$，则称 $u$ 是 $(X, \le)$ 的<mark>最大元 (最小元)</mark>。
+*   若对 $u \in X$，s.t. $\forall x \in X$，若 $u \le x \ (x \le u)$，则 $u = x$，则称 $u$ 是 $(X, \le)$ 的<mark>极大元 (极小元)</mark>。
+
+<mark>哈斯图</mark>：表示有限偏序集关系的图。
+
+省略环，省去传递边，箭头（以上下位置关系表示）。
+
+*(示例图意：底部为1，中间为2, 3，顶部为4, 6)*
+
+---
+
+## 模糊集合的支撑集、核与分解定理
+
+<mark>def.</mark> $\underset{\sim}{A} \in \mathcal{F}(X)$
+
+*   称 $A_0$ 为 <mark>$\underset{\sim}{A}$ 的支撑集 (Supp $\underset{\sim}{A}$)</mark>：
+    $$ \operatorname{Supp} \underset{\sim}{A} = A_0 = \{x \in X \mid \underset{\sim}{A}(x) > 0\} $$
+*   称 $A_1$ 为 <mark>$\underset{\sim}{A}$ 的核 (Ker $\underset{\sim}{A}$)</mark>：
+    $$ \operatorname{Ker} \underset{\sim}{A} = A_1 = \{x \in X \mid \underset{\sim}{A}(x) = 1\} $$
+
+<mark>def.</mark> 设 $\underset{\sim}{A} \in \mathcal{F}(X)$, $\lambda \in [0, 1]$。称 $\lambda \underset{\sim}{A}$ 为数 $\lambda$ 与模糊集合 $\underset{\sim}{A}$ 的<mark>数乘模糊集</mark>，其隶属函数为：
+
+$$ 
+(\lambda \underset{\sim}{A})(x) = \lambda \wedge \underset{\sim}{A}(x), \quad x \in X 
+$$
+
+<mark>prop.</mark>
+
+*   $\lambda_1 < \lambda_2 \implies \lambda_1 \underset{\sim}{A} \subseteq \lambda_2 \underset{\sim}{A}$
+*   $\underset{\sim}{A} \subseteq \underset{\sim}{B} \implies \lambda \underset{\sim}{A} \subseteq \lambda \underset{\sim}{B}$
+
+<mark>Thm. 分解定理</mark>：设 $\underset{\sim}{A} \in \mathcal{F}(X)$，则：
+
+$$ \underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda A_\lambda $$
+
+
+<mark>cor.</mark> 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，则：
+
+$$ \underset{\sim}{A}(x) = \bigvee \{\lambda \in [0, 1] \mid x \in A_\lambda\}, \quad x \in X $$
+
+<mark>Thm.</mark> 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，则利用强截集也有：
+
+$$ \underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda A_{\dot{\lambda}} $$
+
+<mark>cor.</mark> 
+
+$$ \underset{\sim}{A}(x) = \bigvee \{\lambda \in [0, 1] \mid x \in A_{\dot{\lambda}}\}, \quad x \in X $$
+
+---
+
+## 集合套与表现定理
+
+<mark>def. 集合套</mark>
+
+设集值映射 $H: [0, 1] \to \mathscr{P}(X), \lambda \mapsto H(\lambda)$。
+
+对 $\forall \lambda_1, \lambda_2 \in [0, 1]$，若：
+
+$$ \lambda_1 < \lambda_2 \implies H(\lambda_2) \subseteq H(\lambda_1) $$
+
+则称集值映射 $H$ 是 $X$ 上的一个**集合套**。也称集合族 $\{H(\lambda)\}_{\lambda \in [0, 1]}$ 是 $X$ 上的一个集合套。
+
+$X$ 上集合套的全体记为 <mark>$\mathcal{U}(X)$</mark>。
+
+<mark>def.</mark> 集合套的并与交运算：
+
+$$ (H_1 \cup H_2)(\lambda) = H_1(\lambda) \cup H_2(\lambda), \quad \lambda \in [0, 1] \ (\text{并}) $$
+$$ (H_1 \cap H_2)(\lambda) = H_1(\lambda) \cap H_2(\lambda), \quad \lambda \in [0, 1] \ (\text{交}) $$
+
+<mark>Thm.</mark> $\underset{\sim}{A} \in \mathcal{F}(X)$，集值映射 $H: [0, 1] \to \mathscr{P}(X), \lambda \mapsto H(\lambda)$。且对任意的 $\lambda \in [0, 1]$ 有 $A_{\dot{\lambda}} \subseteq H(\lambda) \subseteq A_\lambda$，则：
+
+1.  $\underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)$
+2.  $0 \le \lambda_1 < \lambda_2 \le 1 \implies H(\lambda_2) \subseteq H(\lambda_1)$
+3.  $\lambda \in (0, 1] \implies A_\lambda = \bigcap_{\alpha < \lambda} H(\alpha)$
+    $\lambda \in [0, 1) \implies A_{\dot{\lambda}} = \bigcup_{\alpha > \lambda} H(\alpha)$
+
+<mark>Thm.</mark> 设 $\underset{\sim}{A} \in \mathcal{F}(X)$，记 $\lambda_x = \underset{\sim}{A}(x)$ ($x \in X$)，则：
+
+$$ \underset{\sim}{A} = \bigcup_{x \in X} \lambda_x \{x\} $$
+
+<mark>Thm. 表现定理</mark>
+
+令 $T: \mathcal{U}(X) \to \mathcal{F}(X), H \mapsto T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)$
+
+则 $T$ 是从 $(\mathcal{U}(X), \cup, \cap, {}^c)$ 到 $(\mathcal{F}(X), \cup, \cap, {}^c)$ 的<mark>同态满射</mark>，且：
+
+1.  $\forall \lambda \in [0, 1]$，有 $T(H)_{\dot{\lambda}} \subseteq H(\lambda) \subseteq T(H)_\lambda$
+2.  若 $\lambda \in (0, 1]$，则 $T(H)_\lambda = \bigcap_{\alpha < \lambda} H(\alpha)$
+3.  若 $\lambda \in [0, 1)$，则 $T(H)_{\dot{\lambda}} = \bigcup_{\alpha > \lambda} H(\alpha)$
+
+表现定理提供了一种构造模糊集合的方法。
+
+若 $H$ 是 $X$ 上的一个集合套，则 $T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)$ 是 $X$ 上的一个模糊集合。其隶属函数为：
+
+$$ T(H)(x) = \bigvee \{\lambda \in [0, 1] \mid x \in H(\lambda)\}, \quad x \in X $$
+
+称 $T(H)$ 是**由集合套 $H$ 所确定的模糊集合**。
+
+## 集合套的等价类与商集
+
+<mark>集合套的等价类</mark>
+
+定义：$H' \sim H \iff T(H') = T(H)$
+
+“$\sim$” 是集合套全体 $\mathcal{U}(X)$ 上的一个<mark>等价关系</mark>。
+
+<mark>Thm.</mark> 设 $H_1, H_2 \in \mathcal{U}(X)$，则下列条件等价：
+
+1. $H_1 \sim H_2$
+2. $\bigcap_{\alpha < \lambda} H_1(\alpha) = \bigcap_{\alpha < \lambda} H_2(\alpha), \quad \lambda \in (0, 1]$
+3. $\bigcup_{\alpha > \lambda} H_1(\alpha) = \bigcup_{\alpha > \lambda} H_2(\alpha), \quad \lambda \in [0, 1)$
+
+<mark>商集</mark>：$\mathcal{U}'(X) = \mathcal{U}(X) / \sim$
+
+商集 $\mathcal{U}'(X)$ 中的<mark>并、交、补运算</mark>：
+
+*   $[H_1] \cup [H_2] := [H_1 \cup H_2]$
+*   $[H_1] \cap [H_2] := [H_1 \cap H_2]$
+*   $[H]^c := [H^c]$
+
+*(注：上述运算与代表元的选取无关)*
+
+<mark>Prop.</mark> 令映射：
+
+$$ T': \mathcal{U}'(X) \to \mathcal{F}(X) $$
+
+$$ [H] \mapsto T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda) $$
+则 $T'$ 是从 $(\mathcal{U}'(X), \cup, \cap, {}^c)$ 到 $(\mathcal{F}(X), \cup, \cap, {}^c)$ 的<mark>同构映射</mark>。
+
+---
+
+## 扩展原理 (Extension Principle)
+
+<mark>def.</mark> 设映射 $f: X \to Y$
+
+1. 若 $A \in \mathscr{P}(X)$，则 $f(A) = \{y \in Y \mid \exists x \in A \text{ s.t. } f(x) = y\}$。称 $f(A)$ 为分明集合 $A$ 在 $f$ 下的<mark>像</mark>。
+2. 若 $B \in \mathscr{P}(Y)$，则 $f^{-1}(B) = \{x \in X \mid f(x) \in B\}$。称为分明集合 $B$ 在 $f$ 下的<mark>原像或逆像</mark>。
+
+<mark>Lemma.</mark> 对于映射 $f: X \to Y$：
+
+1. 若 $A \in \mathscr{P}(X)$，则 $f(A)$ 的特征函数为：$\chi_{f(A)}(y) = \bigvee_{f(x)=y} \chi_A(x), \quad y \in Y$
+2. 若 $B \in \mathscr{P}(Y)$，则 $f^{-1}(B)$ 的特征函数为：$\chi_{f^{-1}(B)}(x) = \chi_B(f(x)), \quad x \in X$
+
+<mark>def. 扩展原理 (隶属函数形式)</mark>
+
+设映射 $f: X \to Y, x \mapsto f(x) = y$。则由 $f$ 可以诱导如下两个映射：
+
+*   $f: \mathcal{F}(X) \to \mathcal{F}(Y), \quad \underset{\sim}{A} \mapsto f(\underset{\sim}{A})$
+*   $f^{-1}: \mathcal{F}(Y) \to \mathcal{F}(X), \quad \underset{\sim}{B} \mapsto f^{-1}(\underset{\sim}{B})$
+
+其中 $f(\underset{\sim}{A})$ 的隶属函数为：
+
+$$ f(\underset{\sim}{A})(y) = \bigvee_{f(x)=y} \underset{\sim}{A}(x), \quad y \in Y $$
+
+称为模糊集合 $\underset{\sim}{A}$ 在 $f$ 下的像。
+
+$f^{-1}(\underset{\sim}{B})$ 的隶属函数为：
+
+$$ f^{-1}(\underset{\sim}{B})(x) = \underset{\sim}{B}(f(x)), \quad x \in X $$
+
+**推导思路**：设 $\underset{\sim}{A} \in \mathcal{F}(X)$，对 $\forall \lambda \in [0, 1]$，由经典扩展原理：
+
+$$ f(A_\lambda) = \{y \in Y \mid \exists x \in A_\lambda \text{ s.t. } f(x)=y\} = \{f(x) \mid x \in A_\lambda\} $$
+
+由于 $\lambda_1 < \lambda_2 \implies A_{\lambda_2} \subseteq A_{\lambda_1} \implies f(A_{\lambda_2}) \subseteq f(A_{\lambda_1})$，故 $\{f(A_\lambda)\}_{\lambda \in [0, 1]}$ 是 $Y$ 上的集合套。由表现定理，$\{f(A_\lambda)\}_{\lambda \in [0, 1]}$ 唯一确定 $Y$ 上一个模糊集合 $\bigcup_{\lambda \in [0, 1]} \lambda f(A_\lambda)$。（对 $\underset{\sim}{B} \in \mathcal{F}(Y)$ 同理）
+
+<mark>Thm. 扩展原理 I (截集形式)</mark>
+
+设 $f: X \to Y$：
+
+1. 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，则 $f(\underset{\sim}{A}) = \bigcup_{\lambda \in [0, 1]} \lambda f(A_\lambda)$
+2. 若 $\underset{\sim}{B} \in \mathcal{F}(Y)$，则 $f^{-1}(\underset{\sim}{B}) = \bigcup_{\lambda \in [0, 1]} \lambda f^{-1}(B_\lambda)$
+
+<mark>Cor.</mark> 设 $f: X \to Y$：
+
+1. 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，则 $f(\underset{\sim}{A})(y) = \bigvee \{\lambda \in [0, 1] \mid y \in f(A_\lambda)\}, \quad y \in Y$
+2. 若 $\underset{\sim}{B} \in \mathcal{F}(Y)$，则 $f^{-1}(\underset{\sim}{B})(x) = \bigvee \{\lambda \in [0, 1] \mid x \in f^{-1}(B_\lambda)\}, \quad x \in X$
+
+<mark>Thm. 扩展原理 II (强截集/一般集套形式)</mark>
+
+设 $f: X \to Y$：
+
+(1) 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，对 $\forall \lambda \in [0, 1]$，有 $A_{\dot{\lambda}} \subseteq H_A(\lambda) \subseteq A_\lambda$
+则 $f(\underset{\sim}{A}) = \bigcup_{\lambda \in [0, 1]} \lambda f(H_A(\lambda))$
+
+且满足：
+
+*  $\forall \lambda \in [0, 1], \quad f(\underset{\sim}{A})_{\dot{\lambda}} \subseteq f(H_A(\lambda)) \subseteq f(\underset{\sim}{A})_\lambda$
+* 若 $\lambda \in (0, 1]$，则 $f(\underset{\sim}{A})_\lambda = \bigcap_{\alpha < \lambda} f(H_A(\alpha))$
+* 若 $\lambda \in [0, 1)$，则 $f(\underset{\sim}{A})_{\dot{\lambda}} = \bigcup_{\alpha > \lambda} f(H_A(\alpha))$
+
+(2) 对 $\underset{\sim}{B} \in \mathcal{F}(Y)$ 同理。
+
+---
+
+## 模糊数的四则运算
+
+<mark>模糊加法</mark>
+
+$$ \underset{\sim}{A} + \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda + B_\lambda) $$
+
+$$ (\underset{\sim}{A} + \underset{\sim}{B})(z) = \bigvee_{x+y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{x \in \mathbb{R}} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(z-x)), \quad z \in \mathbb{R} $$
+
+<mark>模糊减法</mark>
+
+$$ \underset{\sim}{A} - \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda - B_\lambda) $$
+
+$$ (\underset{\sim}{A} - \underset{\sim}{B})(z) = \bigvee_{x-y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{x \in \mathbb{R}} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(x-z)), \quad z \in \mathbb{R} $$
+
+<mark>模糊乘法</mark>
+
+$$ \underset{\sim}{A} \cdot \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda \cdot B_\lambda) $$
+
+$$
+(\underset{\sim}{A} \cdot \underset{\sim}{B})(z) = \bigvee_{x \cdot y = z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = 
+\begin{cases} 
+\bigvee_{x \neq 0} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(z/x)), & z \neq 0 \\ 
+\left( \underset{\sim}{A}(0) \wedge \big( \bigvee_{y \in \mathbb{R}} \underset{\sim}{B}(y) \big) \right) \vee \left( \underset{\sim}{B}(0) \wedge \big( \bigvee_{x \in \mathbb{R}} \underset{\sim}{A}(x) \big) \right), & z = 0 
+\end{cases} 
+$$
+
+
+<mark>模糊除法</mark>
+
+$$ \underset{\sim}{A} / \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda / B_\lambda), \quad 0 \notin \operatorname{Supp} \underset{\sim}{B} $$
+
+$$ (\underset{\sim}{A} / \underset{\sim}{B})(z) = \bigvee_{x/y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{y \in \operatorname{Supp} \underset{\sim}{B}} (\underset{\sim}{A}(yz) \wedge \underset{\sim}{B}(y)) $$
+
+<mark>Thm. 连续函数的截集性质</mark>
+
+设 $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ 为连续函数，$\underset{\sim}{A}, \underset{\sim}{B} \in \tilde{\mathbb{R}}$（$\tilde{\mathbb{R}}$ 为实数域上的模糊数集）。则：
+
+$$ f(\underset{\sim}{A}, \underset{\sim}{B})_\lambda = f(A_\lambda, B_\lambda), \quad \lambda \in (0, 1] $$
+
+<mark>Cor.</mark> 对 $\forall \lambda \in (0, 1]$ 有：
+
+*   $(\underset{\sim}{A} \pm \underset{\sim}{B})_\lambda = A_\lambda \pm B_\lambda$
+*   $(\underset{\sim}{A} \cdot \underset{\sim}{B})_\lambda = A_\lambda \cdot B_\lambda$
+*   $(\underset{\sim}{A} / \underset{\sim}{B})_\lambda = A_\lambda / B_\lambda \quad (0 \notin \operatorname{Supp} \underset{\sim}{B})$
+*   $(k\underset{\sim}{A})_\lambda = k A_\lambda, \quad k \in \mathbb{R}$
+
+## 模糊模式识别原则
+
+### <mark>最大隶属原则</mark>
+
+设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
+
+$x_0 \in X$ 为待识别元素。
+
+若存在 $i_0 \in \{1, 2, \dots, n\}$，s.t. 
+
+$$ \underset{\sim}{A}_{i_0}(x_0) = \max\{\underset{\sim}{A}_1(x_0), \underset{\sim}{A}_2(x_0), \dots, \underset{\sim}{A}_n(x_0)\} $$
+则认为 $x_0$ <mark>相对地归属于</mark> 模式 $\underset{\sim}{A}_{i_0}$。
+
+### <mark>阈值原则</mark>
+
+**I型：**
+
+设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
+
+$x_0 \in X$ 为待识别元素。取定 $\beta \in (0, 1]$。若存在 $i_1, i_2, \dots, i_k \in \{1, 2, \dots, n\}$ s.t.
+
+$$ \min\{\underset{\sim}{A}_{i_1}(x_0), \underset{\sim}{A}_{i_2}(x_0), \dots, \underset{\sim}{A}_{i_k}(x_0)\} \ge \beta $$
+
+则判定 $x_0$ 相对地隶属于 模式 $\underset{\sim}{A}_{i_1} \cap \underset{\sim}{A}_{i_2} \cap \dots \cap \underset{\sim}{A}_{i_k}$。
+
+**II型：**
+
+取定 $\alpha \in [0, 1)$。若
+$$
+ \max\{\underset{\sim}{A}_1(x_0), \underset{\sim}{A}_2(x_0), \dots, \underset{\sim}{A}_n(x_0)\} < \alpha 
+$$
+
+则判定 <mark>不能识别</mark> $x_0$。
+
+**III型：**
+
+设 $\alpha, \beta \in [0, 1]$
+
+(1) 若存在 $i_1, i_2, \dots, i_k \in \{1, 2, \dots, n\}$ s.t.
+
+$$ \min\{\underset{\sim}{A}(x_{i_1}), \underset{\sim}{A}(x_{i_2}), \dots, \underset{\sim}{A}(x_{i_k})\} \ge \alpha $$
+
+则认为 $x_{i_1}, x_{i_2}, \dots, x_{i_k}$ 相对地隶属于 模式 $\underset{\sim}{A}$。
+
+(2) 若 
+
+$$
+\max\{\underset{\sim}{A}(x_{i_1}), \dots\} < \beta 
+$$
+
+则认为它们 <mark>不属于</mark> 模式 $\underset{\sim}{A}$。
+
+### <mark>最大隶属原则 II</mark>
+
+设 $x_1, x_2, \dots, x_n \in X$，$\underset{\sim}{A} \in \mathcal{F}(X)$ 为标准模式。
+
+若 $i_0 \in \{1, 2, \dots, n\}$ s.t. 
+
+$$
+\underset{\sim}{A}(x_{i_0}) = \max\{\underset{\sim}{A}(x_1), \underset{\sim}{A}(x_2), \dots, \underset{\sim}{A}(x_n)\} 
+$$
+
+则认为 $x_{i_0}$ 相对地 <mark>优先隶属于</mark> 模式 $\underset{\sim}{A}$。
+
+---
+
+## 贴近度与内积、外积
+
+<mark>def. 内积与外积</mark>
+
+设 $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$
+
+(1) $\underset{\sim}{A}$ 与 $\underset{\sim}{B}$ 的 <mark>内积</mark>： $\underset{\sim}{A} \circ \underset{\sim}{B} = \bigvee_{x \in X} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(x))$
+(2) $\underset{\sim}{A}$ 与 $\underset{\sim}{B}$ 的 <mark>外积</mark>： $\underset{\sim}{A} \odot \underset{\sim}{B} = \bigwedge_{x \in X} (\underset{\sim}{A}(x) \vee \underset{\sim}{B}(x))$
+
+<mark>def. 峰值与谷值</mark>
+
+*   <mark>$\underset{\sim}{A}$ 的峰值</mark>： $\overline{A} = \bigvee_{x \in X} \underset{\sim}{A}(x)$
+*   <mark>$\underset{\sim}{A}$ 的谷值</mark>： $\underline{A} = \bigwedge_{x \in X} \underset{\sim}{A}(x)$
+
+<mark>prop.</mark> $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，则：
+
+(1) $\underset{\sim}{A} \circ \underset{\sim}{B} = \underset{\sim}{B} \circ \underset{\sim}{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} = \underset{\sim}{B} \odot \underset{\sim}{A}$
+(2) $(\underset{\sim}{A} \circ \underset{\sim}{B})^c = \underset{\sim}{A}^c \odot \underset{\sim}{B}^c, \quad (\underset{\sim}{A} \odot \underset{\sim}{B})^c = \underset{\sim}{A}^c \circ \underset{\sim}{B}^c$
+
+<mark>prop.</mark> 若 $\underset{\sim}{A} \subseteq \underset{\sim}{B}$，则：
+
+$$ \underset{\sim}{A} \circ \underset{\sim}{B} = \overline{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} = \underline{B} $$
+
+<mark>cor.</mark> 若 $\underset{\sim}{A} \in \mathcal{F}(X)$，则：
+
+$$ \underset{\sim}{A} \circ \underset{\sim}{A} = \overline{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{A} = \underline{A} $$
+
+<mark>prop.</mark> $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，则：
+
+(1) $\underset{\sim}{A} \circ \underset{\sim}{B} \le \overline{A} \wedge \overline{B}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} \ge \underline{A} \vee \underline{B}$
+(2) $\bigvee_{\underset{\sim}{B} \in \mathcal{F}(X)} (\underset{\sim}{A} \circ \underset{\sim}{B}) = \overline{A}, \quad \bigwedge_{\underset{\sim}{B} \in \mathcal{F}(X)} (\underset{\sim}{A} \odot \underset{\sim}{B}) = \underline{A}$
+(3) $\underset{\sim}{A} \circ \underset{\sim}{A}^c \le 0.5, \quad \underset{\sim}{A} \odot \underset{\sim}{A}^c \ge 0.5$
+
+---
+
+## 格贴近度及其公理化定义
+
+<mark>def. 格贴近度</mark>
+
+设 $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，称：
+
+$$ N_L(\underset{\sim}{A}, \underset{\sim}{B}) = (\underset{\sim}{A} \circ \underset{\sim}{B}) \wedge (\underset{\sim}{A} \odot \underset{\sim}{B})^c $$
+
+为 $\underset{\sim}{A}$ 与 $\underset{\sim}{B}$ 的 <mark>格贴近度</mark>。
+
+<mark>prop. 格贴近度的性质</mark>
+
+设 $\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)$，则：
+
+1.  $0 \le N_L(\underset{\sim}{A}, \underset{\sim}{B}) \le 1$
+2.  $N_L(\underset{\sim}{A}, \underset{\sim}{B}) = N_L(\underset{\sim}{B}, \underset{\sim}{A})$
+3.  $N_L(X, \emptyset) = 0$
+4.  $N_L(\underset{\sim}{A}, \underset{\sim}{A}) = \overline{A} \wedge (1 - \underline{A})$。特别地，当 $\overline{A}=1, \underline{A}=0$ 时，$N_L(\underset{\sim}{A}, \underset{\sim}{A}) = 1$
+5.  若 $\underset{\sim}{A} \subseteq \underset{\sim}{B} \subseteq \underset{\sim}{C}$，则 $N_L(\underset{\sim}{A}, \underset{\sim}{C}) \le N_L(\underset{\sim}{A}, \underset{\sim}{B}) \wedge N_L(\underset{\sim}{B}, \underset{\sim}{C})$
+
+<mark>def. 贴近度的公理化定义</mark>
+
+设 $\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)$。若映射 $N: \mathcal{F}(X) \times \mathcal{F}(X) \to [0, 1], (\underset{\sim}{A}, \underset{\sim}{B}) \mapsto N(\underset{\sim}{A}, \underset{\sim}{B})$ 满足以下四条公理：
+
+1.  $N(\underset{\sim}{A}, \underset{\sim}{B}) = N(\underset{\sim}{B}, \underset{\sim}{A})$  *(对称性)*
+2.  $N(\underset{\sim}{A}, \underset{\sim}{A}) = 1$  *(自反性)*
+3.  $N(X, \emptyset) = 0$  *(边界性)*
+4.  $\underset{\sim}{A} \subseteq \underset{\sim}{B} \subseteq \underset{\sim}{C} \implies N(\underset{\sim}{A}, \underset{\sim}{C}) \le N(\underset{\sim}{A}, \underset{\sim}{B}) \wedge N(\underset{\sim}{B}, \underset{\sim}{C})$  *(单调性)*
+则称 $N(\cdot, \cdot)$ 为 $\mathcal{F}(X)$ 上的 <mark>贴近度函数</mark>，$N(\underset{\sim}{A}, \underset{\sim}{B})$ 为 $\underset{\sim}{A}$ 与 $\underset{\sim}{B}$ 的 <mark>贴近度</mark>。
+
+---
+
+## 择近原则
+
+<mark>择近原则</mark>
+
+设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式，$\underset{\sim}{B} \in \mathcal{F}(X)$ 为待识别对象。
+
+若存在 $i_0 \in \{1, 2, \dots, n\}$，s.t. 
+
+$$ N(\underset{\sim}{A}_{i_0}, \underset{\sim}{B}) = \max\{N(\underset{\sim}{A}_1, \underset{\sim}{B}), \dots, N(\underset{\sim}{A}_n, \underset{\sim}{B})\} $$
+
+则认为 $\underset{\sim}{B}$ 相对地归属于 模式 $\underset{\sim}{A}_{i_0}$。
+
+## 模糊关系与合成
+
+<mark>def.</mark> 设 $X, Y, Z$ 为论域。若 $\underset{\sim}{R} \in \mathcal{F}(X \times Y), \underset{\sim}{Q} \in \mathcal{F}(Y \times Z)$。
+
+则称模糊关系 $\underset{\sim}{R} \circ \underset{\sim}{Q}$ 为 $\underset{\sim}{R}$ 和 $\underset{\sim}{Q}$ 的 <mark>合成或复合</mark>，其中：
+
+$$ (\underset{\sim}{R} \circ \underset{\sim}{Q})(x, z) = \bigvee_{y \in Y} (\underset{\sim}{R}(x, y) \wedge \underset{\sim}{Q}(y, z)), \quad (x, z) \in X \times Z $$
+
+<mark>prop.</mark>
+
+*   $I \circ \underset{\sim}{R} = \underset{\sim}{R} \circ I = \underset{\sim}{R}$ （$I$ 为单位关系）
+*   $\emptyset \circ \underset{\sim}{R} = \underset{\sim}{R} \circ \emptyset = \emptyset$
+
+<mark>prop.</mark> 逆关系性质：
+
+$$ (\underset{\sim}{R} \circ \underset{\sim}{Q})^{-1} = \underset{\sim}{Q}^{-1} \circ \underset{\sim}{R}^{-1} $$
+
+<mark>cor.</mark> 单调性：
+
+*   $R_1 \subseteq R_2 \implies R_1 \circ Q \subseteq R_2 \circ Q$
+*   $Q_1 \subseteq Q_2 \implies R \circ Q_1 \subseteq R \circ Q_2$
+
+<mark>prop.</mark> 结合律：
+
+$$ (\underset{\sim}{R} \circ \underset{\sim}{S}) \circ \underset{\sim}{Q} = \underset{\sim}{R} \circ (\underset{\sim}{S} \circ \underset{\sim}{Q}) $$
+
+<mark>cor.</mark> 幂运算性质：
+
+*   $\underset{\sim}{R}^{n+m} = \underset{\sim}{R}^n \circ \underset{\sim}{R}^m$
+*   $(\underset{\sim}{R}^n)^{-1} = (\underset{\sim}{R}^{-1})^n$
+*   $\underset{\sim}{R} \subseteq \underset{\sim}{Q} \implies \underset{\sim}{R}^n \subseteq \underset{\sim}{Q}^n$
+
+<mark>prop.</mark> 对交集和并集的分配律：
+
+设 $\underset{\sim}{R}_i \in \mathcal{F}(X \times Y), \underset{\sim}{Q}_i \in \mathcal{F}(Y \times Z)$
+*   交集（仅包含于）：
+    $$ \underset{\sim}{R} \circ (\bigcap_{i \in I} \underset{\sim}{Q}_i) \subseteq \bigcap_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q}_i) $$
+    $$ (\bigcap_{i \in I} \underset{\sim}{R}_i) \circ \underset{\sim}{Q} \subseteq \bigcap_{i \in I} (\underset{\sim}{R}_i \circ \underset{\sim}{Q}) $$
+*   并集（相等）：
+    $$ \underset{\sim}{R} \circ (\bigcup_{i \in I} \underset{\sim}{Q}_i) = \bigcup_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q}_i) $$
+    $$ (\bigcup_{i \in I} \underset{\sim}{R}_i) \circ \underset{\sim}{Q} = \bigcup_{i \in I} (\underset{\sim}{R}_i \circ \underset{\sim}{Q}) $$
+
+<mark>prop.</mark> 数乘的结合性：
+
+$$ \lambda (\underset{\sim}{R} \circ \underset{\sim}{Q}) = (\lambda \underset{\sim}{R}) \circ \underset{\sim}{Q} = \underset{\sim}{R} \circ (\lambda \underset{\sim}{Q}) $$
+
+---
+
+## 模糊关系合成的截集
+
+<mark>Thm.</mark> 模糊合成的截集包含关系：
+
+$$ (\underset{\sim}{R} \circ \underset{\sim}{Q})_{\dot{\lambda}} = R_{\dot{\lambda}} \circ Q_{\dot{\lambda}} \subseteq R_\lambda \circ Q_\lambda \subseteq (\underset{\sim}{R} \circ \underset{\sim}{Q})_\lambda $$
+
+<mark>cor.</mark> 根据表现定理，模糊合成关系可表示为：
+
+$$ \underset{\sim}{R} \circ \underset{\sim}{Q} = \bigcup_{\lambda \in [0, 1]} \lambda (R_{\dot{\lambda}} \circ Q_{\dot{\lambda}}) = \bigcup_{\lambda \in [0, 1]} \lambda (R_\lambda \circ Q_\lambda) $$
+
+<mark>Thm.</mark> 模糊关系 $k$ 次幂的隶属函数：
+
+$$ \underset{\sim}{R}^k(x, y) = \bigvee_{x_1 \in X} \dots \bigvee_{x_{k-1} \in X} (\underset{\sim}{R}(x, x_1) \wedge \dots \wedge \underset{\sim}{R}(x_{k-1}, y)) $$
+
+---
+
+## 关系的性质 (自反、对称、传递)
+
+### 经典分明关系 $R \subseteq X \times X$
+
+1. <mark>自反性</mark>： $(x, x) \in R \quad \forall x \in X$
+
+2. <mark>对称性</mark>： $(x, y) \in R \implies (y, x) \in R$
+
+3. <mark>传递性</mark>： $(x, y) \in R, (y, z) \in R \implies (x, z) \in R$
+
+**Bool 矩阵的自反、对称及传递性** $R = (r_{ij})_{n \times n}$：
+
+1. 自反： $r_{ii} = 1, \quad i = 1, 2, \dots, n$
+2. 对称： $r_{ij} = r_{ji}$
+3. 传递： $r_{ij} = 1, r_{jk} = 1 \implies r_{ik} = 1$
+
+<mark>Thm.</mark> 设 $R \subseteq X \times X$
+
+1. $R$ 自反 $\iff R(x, x) = 1 \quad \forall x \in X$
+2. $R$ 对称 $\iff R(x, y) = R(y, x) \quad \forall x, y \in X$
+3. $R$ 传递 $\iff R^2(x, z) \le R(x, z) \quad \forall x, z \in X$
+
+<mark>Thm.</mark>
+
+1. $R$ 自反 $\iff I \subseteq R$
+2. $R$ 对称 $\iff R = R^{-1}$
+3. $R$ 传递 $\iff R^2 \subseteq R$
+
+### <mark>模糊关系的自反、对称、传递</mark>
+
+<mark>def.</mark> 设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$
+
+1. $\underset{\sim}{R}$ **自反** $\iff \underset{\sim}{R}(x, x) = 1 \quad x \in X$
+2. $\underset{\sim}{R}$ **对称** $\iff \underset{\sim}{R}(x, y) = \underset{\sim}{R}(y, x)$
+3. $\underset{\sim}{R}$ **传递** $\iff \underset{\sim}{R}^2 \subseteq \underset{\sim}{R}$  (即 $\underset{\sim}{R}^2(x, z) \le \underset{\sim}{R}(x, z)$)
+
+<mark>def. 模糊矩阵表示</mark> $\underset{\sim}{R} = (r_{ij})_{n \times n} \in M_{n \times n}$
+
+1. 自反： $r_{ii} = 1$
+2. 对称： $r_{ij} = r_{ji}$
+3. 传递： $\underset{\sim}{R}^2 \subseteq \underset{\sim}{R}$，即 $\bigvee_{k=1}^n (r_{ik} \wedge r_{kj}) \le r_{ij}$
+
+<mark>Thm.</mark> 设 $\underset{\sim}{R}_i \in \mathcal{F}(X \times X), \ i \in I$
+
+1. $\underset{\sim}{R}_i$ 自反 $\implies \bigcup_{i \in I} \underset{\sim}{R}_i$ 与 $\bigcap_{i \in I} \underset{\sim}{R}_i$ 自反
+2. $\underset{\sim}{R}_i$ 对称 $\implies \bigcup_{i \in I} \underset{\sim}{R}_i$ 与 $\bigcap_{i \in I} \underset{\sim}{R}_i$ 对称
+3. $\underset{\sim}{R}_i$ 传递 $\implies \bigcap_{i \in I} \underset{\sim}{R}_i$ 传递
+
+<mark>Thm.</mark> 设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$
+
+$\underset{\sim}{R}$ 自反/对称/传递 $\implies \underset{\sim}{R}^k$ 自反/对称/传递
+
+<mark>Thm.</mark> 设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$，则：
+
+1. 若 $\underset{\sim}{R}$ 自反，则 $I \subseteq \underset{\sim}{R} \subseteq \underset{\sim}{R}^2 \subseteq \dots \subseteq \underset{\sim}{R}^k \subseteq \dots$
+2. 若 $\underset{\sim}{R}$ 传递，则 $\underset{\sim}{R} \supseteq \underset{\sim}{R}^2 \supseteq \dots \supseteq \underset{\sim}{R}^k \supseteq \dots$
+3. 若 $\underset{\sim}{R}$ 自反且传递，则 $\underset{\sim}{R} = \underset{\sim}{R}^2 = \dots = \underset{\sim}{R}^k = \dots$
+
+<mark>Thm.</mark> 设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$
+
+$\underset{\sim}{R}$ 自反/对称/传递 $\iff \forall \lambda \in (0, 1], R_\lambda$ 自反/对称/传递
+
+---
+
+## 对称闭包与传递闭包
+
+<mark>def. 对称闭包</mark>
+
+设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$。包含 $\underset{\sim}{R}$ 的最小的对称模糊关系，称为 $\underset{\sim}{R}$ 的 <mark>对称闭包</mark> $S(\underset{\sim}{R})$。
+
+满足：
+
+*   包含性： $\underset{\sim}{R} \subseteq S(\underset{\sim}{R})$
+*   对称性： $(S(\underset{\sim}{R}))^{-1} = S(\underset{\sim}{R})$
+*   最小性： 若 $\underset{\sim}{Q}^{-1} = \underset{\sim}{Q}$ 且 $\underset{\sim}{R} \subseteq \underset{\sim}{Q}$，则 $S(\underset{\sim}{R}) \subseteq \underset{\sim}{Q}$
+
+<mark>def. 传递闭包</mark>
+
+设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$。包含 $\underset{\sim}{R}$ 的最小的具有传递性的模糊关系，称为 $\underset{\sim}{R}$ 的 <mark>传递闭包</mark> $t(\underset{\sim}{R})$。
+
+满足：
+
+*   包含性： $\underset{\sim}{R} \subseteq t(\underset{\sim}{R})$
+*   传递性： $t(\underset{\sim}{R}) \circ t(\underset{\sim}{R}) \subseteq t(\underset{\sim}{R})$
+*   最小性： 若 $\underset{\sim}{Q}^2 \subseteq \underset{\sim}{Q}$ 且 $\underset{\sim}{R} \subseteq \underset{\sim}{Q}$，则 $t(\underset{\sim}{R}) \subseteq \underset{\sim}{Q}$
+
+<mark>Thm.</mark> 传递闭包的一般构造：
+
+$$ t(\underset{\sim}{R}) = \bigcup_{k=1}^\infty \underset{\sim}{R}^k $$
+
+<mark>Lemma.</mark> 
+
+$$ t(\underset{\sim}{R}) = \bigcup_{k=1}^n \underset{\sim}{R}^k \implies \bigcup_{k=1}^n \underset{\sim}{R}^k \supseteq \underset{\sim}{R}^{n+1} $$
+
+<mark>Thm.</mark> 设 $\underset{\sim}{R} \in M_{n \times n}$ (有限模糊矩阵)，则：
+
+$$ t(\underset{\sim}{R}) = \bigcup_{k=1}^n \underset{\sim}{R}^k $$
+
+<mark>Thm.</mark> 若 $I \subseteq \underset{\sim}{R}$ (即 $\underset{\sim}{R}$ 自反)，则存在最小的 $k \in \{1, 2, \dots, n\}$，s.t. $t(\underset{\sim}{R}) = \underset{\sim}{R}^k$
+
+且对 $\forall l \in \mathbb{N}, l \ge k$，有 $\underset{\sim}{R}^l = \underset{\sim}{R}^k$。
+
+特别地， $t(\underset{\sim}{R}) = \underset{\sim}{R}^n$。
+
+<mark>Thm.</mark> (循环终止条件)
+
+若存在 $k, l \in \mathbb{N}, k < l$ s.t. $\underset{\sim}{R}^k = \underset{\sim}{R}^l$，
+
+则 $t(\underset{\sim}{R}) = \underset{\sim}{R}^k$。

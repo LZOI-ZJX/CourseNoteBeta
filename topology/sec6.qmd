@@ -1,0 +1,350 @@
+---
+title: "TOPOLOGICAL SUBSPACES"
+date: "2026-04-06"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 6.1 Topological subspaces | 拓扑子空间
+
+### 6.1.1 Topological subspaces | 拓扑子空间
+
+::: {.callout-note appearance="simple"}
+**6.1.1.1 Definition:** Let $A$ be a subset of a topological space $(X, \mathcal{T}_X)$. Then the *subspace topology* is defined as $\mathcal{T}_A = \{U \cap A : U \in \mathcal{T}_X\}$, and $(A, \mathcal{T}_A)$ is called a *topological subspace* of $(X, \mathcal{T}_X)$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** 设 $A$ 是拓扑空间 $(X, \mathcal{T}_X)$ 的一个子集。则 **子空间拓扑** 定义为 $\mathcal{T}_A = \{U \cap A : U \in \mathcal{T}_X\}$，且称 $(A, \mathcal{T}_A)$ 为 $(X, \mathcal{T}_X)$ 的一个 **拓扑子空间**。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.1.1.2 Proposition:** The subcollection $\mathcal{T}_A \subseteq \mathcal{P}(A)$ is indeed a topology on $A$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 子集合 $\mathcal{T}_A \subseteq \mathcal{P}(A)$ 确实是 $A$ 上的一个拓扑。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**6.1.1.3 Remark:** The default topology on a subset $A$ of a topological space $X$ is the subspace topology.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**备注：** 拓扑空间 $X$ 的子集 $A$ 上默认的拓扑即为子空间拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.1.1.4 Proposition:** A subset $B$ of $A$ is open iff there is an open subset $U$ of $X$ with $B = U \cap A$; it is closed iff there is a closed subset $C$ of $X$ with $B = C \cap A$. In particular, if $A$ is open then open subsets of $A$ are subsets of $A$ that are open in $X$; and if $A$ is closed then closed subsets of $A$ are subsets of $A$ that are closed in $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** $A$ 的子集 $B$ 是开集当且仅当存在 $X$ 的开子集 $U$ 使得 $B = U \cap A$；它是闭集当且仅当存在 $X$ 的闭子集 $C$ 使得 $B = C \cap A$。特别地，如果 $A$ 是开集，则 $A$ 的开子集也是 $X$ 中的开集；如果 $A$ 是闭集，则 $A$ 的闭子集也是 $X$ 中的闭集。
+</details>
+:::
+
+
+::: {.callout-important appearance="simple"}
+**6.1.1.5 Proposition:**
+
+(1) A topological subspace of a Hausdorff space is Hausdorff.
+(2) A topological subspace of a separable space is separable.
+(3) A topological subspace of a first countable space is first countable.
+(4) A topological subspace of a second countable space is second countable.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：**
+
+(1) Hausdorff 空间的拓扑子空间是 Hausdorff 的。
+(2) 可分空间的拓扑子空间是可分的。
+(3) 第一可数空间的拓扑子空间是第一可数的。
+(4) 第二可数空间的拓扑子空间是第二可数的。
+</details>
+:::
+
+### 6.1.2 Restriction and gluing | 限制与粘贴
+
+
+::: {.callout-important appearance="simple"}
+**6.1.2.1 Proposition:** If $f: X \to Y$ is a continuous map on a topological space $X$, then for any subset $A$ of $X$ the restriction $f|_A: A \to Y$, $p \mapsto f(p)$ is also continuous.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 设 $f: X \to Y$ 是拓扑空间 $X$ 上的连续映射，则对于 $X$ 的任何子集 $A$，其限制映射 $f|_A: A \to Y$, $p \mapsto f(p)$ 也是连续的。
+</details>
+:::
+
+
+::: {.callout-tip appearance="simple"}
+**Gluing lemma:** Let $X$ be a topological space with a family of subsets $(A_i)_{i \in I}$ that covers $X$. If $f: X \to Y$ is a map such that $f|_{A_i}: A_i \to Y$ is continuous for any $i \in I$, then $f$ is continuous assuming either $A_i$ are all open in $X$, or $I$ is finite and $A_i$ are all closed in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**粘贴引理：** 设 $X$ 为一拓扑空间，$(A_i)_{i \in I}$ 为覆盖 $X$ 的一个子集族。若映射 $f: X \to Y$ 满足对任意 $i \in I$，$f|_{A_i}: A_i \to Y$ 均连续，则在以下任一假设下 $f$ 也是连续的：所有 $A_i$ 均在 $X$ 中开，或者 $I$ 为有限集且所有 $A_i$ 均在 $X$ 中闭。
+</details>
+:::
+
+## 6.2 Compact spaces | 紧空间
+
+### 6.2.1 Compact intervals | 紧区间
+
+
+::: {.callout-note appearance="simple"}
+**6.2.1.1 Definition:** An subset $A$ of $\mathbb{R}$ is *bounded* iff there is an $M > 0$ such that $|x| < M$ for any $x \in A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** $\mathbb{R}$ 的子集 $A$ 是**有界**的，当且仅当存在 $M > 0$，使得对任何 $x \in A$ 均有 $|x| < M$。
+</details>
+:::
+
+We classify intervals by boundedness.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>我们根据有界性对区间进行分类。</details>
+
+* bounded
+    * empty: $\emptyset$,
+    * degenerate: $\{a\}$,
+    * proper: $]a, b[$, $[a, b]$, $]a, b]$, $[a, b[$;
+* left-bounded and right-unbounded: $]a, \infty[$, $[a, \infty[$;
+* left-unbounded and right-bounded: $]-\infty, b[$, $]-\infty, b]$;
+* whole set: $\mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+* 有界
+    * 空集：$\emptyset$，
+    * 退化区间：$\{a\}$，
+    * 固有区间：$]a, b[$，$[a, b]$，$]a, b]$，$[a, b[$；
+* 左有界且右无界：$]a, \infty[$，$[a, \infty[$；
+* 左无界且右有界：$]-\infty, b[$，$]-\infty, b]$；
+* 全集：$\mathbb{R}$。
+</details>
+
+There are special properites of bounded closed intervals, which we recall from Mathematical Analysis.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>有界闭区间具有特殊的性质，我们在此复习数学分析中的相关内容。</details>
+
+
+::: {.callout-tip appearance="simple"}
+**6.2.1.2 Extremal value:** A continuous function $f: I \to \mathbb{R}$ on a bounded closed interval $I$ attains both the maximum and the minimum values; that is, there are $x, y \in I$ such that $f(x) \le f(z) \le f(y)$ for any $z \in I$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**极值定理：** 定义在有界闭区间 $I$ 上的连续函数 $f: I \to \mathbb{R}$ 能够取到最大值和最小值；即存在 $x, y \in I$，使得对任何 $z \in I$ 均有 $f(x) \le f(z) \le f(y)$。
+</details>
+:::
+
+
+::: {.callout-tip appearance="simple"}
+**6.2.1.3 Bolzano–Weierstrass:** A sequence $(x_n)_{n \in \mathbb{N}}$ in a bounded closed interval $I$ has a subsequence $(x_{n_k})_{k \in \mathbb{N}}$ convergent to some $c \in I$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**Bolzano–Weierstrass 定理：** 有界闭区间 $I$ 中的序列 $(x_n)_{n \in \mathbb{N}}$ 拥有一个收敛于某个 $c \in I$ 的子序列 $(x_{n_k})_{k \in \mathbb{N}}$。
+</details>
+:::
+
+
+::: {.callout-tip appearance="simple"}
+**6.2.1.4 Heine–Borel:** An open cover $(U_n)_{n \in I}$ of a bounded closed interval $I$ has a finite subcover.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**Heine–Borel 定理：** 有界闭区间 $I$ 的开覆盖 $(U_n)_{n \in I}$ 拥有一个有限子覆盖。
+</details>
+:::
+
+
+::: {.callout-tip appearance="simple"}
+**6.2.1.5 Cantor's intersection:** A nested sequence $F_1 \supseteq F_2 \supseteq \cdots$ of closed subsets of a bounded closed interval $I$ has nonempty intersection $\bigcap_{n=1}^\infty F_n$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**Cantor 区间套定理：** 有界闭区间 $I$ 的闭子集构成的嵌套序列 $F_1 \supseteq F_2 \supseteq \cdots$ 具有非空交集 $\bigcap_{n=1}^\infty F_n$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**6.2.1.6 Remark:** Bounded closed intervals and finite sets in $\mathbb{R}$ share similar topological properties, which we will call compactness.
+
+(1) A continuous function $f: A \to \mathbb{R}$ on a finite set $A$ is any function on $A$ attains both the maximum and the minimum values.
+(2) A sequence $(x_n)_{n \in \mathbb{N}}$ in a finite set $A$ has a constant subsequence $(x_{n_k})_{k \in \mathbb{N}}$ with some value $c \in A$ by the pigeonhole principle.
+(3) An open cover $(U_n)_{n \in I}$ of a finite set $A$ has a finite subcover by choosing an open set covering each element of $A$.
+(4) A nested sequence $F_1 \supseteq F_2 \supseteq \cdots$ of closed subsets of a finite set $A$ is simply a nested sequence of finite subsets of $A$, whose cardinalities are non-increasing positive integers, and must stabilize, and therefore, there is a $N \in \mathbb{N}$ such that $F_n = F_N$ for $n \ge N$ and then the sequence has nonempty intersection $\bigcap_{n=1}^\infty F_n = F_N$.
+Hence, we say that compactness is a generalization of finiteness.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**备注：** $\mathbb{R}$ 中的有界闭区间与有限集具有相似的拓扑性质，我们将这种性质称为“紧性”。
+
+(1) 有限集 $A$ 上的连续函数 $f: A \to \mathbb{R}$（即 $A$ 上的任意函数）都能取到最大值和最小值。
+(2) 根据鸽巢原理，有限集 $A$ 中的序列 $(x_n)_{n \in \mathbb{N}}$ 拥有一个值为 $c \in A$ 的常数子序列 $(x_{n_k})_{k \in \mathbb{N}}$。
+(3) 通过为 $A$ 中的每个元素选择一个包含它的开集，有限集 $A$ 的开覆盖 $(U_n)_{n \in I}$ 必有有限子覆盖。
+(4) 有限集 $A$ 的闭子集构成的嵌套序列 $F_1 \supseteq F_2 \supseteq \cdots$ 本质上是 $A$ 的有限子集构成的嵌套序列，其基数是非增正整数且必然稳定。因此，存在 $N \in \mathbb{N}$ 使得当 $n \ge N$ 时 $F_n = F_N$，从而该序列具有非空交集 $\bigcap_{n=1}^\infty F_n = F_N$。
+因此，我们说紧性是有限性的一种推广。
+</details>
+:::
+
+The properties Theorem 6.2.1.2, Theorem 6.2.1.3, Theorem 6.2.1.4, and Theorem 6.2.1.5 imply one another. We prove Heine–Borel implies extremal value problem for example.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>定理 6.2.1.2、定理 6.2.1.3、定理 6.2.1.4 和定理 6.2.1.5 的性质是互蕴的。例如，我们证明 Heine–Borel 性质可以推导出极值问题。</details>
+
+
+::: {.callout-important appearance="simple"}
+**6.2.1.7 Proposition:** If a subset $A$ of $\mathbb{R}$ possesses the Heine–Borel property then the extremal value theorem holds for functions on $A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 若 $\mathbb{R}$ 的子集 $A$ 具有 Heine–Borel 性质，则极值定理在 $A$ 上的函数中成立。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $f: I \to \mathbb{R}$ be a continuous function. Let $(q_n)_{n \in \mathbb{N}}$ be an increasing sequence in $\mathbb{R}$ such that $\lim_{n \to \infty} q_n = \sup_I f$. Let $U_n = \{x \in I : f(x) < q_n\}$ which is open in $I$. If either $f$ is unbounded above or $f$ never takes $\sup_I f$ then $\{U_n\}_{n \in \mathbb{N}}$ is an open cover of $I$ and by Heine–Borel has a subcover $\{U_n\}_{n=1}^N$ for some $N \in \mathbb{N}$. This implies that $f(x) < q_n < \sup_I f$ and contradicts to the definition of the supremum. analogously, $f$ is bounded below and attains $\inf_I f$. The extremal value theorem hold for $f$. ■
+</details>
+
+These does not hold for subspaces on non-open or unbounded subsets of $\mathbb{R}$, such as $\mathbb{R}$, $[0, 1[$ and $]0, 1[$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>这些性质对于 $\mathbb{R}$ 的非开或无界子空间不成立，例如 $\mathbb{R}$、$[0, 1[$ 和 $]0, 1[$。</details>
+
+### 6.2.2 Compactness | 紧性
+
+Consider the discrete (free) topology functor $F: \text{Set} \to \text{Top}$, which is the left inverse of the forgetful functor $U: \text{Top} \to \text{Set}$. Then $F(X)$ is compact iff $X$ is finite.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>考虑离散（自由）拓扑函子 $F: \text{Set} \to \text{Top}$，它是遗忘函子 $U: \text{Top} \to \text{Set}$ 的左逆。则 $F(X)$ 是紧的当且仅当 $X$ 是有限的。
+
+**一个离散拓扑空间是紧致的当且仅当它的点数是有限的**
+</details>
+
+::: {.callout-note appearance="simple"}
+**6.2.2.1 Definition:** A topological space $X$ is *compact* iff every open cover of $X$ has a finite subcover.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** 一个拓扑空间 $X$ 是**紧**的，当且仅当 $X$ 的每个开覆盖都具有有限子覆盖。
+</details>
+:::
+
+
+::: {.callout-important appearance="simple"}
+**6.2.2.2 Proposition:** Let $A$ be a subset of $\mathbb{R}$. The topological subspace on $A$ is compact iff $A$ is bounded and closed.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 设 $A$ 为 $\mathbb{R}$ 的子集。$A$ 上的拓扑子空间是紧的，当且仅当 $A$ 是有界闭集。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**6.2.2.3 Remark:** The finiteness/compactness is so important as to get global information from local information, called the *local-to-global principal*. For example, the extremal value theorem: local (pointwise) bounded (continuity) + compact = global bounded!
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**备注：** 有限性/紧性之所以如此重要，是因为它能让我们从局部信息获取整体信息，这被称为“局部-整体原理（local-to-global principal）”。例如，极值定理可以理解为：局部（逐点）有界性（连续性）+ 紧性 = 整体有界性！
+</details>
+:::
+
+## 6.3 Connected spaces | 连通空间
+
+### 6.3.1 Connectedness | 连通性
+
+::: {.callout-note appearance="simple"}
+**6.3.1.1 Definition:** A topological space $X$ is *connected* iff for any open subsets $U_1$ and $U_2$ such that $U_1 \sqcup U_2 = X$, exactly one of the two subsets is the empty set.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** 一个拓扑空间 $X$ 是**连通**的，当且仅当对于任何满足 $U_1 \sqcup U_2 = X$ 的开子集 $U_1$ 和 $U_2$，这两个子集中恰好有一个是空集。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.3.1.2 Proposition:** A topological space $X$ is connected iff it has exactly two clopen subsets.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 一个拓扑空间 $X$ 是连通的，当且仅当它恰好有两个既开又闭的子集（clopen subsets）。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**6.3.1.3 Connectedness of star unions:** Let $X$ be a topological space with a family of connected subspaces $\{A_i\}_{i \in I}$. If $\bigcap_{i \in I} A_i \neq \emptyset$, then $\bigcup_{i \in I} A_i$ is a connected subspace of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**星状并的连通性：** 设 $X$ 为一个拓扑空间，$\{A_i\}_{i \in I}$ 为其一组连通子空间。若 $\bigcap_{i \in I} A_i \neq \emptyset$，则 $\bigcup_{i \in I} A_i$ 是 $X$ 的连通子空间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $U$ be a clopen subset of $A = \bigcup_{i \in I} A_i$. Then for each $i \in I, U \cap A_i$ is clopen in $A_i$. Since $A_i$ is connected for each $i \in I$, there is a $J \subseteq I$ such that $i \in J$ iff $A_i \subseteq U$ and $i \in I \setminus J$ iff $A_i \subseteq U^c$. However, for any $i_1 \in J$ and $i_2 \in I \setminus J$, we have $A_{i_1} \cap A_{i_2} \subseteq U \cap U^c = \emptyset$. Therefore, if $\bigcap_{i \in I} A_i \neq \emptyset$, then $J \times (I \setminus J) = \emptyset$ and then either $U = \emptyset$ or $U = A$, and $A$ is connected. ■
+</details>
+
+::: {.callout-tip appearance="simple"}
+**6.3.1.4 Connectedness of chain unions:** Let $X$ be a topological space with a sequence of connected subspaces $\{A_n\}_{n \in \mathbb{N}}$. If $A_n \cap A_{n+1} \neq \emptyset$ for any $n \in \mathbb{N}$, then $A = \bigcup_{n \in \mathbb{N}} A_n$ is a connected subspace of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**链状并的连通性：** 设 $X$ 为一个拓扑空间，$\{A_n\}_{n \in \mathbb{N}}$ 为其一列连通子空间。若对于任何 $n \in \mathbb{N}$ 均有 $A_n \cap A_{n+1} \neq \emptyset$，则 $A = \bigcup_{n \in \mathbb{N}} A_n$ 是 $X$ 的连通子空间。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.3.1.5 Proposition:** For any point $p$ of a topological space $X$ there is a unique maximal connected subspace $C_p$ of $X$ containing $p$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 对于拓扑空间 $X$ 的任意一点 $p$，存在唯一的包含 $p$ 的极大连通子空间 $C_p$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**6.3.1.6 Definition:** Let $p$ be a point of a topological space $X$. The maximal connected subspace $C_p$ of $X$ containing $p$ is called the *component* of $p$ in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** 设 $p$ 为拓扑空间 $X$ 的一个点。包含 $p$ 的极大连通子空间 $C_p$ 称为 $p$ 在 $X$ 中的**连通分支**（component）。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**6.3.1.7 Definition:** A topological space $X$ is *totally disconnected* if every point constitutes a component.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** 若一个拓扑空间 $X$ 的每个点都构成一个连通分支，则称该空间是**完全不连通**（totally disconnected）的。
+</details>
+:::
+
+### 6.3.2 Connected subspaces of the real line | 实直线的连通子空间
+
+::: {.callout-tip appearance="simple"}
+**6.3.2.1 Theorem:** A subspace $A$ of $\mathbb{R}$ is connected iff $A$ is a nonempty interval.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定理：** $\mathbb{R}$ 的子空间 $A$ 是连通的，当且仅当 $A$ 是一个非空区间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* It is an exercise for the reader that a nonempty interval is connected. If $A \subset \mathbb{R}$ yields a connected subspace, then it must be nonempty. For any $z \in \mathbb{R} \setminus A$, since $]-\infty, z[ \cap A$ and $]z, \infty[ \cap A$ separates $A$, either $A \subseteq ]-\infty, z[$ or $A \subseteq ]z, \infty[$. In particular, for any $x, y \in A$ and $z \notin A$, we must have $x$ and $y$ lie on the same side of $z$ and therefore $A$ is an interval. ■
+</details>
+
+## 6.4 Examples of subspaces of $\mathbb{R}$ | $\mathbb{R}$ 的子空间示例
+
+### 6.4.1 The spaces of rational and irrational numbers | 有理数与无理数空间
+
+The rationals $\mathbb{Q}$ and irrationals $\mathbb{R} \setminus \mathbb{Q}$ has subspace topology structures inherited from the standard topology on $\mathbb{R}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>有理数集 $\mathbb{Q}$ 和无理数集 $\mathbb{R} \setminus \mathbb{Q}$ 具有从 $\mathbb{R}$ 的标准拓扑中继承的子空间拓扑结构。</details>
+
+::: {.callout-important appearance="simple"}
+**6.4.1.1 Proposition:** The rational numbers $\mathbb{Q}$ as a topological subspace of $\mathbb{R}$ is neither compact nor connected; it is in fact totally disconnected.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 作为 $\mathbb{R}$ 的拓扑子空间，有理数集 $\mathbb{Q}$ 既不是紧的也不是连通的；事实上，它是完全不连通的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.4.1.2 Proposition:** The irrational numbers $\mathbb{R} \setminus \mathbb{Q}$ as a topological subspace of $\mathbb{R}$ is neither compact nor connected; it is in fact totally disconnected.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** 作为 $\mathbb{R}$ 的拓扑子空间，无理数集 $\mathbb{R} \setminus \mathbb{Q}$ 既不是紧的也不是连通的；事实上，它是完全不连通的。
+</details>
+:::
+
+### 6.4.2 The Cantor space | Cantor 空间
+
+::: {.callout-note appearance="simple"}
+**6.4.2.1 Definition:** The *Cantor space* is the topological subspace of $\mathbb{R}$ on the Cantor set $C$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**定义：** **Cantor 空间**是 $\mathbb{R}$ 在 Cantor 集 $C$ 上的拓扑子空间。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**6.4.2.2 Proposition:** The Cantor space $C$ are compact and totally disconnected.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**命题：** Cantor 空间 $C$ 是紧的且完全不连通的。
+</details>
+:::

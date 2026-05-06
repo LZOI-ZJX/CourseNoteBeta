@@ -1,0 +1,144 @@
+---
+title: "METRIZING TOPOLOGICAL SPACES"
+date: "2026-04-18"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 18.1 Properties of metric topologies. | 度量拓扑的性质
+
+::: {.callout-important appearance="simple"}
+**18.1.0.1 Proposition:** A metric space is compact iff it is sequentially compact iff it is limit point compact iff it is pseudocompact.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.1.0.1 命题：** 一个度量空间是紧的，当且仅当它是序列紧的，当且仅当它是极限点紧的，当且仅当它是伪紧的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**18.1.0.2 Proposition:** A metric space is first countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.1.0.2 命题：** 度量空间是第一可数的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**18.1.0.3 Proposition:** A metric space is Lindelöf iff it is separable iff it is second countable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.1.0.3 命题：** 一个度量空间是 Lindelöf 的，当且仅当它是可分的，当且仅当它是第二可数的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**18.1.0.4 Proposition:** A metric space is perfectly normal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.1.0.4 命题：** 度量空间是完美正规的。
+</details>
+:::
+
+## 18.2 Metrizability. | 可度量化性
+
+### 18.2.1 Urysohn metrization theorem. | Urysohn 度量化定理
+
+::: {.callout-note appearance="simple"}
+**18.2.1.1 Definition:** A topological space $X$ is *metrizable* iff its topology is induced by a metric $d$ on $X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.1 定义：** 一个拓扑空间 $X$ 是**可度量化的** (metrizable)，当且仅当它的拓扑是由 $X$ 上的一个度量 $d$ 诱导的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**18.2.1.2 Definition:** A topological space $X$ is *Tychonoff* iff it is Frechét and every disjoint point and closed subset are separated by functions.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.2 定义：** 一个拓扑空间 $X$ 是 **Tychonoff 空间**，当且仅当它是 Fréchet 的（即 $T_1$ 的），并且每个不相交的点和闭子集都能被函数分离。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**18.2.1.3 Lemma:** The product of Tychonoff spaces is Tychonoff.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.3 引理：** Tychonoff 空间的乘积是 Tychonoff 的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Let $X$ be a Tychonoff space and $I$ an index set. To show that $X^I$ is Tychonoff, note that if $f_i$ are functions for $(x, U_i)$ and $g = \sup_{i \in I} f_i$, then $g$ is a function for $(x, \bigcap_{i \in I} U_i)$. If $x \in X^I$ let $U_i \in \mathcal{N}_{x_i}$ for $i \in I$. If $f$ is a function for $(x_i, U_i)$, then $f \circ \text{pr}_i$ is a function for $(x, \text{pr}_i^{-1}(U_i))$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**18.2.1.4 Lemma:** A topological space $X$ is Tychonoff iff it is homeomorphic to a subspace of $[0, 1]^{C(X; [0,1])}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.4 引理：** 拓扑空间 $X$ 是 Tychonoff 空间，当且仅当它同胚于 $[0, 1]^{C(X; [0,1])}$ 的一个子空间。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**18.2.1.5 Lemma:** Let $\mathcal{F} \subseteq C(X; [0, 1])$. Then the evaluation map $\text{ev}: X \to [0, 1]^\mathcal{F}$, $p \mapsto \text{ev}_p$
+
+* is continuous;
+* is injective iff $\mathcal{F}$ separates points of $X$; and
+* is open onto its image if $\mathcal{F}$ separates points from disjoint closed subsets of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.5 引理：** 设 $\mathcal{F} \subseteq C(X; [0, 1])$。那么求值映射 $\text{ev}: X \to [0, 1]^\mathcal{F}$，$p \mapsto \text{ev}_p$
+
+* 是连续的；
+* 是单射，当且仅当 $\mathcal{F}$ 分离 $X$ 的点；并且
+* 到其像上是开映射，当且仅当 $\mathcal{F}$ 将点与 $X$ 中不相交的闭子集分离。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Since for any $f \in \mathcal{F}$, $\text{pr}_f \circ \text{ev} = f$ is continuous, the map $\text{ev}$ is continuous.
+The map $\text{ev}$ is injective iff for any distinct $p, q \in X$, there is $f \in \mathcal{F}$ with $f(p) = \text{ev}_p(f) \neq \text{ev}_q(f) = f(q)$, which exactly means that $\mathcal{F}$ separates points of $X$.
+If the map $\text{ev}$ separates points from disjoint closed subsets of $X$, then for any $p \in X$ and any $U \in \mathcal{N}_p$, there is $f \in \mathcal{F}$ with $f(p) = 0$ and $f|_{X \setminus U} = 1$. In particular, $V = \text{pr}_f^{-1}([0, 1[) = \text{ev}(f^{-1}([0, 1[))$ is an open neighborhood of $\text{ev}_p$ in $\text{ev}(X)$, which implies that $\text{ev}$ is open onto its image. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**18.2.1.6 Urysohn metrization theorem:** Any regular second countable topological space is metrizable.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.1.6 Urysohn 度量化定理：** 任何正则的第二可数拓扑空间都是可度量化的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Let $X$ be a regular second countable topological space with $\mathcal{B}$ a countable topological base. Note that second countablility implies Lindelöfness, which together with regularity implies normality, and we have Urysohn lemma. For any $U, V \in \mathcal{B}$ with $\overline{U} \subseteq V$ choose $f_{U,V} \in C(X; [0, 1])$ with $f_{U,V}|_{\overline{U}} = 0$ and $f_{U,V}|_{X \setminus V} = 1$, and let $\mathcal{F}$ be the countable collection of such $f_{U,V}$.
+If $B \in \mathcal{P}(X)$ is closed and $p \in X \setminus B$, choose $V \in \mathcal{B}$ with $p \in V \subseteq X \setminus B$ and by regularity choose $U \in \mathcal{B}$ with $p \in \overline{U} \subseteq V$. Then $f_{U,V}$ separates $p$ and $B$. By the Frechètness single points are closed in $X$. We conclude that $\mathcal{F}$ separates points and separates points from disjoint closed subsets of $X$.
+By Lemma 18.2.1.5, the evaluation map $\text{ev}: X \to [0, 1]^\mathcal{F}$ is an embedding into a metrizable space and then $X$ is metrizable. $\blacksquare$
+</details>
+
+### 18.2.2 Smirnov metrization theorem. | Smirnov 度量化定理
+
+::: {.callout-note appearance="simple"}
+**18.2.2.1 Definition:** A topological space $X$ is *locally metrizable* iff it has an open cover consisting of metrizable subspaces.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.2.1 定义：** 拓扑空间 $X$ 是**局部可度量化的** (locally metrizable)，当且仅当它有一个由可度量化子空间组成的开覆盖。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**18.2.2.2 Nagata–Smirnov metrization theorem:** Any topological space is metrizable iff it is a regular with a countably locally finite base.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.2.2 Nagata–Smirnov 度量化定理：** 任何拓扑空间是可度量化的，当且仅当它是一个具有可数局部有限基的正则空间。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**18.2.2.3 Smirnov metrization theorem:** Any topological space is metrizable iff it is a paracompact Hausdorff locally metrizable space.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**18.2.2.3 Smirnov 度量化定理：** 任何拓扑空间是可度量化的，当且仅当它是一个仿紧的 Hausdorff 局部可度量化空间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* If a topological space $X$ is metrizable, it is locally metrizable, paracompact, and Hausdorff.
+Suppose $X$ is a paracompact Hausdorff locally metrizable space. Let $\mathcal{A}$ be an open cover of $X$ consisting of metrizable subspaces. By paracompactness of $X$, the open cover $\mathcal{A}$ has a locally finite open refinement $\mathcal{A}_0$. Since every $U \in \mathcal{A}_0$ is metrizable we let $d_U$ be the metric on $U$ generating the subspace topology. For any $p \in U$ and $r > 0$, let $B_U(p, r) = B_{d_U}(p, r)$, which is open in $U$ and hence open in $X$.
+For any $m \in \mathbb{N}$, let $\mathcal{A}_m$ be the cover of $X$ by open balls of radius $\frac{1}{m}$:
+$$\mathcal{A}_m = \left\{ B_U\left(p, \frac{1}{m}\right) : p \in U, U \in \mathcal{A}_0 \right\}. \qquad (257)$$
+Let $\mathcal{D}_m$ be a locally finite open refinement of $\mathcal{A}_m$ that covers $X$ and let $\mathcal{D} = \bigcup_{m=1}^\infty \mathcal{D}_m$. Then $\mathcal{D}$ is countably locally finite. We claim that $\mathcal{D}$ is a base for the topology on $X$, and then by Theorem 18.2.2.2 $X$ is metrizable.
+Let $p \in X$ and $O \in \mathcal{N}_p$. Let $\{U_1, ..., U_N\}$ be the finitely many elements of $\mathcal{A}_0$ that have $p$. Since $O \cap U_i$ is a neighborhood of $p$ in $U_i$, there is $\varepsilon_i > 0$ such that $B_{U_i}(p, \varepsilon_i) \subseteq O \cap U_i$. Choose $m \in \mathbb{N}$ such that $\frac{2}{m} < \min\{\varepsilon_1, ..., \varepsilon_N\}$. Since $\mathcal{D}_m$ covers $X$, there is $V \in \mathcal{D}_m$ having $p$. Since $\mathcal{D}_m$ refines $\mathcal{A}_m$, there is an element $B_W(q, \frac{1}{m}) \in \mathcal{A}_m$ with $W \in \mathcal{A}_0$ and $q \in W$ and $V \subseteq B_W(q, \frac{1}{m})$. Then $p \in W$ and $W = U_i$ for some $1 \le i \le N$. Then $V \subseteq B_{U_i}(q, \frac{1}{m}) \subseteq B_{U_i}(p, \varepsilon_i) \subseteq O$. Thus, $\mathcal{D}$ is a base for the topology on $X$. $\blacksquare$
+</details>

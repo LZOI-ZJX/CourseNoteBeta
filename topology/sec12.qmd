@@ -1,0 +1,1136 @@
+---
+title: "SEPARATION"
+date: "2026-04-15"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+## 12.1 Separation axioms. | 分离公理。
+
+### 12.1.1 Separating points and subsets. | 分离点与子集。
+
+How points or closed sets are separated by opens sets?
+
+
+::: {.callout-note appearance="simple"}
+**12.1.1.1 Definition:** Two points $p$ and $q$ of a topological space $X$ are
+
+* *distinct* iff they are different, or $p \neq q$;
+* *topologically distinguishable* iff there exists a neighborhood of one point away from the other point, or $(\exists U \in \mathcal{N}_p)(q \notin U) \lor (\exists V \in \mathcal{N}_q)(p \notin V)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.1.1 定义**：拓扑空间 $X$ 中的两点 $p$ 和 $q$ 是
+
+* **相异的 (distinct)**，当且仅当它们不同，即 $p \neq q$；
+* **拓扑可辨识的 (topologically distinguishable)**，当且仅当存在一个点的一个邻域不包含另一个点，即 $(\exists U \in \mathcal{N}_p)(q \notin U) \lor (\exists V \in \mathcal{N}_q)(p \notin V)$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**12.1.1.2 Definition:** Let $A$ be a subset of a topological space $X$. analogous to those of a point, $U$ is an *open neighborhood* of $A$ in $X$ iff $U$ is open and contains $A$, and $U$ is a *neighborhood* of $A$ in $X$ iff it contains an open neighborhood of $A$. The collection of neighborhoods of $A$ in $X$ is denoted by $\mathcal{N}_A(X)$ or $\mathcal{N}_A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.1.2 定义**：设 $A$ 为拓扑空间 $X$ 的一个子集。类似于点的邻域，当且仅当 $U$ 是开集且包含 $A$ 时，$U$ 是 $A$ 在 $X$ 中的一个**开邻域 (open neighborhood)**；当且仅当 $U$ 包含 $A$ 的一个开邻域时，$U$ 是 $A$ 在 $X$ 中的一个**邻域 (neighborhood)**。$A$ 在 $X$ 中的邻域族记作 $\mathcal{N}_A(X)$ 或 $\mathcal{N}_A$。
+</details>
+:::
+
+
+::: {.callout-note appearance="simple"}
+**12.1.1.3 Definition:** Two subsets $A$ and $B$ of a topological space $X$ are
+
+* *disjoint* iff their intersection is empty, or $A \cap B = \emptyset$;
+* *topologically disjoint* iff there exists a neighborhood of one set that is disjoint from the other set, or $(\exists U \in \mathcal{N}_A)(U \cap B = \emptyset) \lor (\exists V \in \mathcal{N}_B)(V \cap A = \emptyset)$;
+* *separated* iff each set has a neighborhood that is disjoint from the other set, or $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(U \cap B = V \cap A = \emptyset)$;
+* *separated by neighborhoods* iff they have disjoint neighborhoods, or $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(U \cap V = \emptyset)$;
+* *separated by closed neighborhoods* iff they have disjoint closed neighborhoods, or $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(\overline{U} \cap \overline{V} = \emptyset)$;
+* *separated by a function* iff there exists a continuous real-valued function on the space that maps $A$ to 0 and $B$ to 1, or $(\exists \text{ continuous } f: X \to \mathbb{R})(A \subseteq f^{-1}(0) \land B \subseteq f^{-1}(1))$; or
+* *precisely separated by a function* iff there exists a continuous real-valued function on the space that maps precisely $A$ to 0 and $B$ to 1, or $(\exists \text{ continuous } f: X \to \mathbb{R})(A = f^{-1}(0) \land B = f^{-1}(1))$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.1.3 定义**：拓扑空间 $X$ 中的两个子集 $A$ 和 $B$ 是
+
+* **不相交的 (disjoint)**，当且仅当它们的交集为空，即 $A \cap B = \emptyset$；
+* **拓扑不相交的 (topologically disjoint)**，当且仅当存在一个集合的一个邻域与另一个集合不相交，即 $(\exists U \in \mathcal{N}_A)(U \cap B = \emptyset) \lor (\exists V \in \mathcal{N}_B)(V \cap A = \emptyset)$；
+* **分离的 (separated)**，当且仅当每个集合都有一个与另一个集合不相交的邻域，即 $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(U \cap B = V \cap A = \emptyset)$；
+* **由邻域分离的 (separated by neighborhoods)**，当且仅当它们有不相交的邻域，即 $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(U \cap V = \emptyset)$；
+* **由闭邻域分离的 (separated by closed neighborhoods)**，当且仅当它们有不相交的闭邻域，即 $(\exists U \in \mathcal{N}_A)(\exists V \in \mathcal{N}_B)(\overline{U} \cap \overline{V} = \emptyset)$；
+* **由函数分离的 (separated by a function)**，当且仅当空间上存在一个连续实值函数将 $A$ 映射为 0 并将 $B$ 映射为 1，即 $(\exists \text{ continuous } f: X \to \mathbb{R})(A \subseteq f^{-1}(0) \land B \subseteq f^{-1}(1))$；或
+* **由函数精确分离的 (precisely separated by a function)**，当且仅当空间上存在一个连续实值函数精确地将 $A$ 映射为 0 并将 $B$ 映射为 1，即 $(\exists \text{ continuous } f: X \to \mathbb{R})(A = f^{-1}(0) \land B = f^{-1}(1))$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.1.1.4 Proposition:** For two subsets of a topological space, being precisely separated by a function $\implies$ separated by a function $\implies$ separated by closed neighborhoods $\implies$ separated by neighborhoods $\implies$ separated $\implies$ topologically disjoint $\implies$ disjoint. For closed subsets, being separated $\iff$ topologically disjoint $\iff$ disjoint. For a closed set and a point, being topologically disjoint $\iff$ disjoint. For two points, the root "tinct" means the same as "join", and are called distinct iff they are disjoint, or called topologically distinguishable iff they are topologically disjoint.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.1.4 命题**：对于拓扑空间的两个子集，由函数精确分离 $\implies$ 由函数分离 $\implies$ 由闭邻域分离 $\implies$ 由邻域分离 $\implies$ 分离的 $\implies$ 拓扑不相交的 $\implies$ 不相交的。对于闭子集，分离的 $\iff$ 拓扑不相交的 $\iff$ 不相交的。对于一个闭集和一个点，拓扑不相交的 $\iff$ 不相交的。对于两点，词根 "tinct" 的含义与 "join" 相同，当且仅当它们不相交时称为相异的 (distinct)，或者当且仅当它们拓扑不相交时称为拓扑可辨识的 (topologically distinguishable)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.1.1.5 Proposition:** Two subsets $A$ and $B$ of a topological space $X$ are separated iff they are disjoint from the closure of each other, in the sense of $A \cap \overline{B} = \overline{A} \cap B = \emptyset$.$^4$ Therefore, for two subsets,
+$$\text{separated by closed neighborhoods} \implies \text{separated by neighborhoods} \implies \text{separated,}$$
+$$\text{separated by closed neighborhoods} \implies \text{closures are disjoint} \implies \text{separated,} \quad (174)$$
+$$\text{disjoint from each other's closure} \iff \text{separated.}$$
+However, neither being "separated by neighborhoods" or "closures are disjoint" implies the other.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.1.5 命题**：拓扑空间 $X$ 的两个子集 $A$ 和 $B$ 是分离的，当且仅当它们与彼此的闭包都不相交，即 $A \cap \overline{B} = \overline{A} \cap B = \emptyset$。$^4$ 因此，对于两个子集，
+$$\text{由闭邻域分离} \implies \text{由邻域分离} \implies \text{分离的，}$$
+$$\text{由闭邻域分离} \implies \text{闭包不相交} \implies \text{分离的，} \quad (174)$$
+$$\text{与彼此的闭包不相交} \iff \text{分离的。}$$
+然而，“由邻域分离”和“闭包不相交”两者均不能相互推导。
+</details>
+:::
+
+*Proof*: Let $A = [0, 1[$ and $B = ]1, 2]$ be subsets of $\mathbb{R}$. They are separated by neighborhoods but closures are not disjoint. 
+The other direction is an exercise. $\blacksquare$
+
+### 12.1.2 Separation axioms. | 分离公理。
+
+::: {.callout-note appearance="simple"}
+**12.1.2.1 Definition:** Let $X$ be a topological space. We have the separation axioms.
+
+* $\mathbf{T}_0$: any two distinct points in $X$ are topologically distinguishable; or for any $p,q \in X$, if $p \neq q$ then either there is $U \in \mathcal{N}_p$ such that $q \notin U$, or there is $V \in \mathcal{N}_q$ such that $p \notin V$;
+* $\mathbf{T}_1$: any two distinct points in $X$ are separated; or for any $p,q \in X$, if $p \neq q$ then there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $p \notin V$ and $q \notin U$;
+* $\mathbf{T}_2$: any two distinct points in $X$ are separated by neighborhoods; or for any $p,q \in X$, if $p \neq q$ then there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $U \cap V = \emptyset$;
+* $\mathbf{T}_{2\frac{1}{2}}$: any two distinct points in $X$ are separated by closed neighborhoods; or for any $p,q \in X$, if $p \neq q$ then there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $\overline{U} \cap \overline{V} = \emptyset$;
+* $\mathbf{PT}_2$: any two distinct points in $X$ are precisely separated by a function;
+* $\mathbf{T}_3$: any disjoint point and closed set in $X$ are separated by neighborhoods; or for any $p \in X$ and closed $B$ in $X$, if $p \notin B$ then there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_B$ such that $U \cap V = \emptyset$;
+* $\mathbf{T}_{3\frac{1}{2}}$: any disjoint point and closed set in $X$ are separated by a function; or for any $p \in X$ and closed $B$ in $X$, if $p \notin B$ then there is a continuous function $f: X \to \mathbb{R}$ with $f(A) = 0$ and $f(B) = 1$;
+* $\mathbf{T}_4$: any disjoint closed sets in $X$ are separated by neighborhoods; or for any closed $A$ and $B$ in $X$, if $A \cap B = \emptyset$ then there are $U \in \mathcal{N}_A$ and $V \in \mathcal{N}_B$ such that $U \cap V = \emptyset$;
+* $\mathbf{T}_5$: any separated sets in $X$ are separated by neighborhoods; or for any $A,B \subseteq X$, if $\overline{A} \cap B = A \cap \overline{B} = \emptyset$ then there are $U \in \mathcal{N}_A$ and $V \in \mathcal{N}_B$ such that $U \cap V = \emptyset$;
+* $\mathbf{PT}_4$: any disjoint closed sets in $X$ are precisely separated by a function.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.2.1 定义**：设 $X$ 为一个拓扑空间。我们有以下分离公理：
+
+* $\mathbf{T}_0$：$X$ 中任意两个相异点是拓扑可辨识的；或者对于任意 $p,q \in X$，如果 $p \neq q$，则要么存在 $U \in \mathcal{N}_p$ 使得 $q \notin U$，要么存在 $V \in \mathcal{N}_q$ 使得 $p \notin V$；
+* $\mathbf{T}_1$：$X$ 中任意两个相异点是分离的；或者对于任意 $p,q \in X$，如果 $p \neq q$，则存在 $U \in \mathcal{N}_p$ 和 $V \in \mathcal{N}_q$ 使得 $p \notin V$ 且 $q \notin U$；
+* $\mathbf{T}_2$：$X$ 中任意两个相异点由邻域分离；或者对于任意 $p,q \in X$，如果 $p \neq q$，则存在 $U \in \mathcal{N}_p$ 和 $V \in \mathcal{N}_q$ 使得 $U \cap V = \emptyset$；
+* $\mathbf{T}_{2\frac{1}{2}}$：$X$ 中任意两个相异点由闭邻域分离；或者对于任意 $p,q \in X$，如果 $p \neq q$，则存在 $U \in \mathcal{N}_p$ 和 $V \in \mathcal{N}_q$ 使得 $\overline{U} \cap \overline{V} = \emptyset$；
+* $\mathbf{PT}_2$：$X$ 中任意两个相异点由函数精确分离；
+* $\mathbf{T}_3$：$X$ 中任意不相交的点与闭集由邻域分离；或者对于任意 $p \in X$ 以及 $X$ 中的闭集 $B$，如果 $p \notin B$，则存在 $U \in \mathcal{N}_p$ 和 $V \in \mathcal{N}_B$ 使得 $U \cap V = \emptyset$；
+* $\mathbf{T}_{3\frac{1}{2}}$：$X$ 中任意不相交的点与闭集由函数分离；或者对于任意 $p \in X$ 以及 $X$ 中的闭集 $B$，如果 $p \notin B$，则存在连续函数 $f: X \to \mathbb{R}$ 满足 $f(A) = 0$ 和 $f(B) = 1$；
+* $\mathbf{T}_4$：$X$ 中任意两个不相交的闭集由邻域分离；或者对于 $X$ 中任意闭集 $A$ 和 $B$，如果 $A \cap B = \emptyset$，则存在 $U \in \mathcal{N}_A$ 和 $V \in \mathcal{N}_B$ 使得 $U \cap V = \emptyset$；
+* $\mathbf{T}_5$：$X$ 中任意分离集由邻域分离；或者对于任意 $A,B \subseteq X$，如果 $\overline{A} \cap B = A \cap \overline{B} = \emptyset$，则存在 $U \in \mathcal{N}_A$ 和 $V \in \mathcal{N}_B$ 使得 $U \cap V = \emptyset$；
+* $\mathbf{PT}_4$：$X$ 中任意不相交的闭集由函数精确分离。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**12.1.2.2 Definition:** A topological space $X$ is called
+
+* a $\mathbf{T}_0$ *space*, or a *Kolmogorov space*, iff it satisfies the $\mathbf{T}_0$ axiom;
+* a $\mathbf{T}_1$ *space*, or a *Fréchet space*, iff it satisfies the $\mathbf{T}_1$ axiom;
+* a $\mathbf{T}_2$ *space*, or a *Hausdorff space*, iff it satisfies the $\mathbf{T}_2$ axiom;
+* a $\mathbf{T}_{2\frac{1}{2}}$ *space*, or a *completely Hausdorff space*, iff it satisfies the $\mathbf{T}_{2\frac{1}{2}}$ axiom;
+* a *perfectly* $\mathbf{T}_2$ *space*, or a *perfectly Hausdorff space*, iff it satisfies the $\mathbf{PT}_2$ axiom;
+* a $\mathbf{T}_3$ *space*, iff it satisfies the $\mathbf{T}_3$ axiom;
+* a *regular space*, iff it satisfies the $\mathbf{T}_0$ and $\mathbf{T}_3$ axioms;
+* a $\mathbf{T}_{3\frac{1}{2}}$ *space*, iff it satisfies the $\mathbf{T}_{3\frac{1}{2}}$ axiom;
+* a *completely regular space*, or a *Tychonoff space*, iff it satisfies the $\mathbf{T}_0$ and $\mathbf{T}_{3\frac{1}{2}}$ axioms;
+* a $\mathbf{T}_4$ *space*, iff it satisfies the $\mathbf{T}_4$ axiom;
+* a *normal space*, iff it satisfies the $\mathbf{T}_1$ and $\mathbf{T}_4$ axioms;
+* a $\mathbf{T}_5$ *space*, iff it satisfies the $\mathbf{T}_5$ axiom.
+* a *completely normal space*, iff it satisfies the $\mathbf{T}_1$ and $\mathbf{T}_5$ axioms;
+* a *perfectly* $\mathbf{T}_4$ *space*, iff it satisfies the $\mathbf{PT}_4$ axiom.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.2.2 定义**：一个拓扑空间 $X$ 被称为
+
+* $\mathbf{T}_0$ **空间**，或 **柯尔莫哥洛夫空间 (Kolmogorov space)**，当且仅当它满足 $\mathbf{T}_0$ 公理；
+* $\mathbf{T}_1$ **空间**，或 **弗雷歇空间 (Fréchet space)**，当且仅当它满足 $\mathbf{T}_1$ 公理；
+* $\mathbf{T}_2$ **空间**，或 **豪斯多夫空间 (Hausdorff space)**，当且仅当它满足 $\mathbf{T}_2$ 公理；
+* $\mathbf{T}_{2\frac{1}{2}}$ **空间**，或 **完全豪斯多夫空间 (completely Hausdorff space)**，当且仅当它满足 $\mathbf{T}_{2\frac{1}{2}}$ 公理；
+* **完美 $\mathbf{T}_2$ 空间 (perfectly $\mathbf{T}_2$ space)**，或 **完美豪斯多夫空间 (perfectly Hausdorff space)**，当且仅当它满足 $\mathbf{PT}_2$ 公理；
+* $\mathbf{T}_3$ **空间**，当且仅当它满足 $\mathbf{T}_3$ 公理；
+* **正则空间 (regular space)**，当且仅当它满足 $\mathbf{T}_0$ 和 $\mathbf{T}_3$ 公理；
+* $\mathbf{T}_{3\frac{1}{2}}$ **空间**，当且仅当它满足 $\mathbf{T}_{3\frac{1}{2}}$ 公理；
+* **完全正则空间 (completely regular space)**，或 **吉洪诺夫空间 (Tychonoff space)**，当且仅当它满足 $\mathbf{T}_0$ 和 $\mathbf{T}_{3\frac{1}{2}}$ 公理；
+* $\mathbf{T}_4$ **空间**，当且仅当它满足 $\mathbf{T}_4$ 公理；
+* **正规空间 (normal space)**，当且仅当它满足 $\mathbf{T}_1$ 和 $\mathbf{T}_4$ 公理；
+* $\mathbf{T}_5$ **空间**，当且仅当它满足 $\mathbf{T}_5$ 公理；
+* **完全正规空间 (completely normal space)**，当且仅当它满足 $\mathbf{T}_1$ 和 $\mathbf{T}_5$ 公理；
+* **完美 $\mathbf{T}_4$ 空间 (perfectly $\mathbf{T}_4$ space)**，当且仅当它满足 $\mathbf{PT}_4$ 公理。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* The first item is rewriting topological distinguishability. The embedding $\iota$ exists with $\iota(0) = p$ and $\iota(1) = q$, $p \neq q$ iff any open $U$ we have $U \cap \{p, q\}$ is either $\emptyset$ or $\{p, q\}$, which is equivalent to $X$ not being $\mathbf{T}_0$. $\blacksquare$
+
+The following chart summarizes the various separation axioms we mentioned above.
+
+| | TD | S | SN | SCN | SF | PSF |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| distinguishable points | $*$ | $*$ | | | | |
+| distinct points | $\mathbf{T}_0$ | $\mathbf{T}_1$ | $\mathbf{T}_2$ | $\mathbf{T}_{2\frac{1}{2}}$ | $*$ | $\mathbf{PT}_2$ |
+| disjoint point and closed set | | $*$ | $\mathbf{T}_3$ | $\mathbf{T}_3$ | $\mathbf{T}_{3\frac{1}{2}}$ | $\mathbf{PT}_4$ |
+| disjoint closed sets | | always | $\mathbf{T}_4$ | $\mathbf{T}_4$ | $\mathbf{T}_4$ | $\mathbf{PT}_4$ |
+| separated sets | | always | $\mathbf{T}_5$ | $\mathbf{T}_5$ | $\mathbf{T}_5$ | discrete |
+
+where the headline abbreviates topologically disjoint, separated, separated by neighborhoods, separated by closed neighborhoods, separated by a function, and precisely separated by a function, respectively.
+</details>
+
+### 12.1.3 Implication of separation axioms.
+
+::: {.callout-caution appearance="simple"}
+**12.1.3.1 Remark:** A higher $\mathbf{T}_i$ axiom does not necessarily imply a lower one.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.1.3.1 备注**：较高的 $\mathbf{T}_i$ 公理不一定蕴含较低的公理。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.1.3.2 Proposition:**
+$$
+\begin{aligned}
+\mathbf{T}_5 &\implies \mathbf{T}_4 \\
+\mathbf{T}_4 \land \mathbf{T}_3 &\implies \mathbf{T}_{3\frac{1}{2}} \\
+\mathbf{T}_4 \land \mathbf{T}_1 &\implies \mathbf{T}_{3\frac{1}{2}} \implies \mathbf{T}_3 \\
+\mathbf{T}_3 \land \mathbf{T}_2 &\implies \mathbf{T}_{2\frac{1}{2}} \\
+\mathbf{T}_3 \land \mathbf{T}_0 &\implies \mathbf{T}_{2\frac{1}{2}} \implies \mathbf{T}_2 \implies \mathbf{T}_1 \implies \mathbf{T}_0
+\end{aligned} \qquad (175)
+$$
+
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* $\mathbf{T}_5 \implies \mathbf{T}_4$. Any two disjoint closed sets are separated. 
+$\mathbf{T}_3 \land \mathbf{T}_0 \implies \mathbf{T}_2$. Let $p, q \in X$ be two distinct points. By $\mathbf{T}_0$, there is $U \in \mathcal{T}$ containing exactly one of $p$ and $q$, and we assume without loss of generality that $q \in U$ but $p \notin U$. By $\mathbf{T}_3$, there is $V \in \mathcal{N}_q$ and $W \in \mathcal{N}_{X \setminus U}$ with $W \cap V = \emptyset$. In particular, $W \in \mathcal{N}_p$ and $X$ satisfies $\mathbf{T}_2$. 
+$\mathbf{T}_3 \land \mathbf{T}_2 \implies \mathbf{T}_{2\frac{1}{2}}$. Let $p, q \in X$ be two distinct points. By $\mathbf{T}_2$, there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $U \cap V = \emptyset$. By $\mathbf{T}_3$, there is $U_1 \in \mathcal{N}_p$ and $V_1 \in \mathcal{N}_q$ such that $\overline{U_1} \subseteq U$ and $\overline{V_1} \subseteq V$. Then $\overline{U_1} \cap \overline{V_1} \subseteq U \cap V = \emptyset$ and $X$ satisfies $\mathbf{T}_{2\frac{1}{2}}$. 
+$\mathbf{T}_{2\frac{1}{2}} \implies \mathbf{T}_2 \implies \mathbf{T}_1 \implies \mathbf{T}_0$. Being separated by neighborhoods $\implies$ separated $\implies$ topologically disjoint. $\blacksquare$
+
+The following chart summarizes examples of spaces which satisfies certain $\mathbf{T}_i$ axioms.
+
+| | $\neg\mathbf{T}_0$ | $\mathbf{T}_0 \land \neg\mathbf{T}_1$ | $\mathbf{T}_1 \land \neg\mathbf{T}_2$ | $\mathbf{T}_2$ |
+| :--- | :--- | :--- | :--- | :--- |
+| $\neg\mathbf{T}_3 \land \neg\mathbf{T}_4$ | | | cofinite | |
+| $\mathbf{T}_3 \land \neg\mathbf{T}_4$ | | N/A | N/A | Moore |
+| $\neg\mathbf{T}_3 \land \mathbf{T}_4$ | | Sierpiński | N/A | N/A |
+| $\mathbf{T}_3 \land \mathbf{T}_4$ | trivial | N/A | N/A | metric |
+</details>
+
+## 12.2 Kolmogorov spaces. | 柯尔莫哥洛夫空间。
+
+### 12.2.1 Kolmogorov spaces. | 柯尔莫哥洛夫空间。
+
+
+::: {.callout-important appearance="simple"}
+**12.2.1.1 Proposition:** A topological space $X$ is $\mathrm{T}_0$
+
+* iff any two distinct points in $X$ has different neighborhoods;
+* iff there is no continuous injection $f: (\{0, 1\}, \mathcal{T}_{\text{triv}}) \to X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.1.1 命题**：一个拓扑空间 $X$ 是 $\mathrm{T}_0$ 空间
+
+* 当且仅当 $X$ 中任意两个相异点有不同的邻域；
+* 当且仅当不存在连续单射 $f: (\{0, 1\}, \mathcal{T}_{\text{triv}}) \to X$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.2.1.2 Proposition:** The topological indistinguishablility is an equivalence relation on the topological space.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.1.2 命题**：拓扑不可辨识性是拓扑空间上的一个等价关系。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.2.1.3 Proposition:** Let $p_0, p_1 \in X$ be topologically indistinguishable, then the bijection $f: X \to X$ swapping $p_0$ and $p_1$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.1.3 命题**：设 $p_0, p_1 \in X$ 是拓扑不可辨识的，则交换 $p_0$ 和 $p_1$ 的双射 $f: X \to X$ 是一个同胚。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Example**  Sierpiński 空间
+
+集合 $X = \{0, 1\}$，拓扑为 $\tau = \{\emptyset, \{1\}, \{0, 1\}\}$。对于点 0 和 1，开集 $\{1\}$ 包含 1 但不包含 0，满足 $T_0$
+:::
+
+
+### 12.2.2 Kolmogorov quotients. | 柯尔莫哥洛夫商。
+
+::: {.callout-note appearance="simple"}
+**12.2.2.1 Definition:** The quotient of a topological space $X$ under topological indistinguishablility is called its *Kolmogorov quotient*.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.2.1 定义**：拓扑空间 $X$ 在拓扑不可辨识性下的商称为其**柯尔莫哥洛夫商 (Kolmogorov quotient)**。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.2.2.2 Proposition:** Let $\pi: X \to Y$ is a continuous surjection. Then $\pi$ is the Kolmogorov quotient map iff $Y$ is $\mathrm{T}_0$ and $\mathcal{T}$ is the initial topology generated by $\pi$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.2.2 命题**：设 $\pi: X \to Y$ 是一个连续满射。则 $\pi$ 是柯尔莫哥洛夫商映射，当且仅当 $Y$ 是 $\mathrm{T}_0$ 空间且 $\mathcal{T}$ 是由 $\pi$ 生成的初始拓扑。
+</details>
+:::
+
+*Proof*: By the definition of the initial topology, any open set in $\mathcal{T}$ is $\pi$-saturated. The complete proof is an exercise. $\blacksquare$
+
+::: {.callout-important appearance="simple"}
+**12.2.2.3 Proposition:** Let $\pi_{\text{KQ}}$ be the Kolmogorov quotient map on $X$. Then a bijection $f: X \to X$ with $\pi_{\text{KQ}} \circ f = \pi_{\text{KQ}}$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.2.2.3 命题**：设 $\pi_{\text{KQ}}$ 为 $X$ 上的柯尔莫哥洛夫商映射。则满足 $\pi_{\text{KQ}} \circ f = \pi_{\text{KQ}}$ 的双射 $f: X \to X$ 是一个同胚。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof*: Let $Y$ be the Kolmogorov quotient of $X$. Note that every open set $U$ in $\mathcal{T}$ is invariant under $f$ when $\pi_{\text{KQ}} \circ f = \pi_{\text{KQ}}$, since it is $\pi_{\text{KQ}}$-saturated, and
+$$U = \pi_{\text{KQ}}^{-1}(\pi_{\text{KQ}}(U)) = f^{-1}(\pi_{\text{KQ}}^{-1}(\pi_{\text{KQ}}(U))) = f^{-1}(U). \quad (176)$$
+In particular, $f$ is continuous and analogously $f^{-1}$ is continuous. $\blacksquare$
+</details>
+
+### 12.2.3 Lebesgue spaces as Kolmogorov quotients. | 勒贝格空间作为柯尔莫哥洛夫商。
+
+**12.2.3.1 Example:** The $L^p$-space.
+
+## 12.3 Frechét spaces. | 弗雷歇空间。
+
+### 12.3.1 Frechét spaces. | 弗雷歇空间。
+
+SEPARATION AXIOMS IN NLAB AND [10, THEOREMS 5.3-5.5]
+
+::: {.callout-important appearance="simple"}
+**12.3.1.1 Proposition:** A topological space $X$ is $\mathrm{T}_1$
+
+* iff every point in $X$ is closed;
+* iff every point in $X$ is the intersection of all its neighborhoods;
+* iff the topology on $X$ is finer than the cofinite topology on $X$;
+* iff there is no continuous injection $f: (\{0, 1\}, \mathcal{T}_{\text{Sier}}) \to X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.1.1 命题**：一个拓扑空间 $X$ 是 $\mathrm{T}_1$ 空间
+
+* 当且仅当 $X$ 中的每个点都是闭的；
+* 当且仅当 $X$ 中的每个点都是其所有邻域的交集；
+* 当且仅当 $X$ 上的拓扑比 $X$ 上的余有限拓扑更细；
+* 当且仅当不存在连续单射 $f: (\{0, 1\}, \mathcal{T}_{\text{Sier}}) \to X$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof*: The space $X$ is $\mathrm{T}_1$ iff for any $p \in X$, the set $X \setminus \{p\}$ is a neighborhood of every $q \neq p$ which is equivalent to the openness of $X \setminus \{p\}$ in $X$. If every point is closed, then $\{p\} \subseteq \bigcup_{q \in X \setminus \{p\}} X \setminus \{q\} = \{p\}$. If the intersection of all the neighborhoods of $p$ is $\{p\}$, then for any $q \neq p$ there is an open set $U_q \ni p$ with $q \notin U_q$, which precisely says $X$ is $\mathrm{T}_1$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.3.1.2 Proposition:** Every totally disconnected space is $\mathrm{T}_1$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.1.2 命题**：每个完全不连通空间都是 $\mathrm{T}_1$ 空间。
+</details>
+:::
+
+*Proof*: In a totally disconnected space, every point is a component and is therefore closed. $\blacksquare$
+
+[13, PAGE 37]
+
+::: {.callout-important appearance="simple"}
+**12.3.1.3 Proposition:** If $X$ is a $\mathrm{T}_1$ space and $p$ is a limit point of $A \subseteq X$, then for any $U \in \mathcal{N}_p$, $|U \cap A| = \infty$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.1.3 命题**：如果 $X$ 是一个 $\mathrm{T}_1$ 空间且 $p$ 是 $A \subseteq X$ 的一个极限点，那么对于任意 $U \in \mathcal{N}_p$，都有 $|U \cap A| = \infty$。
+</details>
+:::
+
+*Proof*: Suppose for the sake of contradiction if $U \in \mathcal{N}_p$ and $|U \cap A| < \infty$ then $B = U \cap A \setminus \{p\}$ is closed by $\mathbf{T}_1$. In this case, $U \setminus B \in \mathcal{N}_p$ but $(U \setminus B) \cap A = \{p\}$ contradicting $p$ being a limit point of $A$. $\blacksquare$
+
+::: {.callout-important appearance="simple"}
+**12.3.1.4 Proposition:** A topological space $X$ is $\mathrm{T}_1$ iff every subset of $X$ is the intersection of all its neighborhoods.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.1.4 命题**：一个拓扑空间 $X$ 是 $\mathrm{T}_1$ 空间，当且仅当 $X$ 的每个子集都是其所有邻域的交集。
+</details>
+:::
+
+### 12.3.2 The specialisation order. | 特化序。
+
+::: {.callout-note appearance="simple"}
+**12.3.2.1 Definition:** Let $X$ be a topological space and let the *specialisation order* $\leq$ be a relation on $X$ defined by $p \leq q$ iff $p \in \mathrm{Cl}(\{q\})$; we say that $p$ is a *specialisation* of $q$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.2.1 定义**：设 $X$ 为一个拓扑空间，并在 $X$ 上定义一个关系称为**特化序 (specialisation order)** $\leq$，定义为 $p \leq q$ 当且仅当 $p \in \mathrm{Cl}(\{q\})$；我们称 $p$ 是 $q$ 的一个**特化 (specialisation)**。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.3.2.2 Proposition:** In any topological space $X$ the specialisation order $\leq$ is a preorder, that is, a reflexive and transitive relation, by the fact that $p \leq q$ iff $(\forall U \in \mathcal{T}_X)((p \in U) \implies (q \in U))$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.2.2 命题**：在任意拓扑空间 $X$ 中，由于 $p \leq q$ 当且仅当 $(\forall U \in \mathcal{T}_X)((p \in U) \implies (q \in U))$ 这一事实，特化序 $\leq$ 是一个预序，即一个自反且传递的关系。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.3.2.3 Proposition:** In a topological space $X$ the specialisation order $\leq$ is a partial order iff $X$ is $\mathrm{T}_0$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.2.3 命题**：在拓扑空间 $X$ 中，特化序 $\leq$ 是一个偏序，当且仅当 $X$ 是 $\mathrm{T}_0$ 空间。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.3.2.4 Proposition:** In a topological space $X$ the specialisation order $\leq$ is the equality iff $X$ is $\mathrm{T}_1$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.3.2.4 命题**：在拓扑空间 $X$ 中，特化序 $\leq$ 就是等号关系，当且仅当 $X$ 是 $\mathrm{T}_1$ 空间。
+</details>
+:::
+
+## 12.4 Hausdorff spaces | 豪斯多夫空间
+
+### 12.4.1 Hausdorff spaces | 豪斯多夫空间
+
+::: {.callout-important appearance="simple"}
+**12.4.1.1 Proposition:** A topological space $X$ is $\mathrm{T}_2$
+
+* iff the diagonal map $\Delta: X \to X \times X, p \mapsto (p,p)$ is a closed map;
+* iff the diagonal $\Delta(X)$ is a closed subset of $X \times X$;
+* iff every point in $X$ is the intersection of all its closed neighborhoods.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.1 命题**：一个拓扑空间 $X$ 是 $\mathrm{T}_2$ 空间
+
+* 当且仅当对角映射 $\Delta: X \to X \times X, p \mapsto (p,p)$ 是闭映射；
+* 当且仅当对角线 $\Delta(X)$ 是 $X \times X$ 的闭子集；
+* 当且仅当 $X$ 中的每个点是其所有闭邻域的交集。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* The space $X$ is $\mathrm{T}_2$ iff for any $(p, q) \notin \Delta(X)$ there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $U \cap V = \emptyset$ which is equivalent to $\mathcal{N}_{(p,q)} \ni U \times V \subseteq \Delta(X)^\complement$, and therefore, it is equivalent to $\Delta(X)^\complement$ being open in $X \times X$. 
+By the above lemma, the first and second items are equivalent. 
+Let $p, q \in X$ with $p \neq q$. If $X$ is $\mathrm{T}_2$, then there are $U \in \mathcal{N}_p$ and $V \in \mathcal{N}_q$ such that $U \cap V = \emptyset$, and then $q \notin \overline{U} \supseteq \bigcap_{U \in \mathcal{N}_p} \overline{U}$. If $\{p\} = \bigcap_{U \in \mathcal{N}_p} \overline{U}$, then there is $U \in \mathcal{N}_p$ with $q \notin \overline{U}$, and then $\mathrm{Ext}(U) \in \mathcal{N}_q$ is disjoint from $U$. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**12.4.1.2 Theorem:** In a $\mathrm{T}_2$ space, the limit of a convergent sequence is unique.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.2 定理**：在 $\mathrm{T}_2$ 空间中，收敛序列的极限是唯一的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $(p_n)_{n \in \mathbb{N}}$ be a sequence in a $\mathrm{T}_2$ space $X$ that converges to both $q_0$ and $q_1$ in $X$. Suppose for the sake of contradiction that $q_0 \neq q_1$. By Hausdorffness, there are $U_0 \in \mathcal{N}_{q_0}$ and $U_1 \in \mathcal{N}_{q_1}$ such that $U_0 \cap U_1 = \emptyset$. By convergence of the sequence, there is an $N_i \in \mathbb{N}$ such that $n \geq N_i \implies p_n \in U_i$, for $i \in \{0, 1\}$. In particular, when $n \geq \max(N_0, N_1)$, it is a contradiction that $p_n \in U_0 \cap U_1 = \emptyset$. $\blacksquare$
+</details>
+
+::: {.callout-caution appearance="simple"}
+**12.4.1.3 Remark:** Therefore, it is appropriate to write $\lim_{n \to \infty} p_n = q$ only in a Hausdorff space, not in a general topological space.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.3 备注**：因此，只有在豪斯多夫空间中写 $\lim_{n \to \infty} p_n = q$ 才是合适的，在一般拓扑空间中则不然。
+</details>
+:::
+
+
+::: {.callout-tip appearance="simple"}
+**12.4.1.4 Theorem:** Let $f_0, f_1: X \to Y$ be continuous maps with $Y$ Hausdorff. Then the coincidence set $C(f_0, f_1) = \{p \in X : f_0(p) = f_1(p)\}$ is closed.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.4 定理**：设 $f_0, f_1: X \to Y$ 为连续映射，且 $Y$ 是豪斯多夫空间。则重合集 $C(f_0, f_1) = \{p \in X : f_0(p) = f_1(p)\}$ 是闭集。
+</details>
+:::
+
+*Proof:* For $p \in X$ with $f_0(p) \neq f_1(p)$ by the Hausdorffness of $Y$, there are $V_0 \in \mathcal{N}_{f_0(p)}$ and $V_1 \in \mathcal{N}_{f_1(p)}$ such that $V_0 \cap V_1 = \emptyset$. Let $U = f_0^{-1}(V_0) \cap f_1^{-1}(V_1) \in \mathcal{N}_p$, and then for any $q \in U_0 \cap U_1$, $f_0(q) \in V_0$ is not equal to $f_1(q) \in V_1$. Therefore the $X \setminus C(f_0, f_1)$ is open. $\blacksquare$
+
+::: {.callout-important appearance="simple"}
+**12.4.1.5 Corollary:** If $A$ is a dense subset of a topological space $X$ and $Y$ is a Hausdorff space, then for any continuous map $f: A \to Y$ its continuous extension $g: X \to Y$ is unique if there is one.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.5 推论**：如果 $A$ 是拓扑空间 $X$ 的稠密子集，且 $Y$ 是豪斯多夫空间，那么对于任意连续映射 $f: A \to Y$，其连续扩张 $g: X \to Y$ 如果存在则是唯一的。
+</details>
+:::
+
+*Proof:* Let $g_i: X \to Y$, $i \in \{0, 1\}$, be continuous maps extending $f: A \to Y$. The coincidence set $C(g_0, g_1) = X$ since it is closed and contains the dense subset $A$ of $X$, and therefore $g_0 = g_1$. $\blacksquare$
+
+::: {.callout-tip appearance="simple"}
+**12.4.1.6 Theorem:** Let $\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}$ be a family of maps between topological spaces with the initial topology on $X$ induced by $\mathcal{F}$ which separates points in the sense that for any distinct $p, q \in X$ there is $i \in J$ with $f_i(p) \neq f_i(q)$. If $Y_j$ is $\mathrm{T}_2$ for any $j \in J$ then $X$ is $\mathrm{T}_2$. In particular, a subspace of a $\mathrm{T}_2$ space is $\mathrm{T}_2$; a product of $\mathrm{T}_2$ spaces is $\mathrm{T}_2$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.1.6 定理**：设 $\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}$ 为拓扑空间之间的映射族，$X$ 上赋予由 $\mathcal{F}$ 诱导的初始拓扑。该拓扑在以下意义上分离点：对于任意相异点 $p, q \in X$，存在 $i \in J$ 使得 $f_i(p) \neq f_i(q)$。如果对于任意 $j \in J$，$Y_j$ 都是 $\mathrm{T}_2$ 空间，那么 $X$ 也是 $\mathrm{T}_2$ 空间。特别地，$\mathrm{T}_2$ 空间的子空间是 $\mathrm{T}_2$ 的；$\mathrm{T}_2$ 空间的乘积是 $\mathrm{T}_2$ 的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $p, q \in X$ be two distinct points. Since $f_i(p) \neq f_i(q)$ and $Y_i$ is $\mathrm{T}_2$, there are $U_i \in \mathcal{N}_{f_i(p)}$ and $V_i \in \mathcal{N}_{f_i(q)}$ such that $U_i \cap V_i = \emptyset$. By the definition of the initial topology on $X$, we have $f_i^{-1}(U_i) \in \mathcal{N}_p$, $f_i^{-1}(V_i) \in \mathcal{N}_q$, and $f_i^{-1}(U_i) \cap f_i^{-1}(V_i) = \emptyset$. Thus $X$ is $\mathrm{T}_2$. $\blacksquare$
+</details>
+
+### 12.4.2 Hausdorff quotients. | 豪斯多夫商。
+
+This subsection is adapted from Bachelor thesis *The Hausdorff Quotient* by Bart van Munster on June 9, 2014 at Mathematisch Instituut, Universiteit Leiden.
+
+::: {.callout-caution appearance="simple"}
+**12.4.2.1 Remark:** Consider any topological space $X$ and an equivalence relation $\sim$ on $X$. Denote the equivalence class of any $x \in X$ by $[p]$. Then $X / \sim$ is assumed to have the quotient topology with respect to the (quotient) map $q: X \to X / \sim, p \mapsto [p]$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.1 备注**：考虑任意拓扑空间 $X$ 及其上的等价关系 $\sim$。将任意 $x \in X$ 的等价类记为 $[p]$。假设 $X / \sim$ 赋予了关于（商）映射 $q: X \to X / \sim, p \mapsto [p]$ 的商拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.4.2.2 Proposition:** Let $q: X \to Q$ be a quotient map of topological spaces. Let $Y$ be a topological space and $f: X \to Y$ such that $q(a) = q(b) \implies f(a) = f(b)$ holds for all $a, b \in X$. Then there is a unique map $\tilde{f}: Q \to Y$ such that $f = \tilde{f} \circ q$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.2 命题**：设 $q: X \to Q$ 为拓扑空间的商映射。设 $Y$ 为拓扑空间，$f: X \to Y$ 满足对所有 $a, b \in X$ 都有 $q(a) = q(b) \implies f(a) = f(b)$。则存在唯一的映射 $\tilde{f}: Q \to Y$ 使得 $f = \tilde{f} \circ q$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Define $\tilde{f}: Q \to Y, q(x) \mapsto f(x)$. Then $\tilde{f}$ is well-defined, since for all $x, y \in X$ with $q(y) = q(x)$, we have $f(y) = f(x)$. This $\tilde{f}$ satisfies $f = \tilde{f} \circ q$. It is also continuous, because for any open $U \subset Y$, $q^{-1}(\tilde{f}^{-1}(U)) = f^{-1}(U)$ is open. By definition of the quotient topology on $Q$, this means that $\tilde{f}^{-1}(U)$ is open and therefore $\tilde{f}$ is continuous. It is unique, since all $[p]$ should be sent to $f(x)$ in order to get $f = \tilde{f} \circ q$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.3 Corollary:** Let $X, Y, Z$ be topological spaces and $f: X \to Y, g: X \to Z$ quotient maps such that for all $a, b \in X$, $f(a) = f(b) \iff g(a) = g(b)$. Then there is a unique homeomorphism $h: Y \to Z$ such that $g = h \circ f$. This $h$ sends $f(x)$ to $g(x)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.3 推论**：设 $X, Y, Z$ 为拓扑空间，$f: X \to Y, g: X \to Z$ 为商映射，且满足对于所有 $a, b \in X$，$f(a) = f(b) \iff g(a) = g(b)$。则存在唯一的同胚 $h: Y \to Z$ 使得 $g = h \circ f$。此 $h$ 将 $f(x)$ 映射到 $g(x)$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* By proposition 2.4, there is unique $\tilde{g}: Y \to Z$ such that $g = \tilde{g} \circ f$. This $\tilde{g}$ sends $f(x)$ to $g(x)$. By proposition 2.4, there is also a map $\tilde{f}: Z \to Y$, $g(x) \mapsto f(x)$. We can see that $\tilde{f}$ is the inverse map of $\tilde{g}$. Hence, $\tilde{g}$ is a homeomorphism.
+For any quotient map $f: X \to Y$ of topological spaces, one can define an equivalence relation $\sim_f$ on $X$ such that $a \sim_f b \iff f(a) = f(b)$ for all $a, b \in X$. Corollary 2.5 tells us that we could just as well say that $Y$ is the unique quotient $X / \sim_f$. $\blacksquare$
+
+Since $\mathrm{diag}(X)$ is the trivial equivalence relation, this corollary motivates the question whether the equivalence relations $R$ on $X$ such that $X/R$ is Hausdorff are exactly the closed equivalence relations. We will see that only one implication holds.
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.4 Lemma:** let $R$ be an equivalence relation on $X$ such that $X/R$ is Hausdorff. Then $R$ is closed as a subset of $X \times X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.4 引理**：设 $R$ 为 $X$ 上的等价关系，使得 $X/R$ 是豪斯多夫空间。则 $R$ 作为 $X \times X$ 的子集是闭的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $q: X \to X/R$ be the quotient map and let $(a, b) \in R^\complement$. Then $q(a) \neq q(b)$ and since $X/R$ is Hausdorff, there are open $U, V \subset X/R$ such that $q(a) \in U, q(b) \in V$ and $U \cap V = \emptyset$. By definition, $q^{-1}(U)$ and $q^{-1}(V)$ are open in $X$, so $q^{-1}(U) \times q^{-1}(V)$ is open in $X \times X$. Now we have $(a, b) \in q^{-1}(U) \times q^{-1}(V)$ and because $U \cap V = \emptyset$, we obtain $(q^{-1}(U) \times q^{-1}(V)) \cap R = \emptyset$. So for any $(a, b) \in R^\complement$, there is an open neighbourhood of $(a, b)$ that is a subset of $R^\complement$. Therefore $R^\complement$ is open and hence $R$ is closed. $\blacksquare$
+
+The following example shows that a closed equivalence relation on a topological space does not necessarily yield a quotient that is Hausdorff.
+</details>
+
+**12.4.2.5 Example:** Let $X_1 = \mathbb{Q} \cap [0, 1]$, $X_2 = ]0, 1]$ and $X_3 = ([0, 1] \setminus \mathbb{Q}) \cup \{0\}$. Let $X = X_1 \coprod X_2 \coprod X_3$. Let $R$ be the equivalence relation on $X$ given by
+$$(x, i) R (y, j) \iff (x = y \land (x, y > 0 \lor i = j)). \qquad (177)$$
+
+::: {.callout-important appearance="simple"}
+**12.4.2.6 Lemma:** There is a topological space $X$ and an equivalence relation $R$ on $X$ such that $R$ is closed and $X/R$ is not Hausdorff.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.6 引理**：存在拓扑空间 $X$ 及其上的等价关系 $R$，使得 $R$ 是闭的且 $X/R$ 不是豪斯多夫空间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $((x, i), (y, j)) \in R^\complement$. If $x \neq y$, we can find disjoint open neighbourhoods $U \ni x$ and $V \ni y$ in $[0, 1]$. For such $U, V \subset [0, 1]$, it is true that $(U \cap X_i) \times (V \cap X_j) \cap R = \emptyset$ and $((x, i), (y, j)) \in (U \cap X_i) \times (V \cap X_j)$. Now suppose $x = y$. Then $x = y = 0$ and $i \neq j$ because $((x, i), (y, j)) \in R^\complement$. Without loss of generality we can assume $i = 1$ and $j = 3$. Now observe that $((0, 1), (0, 3)) \in X_1 \times X_3$ and $(X_1 \times X_3) \cap R = \emptyset$. Also notice that $X_1 \times X_3$ is an open set. So every point in $R^\complement$ has an open neighbourhood that is a subset of $R^\complement$, so $R^\complement$ is open. Therefore, $R$ is closed.
+Let $\pi: X \to X/R$ be the classification map. It will be shown that $\pi(0, 1)$ and $\pi(0, 3)$ cannot be separated by open sets, although $\pi(0, 1) \neq \pi(0, 3)$. Let $U, V$ be open neighbourhoods of $\pi(0, 1)$ resp. $\pi(0, 3)$. Then $F = \pi^{-1}(U)$ and $G = \pi^{-1}(V)$ are saturated open neighbourhoods of $(0, 1)$ and $(0, 3)$, respectively. So $F$ contains $([0, \delta_1[ \cap X_1) \times \{1\}$ for some $\delta_1 > 0$ and $G$ contains $([0, \delta_3[ \cap X_3) \times \{3\}$ for some $\delta_3 > 0$. Because they are saturated, $F$ contains $((0, \min(\delta_1, \delta_3)) \cap \mathbb{Q}) \times \{2\}$ and $G$ contains $((0, \min(\delta_1, \delta_3)) \setminus \mathbb{Q}) \times \{2\}$. We can see that any open set $S \subset ]0, 1[$ containing $((0, \min(\delta_1, \delta_3)) \cap \mathbb{Q})$ must contain some element of $((0, \min(\delta_1, \delta_3)) \setminus \mathbb{Q})$, so $F \cap G \neq \emptyset$. Therefore, $U \cap V \neq \emptyset$, and $X/R$ is not Hausdorff. $\blacksquare$
+</details>
+
+::: {.callout-note appearance="simple"}
+**12.4.2.7 Definition:** Let $X \in \mathbf{Top}$ and let $\sim_{\mathrm{Haus}}$ be the equivalence relation on $X$ defined by $p_0 \sim_{\mathrm{Haus}} p_1$ iff for any $Y \in \mathbf{Haus}$ and continuous map $f: X \to Y$ we have $f(p_0) = f(p_1)$. Let $H(X) = X / \sim_{\mathrm{Haus}}$ denote the quotient space, called the *Hausdorff quotient* of $X$, and the classification map is denoted by $\pi_{\mathrm{Haus}}: X \to H(X)$, called the *Hausdorff quotient map* of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.7 定义**：设 $X \in \mathbf{Top}$，并设 $\sim_{\mathrm{Haus}}$ 为 $X$ 上的等价关系，定义为 $p_0 \sim_{\mathrm{Haus}} p_1$ 当且仅当对于任意 $Y \in \mathbf{Haus}$ 及连续映射 $f: X \to Y$ 都有 $f(p_0) = f(p_1)$。记商空间 $H(X) = X / \sim_{\mathrm{Haus}}$，称为 $X$ 的**豪斯多夫商 (Hausdorff quotient)**，其分类映射记为 $\pi_{\mathrm{Haus}}: X \to H(X)$，称为 $X$ 的**豪斯多夫商映射 (Hausdorff quotient map)**。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**12.4.2.8 Theorem:** For any continuous map $f: X \to Y$ from $X \in \mathbf{Top}$ to $Y \in \mathbf{Haus}$, there is a unique $\tilde{f}: H(X) \to Y$ such that $\tilde{f} \circ \pi_{\mathrm{Haus}} = f$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.8 定理**：对于从 $X \in \mathbf{Top}$ 到 $Y \in \mathbf{Haus}$ 的任意连续映射 $f: X \to Y$，存在唯一的 $\tilde{f}: H(X) \to Y$ 使得 $\tilde{f} \circ \pi_{\mathrm{Haus}} = f$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* For any Hausdorff space $Y$ and any continuous maps $f: X \to Y$, we have that $\pi_{\mathrm{Haus}}(p_0) = \pi_{\mathrm{Haus}}(p_1)$ implies $f(p_0) = f(p_1)$. Then, $\tilde{f}: H(X) \to Y$, $\pi_{\mathrm{Haus}}(p) \mapsto f(p)$ is the required unique map. 
+Now let $\pi_{\mathrm{Haus}}(p_0), \pi_{\mathrm{Haus}}(p_1) \in H(X)$ with $\pi_{\mathrm{Haus}}(p_0) \neq \pi_{\mathrm{Haus}}(p_1)$. Then there is a Hausdorff space $Y$ and a continuous map $f: X \to Y$ such that $f(p_0) \neq f(p_1)$. Choose open neighbourhoods $U \ni f(p_0)$ and $V \ni f(p_1)$ such that $U \cap V = \emptyset$. Then $\tilde{f}^{-1}(U) \ni \pi_{\mathrm{Haus}}(p_0)$ and $\tilde{f}^{-1}(V) \ni \pi_{\mathrm{Haus}}(p_1)$ are disjoint open sets, which proves that $H(X)$ is Hausdorff. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.9 Proposition:** The equivalence relation $\sim_{\mathrm{Haus}}$ from Definition 12.4.2.7 is the smallest equivalence relation $S$ on $X$ such that $X/S$ is Hausdorff. In other words,
+$$\sim_{\mathrm{Haus}} = \bigcap \{ S \subset X \times X : S \text{ is an equivalence relation and } X/S \text{ is Hausdorff} \}. \qquad (178)$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.9 命题**：定义 12.4.2.7 中的等价关系 $\sim_{\mathrm{Haus}}$ 是 $X$ 上使得 $X/S$ 为豪斯多夫空间的最小等价关系 $S$。换句话说，
+$$\sim_{\mathrm{Haus}} = \bigcap \{ S \subset X \times X : S \text{ 是一个等价关系且 } X/S \text{ 是豪斯多夫空间} \}. \qquad (178)$$
+</details>
+:::
+
+*Proof:* On one hand, $\sim_{\mathrm{Haus}}$ is itself an equivalence relation and $H(X) = X / \sim_{\mathrm{Haus}}$ is Hausdorff. On the other hand, for any equivalence relation $S$ on $X$ with $X/S$ Hausdorff, $X \to X/S$ factors through $X / \sim_{\mathrm{Haus}}$ and hence $\sim_{\mathrm{Haus}} \subseteq S$. $\blacksquare$
+
+We can define of $H(X)$ and $\sim_{\mathrm{Haus}}$ in an alternative and more constructive way. The idea of this construction is based on the StackExchange answer$^5$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+我们可以用另一种更具构造性的方式来定义 $H(X)$ 和 $\sim_{\mathrm{Haus}}$。此构造的思想基于 StackExchange 上的回答$^5$。
+</details>
+
+::: {.callout-note appearance="simple"}
+**12.4.2.10 Definition:** For $X \in \mathbf{Top}$, define an equivalence relation $\overset{1}{\sim}_{\mathrm{Haus}}$ on $X$ generated by $\overline{\mathrm{diag}(X)}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.10 定义**：对于 $X \in \mathbf{Top}$，定义 $X$ 上的一个等价关系 $\overset{1}{\sim}_{\mathrm{Haus}}$，它由 $\overline{\mathrm{diag}(X)}$ 生成。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.4.2.11 Proposition:** We have $a \overset{1}{\sim}_{\mathrm{Haus}} b$ iff there is a sequence $(p_k)_{k=0}^N$ in $X$ such that $a = p_0, b = p_n$, and for any $k \in \{0, \dots, n-1\}$ we have $(p_k, p_{k+1}) \in \overline{\mathrm{diag}(X)}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.11 命题**：我们有 $a \overset{1}{\sim}_{\mathrm{Haus}} b$ 当且仅当在 $X$ 中存在序列 $(p_k)_{k=0}^N$ 使得 $a = p_0, b = p_n$，且对于任意 $k \in \{0, \dots, n-1\}$ 都有 $(p_k, p_{k+1}) \in \overline{\mathrm{diag}(X)}$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**12.4.2.12 Proposition:** In general, $\overline{\mathrm{diag}(X)}$ itself is not transitive.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.12 命题**：一般而言，$\overline{\mathrm{diag}(X)}$ 本身不是传递的。
+</details>
+:::
+
+**12.4.2.13 Example:** Let $X = \{1, 2, 3, 4, 5\}$ and define a topology on $X$ by the basis $\{\{1, 2\}, \{2\}, \{2, 3, 4\}, \{4\}, \{4, 5\}\}$. Then $1$ and $5$ can be separated by open sets, so it follows that $(1, 5) \notin \overline{\mathrm{diag}(X)}$. However, $(1, 3) \in \overline{\mathrm{diag}(X)}$ and $(3, 5) \in \overline{\mathrm{diag}(X)}$ do hold.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.13 例**：设 $X = \{1, 2, 3, 4, 5\}$，并通过基 $\{\{1, 2\}, \{2\}, \{2, 3, 4\}, \{4\}, \{4, 5\}\}$ 在 $X$ 上定义一个拓扑。那么 1 和 5 可以由开集分离，因此得出 $(1, 5) \notin \overline{\mathrm{diag}(X)}$。然而，$(1, 3) \in \overline{\mathrm{diag}(X)}$ 和 $(3, 5) \in \overline{\mathrm{diag}(X)}$ 确实成立。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.14 Lemma:** A topological space $X$ is Hausdorff iff $\overset{1}{\sim}_{\mathrm{Haus}}$ is the trivial equivalence relation.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.14 引理**：一个拓扑空间 $X$ 是豪斯多夫空间，当且仅当 $\overset{1}{\sim}_{\mathrm{Haus}}$ 是平凡的等价关系。
+</details>
+:::
+
+*Proof:* By definition, $\overset{1}{\sim}_{\mathrm{Haus}}$ is trivial iff $\overline{\mathrm{diag}(X)} = \mathrm{diag}(X)$, so $\overset{1}{\sim}_{\mathrm{Haus}}$ is trivial iff $X$ is Hausdorff. $\blacksquare$
+
+::: {.callout-important appearance="simple"}
+**12.4.2.15 Proposition:** For any topological space $X$, the inclusion $\overset{1}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$ holds.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.15 命题**：对于任意拓扑空间 $X$，包含关系 $\overset{1}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$ 成立。
+</details>
+:::
+
+*Proof:* Since $\sim_{\mathrm{Haus}}$ is reflexive, we have $\mathrm{diag}(X) \subseteq \sim_{\mathrm{Haus}}$. Since $\sim_{\mathrm{Haus}}$ is closed, we have $\overline{\mathrm{diag}(X)} \subseteq \sim_{\mathrm{Haus}}$. The inclusion then follows. $\blacksquare$
+
+**12.4.2.16 Example:** Let $X$ be an infinite topological space with the cofinite topology, i.e. $U \subset X$ is open iff $U = \emptyset$ or $U^\complement$ is finite. Then there are no points that can be separated by open sets, so $\overset{1}{\sim}_{\mathrm{Haus}} = X \times X$. Since $\overset{1}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$, this means that $\sim_{\mathrm{Haus}} = X \times X$ and $H(X)$ is a singleton.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.16 例**：设 $X$ 为赋予余有限拓扑的无限拓扑空间，即 $U \subset X$ 是开集当且仅当 $U = \emptyset$ 或 $U^\complement$ 是有限的。那么不存在可以由开集分离的点，因此 $\overset{1}{\sim}_{\mathrm{Haus}} = X \times X$。因为 $\overset{1}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$，这意味着 $\sim_{\mathrm{Haus}} = X \times X$ 且 $H(X)$ 是一个单元素集。
+</details>
+
+::: {.callout-note appearance="simple"}
+**12.4.2.17 Definition:** Let $X$ be a topological space. For each ordinal number $\alpha$, define a topological space $H^\alpha(X)$, an equivalence relation $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ on $X$ and a map $\pi_{\mathrm{Haus}}^\alpha : X \to H^\alpha(X)$ in the following way: when $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ is defined, we let $H^\alpha(X) = X / \overset{\alpha}{\sim}_{\mathrm{Haus}}$ with quotient map $\pi_{\mathrm{Haus}}^\alpha : X \to H^\alpha(X)$. With this convention, define $\sim_{\mathrm{Haus}}$ recursively:
+$$\overset{0}{\sim}_{\mathrm{Haus}} = \mathrm{diag}(X);$$
+$$\overset{\alpha+1}{\sim}_{\mathrm{Haus}} = \left\{ (a, b) \in X \times X : \left( \pi_{\mathrm{Haus}}^\alpha(a), \pi_{\mathrm{Haus}}^\alpha(b) \right) \in \overset{1}{\sim}_{\mathrm{Haus}, H^\alpha(X)} \right\} \text{ for all } \alpha \in \mathbf{Ord}; \qquad (179)$$
+$$\overset{\alpha}{\sim}_{\mathrm{Haus}} = \bigcup_{\beta < \alpha} \overset{\beta}{\sim}_{\mathrm{Haus}} \quad \text{if } \alpha \text{ is a limit.}$$
+Here $\overset{1}{\sim}_{\mathrm{Haus}, H^\alpha(X)}$ is the Hausdorff equivalence relation for $H^\alpha(X)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.17 定义**：设 $X$ 为一个拓扑空间。对于每一个序数 $\alpha$，按以下方式定义一个拓扑空间 $H^\alpha(X)$、$X$ 上的一个等价关系 $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ 以及一个映射 $\pi_{\mathrm{Haus}}^\alpha : X \to H^\alpha(X)$：当 $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ 已定义时，我们令 $H^\alpha(X) = X / \overset{\alpha}{\sim}_{\mathrm{Haus}}$，其商映射为 $\pi_{\mathrm{Haus}}^\alpha : X \to H^\alpha(X)$。按照这一约定，递归地定义 $\sim_{\mathrm{Haus}}$：
+$$\overset{0}{\sim}_{\mathrm{Haus}} = \mathrm{diag}(X);$$
+$$\overset{\alpha+1}{\sim}_{\mathrm{Haus}} = \left\{ (a, b) \in X \times X : \left( \pi_{\mathrm{Haus}}^\alpha(a), \pi_{\mathrm{Haus}}^\alpha(b) \right) \in \overset{1}{\sim}_{\mathrm{Haus}, H^\alpha(X)} \right\} \text{ 对所有 } \alpha \in \mathbf{Ord}; \qquad (179)$$
+$$\overset{\alpha}{\sim}_{\mathrm{Haus}} = \bigcup_{\beta < \alpha} \overset{\beta}{\sim}_{\mathrm{Haus}} \quad \text{如果 } \alpha \text{ 是极限序数。}$$
+这里 $\overset{1}{\sim}_{\mathrm{Haus}, H^\alpha(X)}$ 是 $H^\alpha(X)$ 的豪斯多夫等价关系。
+</details>
+:::
+
+Notice that $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \overset{\beta}{\sim}_{\mathrm{Haus}}$ holds for any $\alpha, \beta \in \mathbf{Ord}$ with $\alpha < \beta$, provided that all $\overset{\gamma}{\sim}_{\mathrm{Haus}}$ with $\gamma < \beta$ are well-defined equivalence relations. So inductively it follows that $\overset{\beta}{\sim}_{\mathrm{Haus}}$ is an equivalence relation for any limit $\beta$, since it is a union of an ascending chain of equivalence relations. Therefore, all $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ are well-defined equivalence relations.
+Since $\overset{0}{\sim}_{\mathrm{Haus}}$ is trivial, $H^0(X) = X$ and hence $H^1(X) = X / \overset{1}{\sim}_{\mathrm{Haus}}$. For any two ordinals $\alpha, \beta$ with $\alpha < \beta$, $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \overset{\beta}{\sim}_{\mathrm{Haus}}$ holds, so there is a unique map $f_{\alpha, \beta} : H^\alpha(X) \to H^\beta(X)$ such that $\pi^\beta_{\mathrm{Haus}} = f_{\alpha, \beta} \circ \pi^\alpha_{\mathrm{Haus}}$. Furthermore, $\pi_{\mathrm{Haus}, H^\alpha(X)} \circ \pi^\alpha_{\mathrm{Haus}}$ is a quotient map, so there is a unique homeomorphism $g : H^{\alpha+1}(X) \to H^1(H^\alpha(X))$ such that $g \circ \pi^{\alpha+1}_{\mathrm{Haus}} = \pi_{\mathrm{Haus}, H^\alpha(X)} \circ \pi^\alpha_{\mathrm{Haus}}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+注意，对于满足 $\alpha < \beta$ 的任意 $\alpha, \beta \in \mathbf{Ord}$，只要所有满足 $\gamma < \beta$ 的 $\overset{\gamma}{\sim}_{\mathrm{Haus}}$ 都是良定义的等价关系，那么 $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \overset{\beta}{\sim}_{\mathrm{Haus}}$ 就成立。因此，通过归纳法可知，对于任意极限序数 $\beta$，$\overset{\beta}{\sim}_{\mathrm{Haus}}$ 也是一个等价关系，因为它是一个递增等价关系链的并集。所以，所有 $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ 都是良定义的等价关系。
+由于 $\overset{0}{\sim}_{\mathrm{Haus}}$ 是平凡的，有 $H^0(X) = X$，从而 $H^1(X) = X / \overset{1}{\sim}_{\mathrm{Haus}}$。对于满足 $\alpha < \beta$ 的任意两个序数 $\alpha, \beta$，因为 $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \overset{\beta}{\sim}_{\mathrm{Haus}}$ 成立，所以存在唯一的映射 $f_{\alpha, \beta} : H^\alpha(X) \to H^\beta(X)$ 使得 $\pi^\beta_{\mathrm{Haus}} = f_{\alpha, \beta} \circ \pi^\alpha_{\mathrm{Haus}}$。此外，$\pi_{\mathrm{Haus}, H^\alpha(X)} \circ \pi^\alpha_{\mathrm{Haus}}$ 是一个商映射，因此存在唯一的同胚 $g : H^{\alpha+1}(X) \to H^1(H^\alpha(X))$ 使得 $g \circ \pi^{\alpha+1}_{\mathrm{Haus}} = \pi_{\mathrm{Haus}, H^\alpha(X)} \circ \pi^\alpha_{\mathrm{Haus}}$。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.18 Proposition:** Let $X$ be a topological space. For any $\alpha \in \mathbf{Ord}$, $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.18 命题**：设 $X$ 为一个拓扑空间。对于任意 $\alpha \in \mathbf{Ord}$，都有 $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* We prove by induction. For $\alpha = 0$ it is clear. Now let $\alpha + 1$ be a successor such that $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$. The map $X \to H(X)$ factors through $H^\alpha(X)$. The resulting map $H^\alpha(X) \to H(X)$ factors through $H(H^\alpha(X))$ and since $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$, $H^\alpha(X) \to H(X)$ also factors through $H^\alpha(X) / \overset{1}{\sim}_{\mathrm{Haus}, H^\alpha(X)} \cong H^{\alpha+1}(X) = X / \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$. Thus $\overset{\alpha+1}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$ holds. 
+Let $\alpha$ be a limit ordinal and assume that $\overset{\beta}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$ for all $\beta < \alpha$. Then $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \bigcup_{\beta < \alpha} \overset{\beta}{\sim}_{\mathrm{Haus}} \subseteq \sim_{\mathrm{Haus}}$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.19 Lemma:** There is some ordinal $\alpha$ such that $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.19 引理**：存在某个序数 $\alpha$ 使得 $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $\beta \in \mathbf{Ord}$ such that
+$$|\beta| > |\mathcal{P}(X \times X)| \geq \left| \left\{ \overset{\alpha}{\sim}_{\mathrm{Haus}} : \alpha < \beta \right\} \right|. \qquad (180)$$
+There must be some $\alpha < \gamma < \beta$ such that $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\gamma}{\sim}_{\mathrm{Haus}}$. Since $\overset{\alpha}{\sim}_{\mathrm{Haus}} \subseteq \overset{\alpha+1}{\sim}_{\mathrm{Haus}} \subseteq \overset{\gamma}{\sim}_{\mathrm{Haus}}$, this yields $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$. $\blacksquare$
+</details>
+
+::: {.callout-note appearance="simple"}
+**12.4.2.20 Definition:** Let $\alpha$ be the smallest ordinal such that $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$. By definition of $\overset{\alpha+1}{\sim}_{\mathrm{Haus}}$, $\overset{\alpha}{\sim}_{\mathrm{Haus}}$ is trivial. Hence $H^\alpha(X)$ is Hausdorff. Thus, $\sim_{\mathrm{Haus}} \subseteq \overset{\alpha}{\sim}_{\mathrm{Haus}}$, and then $\sim_{\mathrm{Haus}} = \overset{\alpha}{\sim}_{\mathrm{Haus}}$. So, $H(X) = H^\alpha(X)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.20 定义**：设 $\alpha$ 为使得 $\overset{\alpha}{\sim}_{\mathrm{Haus}} = \overset{\alpha+1}{\sim}_{\mathrm{Haus}}$ 的最小序数。根据 $\overset{\alpha+1}{\sim}_{\mathrm{Haus}}$ 的定义，$\overset{\alpha}{\sim}_{\mathrm{Haus}}$ 是平凡的。因此 $H^\alpha(X)$ 是豪斯多夫空间。从而，$\sim_{\mathrm{Haus}} \subseteq \overset{\alpha}{\sim}_{\mathrm{Haus}}$，进而 $\sim_{\mathrm{Haus}} = \overset{\alpha}{\sim}_{\mathrm{Haus}}$。所以，$H(X) = H^\alpha(X)$。
+</details>
+:::
+
+The following lemma might be useful for explicitly computing Hausdorff quotients.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+下面的引理可能对显式计算豪斯多夫商有用。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.21 Lemma:** Let $X$ be a topological space such that all equivalence classes of $\overset{1}{\sim}_{\mathrm{Haus}}$ are finite and there are only finitely many equivalence classes with more than one element. Then $H(X) = H^1(X)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.21 引理**：设 $X$ 为一个拓扑空间，使得 $\overset{1}{\sim}_{\mathrm{Haus}}$ 的所有等价类都是有限的，并且只有有限多个包含多于一个元素的等价类。则 $H(X) = H^1(X)$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $a, b \in X$ such that $\pi^1_{\mathrm{Haus}}(a) \neq \pi^1_{\mathrm{Haus}}(b)$. For any $p \in X$, let $[p]_1$ be the equivalence class of $p$ with respect to $\overset{1}{\sim}_{\mathrm{Haus}}$. Let $Y$ be the union of all equivalence classes $[p]_1$ with more than one element such that $\{a, b\} \cap [p]_1 = \emptyset$. For each $q \in Y$ and each $p \in [a]_1$, there is an open neighbourhood $U_{p,q}$ of $p$ such that $q \notin U_{p,q}$, because $(p, q) \notin \overline{\mathrm{diag}(X)}$. Now $U = \bigcup_{p \in [a]_1} \bigcap_{q \in Y} U_{p,q}$ is an open neighbourhood of $[a]_1$ such that $Y \cap U = \emptyset$. Similarly, there is an open neighbourhood $V$ of $B$ such that $Y \cap V = \emptyset$.
+Each pair of elements $p_1, q_1$ with $p_1 \in [a]_1$ and $q_1 \in [b]_1$ can be separated by open neighbourhoods $U_{p_1, q_1}$ and $V_{p_1, q_1}$, because $(p_1, q_1) \notin \overline{\mathrm{diag}(X)}$. Therefore, $[a]_1$ and $[b]_1$ can be separated by open neighbourhoods $S := \bigcap_{q_1 \in [b]_1} \bigcup_{p_1 \in [a]_1} U_{p_1, q_1}$ and $T := \bigcup_{q_1 \in [b]_1} \bigcap_{p_1 \in [a]_1} V_{p_1, q_1}$. Now $a$ and $b$ are separated by the open saturated neighbourhoods $U \cap S$ and $V \cap T$. Therefore, $\pi^1_{\mathrm{Haus}}(a)$ and $\pi^1_{\mathrm{Haus}}(b)$ are separated by the open neighbourhoods $\pi^1_{\mathrm{Haus}}(U \cap S)$ and $\pi^1_{\mathrm{Haus}}(V \cap T)$. Hence $H^1(X)$ is Hausdorff and $H(X) = H^1(X)$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.2.22 Corollary:** If $X$ is a finite topological space, then $H(X) = H^1(X)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.22 推论**：如果 $X$ 是一个有限拓扑空间，则 $H(X) = H^1(X)$。
+</details>
+:::
+
+**12.4.2.23 Example:** Let $X = (\mathbb{R} \times \{0, 1\}) / \sim$, where $\sim$ is an equivalence relation on $\mathbb{R} \times \{0, 1\}$ such that $(x, 0) \sim (x, 1)$ for all $x \in \mathbb{R} \setminus \{0\}$. Then $X$ can be considered as the real line with a double origin and $\{(x, 0), (x, 1)\}$ is the only equivalence class of $\overset{1}{\sim}_{\mathrm{Haus}}$ that has more than one element. So $H(X) = H^1(X) \cong \mathbb{R}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.23 例**：设 $X = (\mathbb{R} \times \{0, 1\}) / \sim$，其中 $\sim$ 是 $\mathbb{R} \times \{0, 1\}$ 上的一个等价关系，满足对于所有 $x \in \mathbb{R} \setminus \{0\}$ 都有 $(x, 0) \sim (x, 1)$。那么 $X$ 可以被看作是带有双原点的实直线，并且 $\{(x, 0), (x, 1)\}$ 是 $\overset{1}{\sim}_{\mathrm{Haus}}$ 中唯一一个包含多于一个元素的等价类。所以 $H(X) = H^1(X) \cong \mathbb{R}$。
+</details>
+
+In general, $H(X) = H^1(X)$ does not hold.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+一般而言，$H(X) = H^1(X)$ 并不成立。
+</details>
+
+**12.4.2.24 Example:** Let $X = \mathbb{N} \cup \{\infty\}$ with the topology given by a basis that consists of all sets of the form $\{2n - 1\}, \{2n - 1, 2n, 2n + 1\}$, or $[2n - 1, \infty]$, with $n \in \mathbb{N}$. Since $(n, n + 1) \in \overline{\mathrm{diag}(X)}$ and $(n, \infty) \notin \overline{\mathrm{diag}(X)}$ for each $n \in \mathbb{N}$, the equivalence classes of $\overset{1}{\sim}_{\mathrm{Haus}}$ are $\mathbb{N}$ and $\{\infty\}$. However, the latter is not open in $X$, so 1 and $\infty$ cannot be separated by saturated open neighbourhoods (with respect to $\pi^1_{\mathrm{Haus}}$). Therefore, $\pi^1_{\mathrm{Haus}}(1)$ and $\pi^1_{\mathrm{Haus}}(\infty)$ cannot be separated by open sets, whereas $\pi^1_{\mathrm{Haus}}(1) \neq \pi^1_{\mathrm{Haus}}(\infty)$. Hence $H^1(X)$ is not Hausdorff and $H^1(X) \neq H(X)$. In this case, $H^2(X) = H(X)$ does hold since $H^1(X)$ is finite.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.2.24 例**：设 $X = \mathbb{N} \cup \{\infty\}$，其拓扑由形如 $\{2n - 1\}, \{2n - 1, 2n, 2n + 1\}$ 或 $[2n - 1, \infty]$ 的所有集合构成的基给出，其中 $n \in \mathbb{N}$。因为对于每个 $n \in \mathbb{N}$ 都有 $(n, n + 1) \in \overline{\mathrm{diag}(X)}$ 且 $(n, \infty) \notin \overline{\mathrm{diag}(X)}$，所以 $\overset{1}{\sim}_{\mathrm{Haus}}$ 的等价类为 $\mathbb{N}$ 和 $\{\infty\}$。然而，后者在 $X$ 中不是开集，因此 1 和 $\infty$ 无法由饱和的开邻域（关于 $\pi^1_{\mathrm{Haus}}$）分离。因此，$\pi^1_{\mathrm{Haus}}(1)$ 和 $\pi^1_{\mathrm{Haus}}(\infty)$ 无法由开集分离，尽管 $\pi^1_{\mathrm{Haus}}(1) \neq \pi^1_{\mathrm{Haus}}(\infty)$。故 $H^1(X)$ 不是豪斯多夫空间且 $H^1(X) \neq H(X)$。在这种情况下，$H^2(X) = H(X)$ 确实成立，因为 $H^1(X)$ 是有限的。
+</details>
+
+### 12.4.3 The category Haus. | $\mathbf{Haus}$ 范畴。
+
+One may form the category of all small Hausdorff spaces or of all small compact Hausdorff spaces.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+我们可以构造所有小豪斯多夫空间的范畴，或者所有小紧豪斯多夫空间的范畴。
+</details>
+
+**12.4.3.1 Example:** By $\mathbf{Haus}$ we denote the category with objects all small Hausdorff spaces with morphisms all continuous functions.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.3.1 例**：我们用 $\mathbf{Haus}$ 表示以所有小豪斯多夫空间为对象、以所有连续函数为态射的范畴。
+</details>
+
+The category $\mathbf{Haus}$ is a large but locally small category.
+The category $\mathbf{Haus}$ is a reflective and full sub-category of $\mathbf{Top}$. The fullness of $\mathbf{Haus}$ in $\mathbf{Top}$ is trivial. We have to prove the reflectivity.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+范畴 $\mathbf{Haus}$ 是一个大但局部小的范畴。
+范畴 $\mathbf{Haus}$ 是 $\mathbf{Top}$ 的一个反射且完全的子范畴。$\mathbf{Haus}$ 在 $\mathbf{Top}$ 中的完全性是平凡的。我们需要证明其反射性。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.3.2 Proposition:** For any $X \in \mathbf{Top}$ the Hausdorff quotient map $\pi_{\mathrm{Haus}}$ is a reflection from $X \in \mathbf{Top}$ to $H(X) \in \mathbf{Haus}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.3.2 命题**：对于任意 $X \in \mathbf{Top}$，豪斯多夫商映射 $\pi_{\mathrm{Haus}}$ 是从 $X \in \mathbf{Top}$ 到 $H(X) \in \mathbf{Haus}$ 的一个反射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $Y$ be a Hausdorff space and $f: X \to Y$ a continuous map. If $\pi_{\mathrm{Haus}}(p_0) = \pi_{\mathrm{Haus}}(p_1)$, then, by definition of the equivalence relation $\sim_{\mathrm{Haus}}$, $f(p_0) = f(p_1)$. Consequently, any $f: X \to Y$ is compatible with $\sim_{\mathrm{Haus}}$ and by consequence, there exists a unique function $\tilde{f}: X / \sim_{\mathrm{Haus}} \to Y$ such that $\tilde{f} = f \circ \pi_{\mathrm{Haus}}$. We have to show that $\tilde{f}$ is a continuous map and that $X / \sim_{\mathrm{Haus}}$ is a Hausdorff space.
+Recall that $U$ is an open subset of $X / \sim_{\mathrm{Haus}}$ iff $\pi_{\mathrm{Haus}}^{-1}(U)$ is an open subset of $X$. Let $V$ be an open subset of $Y$, then $\pi_{\mathrm{Haus}}^{-1}(\tilde{f}^{-1}(V)) = f^{-1}(V)$ is an open set of $X$. We deduce that $\tilde{f}^{-1}(U)$ is an open set of $X / \sim_{\mathrm{Haus}}$ and as a consequence, $\tilde{f}$ is continuous.
+If $\pi_{\mathrm{Haus}}(p_0) \neq \pi_{\mathrm{Haus}}(p_1)$, then there is a Hausdorff space $Y$ and a continuous map $f: X \to Y$ such that $f(p_0) \neq f(p_1)$. By the Hausdorffness, there are two disjoint open subsets $V_0$ and $V_1$ of $Y$ such that $f(p_0) \in V_0$ and $f(p_1) \in V_1$. It implies that $\pi_{\mathrm{Haus}}(p_0) \in \tilde{f}^{-1}(V_0)$ and $\pi_{\mathrm{Haus}}(p_1) \in \tilde{f}^{-1}(V_1)$. The subsets $\tilde{f}^{-1}(V_0)$ and $\tilde{f}^{-1}(V_1)$ are clearly disjoint open subsets of $X / \sim_{\mathrm{Haus}}$, which is thus a Hausdorff space. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.3.3 Proposition:** In $\mathbf{Haus}$ the monomorphisms are the continuous injections, the epimorphisms are the continuous maps with dense image, and the bimorphisms are continuous injections with dense image.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.3.3 命题**：在 $\mathbf{Haus}$ 中，单态射是连续单射，满态射是具有稠密像的连续映射，双态射是具有稠密像的连续单射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $f: X \to Y$ be a morphism in $\mathbf{Haus}$, namely a continuous map.
+If $f$ is monic, then it is left-cancellable. For any $p_0, p_1 \in X$ with $f(p_0) = f(p_1)$, we consider the constant maps $c_{p_0}: * \to X$ and $c_{p_1}: * \to X$ sending the singleton to $p_0$ and $p_1$, respectively; then we have $f \circ c_{p_0} = f \circ c_{p_1}: X \to Y$. Cancelling $f$ on the left we have $c_{p_0} = c_{p_1}$, which implies that $p_0 = p_1$ and $f$ is an injection. If $f$ is injective, then let $h_0, h_1: Z \to X$ be continuous maps such that $f \circ h_0 = f \circ h_1$. For any $r \in Z$, we have $f(h_0(r)) = f(h_1(r))$, and by injectivity we have $h_0(r) = h_1(r)$, this implies that $h_0 = h_1$. Then, $f$ is left-cancellable and is a monomorphism.
+If $f$ is epic, ... $\blacksquare$
+</details>
+
+### 12.4.4 The Hausdorff quotient functor. | 豪斯多夫商函子。
+
+In this section, the general construction of $H(X)$ from a topological space $X$ will be extended to a functor $H: \mathbf{Top} \to \mathbf{Haus}$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+在本节中，从拓扑空间 $X$ 构造 $H(X)$ 的一般构造将被推广为一个函子 $H: \mathbf{Top} \to \mathbf{Haus}$。
+</details>
+
+::: {.callout-note appearance="simple"}
+**12.4.4.1 Definition:** The functor $H: \mathbf{Top} \to \mathbf{Haus}$ sends for any $X \in \mathbf{Top}$ to its Hausdorff quotient $H(X)$, and any $f: X \to Y$ in $\mathbf{Top}$, to $H(f)$ be the unique continuous map $H(X) \to H(Y)$ such that $H(f) \circ \pi_{\mathrm{Haus}, X} = \pi_{\mathrm{Haus}, Y} \circ f$. This map exists and is unique, since $\pi_{\mathrm{Haus}, Y} \circ f: X \to H(Y)$ is a map from $X$ to a Hausdorff space.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.1 定义**：函子 $H: \mathbf{Top} \to \mathbf{Haus}$ 将任意 $X \in \mathbf{Top}$ 映射到其豪斯多夫商 $H(X)$，并将 $\mathbf{Top}$ 中的任意 $f: X \to Y$ 映射为 $H(f)$，即满足 $H(f) \circ \pi_{\mathrm{Haus}, X} = \pi_{\mathrm{Haus}, Y} \circ f$ 的唯一连续映射 $H(X) \to H(Y)$。该映射存在且唯一，因为 $\pi_{\mathrm{Haus}, Y} \circ f: X \to H(Y)$ 是从 $X$ 到豪斯多夫空间的映射。
+</details>
+:::
+
+It needs to be checked that this $H$ is indeed a functor. It is clear that it sends identity morphisms to identity morphisms, since $\mathrm{id}_{H(X)}$ is the unique map $h: H(X) \to H(X)$ such that $h \circ \pi_{\mathrm{Haus}} = \pi_{\mathrm{Haus}} \circ \mathrm{id}_X$ for all $X \in \mathbf{Top}$. So $H(\mathrm{id}_X) = \mathrm{id}_{H(X)}$. Composition is also preserved by $H$. Let $X, Y, Z \in \mathbf{Top}$ with morphisms $f: X \to Y, g: Y \to Z$ in $\mathbf{Top}$. Then $(H(g) \circ H(f)) \circ \pi_{\mathrm{Haus}, X} = H(g) \circ (\pi_{\mathrm{Haus}, Y} \circ f) = \pi_{\mathrm{Haus}, Z} \circ (g \circ f)$. Hence, $H(g) \circ H(f)$ is the unique map $h: H(X) \to H(Y)$ such that $h \circ \pi_{\mathrm{Haus}, X} = \pi_{\mathrm{Haus}, Z} \circ (g \circ f)$. So $H(g) \circ H(f) = H(g \circ f)$.
+The following main question that will be answered is whether the Hausdorff Functor preserves homotopy.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+我们需要验证这个 $H$ 确实是一个函子。显然它将恒等态射映射为恒等态射，因为 $\mathrm{id}_{H(X)}$ 是使得对于所有 $X \in \mathbf{Top}$ 都有 $h \circ \pi_{\mathrm{Haus}} = \pi_{\mathrm{Haus}} \circ \mathrm{id}_X$ 的唯一映射 $h: H(X) \to H(X)$。所以 $H(\mathrm{id}_X) = \mathrm{id}_{H(X)}$。$H$ 也保持复合运算。设 $X, Y, Z \in \mathbf{Top}$ 且在 $\mathbf{Top}$ 中有态射 $f: X \to Y, g: Y \to Z$。那么 $(H(g) \circ H(f)) \circ \pi_{\mathrm{Haus}, X} = H(g) \circ (\pi_{\mathrm{Haus}, Y} \circ f) = \pi_{\mathrm{Haus}, Z} \circ (g \circ f)$。因此，$H(g) \circ H(f)$ 是满足 $h \circ \pi_{\mathrm{Haus}, X} = \pi_{\mathrm{Haus}, Z} \circ (g \circ f)$ 的唯一映射 $h: H(X) \to H(Y)$。所以 $H(g) \circ H(f) = H(g \circ f)$。
+接下来的一个主要问题是豪斯多夫函子是否保持同伦，我们将会回答这个问题。
+</details>
+
+::: {.callout-tip appearance="simple"}
+**12.4.4.2 Theorem:** Let $X, Y$ be topological spaces. There is a continuous bijection
+$$H(X \times Y) \to H(X) \times H(Y),$$
+$$\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), \pi_{\mathrm{Haus}, Y}(q)). \qquad (181)$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.2 定理**：设 $X, Y$ 为拓扑空间。存在一个连续双射
+$$H(X \times Y) \to H(X) \times H(Y),$$
+$$\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), \pi_{\mathrm{Haus}, Y}(q)). \qquad (181)$$
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Consider the following maps:
+$$\pi_{\mathrm{Haus}, X} \circ \pi_1: X \times Y \to H(X), \quad (p, q) \mapsto \pi_{\mathrm{Haus}, X}(p)$$
+$$\pi_{\mathrm{Haus}, Y} \circ \pi_2: X \times Y \to H(Y), \quad (p, q) \mapsto \pi_{\mathrm{Haus}, Y}(q). \qquad (182)$$
+By the universal property of the product $H(X) \times H(Y)$, this induces a map $N: X \times Y \to H(X) \times H(Y), (p, q) \mapsto (\pi_{\mathrm{Haus}, X}(x), \pi_{\mathrm{Haus}, Y}(y))$. Since $H(X) \times H(Y)$ is Hausdorff as a product of two Hausdorff spaces, this map factors through $H(X \times Y)$, so there is a map $\tilde{N}: H(X \times Y) \to H(X) \times H(Y)$ that sends $\pi_{\mathrm{Haus}, X \times Y}(p, q)$ to $(\pi_{\mathrm{Haus}, X}(p), \pi_{\mathrm{Haus}, Y}(q))$. Because $N$ is surjective, $\tilde{N}$ is also surjective.
+Now let $p_0, p_1 \in X, q_0, q_1 \in Y$ be such that $\pi_{\mathrm{Haus}, X}(p_0) = \pi_{\mathrm{Haus}, X}(p_1)$ and $\pi_{\mathrm{Haus}, Y}(q_0) = \pi_{\mathrm{Haus}, Y}(q_1)$ and let $f: X \times Y \to Z$ with $Z$ Hausdorff. Consider these maps
+$$g: X \to X \times Y, a \mapsto (a, q_0)$$
+$$h: Y \to X \times Y, b \mapsto (p_1, b). \qquad (183)$$
+It follows that
+$$
+\begin{aligned}
+f(p_0, q_0) &= (f \circ g)(p_0) = (f \circ g)(p_1) = f(p_1, q_0) \\
+&= (f \circ h)(q_0) = (f \circ h)(q_1) = f(p_1, q_1). \qquad (184)
+\end{aligned}
+$$
+So $\pi_{\mathrm{Haus}, X \times Y}(p_0, q_0) = \pi_{\mathrm{Haus}, X \times Y}(p_1, q_1)$. Therefore, $\tilde{N}$ is injective and hence a bijection. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.4.3 Corollary:** Let $X, Y$ be topological spaces such that $H(X \times Y)$ is compact. Then $\tilde{N}: H(X \times Y) \to H(X) \times H(Y)$, $\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), \pi_{\mathrm{Haus}, Y}(q))$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.3 推论**：设 $X, Y$ 为拓扑空间且使得 $H(X \times Y)$ 为紧致空间。那么 $\tilde{N}: H(X \times Y) \to H(X) \times H(Y)$, $\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), \pi_{\mathrm{Haus}, Y}(q))$ 是一个同胚。
+</details>
+:::
+
+*Proof:* Being a continuous bijection from a compact space to a Hausdorff space, $\tilde{N}$ is a homeomorphism. $\blacksquare$
+
+::: {.callout-important appearance="simple"}
+**12.4.4.4 Corollary:** Let $X, Y$ be compact topological spaces. Then $\tilde{N}: H(X \times Y) \to H(X) \times H(Y)$, $\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(x), \pi_{\mathrm{Haus}, Y}(y))$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.4 推论**：设 $X, Y$ 为紧拓扑空间。那么 $\tilde{N}: H(X \times Y) \to H(X) \times H(Y)$, $\pi_{\mathrm{Haus}, X \times Y}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(x), \pi_{\mathrm{Haus}, Y}(y))$ 是一个同胚。
+</details>
+:::
+
+*Proof:* The space $H(X \times Y) = \pi_{\mathrm{Haus}, X \times Y}(X \times Y)$ is compact, because it is a continuous image of the compact space $X \times Y$. Therefore, $\tilde{N}$ is a homeomorphism. $\blacksquare$
+
+In the rest of this section we denote the unit interval $[0, 1]$ by $I$. The following lemma can be found in a more general form in [6].
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+在本节的其余部分，我们将单位区间 $[0, 1]$ 记为 $I$。下面的引理可以在 [6] 中找到其更一般的形式。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.4.5 Lemma:** Let $f: X \to Y$ be a quotient map of topological spaces. Then $F: X \times I \to Y \times I$, $(p, t) \mapsto (f(p), t)$ is a quotient map.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.5 引理**：设 $f: X \to Y$ 为拓扑空间的商映射。那么 $F: X \times I \to Y \times I$, $(p, t) \mapsto (f(p), t)$ 也是一个商映射。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $U \subseteq X \times I$ be a saturated open set and let $(p, t) \in U$. Since $U$ is open, there is a basic open neighbourhood $V \times W \subseteq U$ of $(p, t)$. But there is also a closed interval $W^\prime \subseteq W$ that is a neighbourhood of $t$. Define the set $V^\prime = \{ v \in X : \{v\} \times W^\prime \subseteq U \}$.
+Let $a \in V^\prime$ and $b \in X$ with $f(a) = f(b)$. For any $w \in W^\prime$, we have $F(b, w) = F(a, w)$, so $(b, w) \in U$ because $U$ is saturated. Therefore we get $\{b\} \times W^\prime \subseteq U$ and hence $b \in V^\prime$, and $V^\prime$ is saturated with respect to $f$.
+Let $a \in V^\prime$. Because $\{a\} \times W^\prime \subseteq U$, there is an open neighbourhood $A_w \times B_w$ of $(a, w)$ for each $w \in W^\prime$. The set of all $B_w$ now covers $W^\prime$. Since $W^\prime$ is compact, it has a finite subcover $\{ B_j : j \in J \}$ for some finite $J \subseteq W^\prime$. We see that $\left(\bigcap_{j \in J} A_j\right) \times W^\prime \subset \left(\bigcap_{j \in J} A_j\right) \times \left(\bigcup_{j \in J} B_j\right) \subseteq U$ holds. So, $v \in V^\prime$ holds for all $v \in \bigcap_{j \in J} A_j$. Hence $a$ has an open neighbourhood $\bigcap_{j \in J} A_j \subseteq V^\prime$, so $V^\prime$ is open.
+Now observe that $V^\prime \times W^{\prime \circ} \subseteq U$ is a saturated open neighbourhood of $(p, t)$. Thus $U$ is a union of basic open sets as $U = \bigcup_{u \in U} (A_u \times B_u)$, where $A_u \times B_u$ is an open neighbourhood of $u$ and all $A_u$ are saturated. Therefore $F(U) = F\left(\bigcup_{u \in U} (A_u \times B_u)\right) = \bigcup_{u \in U} (f(A_u) \times B_u)$, which is open. So $F$ sends saturated open sets to open sets and is hence a quotient map. $\blacksquare$
+</details>
+
+
+::: {.callout-tip appearance="simple"}
+**12.4.4.6 Theorem:** Let $X$ be a topological space. The canonical map $C: H(X \times I) \to H(X) \times I$, $\pi_{\mathrm{Haus}, X \times I}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), q)$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.6 定理**：设 $X$ 为一个拓扑空间。典范映射 $C: H(X \times I) \to H(X) \times I$, $\pi_{\mathrm{Haus}, X \times I}(p, q) \mapsto (\pi_{\mathrm{Haus}, X}(p), q)$ 是一个同胚。
+</details>
+:::
+
+*Proof:* Since $I$ is Hausdorff, $H(I) = I$ holds. So, $C$ is a well-defined bijective continuous map. Because of the lemma, $X \times I \to H(X) \times I, (p, t) \mapsto (\pi_{\mathrm{Haus}, X}(p), t)$ is a quotient map. By the corollary, $C$ is a homeomorphism. $\blacksquare$
+
+We prove that the Hausdorff Functor preserves homotopy. This can be stated otherwise by introducing the homotopy category and saying that $H$ induces a functor in this category.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+我们证明豪斯多夫函子保持同伦。换句话说，通过引入同伦范畴，我们可以说 $H$ 在该范畴中诱导了一个函子。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.4.7 Proposition:** The functor $H$ induces a functor in the homotopy category. That is, whenever $f, g: X \to Y$ are homotopic maps of topological spaces, then $H(f)$ and $H(g)$ are also homotopic.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.7 命题**：函子 $H$ 在同伦范畴中诱导了一个函子。即，每当 $f, g: X \to Y$ 是拓扑空间的同伦映射时，$H(f)$ 和 $H(g)$ 也是同伦的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* Let $F: X \times I \to Y$ be a homotopy between $f$ and $g$. It easily follows that $H(F): H(X \times I) \to H(Y)$ is a homotopy between $H(f)$ and $H(g)$, after identifying $H(X \times I)$ with $H(X) \times I$.
+Now let $[f]$ denote the homotopy class of any morphism $f$ in $\mathbf{Top}$. Since $[H(f)] = [H(g)]$ whenever $f \simeq g$, we can define a functor $H_h$ in the homotopy category by $H_h(X) = H(X)$ for all $X \in \mathbf{Top}$ and $H_h([f]) = [H(f)]$ for all morphisms $f$ in $\mathbf{Top}$. $\blacksquare$
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.4.8 Corollary:** A topological space $X$ is Hausdorff iff $X$ and $H(X)$ are homeomorphic.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.8 推论**：一个拓扑空间 $X$ 是豪斯多夫空间，当且仅当 $X$ 与 $H(X)$ 同胚。
+</details>
+:::
+
+*Proof:* As $\mathbf{Haus}$ is a full subcategory of $\mathbf{Top}$, one can use the proposition I.4.20 of [adamek]. $\blacksquare$
+
+The epimorphisms of $\mathbf{Haus}$ are image-dense morphisms.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+$\mathbf{Haus}$ 的满态射是像稠密的态射。
+</details>
+
+::: {.callout-important appearance="simple"}
+**12.4.4.9 Proposition:** Let $f: X \to Y$ be an epimorphism in $\mathbf{Haus}$, then $\overline{f(X)} = Y$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.4.4.9 命题**：设 $f: X \to Y$ 为 $\mathbf{Haus}$ 中的一个满态射，则 $\overline{f(X)} = Y$。
+</details>
+:::
+
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+
+*Proof:* Let $\pi: Y \to Y / \overline{f(X)}$ be the quotient map and $\pi_{\mathrm{Haus}, X}: Y / \overline{f(X)} \to H(Y / \overline{f(X)})$ be the Hausdorff quotient map. We have $\pi_{\mathrm{Haus}, X} \circ \pi \circ f$ is constant and as $f$ is an epimorphism of $\mathbf{Haus}$, then $\pi_{\mathrm{Haus}, X} \circ \pi$ is constant. So, either $\pi$ is constant or $\pi_{\mathrm{Haus}, X}$ is constant. If $\pi$ is constant, then $Y = \overline{f(X)}$.
+Suppose that $Y \neq \overline{f(X)}$ and $\pi_{\mathrm{Haus}, X}$ is constant. Let $q \in Y \setminus \overline{f(X)}$. As $\overline{f(X)}$ is a closed subset of $Y$, then there exists an open subset $V$ of $Y$ such that $q \in V \subset Y \setminus \overline{f(X)}$. By definition of $\pi$, for $q_0$ and $q_1$ in $V$, $\pi(q_0) = \pi(q_1)$ iff $q_0 = q_1$. It implies that $\pi^{-1}(\pi(V)) = V$ and $\pi(V)$ is a Hausdorff open subset of $Y / \overline{f(A)}$. We deduce that $\pi_{\mathrm{Haus}, X} \circ \pi(V)$ has at least one point which is different from $\pi_{\mathrm{Haus}, X} \circ \pi\left(\overline{f(A)}\right)$. Consequently, $\pi_{\mathrm{Haus}, X}$ takes at least two different values; this fact is contradictory with $\pi_{\mathrm{Haus}, X}$ constant. $\blacksquare$
+</details>
+
+## 12.5 Regular and normal spaces. | 正则空间与正规空间。
+
+### 12.5.1 Regular spaces. | 正则空间。
+
+SEPARATION AXIOMS IN NLAB AND [10, THEOREMS 5.3-5.5]
+
+::: {.callout-important appearance="simple"}
+**12.5.1.1 Proposition:** A topological space $X$ is $\mathbf{T}_3$
+
+* iff every neighborhood of a point in $X$ contains a closed neighborhood;
+* iff any disjoint point and closed set in $X$ are separated by closed neighborhoods.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.5.1.1 命题**：一个拓扑空间 $X$ 是 $\mathbf{T}_3$ 空间
+
+* 当且仅当 $X$ 中一点的每个邻域都包含一个闭邻域；
+* 当且仅当 $X$ 中任意不相交的点和闭集由闭邻域分离。
+</details>
+:::
+
+### 12.5.2 Normal spaces. | 正规空间。
+
+::: {.callout-important appearance="simple"}
+**12.5.2.1 Proposition:** A topological space $X$ is $\mathbf{T}_4$
+
+* iff every neighborhood of a closed set contains a closed neighborhood;
+* iff any disjoint closed sets in $X$ are separated by closed neighborhoods;
+* iff any disjoint closed sets in $X$ are separated by a function.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.5.2.1 命题**：一个拓扑空间 $X$ 是 $\mathbf{T}_4$ 空间
+
+* 当且仅当一个闭集的每个邻域都包含一个闭邻域；
+* 当且仅当 $X$ 中任意不相交的闭集由闭邻域分离；
+* 当且仅当 $X$ 中任意不相交的闭集由函数分离。
+</details>
+:::
+
+*Proof:* The third item is the Urysohn's lemma. $\blacksquare$
+
+### 12.5.3 Urysohn's lemma and Tietze extension theorem. | 乌雷松引理与蒂茨扩张定理。
+[10, SECTION 5.3]
+
+::: {.callout-important appearance="simple"}
+**12.5.3.1 Lemma:** Any closed subset $F_0$ and open subset $U_1$ of a $\mathbf{T}_4$ space $X$ with $F_0 \subseteq U_1$ could be extended to a family $(U_s)_{s \in [0,1]}$ of open subsets and a family $(F_s)_{s \in [0,1]}$ of closed subsets of $X$ such that $U_0 = \emptyset$, $F_1 = X$, and for any $s_0, s_1 \in [0, 1]$ with $s_0 < s_1$ we have $U_{s_0} \subseteq F_{s_0} \subseteq U_{s_1} \subseteq F_{s_1}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.5.3.1 引理**：设 $X$ 为 $\mathbf{T}_4$ 空间，$F_0$ 为闭集，$U_1$ 为开集且 $F_0 \subseteq U_1$，则可以将其扩张为 $X$ 的开集族 $(U_s)_{s \in [0,1]}$ 和闭集族 $(F_s)_{s \in [0,1]}$，使得 $U_0 = \emptyset$，$F_1 = X$，并且对于任意 $s_0, s_1 \in [0, 1]$ 且满足 $s_0 < s_1$，我们有 $U_{s_0} \subseteq F_{s_0} \subseteq U_{s_1} \subseteq F_{s_1}$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**12.5.3.2 Urysohn's lemma:** In a $\mathbf{T}_4$ space any two disjoint closed subsets are separated by a function.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.5.3.2 乌雷松引理 (Urysohn's lemma)**：在 $\mathbf{T}_4$ 空间中，任意两个不相交的闭子集由函数分离。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**12.5.3.3 Tietze extension theorem:** Let $A$ be a closed subset of a $\mathbf{T}_4$ space $X$. Then any continuous function $f: A \to \mathbb{R}$ has an extension $g: X \to \mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.5.3.3 蒂茨扩张定理 (Tietze extension theorem)**：设 $A$ 是 $\mathbf{T}_4$ 空间 $X$ 的闭子集。则任意连续函数 $f: A \to \mathbb{R}$ 都有一个扩张 $g: X \to \mathbb{R}$。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Urysohn's lemma implies Tietze extension theorem in the case when $A$ has exactly two components and $f$ is locally constant. In other cases, see Exercise 12.6.3.2. $\blacksquare$
+</details>
+
+## 12.6 Properties of separation axioms. | 分离公理的性质。
+
+### 12.6.1 Counterexamples of implications. | 蕴含关系的反例。
+
+::: {.callout-important appearance="simple"}
+**12.6.1.1 Proposition:** Let $\mathcal{T}$ be the topology on $\mathbb{R}$ generated by $\mathcal{T}_{\mathbb{R}} \cup \mathcal{T}_{\text{coc}}$. Then $(\mathbb{R}, \mathcal{T})$ is Hausdorff but not regular.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.1.1 命题**：设 $\mathcal{T}$ 为由 $\mathcal{T}_{\mathbb{R}} \cup \mathcal{T}_{\text{coc}}$ 生成的 $\mathbb{R}$ 上的拓扑。则 $(\mathbb{R}, \mathcal{T})$ 是豪斯多夫空间但不是正则空间。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+*Proof:* Since $\mathcal{T}$ is finer than a Hausdorff topology $\mathcal{T}_{\mathbb{R}}$, it is itself Hausdorff.
+We leave as an exercise that $U \subseteq \mathbb{R}$ is open under the topology $\mathcal{T}$ iff it is written as $U = V \cap W$ for $V \in \mathcal{T}_{\mathbb{R}}$ and $W \in \mathcal{T}_{\text{coc}}$.
+Now $B = \mathbb{Q}$ is closed whose only open neighborhood is $\mathbb{R}$, and then it violates the assumption of the $\mathbf{T}_3$ axiom with any $p \in \mathbb{R} \setminus \mathbb{Q}$. $\blacksquare$
+</details>
+
+
+**12.6.1.2 Example:** Let $H = \mathbb{R} \times ]0, \infty[$ be the *upper half plane* and $\overline{H} = \mathbb{R} \times [0, \infty[$ be the *closed upper half plane*. Let
+$$\mathcal{B} = \mathcal{B}_H \cup \{B_{(x,y)}(y) \cup \{(x,0)\} : (x,y) \in H\}. \qquad (198)$$
+The *Moore plane* is $(\overline{H}, \mathcal{T}(\mathcal{B}))$.
+
+::: {.callout-important appearance="simple"}
+**12.6.1.3 Proposition:** The Moore plane is regular but not normal.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.1.3 命题**：摩尔平面是正则的但不是正规的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* The Moore plane $(\overline{H}, \mathcal{T}_{\text{Moore}})$ satisfies the $\mathbf{T}_1$ axiom since every point is closed. For the $\mathbf{T}_3$ axiom it remains to check that for any $x \in \mathbb{R}$ and $r > 0$ the set $B_{(x,r)}(r) \cup \{(x, 0)\}$ contains a closed neighborhood $D_{(x,\frac{r}{2})}(\frac{r}{2}) = \mathrm{Cl}(B_{(x,\frac{r}{2})}(\frac{r}{2}) \cup \{(x,0)\})$ of $(x, 0)$. Thus the Moore plane is regular.
+We claim that for any $A \subseteq \mathbb{R}$, the set $A \times \{0\}$ is closed in $(\overline{H}, \mathcal{T}_{\text{Moore}})$. In fact, taking the union of open sets $H$ and $B_{(x,1)}(1) \cup \{(x, 0)\}$ for $x \in \mathbb{R} \setminus A$ we obtain the complement of $A \times \{0\}$ in $\overline{H}$. Note that $Q = \mathbb{Q} \times (\mathbb{Q} \cap ]0, \infty[)$ is dense in $(\overline{H}, \mathcal{T}_{\text{Moore}})$, and if assuming the $\mathbf{T}_4$ axiom we have the injection
+$$\mathrm{Map}(\mathbb{R} \times \{0\}; [0, 1]) \to C((\mathbb{R} \times \{0\}, \mathcal{T}_{\text{disc}}); [0, 1]) \to C((\overline{H}, \mathcal{T}_{\text{Moore}}); [0, 1]) \to \mathrm{Map}(Q; [0, 1]) \qquad (199)$$
+where $\mathrm{Map}(\cdot; \cdot)$ is the set of maps and $C(\cdot; \cdot)$ is the set of continuous maps. The first arrow is the identity since every map from a discrete space is continuous, the second arrow is by Tietze extension theorem, the third arrow is injective by the denseness of $Q$. However comparing cardinalities
+$$|\mathrm{Map}(\mathbb{R} \times \{0\}; [0, 1])| = |[0, 1]| ^{|\mathbb{R} \times \{0\}|} = |\mathbb{R}|^{|\mathbb{R}|},$$
+$$|\mathrm{Map}(Q; [0, 1])| = |[0, 1]| ^{|Q|} = |\mathbb{R}|^{|\mathbb{N}|}. \qquad (200)$$
+Then $|\mathbb{R}|^{|\mathbb{R}|} > |\mathbb{R}|^{|\mathbb{N}|}$ would lead to a contradiction and then the Moore plane is not normal.
+To see the inequality above one could use $|\mathbb{R}|^{|\mathbb{R}|} \geq 2^{|\mathbb{R}|} > |\mathbb{R}| = |\mathbb{R}|^{|\mathbb{N}|}$ but actually $|\mathbb{R}|^{|\mathbb{R}|} = 2^{|\mathbb{R}|}$ since $|\mathbb{R}|^{|\mathbb{R}|} \leq (2^{|\mathbb{R}|})^{|\mathbb{R}|} = 2^{|\mathbb{R}| \cdot |\mathbb{R}|} = 2^{|\mathbb{R}|}$. $\blacksquare$
+</details>
+
+**12.6.1.4 Example:** Let $\overline{H}_* = \overline{H} \cup \{\infty\}$ and let
+$$\mathcal{T}_{\text{Moore}}^* = \mathcal{T}_{\text{Moore}} \cup \{(\mathbb{R} \setminus F) \times \{0\} \cup \{\infty\} : F \subseteq \mathbb{R}, |F| < \infty\}. \qquad (201)$$
+Then $(\overline{H}_*, \mathcal{T}_{\text{Moore}}^*)$ is a topological space.
+
+::: {.callout-important appearance="simple"}
+**12.6.1.5 Proposition:** The space $(\overline{H}_*, \mathcal{T}_{\text{Moore}}^*)$ is normal but contains the Moore space as a subspace.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.1.5 命题**：空间 $(\overline{H}_*, \mathcal{T}_{\text{Moore}}^*)$ 是正规的，但包含摩尔空间作为其子空间。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**12.6.1.6 Definition:** A subset of a topological space $X$ is $G_\delta$ if it is the intersection of countably many open sets; it is $F_\sigma$ if it is the union of countably many closed sets.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.1.6 定义**：拓扑空间 $X$ 的一个子集如果是可数个开集的交，则称为 $G_\delta$ 集；如果是可数个闭集的并，则称为 $F_\sigma$ 集。
+</details>
+:::
+
+Every open subset is trivially a $G_\delta$-subset, while every closed subset is a $F_\sigma$-subset.
+
+::: {.callout-tip appearance="simple"}
+**12.6.1.7 Theorem:** In a $\mathbf{T}_4$ space any two disjoint $G_\delta$ closed subsets are precisely separated by a function. In particular, a $\mathbf{T}_4$ space is perfectly $\mathbf{T}_4$ iff all closed subsets are $G_\delta$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.1.7 定理**：在 $\mathbf{T}_4$ 空间中，任意两个不相交的 $G_\delta$ 闭子集由函数精确分离。特别地，一个 $\mathbf{T}_4$ 空间是完美 $\mathbf{T}_4$ 空间，当且仅当所有闭子集都是 $G_\delta$ 集。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* We observe that $\mathbb{R}$ has the property that all closed subsets are $G_\delta$ (equivalently, all open subsets are $F_\sigma$). Then for any continuous $f: X \to \mathbb{R}$, the $f$-saturated closed subsets of $X$ are $G_\delta$. In particular, if $f$ precisely separates two closed subsets $A$ and $B$ of $X$, then $A = f^{-1}(0)$ and $B = f^{-1}(0)$ must be $G_\delta$.
+Now suppose $A$ and $B$ are two $G_\delta$ closed subsets of $X$; then there are decreasing families $(V_j)_{j \in \mathbb{N}}$ and $(W_j)_{j \in \mathbb{N}}$ of open subsets of $X$ such that $A = \bigcap_{j=1}^\infty V_j$ and $B = \bigcap_{j=1}^\infty W_j$. By the above lemma we achieve a tuple $([0, 1], (U_s)_{s \in [0, 1]}, (F_s)_{s \in [0, 1]})$ satisfying certain monotonicity properties. The amended tuple
+$$\left([0, 1], (\tilde{U}_s \cap V_j)_{s \in [0, 1]}, (\tilde{F}_s)_{s \in [0, 1]}\right), \quad \tilde{U}_s = U_s \cap V_{\lfloor \frac{1}{s} \rfloor}, \tilde{F}_s = F_s \cap W_{\lfloor \frac{1}{s} \rfloor}^\complement \qquad (202)$$
+satisfies the same properties, and the Urysohn function $\tilde{f}$ is generated from the amended tuple. $\blacksquare$
+</details>
+
+
+### 12.6.2 Hereditariness of separation axioms. | 分离公理的遗传性。
+
+::: {.callout-tip appearance="simple"}
+**12.6.2.1 Theorem:** The $\mathbf{T}_0$, $\mathbf{T}_1$, $\mathbf{T}_2$, and $\mathbf{T}_3$ axioms are hereditary. The $\mathbf{T}_4$ axiom is closed-hereditary but not hereditary.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.2.1 定理**：$\mathbf{T}_0$、$\mathbf{T}_1$、$\mathbf{T}_2$ 和 $\mathbf{T}_3$ 公理是遗传的。$\mathbf{T}_4$ 公理是闭遗传的但不是遗传的。
+</details>
+:::
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
+
+*Proof:* The $\mathbf{T}_0$, $\mathbf{T}_1$, and $\mathbf{T}_2$ axioms are hereditary since a neighborhood restricted to a subspace is still a neighborhood. Let $A$ be a subspace of $X$. For the $\mathbf{T}_3$ axiom, if $p \in A$ and closed $B \subseteq A$ are disjoint, then there is a closed $B_1 \subseteq X$ such that $B_1 \cap A = B$. In particular, $p \notin B_1$, and if $X$ is $\mathbf{T}_3$, then $p$ and $B_1$ are separated by neighborhoods $U_1$ and $V_1$ in $X$, and then $p$ and $B$ are separated by neighborhoods $U_1 \cap A$ and $V_1 \cap B$ in $A$.
+This argument does not work for $\mathbf{T}_4$ as if $C$ and $B$ are disjoint closed subset of $A$ we may not find closed subsets $C_1$ and $B_1$ of $X$ with $C_1 \cap A = C$ and $B_1 \cap A = B$ that are still disjoint; it works when $A$ is closed in $X$. In this case, the $\mathbf{T}_4$ axiom could be applied directly to $C$ and $B$ in $X$.
+For counterexample of the hereditary of $\mathbf{T}_4$ see the Moore plane with an extra point. $\blacksquare$
+</details>
+
+::: {.callout-tip appearance="simple"}
+**12.6.2.2 Theorem:** Two nonempty topological spaces are $\mathrm{T}_2$ iff their disjoint union is and iff their product is.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.2.2 定理**：两个非空拓扑空间是 $\mathrm{T}_2$ 空间，当且仅当它们的不交并是 $\mathrm{T}_2$ 空间，且当且仅当它们的乘积是 $\mathrm{T}_2$ 空间。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**12.6.2.3 Theorem:** A product of regular spaces is regular, but a product of normal spaces is not necessarily normal.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**12.6.2.3 定理**：正则空间的乘积是正则的，但正规空间的乘积不一定是正规的。
+</details>
+:::
+
+*Proof:* For the counterexamples see the product of two real lines with the lower limit topology (Exercise 12.6.3.6). $\blacksquare$

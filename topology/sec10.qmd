@@ -1,0 +1,520 @@
+---
+title: "IDENTIFYING AND ATTACHING SPACES"
+date: "2026-04-14"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+![pixiv@SoyChicken](pic/bsj9.jpg)
+
+## 10.1 Constructions | 构造
+
+In what follows we will introduce many very concrete geometric ways to get quotient spaces from known spaces.
+
+### 10.1.1 Squeezing, identifying, and attaching spaces | 压缩、等同与附加空间
+
+Let $A$ be a subset of a topological space $X$. We may define an equivalence relation on $X$ by identifying all points of $A$. In the quotient space, we "squeeze" all points in $A$ to one point, which is denoted by $X/A$.
+
+::: {.callout-note appearance="simple"}
+**10.1.1.1 Definition:** Let $A$ be a subset of a topological space $X$. Then the quotient space $X/A$ of $X$ by *squeezing* $A$ is by the equivalence relation
+$$
+p \sim q \iff (p = q) \lor (p, q \in A). \quad (129)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.1.1 定义：** 设 $A$ 是拓扑空间 $X$ 的一个子集。那么通过*压缩* $A$ 得到的 $X$ 的商空间 $X/A$ 是由以下等价关系给出的：
+$$
+p \sim q \iff (p = q) \lor (p, q \in A). \quad (129)
+$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**10.1.1.2 Proposition:** The following diagram commutes
+$$
+\begin{array}{ccc}
+A & \xrightarrow{\iota_{A,X}} & X \\
+\downarrow & & \downarrow\pi \\
+* & \xrightarrow{} & X/A
+\end{array}
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.1.2 命题：** 以下图表交换
+$$
+\begin{array}{ccc}
+A & \xrightarrow{\iota_{A,X}} & X \\
+\downarrow & & \downarrow\pi \\
+* & \xrightarrow{} & X/A
+\end{array}
+$$
+</details>
+:::
+
+Let $X$ be a topological space. We may "identify" the points $a$ and $b$ in $X$ by the equivalence relation with $a \sim b$. Given a map from a subset $A$ to a subset $B$ of $X$ by identifying each point in $A$ to a specific point in $B$.
+
+
+::: {.callout-note appearance="simple"}
+**10.1.1.3 Definition:** Let $h: A \to B$ be a continuous map between disjoint subspaces of $X$. Then the quotient space $X/h$ of $X$ by *identifying* the domain with the range of $h$ is by the equivalence relation
+$$
+p \sim_h q \iff (p = q) \lor (p \in A, q = h(p) \in B). \quad (130)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.1.3 定义：** 设 $h: A \to B$ 是 $X$ 的两个不交子空间之间的连续映射。那么通过将 $h$ 的定义域和值域*等同*而得到的 $X$ 的商空间 $X/h$ 是由以下等价关系给出的：
+$$
+p \sim_h q \iff (p = q) \lor (p \in A, q = h(p) \in B). \quad (130)
+$$
+</details>
+:::
+
+Let $X$ and $Y$ be topological spaces. We may "attach" one space to another along a given map. Namely, if $f: A \to X$ a continuous map from a subspace of $X$. Then we identifying each point $a \in A$ with $h(a) \in f(A)$ in $X \sqcup Y$.
+
+::: {.callout-note appearance="simple"}
+**10.1.1.4 Definition:** Let $h: A \to Y$ be an embedding of topological spaces and $A$ be a subspace of $X$. Then the *attaching* space $X \cup_h Y$ of $X$ by the attaching map $h$ is the quotient space of $X \sqcup Y$ by the equivalence relation
+$$
+p \sim_h q \iff (p = q) \lor (p \in A, q = h(p) \in Y). \quad (131)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.1.4 定义：** 设 $h: A \to Y$ 为拓扑空间的嵌入，且 $A$ 是 $X$ 的子空间。那么通过附加映射 $h$ 得到的 $X$ 的*附加*空间 $X \cup_h Y$ 是 $X \sqcup Y$ 的商空间，由以下等价关系给出：
+$$
+p \sim_h q \iff (p = q) \lor (p \in A, q = h(p) \in Y). \quad (131)
+$$
+</details>
+:::
+
+### 10.1.2 Products and coproducts of pointed spaces.
+
+The construction of products and coproducts can be done to pointed sets (Definition 4.3.2.1), as well as to pointed topological spaces which yields natural topologies. The product of pointed topological spaces is called the smash product, and in particular, the coproduct of pointed topological spaces, called the wedge sum, preserves the connectedness.
+
+::: {.callout-note appearance="simple"}
+**10.1.2.1 Definition:** Let $(X, p)$ and $(Y, q)$ be pointed sets. Their **wedge sum** is the pointed set $(X \lor Y, r)$ where
+$$
+X \lor Y = X \sqcup Y / \{p, q\}, \quad r = \{p, q\}. \quad (132)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.1 定义：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合。它们的**楔和**是带点集合 $(X \lor Y, r)$，其中
+$$
+X \lor Y = X \sqcup Y / \{p, q\}, \quad r = \{p, q\}. \quad (132)
+$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**10.1.2.2 Proposition:** Let $(X, p)$ and $(Y, q)$ be pointed sets with topologies on $X$ and $Y$, then the wedge sum $(X \lor Y, r)$ is equipped with a natural topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.2 命题：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合，且在 $X$ 和 $Y$ 上赋予了拓扑，那么楔和 $(X \lor Y, r)$ 配备有一个自然拓扑。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**10.1.2.3 Definition:** The *wedge sum* of two pointed topological spaces $(X, p)$ and $(Y, q)$ is the pointed topological space $(X \lor Y, r)$ equipped with the natural topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.3 定义：** 两个带点拓扑空间 $(X, p)$ 和 $(Y, q)$ 的*楔和*是配备有自然拓扑的带点拓扑空间 $(X \lor Y, r)$。
+</details>
+:::
+
+More generally, given a family of pointed spaces $\{(X_\alpha, p_\alpha)\}_{\alpha \in A}$, we may form the wedge sum $\bigvee_\alpha X_\alpha$ by attaching all $X_\alpha$'s at the point $p_\alpha$'s.
+
+::: {.callout-note appearance="simple"}
+**10.1.2.4 Definition:** Let $(X, p)$ and $(Y, q)$ be pointed sets. Their *smash product* is the pointed set $(X \land Y, r)$ where
+$$
+X \land Y = X \times Y / X \lor Y, \quad r = X \lor Y. \quad (133)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.4 定义：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合。它们的*砸积*是带点集合 $(X \land Y, r)$，其中
+$$
+X \land Y = X \times Y / X \lor Y, \quad r = X \lor Y. \quad (133)
+$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**10.1.2.5 Proposition:** Let $(X, p)$ and $(Y, q)$ be pointed sets with topologies on $X$ and $Y$, then the smash product $(X \land Y, r)$ is equipped with a natural topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.5 命题：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合，且在 $X$ 和 $Y$ 上赋予了拓扑，那么砸积 $(X \land Y, r)$ 配备有一个自然拓扑。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**10.1.2.6 Definition:** The *smash product* of two pointed topological spaces $(X, p)$ and $(Y, q)$ is the pointed topological space $(X \land Y, r)$ equipped with the natural topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.2.6 定义：** 两个带点拓扑空间 $(X, p)$ 和 $(Y, q)$ 的*砸积*是配备有自然拓扑的带点拓扑空间 $(X \land Y, r)$。
+</details>
+:::
+
+More generally, given a family of pointed spaces $\{(X_\alpha, p_\alpha)\}_{\alpha \in A}$, we may form the smash product $\bigwedge_\alpha X_\alpha$, too.
+
+### 10.1.3 Cone spaces and suspensions | 锥空间与悬挂
+
+::: {.callout-note appearance="simple"}
+**10.1.3.1 Definition:** Let $X$ and $Y$ be topological spaces. Then
+
+* the **cone** of $X$ is the squeezing space $CX = X \times [0, 1] / X \times \{0\}$;
+* the **suspension** of $X$ is the quotient space $SX$ of $X \times [0, 1]$ given by squeezing $X \times \{0\}$ to one point, and also squeezing all points in $X \times \{1\}$ to another point;
+* the **join** of $X$ and $Y$ is the the quotient space $X \star Y$ given by $X \times Y \times [0, 1] / \sim$, where the equivalence is
+$$
+(x, y_1, 0) \sim (x, y_2, 0), (x_1, y, 1) \sim (x_2, y, 1), \quad x, x_1, x_2 \in X; y, y_1, y_2 \in Y. \quad (134)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.3.1 定义：** 设 $X$ 和 $Y$ 为拓扑空间。那么
+
+* $X$ 的**锥**是压缩空间 $CX = X \times [0, 1] / X \times \{0\}$；
+* $X$ 的**悬挂**是 $X \times [0, 1]$ 的商空间 $SX$，由将 $X \times \{0\}$ 压缩为一点，同时也将 $X \times \{1\}$ 中的所有点压缩为另一点给出；
+* $X$ 和 $Y$ 的**联接**是由 $X \times Y \times [0, 1] / \sim$ 给出的商空间 $X \star Y$，其中等价关系为
+$$
+(x, y_1, 0) \sim (x, y_2, 0), (x_1, y, 1) \sim (x_2, y, 1), \quad x, x_1, x_2 \in X; y, y_1, y_2 \in Y. \quad (134)
+$$
+</details>
+:::
+
+1. 锥空间 (Cone, $CX$)
+  * 物理动作：把空间 $X$ 向上拉伸出一个柱子 $X \times [0, 1]$，然后把顶端的整个盖子（$X \times \{0\}$）捏缩成一个点。
+  * 直觉：如果你拿一个圆（$S^1$）做底，向上拉成一个圆柱，再把圆柱的顶面捏成一个点，你得到的就是一个完美的圆锥体。这就是它名字的由来。
+  * 拓扑意义：任何空间的锥必定是可缩的 (contractible)，即可以连续形变成一个点（沿着母线滑向顶点即可）。
+2. 悬挂 (Suspension, $SX$)
+  * 物理动作：把空间 $X$ 向上拉伸出一个柱子，然后把顶端的盖子捏成一个点（北极），同时把底端的盖子也捏成另一个点（南极）。
+  * 直觉：如果你拿一个圆（$S^1$）做赤道，向上捏出一个北极，向下捏出一个南极，你得到的就是一个二维球面（$S^2$）！
+  * 公式推导：$S(S^n) = S^{n+1}$。悬挂操作是拓扑学里最标准的“升维机器”，它能把低维球面精确地升级为高一维的球面。
+3. 连接 (Join, $X \star Y$)
+  * 物理动作：这个稍微抽象一点。假设空间 $X$ 在左边，空间 $Y$ 在右边。你在 $X$ 里的每一点 $x$，和 $Y$ 里的每一点 $y$ 之间，都拉一根线段 $[0,1]$ 连接起来。
+  * 公式解读：$X \times Y \times [0, 1]$ 就是所有这些线段的集合。等价关系 $(x, y_1, 0) \sim (x, y_2, 0)$ 表示在线段的 $0$ 端（左端），所有的线段都汇聚在 $X$ 的点 $x$ 上（忽略了 $Y$ 的差异）；同理，在 $1$ 端（右端），所有的线段都汇聚在 $Y$ 的点 $y$ 上。
+  * 直觉：两个点的 Join 是一条线段；点和线段的 Join 是一个实心三角形；两条不相交线段的 Join 是一个实心四面体。
+
+### 10.1.4 Mapping cylinders, cones and tori | 映射柱、映射锥与映射环面
+
+::: {.callout-note appearance="simple"}
+**10.1.4.1 Definition:** Let $f: X \to Y$ be a continuous map between topological spaces. Then
+
+* the **mapping cylinder** of $f$ is the attaching space $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$ and $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$;
+* the **mapping cone** of $f$ is the quotient space $C_f = M_f / \sim$ where
+$$
+(x_1, 1) \sim (x_2, 1), (x, 0) \sim f(x), \quad x, x_1, x_2 \in X; \quad (135)
+$$
+* if $f: X \to X$ is a homeomorphism, the **mapping torus** of $f$ is the quotient space $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.4.1 定义：** 设 $f: X \to Y$ 是拓扑空间之间的连续映射。那么
+
+* $f$ 的**映射柱**是附加空间 $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$，且 $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$；
+* $f$ 的**映射锥**是商空间 $C_f = M_f / \sim$，其中
+$$
+(x_1, 1) \sim (x_2, 1), (x, 0) \sim f(x), \quad x, x_1, x_2 \in X; \quad (135)
+$$
+* 如果 $f: X \to X$ 是一个同胚，那么 $f$ 的**映射环面**是商空间 $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**10.1.4.2 Remark:** Mapping tori of surface homeomorphisms play a key role in the theory of 3-manifolds and have been intensely studied.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.4.2 备注：** 曲面同胚的映射环面在 3-流形理论中起着关键作用，并且已被深入研究。
+</details>
+:::
+
+## 10.2 
+
+### 10.2.1 Spheres and tori | 球面与环面
+
+**10.2.1.1 Example:** The circle $\mathbb{S}^1$ is one of the equivalent descriptions:
+
+(1) $\{(x_0, x_1) \in \mathbb{R}^2 : x_0^2 + x_1^2 = 1\}$ with the subspace topology.
+
+(2) $[0, 1]/\{0, 1\}$ with the quotient topology where the equivalence is $0 \sim 1$.
+
+(3) $\mathbb{R}/ \sim_{\mathbb{Z}}$ with the quotient topology where the equivalence is
+$$
+x \sim_{\mathbb{Z}} y \iff x - y \in \mathbb{Z}. \quad (137)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.1.1 例：** 圆 $\mathbb{S}^1$ 是以下等价描述之一：
+
+(1) 带有子空间拓扑的 $\{(x_0, x_1) \in \mathbb{R}^2 : x_0^2 + x_1^2 = 1\}$。
+
+(2) 带有商拓扑的 $[0, 1]/\{0, 1\}$，其中等价关系为 $0 \sim 1$。
+
+(3) 带有商拓扑的 $\mathbb{R}/ \sim_{\mathbb{Z}}$，其中等价关系为
+
+$$
+x \sim_{\mathbb{Z}} y \iff x - y \in \mathbb{Z}. \quad (137)
+$$
+</details>
+
+**10.2.1.2 Example:** The $n$-sphere $\mathbb{S}^n$ for $n \in \mathbb{N}_0$ is one of the equivalent descriptions:
+
+(1) $\{(x_0, ..., x_n) \in \mathbb{R}^{n+1} : x_0^2 + \cdots + x_n^2 = 1\}$ with the subspace topology.
+
+(2) $\bar{\mathbb{B}}^n/\mathbb{S}^{n-1}$ with the quotient topology where $\mathbb{S}^{n-1} = \partial\bar{\mathbb{B}}^n$ is the boundary sphere.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.1.2 例：** 对于 $n \in \mathbb{N}_0$，$n$-球面 $\mathbb{S}^n$ 是以下等价描述之一：
+
+(1) 带有子空间拓扑的 $\{(x_0, ..., x_n) \in \mathbb{R}^{n+1} : x_0^2 + \cdots + x_n^2 = 1\}$。
+(2) 带有商拓扑的 $\bar{\mathbb{B}}^n/\mathbb{S}^{n-1}$，其中 $\mathbb{S}^{n-1} = \partial\bar{\mathbb{B}}^n$ 是边界球面。
+</details>
+
+**10.2.1.3 Example:** The 2-torus $\mathbb{T}^2$ is one of the equivalent descriptions:
+
+(1) ${\mathbb{S}^1}^2$ with the product topology.
+
+(2) $[0, 1]^2/[(t, 0) \sim (t, 1), (0, t) \sim (1, t)]$ with the quotient topology.
+
+(3) $\mathbb{R}^2/ \sim_{\mathbb{Z}^2}$ with the quotient topology where the equivalence is
+$$
+x \sim_{\mathbb{Z}^2} y \iff x - y \in \mathbb{Z}^2. \quad (138)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.1.3 例：** 2-环面 $\mathbb{T}^2$ 是以下等价描述之一：
+
+(1) 带有乘积拓扑的 ${\mathbb{S}^1}^2$。
+
+(2) 带有商拓扑的 $[0, 1]^2/[(t, 0) \sim (t, 1), (0, t) \sim (1, t)]$。
+
+(3) 带有商拓扑的 $\mathbb{R}^2/ \sim_{\mathbb{Z}^2}$，其中等价关系为
+$$
+x \sim_{\mathbb{Z}^2} y \iff x - y \in \mathbb{Z}^2. \quad (138)
+$$
+</details>
+
+**10.2.1.4 Example:** The $n$-torus $\mathbb{T}^n$ for $n \in \mathbb{N}_0$ is one of the equivalent descriptions:
+
+(1) $(\mathbb{S}^1)^n$ with the product topology.
+
+(2) $[0, 1]^n/ \sim$ with the quotient topology where the equivalence is
+$$
+(x_0, ..., x_i, ..., x_n) \sim (x_0, ..., y_i, ..., x_n) \text{ where } x_i, y_i \in \{0, 1\}, i \in \{1, ..., n\}. \quad (139)
+$$
+(3) $\mathbb{R}^n/ \sim_{\mathbb{Z}^n}$ with the quotient topology where the equivalence is
+$$
+x \sim_{\mathbb{Z}^n} y \iff x - y \in \mathbb{Z}^n. \quad (140)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.1.4 例：** 对于 $n \in \mathbb{N}_0$，$n$-环面 $\mathbb{T}^n$ 是以下等价描述之一：
+
+(1) 带有乘积拓扑的 $(\mathbb{S}^1)^n$。
+
+(2) 带有商拓扑的 $[0, 1]^n/ \sim$，其中等价关系为
+$$
+(x_0, ..., x_i, ..., x_n) \sim (x_0, ..., y_i, ..., x_n) \text{ 其中 } x_i, y_i \in \{0, 1\}, i \in \{1, ..., n\}. \quad (139)
+$$
+
+(3) 带有商拓扑的 $\mathbb{R}^n/ \sim_{\mathbb{Z}^n}$，其中等价关系为
+$$
+x \sim_{\mathbb{Z}^n} y \iff x - y \in \mathbb{Z}^n. \quad (140)
+$$
+</details>
+
+### 10.2.2 Projective spaces | 射影空间
+
+**10.2.2.1 Example:** The real projective plane $\mathbb{R}P^2$ is one of the equivalent descriptions:
+
+(1) $\mathbb{S}^2/ \sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff x = \pm y. \quad (141)
+$$
+
+(2) $[0, 1]^2/[(t, 0) \sim (1 - t, 1), (0, t) \sim (1, 1 - t)]$.
+
+(3) $\bar{\mathbb{B}}^2/ \sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff (x = y) \lor (x, y \in \mathbb{S}^1 \land x = \pm y). \quad (142)
+$$
+
+(4) $\mathbb{R}^3 \setminus \{0\} / \sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff (\exists \lambda \in \mathbb{R} \setminus \{0\})(y = \lambda x). \quad (143)
+$$
+Then $\mathbb{R}P^2$ is the space of lines in $\mathbb{R}^3$ passing the origin.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.2.1 例：** 实射影平面 $\mathbb{R}P^2$ 是以下等价描述之一：
+
+(1) 带有商拓扑的 $\mathbb{S}^2/ \sim$，其中等价关系为
+$$
+x \sim y \iff x = \pm y. \quad (141)
+$$
+
+(2) $[0, 1]^2/[(t, 0) \sim (1 - t, 1), (0, t) \sim (1, 1 - t)]$。
+
+(3) 带有商拓扑的 $\bar{\mathbb{B}}^2/ \sim$，其中等价关系为
+$$
+x \sim y \iff (x = y) \lor (x, y \in \mathbb{S}^1 \land x = \pm y). \quad (142)
+$$
+
+(4) 带有商拓扑的 $\mathbb{R}^3 \setminus \{0\} / \sim$，其中等价关系为
+$$
+x \sim y \iff (\exists \lambda \in \mathbb{R} \setminus \{0\})(y = \lambda x). \quad (143)
+$$
+那么 $\mathbb{R}P^2$ 是 $\mathbb{R}^3$ 中过原点的直线的空间。
+</details>
+
+**10.2.2.2 Example:** The real projective $n$-space $\mathbb{R}P^n$ for $n \in \mathbb{N}$ is one of the equivalent descriptions:
+
+(1) $\mathbb{S}^n/\sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff x = \pm y. \quad (144)
+$$
+
+(2) $[0, 1]^n$ identifying the antipodals on $\partial[0, 1]^n$ with the quotient topology.
+
+(3) $\bar{\mathbb{B}}^n/\sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff (x = y) \lor (x, y \in \mathbb{S}^{n-1} \land x = \pm y). \quad (145)
+$$
+
+(4) $\mathbb{R}^{n+1} \setminus \{0\} / \sim$ with the quotient topology where the equivalence is
+$$
+x \sim y \iff (\exists \lambda \in \mathbb{R} \setminus \{0\})(y = \lambda x). \quad (146)
+$$
+Then $\mathbb{R}P^n$ is the space of lines in $\mathbb{R}^{n+1}$ passing the origin.
+
+::: {.callout-caution appearance="simple"}
+**10.2.2.3 Remark:** Note that $\mathbb{R}P^1$ is in fact homeomorphic to $\mathbb{S}^1$. However, the higher dimensional projective spaces are complicated and $\mathbb{R}P^n$ is not orientable for any even $n$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.2.3 备注：** 注意 $\mathbb{R}P^1$ 实际上同胚于 $\mathbb{S}^1$。然而，更高维的射影空间是复杂的，并且对于任何偶数 $n$，$\mathbb{R}P^n$ 都是不可定向的。
+</details>
+:::
+
+**10.2.2.4 Example:** The complex projective $n$-space $\mathbb{C}P^n$ for $n \in \mathbb{N}$ is $\mathbb{C}^{n+1} \setminus \{0\} / \sim$ with the quotient topology where the equivalence is
+$$
+z \sim w \iff (\exists \lambda \in \mathbb{C} \setminus \{0\})(z = \lambda w). \quad (147)
+$$
+Then $\mathbb{C}P^n$ is the space of complex lines in $\mathbb{C}^{n+1}$ passing the origin.
+
+### 10.2.3 Other surfaces | 其他曲面
+
+**10.2.3.1 Example:** The cylinder is the product space $\mathbb{S}^1 \times [0, 1]$.
+
+**10.2.3.2 Example:** The Klein bottle is the quotient space $[0, 1]^2/[(t, 0) \sim (t, 1), (0, t) \sim (1, 1 - t)]$.
+
+**10.2.3.3 Example:** The Mobiüs strip is the quotient space $[0, 1]^2/[(0, t) \sim (1, 1 - t)]$.
+
+::: {.callout-important appearance="simple"}
+**10.2.3.4 Proposition:** The cylinder is homeomorphic to $[0, 1]^2/[(0, t) \sim (1, t)]$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.3.4 命题：** 圆柱面同胚于 $[0, 1]^2/[(0, t) \sim (1, t)]$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**10.2.3.5 Remark:** It turns out that any (compact) surface can be constructed by starting at a suitably chosen polygon and attaching its boundary edges in suitable way. Such polygonal presentation can be used to prove the classification theorem of compact surfaces.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.2.3.5 备注：** 事实证明，任何（紧致）曲面都可以通过从一个适当选择的多边形开始，并以适当的方式粘合其边界边来构造。这种多边形表示可用于证明紧致曲面的分类定理。
+</details>
+:::
+
+## 10.3 Local homeomorphisms | 局部同胚
+
+::: {.callout-note appearance="simple"}
+**10.3.0.1 Definition:** A map $f: X \to Y$ is a **local homeomorphism** iff
+
+* $f$ is continuous;
+* $\mathcal{T}_X$ has a basis $\mathcal{B}$ such that $f(U)$ is open for any $U \in \mathcal{B}$,
+* and the submap $f|_{U, f(U)}: U \to f(U)$ is a homeomorphism.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.3.0.1 定义：** 映射 $f: X \to Y$ 是一个**局部同胚**当且仅当
+
+* $f$ 是连续的；
+* $\mathcal{T}_X$ 具有一组基 $\mathcal{B}$ 使得对于任何 $U \in \mathcal{B}$，$f(U)$ 是开的，
+* 并且子映射 $f|_{U, f(U)}: U \to f(U)$ 是一个同胚。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**10.3.0.2 Proposition:** An embedding $\iota: A \to X$ is a local homeomorphism iff $\iota(A)$ is open in $X$, namely $\iota$ is an open embedding.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.3.0.2 命题：** 嵌入 $\iota: A \to X$ 是一个局部同胚当且仅当 $\iota(A)$ 在 $X$ 中是开的，即 $\iota$ 是一个开嵌入。
+</details>
+:::
+
+## 10.4 Loops and suspensions | 环路与悬挂
+
+**10.4.0.1 Example:** The category $\mathsf{CGHaus}_*$ of pointed compactly generated Hausdorff spaces - with objects the spaces $X \in \mathsf{CGHaus}$ with a selected base point, $x_0$, and with morphisms the continuous maps preserving the base point.
+
+**10.4.0.2 Example:** $\Sigma\mathbb{S}^1 = \mathbb{S}^1 \land \mathbb{S}^1$ is the two sphere $\mathbb{S}^2$, $\Sigma^n\mathbb{S}^1$ the $(n+1)$-sphere. The unit $X \to \Omega\Sigma X$ of the adjunction sends $x \in X$ to the function $\langle x, - \rangle : I \to \Sigma X$; it has a vivid geometric picture; it sends each point $x \in X$ to that generator of the cone which passes through $x$; this generator is a loop from north pole to south pole = north pole, hence a point of $\Omega\Sigma X$.
+
+## 10.5 Topology in number theory | 数论中的拓扑
+
+Apart from the standard discrete topologies, there are many interesting topologies on $\mathbb{N}$ and $\mathbb{Z}$, some of which are related to number theory. For instance, the divisor topology on $\mathbb{N}$ (Exercise 5.3.5.7) and the evenly spaced integer topology on $\mathbb{Z}$ (Example 7.3.0.14). We will give several more examples from [11].
+
+::: {.callout-note appearance="simple"}
+**10.5.0.1 Hjalmar Ekdal topology:** The Hjalmar Ekdal topology $\mathcal{T}$ on $\mathbb{N}$ is given by
+$$
+\mathcal{T} = \{A \subseteq \mathbb{N} : (\forall n \in \mathbb{N})(2n \in A \implies 2n - 1 \in A)\}. \quad (158)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.5.0.1 Hjalmar Ekdal 拓扑：** $\mathbb{N}$ 上的 Hjalmar Ekdal 拓扑 $\mathcal{T}$ 由下式给出
+$$
+\mathcal{T} = \{A \subseteq \mathbb{N} : (\forall n \in \mathbb{N})(2n \in A \implies 2n - 1 \in A)\}. \quad (158)
+$$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**10.5.0.2 Proposition:** The naturals $\mathbb{N}$ with the Hjalmar Ekdal topology is homeomorphic to the coproduct of countably infinitely many copies of Sierpinski space.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.5.0.2 命题：** 带有 Hjalmar Ekdal 拓扑的自然数 $\mathbb{N}$ 同胚于可数无限多个谢尔宾斯基空间副本的余积。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**10.5.0.3 The $p$-adic topology on $\mathbb{Z}$:** Let $p$ be a prime number. The $p$-adic topology on $\mathbb{Z}$ is generated by the base as a basis
+$$
+\mathcal{B} = \{\{n + \lambda p^\alpha : \lambda \in \mathbb{Z}\} : \alpha \in \mathbb{N}_0, n \in \mathbb{Z}\}. \quad (159)
+$$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.5.0.3 $\mathbb{Z}$ 上的 $p$-进拓扑：** 设 $p$ 为素数。$\mathbb{Z}$ 上的 $p$-进拓扑由以下基生成：
+$$
+\mathcal{B} = \{\{n + \lambda p^\alpha : \lambda \in \mathbb{Z}\} : \alpha \in \mathbb{N}_0, n \in \mathbb{Z}\}. \quad (159)
+$$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**10.5.0.4 Relatively prime integer topology:** The relatively prime integer topology $\mathcal{T}$ on $\mathbb{N}$ is generated by the base
+$$
+\mathcal{B} = \{P(a, d) : a, d \in \mathbb{N}, \gcd(a, d) = 1\} \quad (160)
+$$
+where $P(a, d) = \{a + nd : n \in \mathbb{Z}\}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.5.0.4 互素整数拓扑：** $\mathbb{N}$ 上的互素整数拓扑 $\mathcal{T}$ 由以下基生成：
+$$
+\mathcal{B} = \{P(a, d) : a, d \in \mathbb{N}, \gcd(a, d) = 1\} \quad (160)
+$$
+其中 $P(a, d) = \{a + nd : n \in \mathbb{Z}\}$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**10.5.0.5 Prime integer topology:** The prime integer topology $\mathcal{T}$ on $\mathbb{N}$ is generated by the base $\mathcal{B} = \{P(a, d) : a, d \in \mathbb{N}, a \text{ is prime}, a \nmid d\}$ where $P(a, d) = \{a + nd : n \in \mathbb{Z}\}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.5.0.5 素整数拓扑：** $\mathbb{N}$ 上的素整数拓扑 $\mathcal{T}$ 由基 $\mathcal{B} = \{P(a, d) : a, d \in \mathbb{N}, a \text{ 是素数}, a \nmid d\}$ 生成，其中 $P(a, d) = \{a + nd : n \in \mathbb{Z}\}$。
+</details>
+:::

@@ -1,0 +1,6 @@
+---
+title: "椭圆型方程的差分方法（2–3）"
+number-sections: false
+---
+
+{{< include ../../Notes_MD/elliptic-13.md >}}

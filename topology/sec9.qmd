@@ -1,0 +1,994 @@
+---
+title: "ORDERS"
+date: "2026-04-08"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+![pixiv@睦月紫音](pic/bsj7.jpg)
+
+::: {.callout-note appearance="simple"}
+**9.0.0.1 Preorders:** By a *preorder* we mean a category $\mathsf{P}$ in which, given objects $a$ and $b$, there is at most one morphism $a \to b$. In any preorder $\mathsf{P}$, define a binary relation $\preceq$ on the objects of $\mathsf{P}$ with $a \preceq b$ iff there is a morphism $a \to b$ in $\mathsf{P}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.0.0.1 预序：** 我们所说的 *预序* (preorder) 是指一个范畴 $\mathsf{P}$，其中对于给定的对象 $a$ 和 $b$，至多存在一个态射 $a \to b$。在任何预序 $\mathsf{P}$ 中，我们在 $\mathsf{P}$ 的对象上定义一个二元关系 $\preceq$，使得 $a \preceq b$ 当且仅当 $\mathsf{P}$ 中存在态射 $a \to b$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.0.0.2 Ordinals:** Any ordinal $\alpha$ is a preorder that is totally ordered and well ordered, and hence form a category $\boldsymbol{\alpha}$. The objects of $\boldsymbol{\alpha}$ is members of $\alpha$ or all ordinals less than $\alpha$, and there is a morphism $\beta \to \gamma$ in $\alpha$ iff $\beta \le \gamma$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.0.0.2 序数：** 任何序数 $\alpha$ 都是一个全序且良序的预序，因此构成一个范畴 $\boldsymbol{\alpha}$。$\boldsymbol{\alpha}$ 的对象是 $\alpha$ 的成员，即所有小于 $\alpha$ 的序数；在 $\alpha$ 中存在态射 $\beta \to \gamma$ 当且仅当 $\beta \le \gamma$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.0.0.3 The simplicial category:** The *simplicial category* $\boldsymbol{\Delta}$ (Example 23.3.1.1) is the category with objects all finite ordinals and morphisms all order-preserving functions.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.0.0.3 单形范畴：** *单形范畴* (simplicial category) $\boldsymbol{\Delta}$（示例 23.3.1.1）是以所有有限序数为对象、以所有保序函数为态射的范畴。
+</details>
+:::
+
+## 9.1 Definition of orders | 序的定义
+
+### 9.1.1 Partial orders | 偏序
+
+::: {.callout-note appearance="simple"}
+**9.1.1.1 Definition:** A *partial order* on a set $X$ is a binary relation $\preceq$, which satisfies the following for all $a, b, c \in X$.
+
+* $a \preceq a$ (reflexive);
+* if $a \preceq b$ and $b \preceq c$ then $a \preceq c$ (transitive);
+* if $a \preceq b$ and $b \preceq a$ then $a = b$ (antisymmetric);
+
+A set $X$ with a partial order $\preceq$ is called a *partially ordered set*.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.1.1 定义：** 集合 $X$ 上的 *偏序* (partial order) 是一个二元关系 $\preceq$，它对所有 $a, b, c \in X$ 满足以下条件：
+
+* $a \preceq a$ （自反性）；
+* 若 $a \preceq b$ 且 $b \preceq c$，则 $a \preceq c$ （传递性）；
+* 若 $a \preceq b$ 且 $b \preceq a$，则 $a = b$ （反对称性）。
+
+带有偏序 $\preceq$ 的集合 $X$ 称为 *偏序集* (partially ordered set)。
+</details>
+:::
+
+### 9.1.2 Special elements within an order | 序中的特殊元素
+
+::: {.callout-note appearance="simple"}
+**9.1.2.1 Definition:** Let $(X, \preceq)$ be a partially ordered set. An element of $(X, \preceq)$ is *least* if $m \preceq a$ for any $a \in X$; it is *greatest* if $m \succeq a$ for any $a \in X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.2.1 定义：** 设 $(X, \preceq)$ 为偏序集。若对于任意 $a \in X$ 均有 $m \preceq a$，则称 $(X, \preceq)$ 的一个元素为 *最小元* (least)；若对于任意 $a \in X$ 均有 $m \succeq a$，则称其为 *最大元* (greatest)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.1.2.2 Proposition:** Least and greatest elements are unique if they exist.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.2.2 命题：** 最小元和最大元若存在，则是唯一的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.1.2.3 Definition:** Let $(X, \preceq)$ be a partially ordered set. An element of $(X, \preceq)$ is *minimal* if $a \preceq m$ implies $a = m$ for any $a \in X$; it is *maximal* if $a \succeq m$ implies $a = m$ for any $a \in X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.2.3 定义：** 设 $(X, \preceq)$ 为偏序集。若对于任意 $a \in X$，$a \preceq m$ 蕴含 $a = m$，则称 $(X, \preceq)$ 的一个元素为 *极小元* (minimal)；若 $a \succeq m$ 蕴含 $a = m$，则称其为 *极大元* (maximal)。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.1.2.4 Proposition:** A partially ordered set may have no or many minimal/maximal elements, but if there is a least/greatest element, then it is the only minimal/maximal element.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.2.4 命题：** 一个偏序集可能没有或有多个极小/极大元，但如果存在最小/最大元，那么它是唯一的极小/极大元。
+</details>
+:::
+
+An important tool to ensure the existence of maximal elements under certain conditions is Zorn’s Lemma.
+
+### 9.1.3 Bounds of order subsets 
+
+::: {.callout-note appearance="simple"}
+**9.1.3.1 Definition:** Let $(X, \preceq)$ be a partially ordered set and $A$ a subset of $X$. A *lower bound* of $A$ is an element $a \in X$ such that $s \succeq a$ for any $s \in A$. An *upper bound* of $A$ is an element $b \in X$ such that $s \preceq b$ for any $s \in A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.3.1 定义：** 设 $(X, \preceq)$ 为偏序集，$A$ 是 $X$ 的子集。若对于任何 $s \in A$ 均有 $s \succeq a$，则称元素 $a \in X$ 为 $A$ 的一个 *下界* (lower bound)。若对于任何 $s \in A$ 均有 $s \preceq b$，则称元素 $b \in X$ 为 $A$ 的一个 *上界* (upper bound)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.1.3.2 Definition:** Let $(X, \preceq)$ be a partially ordered set and $A$ a subset of $X$. The *greatest lower bound*, or the *infimum* of $A$ is the greatest element in the set of lower bounds of $A$, if there is any, denoted by $\inf A$. The *least upper bound*, or the *supremum* of $A$ is the least element in the set of upper bounds of $A$, if there is any, denoted by $\sup A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.1.3.2 定义：** 设 $(X, \preceq)$ 为偏序集，$A$ 是 $X$ 的子集。$A$ 的 *最大下界* (greatest lower bound) 或 *下确界* (infimum) 是 $A$ 的所有下界组成的集合中的最大元（如果存在），记作 $\inf A$。$A$ 的 *最小上界* (least upper bound) 或 *上确界* (supremum) 是 $A$ 的所有上界组成的集合中的最小元（如果存在），记作 $\sup A$。
+</details>
+:::
+
+**9.1.3.3 Example:** Let $X$ be a set of sets, and then $(\mathcal{P}(X), \subseteq)$ is a partial ordered set. Let $\mathcal{A}$ be a subcollection of $\mathcal{P}(X)$. Then $\mathcal{A}$ has a greatest lower bound $\inf \mathcal{A} = \bigcap \mathcal{A}$, called the *meet* of $\mathcal{A}$, and a least upper bound $\sup \mathcal{A} = \bigcup \mathcal{A}$, called the *join* of $\mathcal{A}$.
+
+**9.1.3.4 Example:** For another example, consider again the relation $(\mathbb{N}, \mid)$ on natural numbers. The least upper bound of two numbers is the smallest number that is divided by both of them, i.e. the least common multiple of the numbers. Greatest lower bounds in turn are given by the greatest common divisor.
+
+## 9.2 Maps between ordered sets | 序集之间的映射
+
+::: {.callout-note appearance="simple"}
+**9.2.0.1 Definition:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be partially ordered sets. A function $f : X \to Y$ is *order-preserving*, or *monotone*, if for any $a, b \in X$, $a \preceq_X b$ implies $f(a) \preceq_Y f(b)$; it is *order-reflecting*, if for any $a, b \in X$, $f(a) \preceq_Y f(b)$ implies $a \preceq_X b$. A function $f : X \to Y$ is *order-reversing*, or *antitone*, if for any $a, b \in X$, $a \preceq_X b$ implies $f(a) \succeq_Y f(b)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.2.0.1 定义：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 为偏序集。若对于任何 $a, b \in X$，$a \preceq_X b$ 蕴含 $f(a) \preceq_Y f(b)$，则称函数 $f : X \to Y$ 为 *保序的* (order-preserving) 或 *单调的* (monotone)；若对于任何 $a, b \in X$，$f(a) \preceq_Y f(b)$ 蕴含 $a \preceq_X b$，则称其为 *逆序的* (order-reflecting)。若对于任何 $a, b \in X$，$a \preceq_X b$ 蕴含 $f(a) \succeq_Y f(b)$，则称函数 $f : X \to Y$ 为 *倒序的* (order-reversing) 或 *反单调的* (antitone)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.2.0.2 Definition:** An *order embedding* is a function between partially ordered sets that is both order-preserving and order-reflecting.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.2.0.2 定义：** *序嵌入* (order embedding) 是指偏序集之间既保序又逆序的函数。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.2.0.3 Proposition:** An order embedding is injective.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.2.0.3 命题：** 序嵌入是单射。
+</details>
+:::
+
+### 9.2.1 Order isomorphisms | 序同构
+
+::: {.callout-note appearance="simple"}
+**9.2.1.1 Definition:** An *order isomorphism* between partially ordered sets is a monotone map with a monotone inverse, or equivalently, if for any $a, b \in X$, $f(a) \preceq_Y f(b)$ is equivalent to $a \preceq_X b$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.2.1.1 定义：** 偏序集之间的 *序同构* (order isomorphism) 是指具有单调逆映射的单调映射；或者等价地，若对于任何 $a, b \in X$，$f(a) \preceq_Y f(b)$ 与 $a \preceq_X b$ 等价。
+</details>
+:::
+
+**9.2.1.2 Example:** For instance, the function that maps a natural number to its successor is clearly monotone with respect to the natural order. Any function from a discrete order, i.e. from a set ordered by the identity order "$=$", is also monotone. Mapping each natural number to the corresponding real number gives an example for an order embedding. The set complement on a powerset is an example of an antitone function.
+
+---
+
+## 9.3 Constructing orders | 构造序
+
+### 9.3.1 Induced orders | 诱导序
+
+::: {.callout-note appearance="simple"}
+**9.3.1.1 Definition:** Let $(X, \preceq)$ is a totally ordered set and $A \subseteq X$ a subset. Then the restriction of $\preceq$ to $X$ is the order $\preceq_A$ *induced* from $\preceq$ on $A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.3.1.1 定义：** 设 $(X, \preceq)$ 为全序集，$A \subseteq X$ 是其子集。则 $\preceq$ 在 $A$ 上的限制称为由 $\preceq$ 在 $A$ 上 *诱导* (induced) 的序 $\preceq_A$。
+</details>
+:::
+
+In an ordered set, one can define many types of special subsets based on the given order. A simple example are upper sets; i.e. sets that contain all elements that are above them in the order. A set that is equal to its upper closure is called an upper set. Lower sets are defined dually.
+
+More complicated lower subsets are ideals, which have the additional property that each two of their elements have an upper bound within the ideal. Their duals are given by filters. A related concept is that of a directed subset, which like an ideal contains upper bounds of finite subsets, but does not have to be a lower set. Furthermore, it is often generalized to preordered sets.
+
+### 9.3.2 Lexicographical orders | 字典序
+
+::: {.callout-note appearance="simple"}
+**9.3.2.1 Definition:** Let $\{(X_i, \preceq_i)\}_{i=1}^n$ be a family of partially ordered sets, then the *lexicographical order* $\preceq_{\text{lexi}}$ on $\prod_{i=1}^n X_i$ is $(x_1, \dots, x_n) \prec_{\text{lexi}} (y_1, \dots, y_n)$ iff $x_i = y_i$ for $i \in \{1, \dots, k-1\}$ and $x_k \prec y_k$, where $k \in \{1, \dots, n\}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.3.2.1 定义：** 设 $\{(X_i, \preceq_i)\}_{i=1}^n$ 是一族偏序集，则在直积 $\prod_{i=1}^n X_i$ 上的 *字典序* (lexicographical order) $\preceq_{\text{lexi}}$ 定义为：$(x_1, \dots, x_n) \prec_{\text{lexi}} (y_1, \dots, y_n)$ 当且仅当存在 $k \in \{1, \dots, n\}$，使得对于所有 $i \in \{1, \dots, k-1\}$ 均有 $x_i = y_i$，且 $x_k \prec y_k$。
+</details>
+:::
+
+**9.3.2.2 Example:** The lexicographical order on $\mathbb{R}^2$.
+
+### 9.3.3 The disjoint union of two posets | 偏序集的离散并
+
+::: {.callout-note appearance="simple"}
+**9.3.3.1 Definition:** Let $\{(X_i, \preceq_i)\}_{i=1}^n$ be a family of partially ordered sets, then the *coproduct order* $\preceq$ on $\bigsqcup_{i=1}^n X_i$ is $(x_1, \dots, x_n) \preceq (y_1, \dots, y_n)$ iff $x_i, y_i \in X_i$ for some $i \in \{1, \dots, n\}$ and $x_i \preceq_i y_i$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.3.3.1 定义：** 设 $\{(X_i, \preceq_i)\}_{i=1}^n$ 是一族偏序集，则在不交并 $\bigsqcup_{i=1}^n X_i$ 上的 *上积序* (coproduct order) $\preceq$ 定义为：$(x_1, \dots, x_n) \preceq (y_1, \dots, y_n)$ 当且仅当存在某个 $i \in \{1, \dots, n\}$，使得 $x_i, y_i \in X_i$ 且 $x_i \preceq_i y_i$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.3.3.2 Definition:** Let $\{(X_i, \preceq_i)\}_{i=1}^n$ be a family of totally ordered sets, then the *coproduct order* $\preceq$ on $\bigsqcup_{i=1}^n X_i$ is $(x_1, \dots, x_n) \preceq (y_1, \dots, y_n)$ iff $x_i, y_i \in X_i$ for some $i \in \{1, \dots, n\}$ and $x_i \preceq_i y_i$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.3.3.2 定义：** 设 $\{(X_i, \preceq_i)\}_{i=1}^n$ 是一族全序集，则其不交并 $\bigsqcup_{i=1}^n X_i$ 上的 *上积序* $\preceq$ 定义为：$(x_1, \dots, x_n) \preceq (y_1, \dots, y_n)$ 当且仅当存在某个 $i \in \{1, \dots, n\}$，使得 $x_i, y_i \in X_i$ 且 $x_i \preceq_i y_i$。
+</details>
+:::
+
+## 9.4 Total orders | 全序
+
+### 9.4.1 Totally ordered sets | 全序集
+
+A total order is a partial order in which any two elements are comparable.
+
+::: {.callout-note appearance="simple"}
+**9.4.1.1 Definition:** A *totally ordered set* (or *linearly ordered set*) is a partially ordered set $(X, \preceq)$ such that for all $a, b \in X$, either $a \preceq b$ or $b \preceq a$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.4.1.1 定义：** *全序集*（或 *线性序集*）是一个偏序集 $(X, \preceq)$，满足对于所有 $a, b \in X$，要么 $a \preceq b$，要么 $b \preceq a$。
+</details>
+:::
+
+**9.4.1.2 Example:** The sets $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$ with their standard order are all totally ordered sets.
+
+### 9.4.2 Chains and antichains | 链与反链
+
+::: {.callout-note appearance="simple"}
+**9.4.2.1 Definition:** Let $(X, \preceq)$ be a partially ordered set. A subset $C \subseteq X$ is a *chain* if it is totally ordered with the induced order. A subset $A \subseteq X$ is an *antichain* if for any distinct $a, b \in A$, neither $a \preceq b$ nor $b \preceq a$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.4.2.1 定义：** 设 $(X, \preceq)$ 为一偏序集。若子集 $C \subseteq X$ 在其诱导序下是全序的，则称其为一条 *链* (chain)。若子集 $A \subseteq X$ 满足其中任意两个不同的元素 $a, b \in A$ 均不可比（即既非 $a \preceq b$ 也非 $b \preceq a$），则称其为一条 *反链* (antichain)。
+</details>
+:::
+
+### 9.4.3 Well-ordered sets | 良序集
+
+::: {.callout-note appearance="simple"}
+**9.4.3.1 Definition:** A *well-ordered set* is a totally ordered set $(X, \preceq)$ such that every non-empty subset of $X$ has a least element.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.4.3.1 定义：** *良序集* (well-ordered set) 是一个全序集 $(X, \preceq)$，满足 $X$ 的每一个非空子集都存在最小元。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.4.3.2 Proposition:** Every well-ordered set is totally ordered, and any subset of a well-ordered set is itself well-ordered with the induced order.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.4.3.2 命题：** 每个良序集都是全序集，且良序集的任何子集在诱导序下也都是良序的。
+</details>
+:::
+
+**9.4.3.3 Example:** For $n \in \mathbb{N}_0$, on $[n] = \{0, \dots, n-1\}$ the induced order $\le$ from $\mathbb{R}$ is a well order which is the unique total order up to order isomorphisms.
+
+---
+
+## 9.5 Cardinals and ordinals | 基数与序数
+
+### 9.5.1 Cardinals | 基数
+
+To better understand infinite sets, a notion of cardinality was formulated *circa* 1880 by Georg Cantor, the originator of set theory. He examined the process of equating two sets with a bijection, a one-to-one correspondence between the elements of two sets. In 1891, with the publication of his diagonal argument, he demonstrated that there are sets of numbers that cannot be placed in one-to-one correspondence with the set of natural numbers, i.e., there are "uncountable sets" that contain more elements than there are in the infinite set of natural numbers.
+
+::: {.callout-note appearance="simple"}
+**9.5.1.1 Definition:** A *cardinal* is an equivalence class of sets under bijections. The *cardinality* of a set $X$, is the equivalence class containing $X$, denoted by $\text{Card}(X) = |X|$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.1.1 定义：** *基数* (cardinal) 是集合在双射关系下的等价类。集合 $X$ 的 *势* 或 *基数* (cardinality) 是包含 $X$ 的等价类，记作 $\text{Card}(X) = |X|$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.5.1.2 Definition:** Let $X$ and $Y$ be two sets representing cardinals $A$ and $B$. Then $A$ is less than or equal to $B$, denoted by $A \le B$, if there is an injection $f: A \to B$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.1.2 定义：** 设 $X$ 和 $Y$ 是代表基数 $A$ 和 $B$ 的两个集合。若存在单射 $f: A \to B$，则称 $A$ 小于或等于 $B$，记作 $A \le B$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.5.1.3 Theorem:** The relation $\le$ is a total order on the class of cardinals.
+
+*Proof:* The strong connectedness is due to the Schröder–Bernstein theorem, and the antisymmetry is equivalent to the axiom of choice. $\blacksquare$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.1.3 定理：** 关系 $\le$ 是基数类上的全序关系。
+
+*证明：* 强连通性归功于 Schröder–Bernstein 定理，而反对称性等价于选择公理。$\blacksquare$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.5.1.4 Axiom of choice:** Let $(X_i)_{i \in I}$ be a family of sets. If $X_i \neq \emptyset$ for any $i \in I$ then $\prod_{i \in I} X_i \neq \emptyset$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.1.4 选择公理：** 设 $(X_i)_{i \in I}$ 为一族集合。若对于任何 $i \in I$ 均有 $X_i \neq \emptyset$，则 $\prod_{i \in I} X_i \neq \emptyset$。
+</details>
+:::
+
+### 9.5.2 Ordinals | 序数
+
+A natural number including 0 can be used for two purposes: to describe the size of a set, or to describe the position of an element in a sequence. In finite sets, these two concepts coincide, since all linear orders of a finite set are isomorphic. When dealing with infinite sets, however, one has to distinguish between the notion of size, which leads to cardinal numbers, and the notion of position, which leads to the ordinal numbers described here. This is because an infinite set with a unique cardinality has many non-isomorphic well orders.
+
+The transfinite ordinal numbers, which first appeared in 1883, originated in Cantor’s work with derived sets (Definition 5.3.1.4). In 1872, Cantor generated the sets $P^{(n)}$ by applying the derived set operation $n$ times to $P$. In 1880, he pointed out that these sets form the sequence
+$$P' \supseteq \dots \supseteq P^{(n)} \supseteq P^{(n+1)} \supseteq \dots, \quad (112)$$
+
+and he continued the derivation process by defining $P^{(\infty)}$ as the intersection of these sets. Then he iterated the derived set operation and intersections to extend his sequence of sets into the infinite:
+$$P^{(\infty)} \supseteq P^{(\infty+1)} \supseteq P^{(\infty+2)} \supseteq \dots \supseteq P^{(2\infty)} \supseteq \dots \supseteq P^{(\infty^2)} \supseteq \dots. \quad (113)$$
+The superscripts containing $\infty$ are just indices defined by the derivation process.
+
+::: {.callout-note appearance="simple"}
+**9.5.2.1 Definition:** A *ordinal* is an equivalence class of well-ordered sets under order isomorphisms. The *order type* of a well ordered set $(X, \preceq)$, is the equivalence class containing $(X, \preceq)$, denoted by $\text{Ord}(X, \preceq)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.2.1 定义：** *序数* (ordinal) 是良序集在序同构关系下的等价类。良序集 $(X, \preceq)$ 的 *序型* (order type) 是包含 $(X, \preceq)$ 的等价类，记作 $\text{Ord}(X, \preceq)$。
+</details>
+:::
+
+A finite set can be enumerated by successively labeling each element with the least natural number that has not been previously used. To extend this process to infinite sets, we require that every subset has a least element, so as to give a meaning to the least unused element. For instance, $\omega$ is least ordinal greater than all natural numbers.
+
+**9.5.2.2 Example:** For $n \in \mathbb{N}_0$, let the ordinal $n$ denote the unique order type or total orders on $[n]$.
+
+**9.5.2.3 Example:** Let the ordinal $\omega$ denote the order type of $(\mathbb{N}_0, \le)$, which is the smallest infinite ordinal.
+
+Ordinals may be used to label the elements of any given well-ordered set.
+
+::: {.callout-important appearance="simple"}
+**9.5.2.4 Proposition:** The map from any well-ordered set $(X, \preceq)$ to the class of all ordinals, defined by $a \mapsto X_{<a} = \{b \in X : b \prec a\}$, is an order embedding. In particular, the least element being labelled 0.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.2.4 命题：** 从任一良序集 $(X, \preceq)$ 到所有序数类的映射 $a \mapsto X_{<a} = \{b \in X : b \prec a\}$ 是一个序嵌入。特别地，最小元被标记为 0。
+</details>
+:::
+
+A clearer intuition of ordinals can be formed by examining a first few of them.
+
+(1) The natural numbers with zero: 0, 1, 2, and so on.
+(2) Then the first infinite ordinal $\omega, \omega + 1, \omega + 2, \omega + 3$, and so on.
+(3) Then $\omega \cdot 2 = \omega + \omega, \omega \cdot 2 + 1, \omega \cdot 2 + 2$, and so on, and then $\omega \cdot 3, \dots, \omega \cdot 4$, and so on.
+(4) Then $\omega^2, \dots, \omega^3, \dots, \omega^4$, and so on.
+(5) Then $\omega^\omega$, then $\omega^{\omega^\omega}$ , then later $\omega^{\omega^{\omega^\omega}}$ .
+(6) Then $\varepsilon_0$, and this can be continued indefinitely to get many countable ordinals.
+(7) The smallest uncountable ordinal $\omega_1$ is the set of all countable ordinals.
+(8) There are many more larger ordinals after $\omega_1$.
+
+There is a technical difficulty involved, however, in the fact that the equivalence class is too large to be a set in the usual Zermelo–Fraenkel formalization of set theory. We will represent an ordinal by any set with this order type.
+
+### 9.5.3 Von Neumann ordinals | 冯·诺依曼序数
+
+John Von Neumann’s definition of ordinals (in his age of 19) gives as a particular well-ordered set that represents the class. Thus, every well-ordered set will be order-isomorphic to exactly one ordinal number. The motivation is from the fact that, for any well-ordered set $(X, \preceq)$, the map $a \mapsto X_{<a}$ is an order isomorphism between 𝑋 and the lower open rays of (𝑋,⪯) ordered by inclusion. 
+Each ordinal is the well-ordered set of all smaller ordinals. In symbols, 𝜆 = [0,𝜆[.
+
+::: {.callout-note appearance="simple"}
+**9.5.3.1 Definition:** A set $X$ is an *Von Neumann ordinal* iff $X$ is strictly well-ordered with respect to set membership and every element of $X$ is also a subset of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.3.1 定义：** 一个集合 $X$ 是 *冯·诺依曼序数* (Von Neumann ordinal)，当且仅当 $X$ 关于集合从属关系是严格良序的，且 $X$ 的每个元素也都是 $X$ 的子集。
+</details>
+:::
+
+**9.5.3.2 Example:** First several von Neumann ordinals are
+$$
+\begin{aligned}
+0 &= \{\} = \emptyset, \\
+1 &= \{0\} = \{\emptyset\}, \\
+2 &= \{0, 1\} = \{\emptyset, \{\emptyset\}\}, \\
+3 &= \{0, 1, 2\} = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}.
+\end{aligned} \quad (114)
+$$
+The natural numbers are thus ordinals by defining $n = \{0, 1, 2, \dots, n-1\}$.
+
+It is shown by transfinite induction that every well-ordered set is order-isomorphic to exactly one of these ordinals.
+
+::: {.callout-important appearance="simple"}
+**9.5.3.3 Proposition:** Every set of ordinals is well ordered. Every ordinal is the set of all ordinals less than it.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.3.3 命题：** 任何序数集都是良序的。每个序数都是所有小于它的序数所组成的集合。
+</details>
+:::
+
+The class of all ordinals is not a set. If it were a set, one could show that it was an ordinal and thus a member of itself, which would contradict its strict ordering by membership. This is the Burali–Forti paradox.
+
+**9.5.3.4 Example:** The class of all small ordinals is denoted by $\text{Ord}$.
+
+### 9.5.4 Transfinite induction | 超限归纳法
+
+Transfinite induction holds in any well-ordered set, but it is so important in relation to ordinals that it is worth restating here.
+
+::: {.callout-tip appearance="simple"}
+**9.5.4.1 Transfinite induction:** Any property that passes from the set of ordinals smaller than a given ordinal $\alpha$ to $\alpha$ itself, is true of all ordinals.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.4.1 超限归纳法：** 任何从“小于给定序数 $\alpha$ 的序数集”传递到“$\alpha$ 本身”的性质，对所有序数都成立。
+</details>
+:::
+
+That is, if $P(\alpha)$ holds whenever $P(\beta)$ is true for all $\beta < \alpha$, then $P(\alpha)$ is true for all ordinals $\alpha$.
+Transfinite induction can be used not only to prove things, but also to define them. Such a definition is normally said to be by transfinite recursion.
+
+### 9.5.5 Successor and limit ordinals | 后继序数与极限序数
+
+Any nonzero ordinal has the minimum element 0. It may not have a maximum element; in this case it is called a limit ordinal.
+
+::: {.callout-note appearance="simple"}
+**9.5.5.1 Definition:** An ordinal $\alpha$ is
+
+* *zero* if $\alpha = 0$;
+* *successor* if $\alpha = \beta + 1$ for some ordinal $\beta$;
+* *limit* otherwise.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.5.1 定义：** 一个序数 $\alpha$ 是：
+
+* *零*，若 $\alpha = 0$；
+* *后继序数* (successor)，若对于某个序数 $\beta$ 有 $\alpha = \beta + 1$；
+* 否则为 *极限序数* (limit)。
+</details>
+:::
+
+### 9.5.6 Initial ordinal of a cardinal | 基数的起始序数
+
+Each ordinal associates with one cardinal, its cardinality. If there is a bijection between two ordinals (e.g. $\omega = 1 + \omega$ and $\omega + 1 > \omega$), then they associate with the same cardinal.
+
+::: {.callout-note appearance="simple"}
+**9.5.6.1 Definition:** Let $A$ be a cardinal. The least ordinal $\alpha$ associated with $A$ is the *initial ordinal* of $A$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.6.1 定义：** 设 $A$ 为一个基数。与 $A$ 相关联的最小序数 $\alpha$ 称为 $A$ 的 *起始序数* (initial ordinal)。
+</details>
+:::
+
+**9.5.6.2 Example:**
+(1) All finite ordinals 0, 1, 2, and so on are initial.
+(2) The first infinite ordinal $\omega$ is the initial ordinal of the countable infinite cardinality.
+(3) The smallest uncountable ordinal $\omega_1$ is the initial ordinal of the smallest uncountable cardinality.
+
+::: {.callout-tip appearance="simple"}
+**9.5.6.3 Well-ordering theorem:** Every set can be well-ordered. Equivalently, every cardinal has an initial ordinal.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.6.3 良序定理：** 任何集合都可以被良序化。等价地，每个基数都有一个起始序数。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.5.6.4 Kuratowski–Zohn's lemma for sets:** Any collection of sets closed under unions of chains contains a maximal member.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.6.4 集合的 Kuratowski-Zorn 引理：** 任何对链的并集封闭的集合族都包含一个极大元。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.5.6.5 Definition:** The $\alpha$-th infinite initial ordinal is written $\omega_\alpha$, it is always a limit ordinal. Its cardinality is written $\aleph_\alpha$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.5.6.5 定义：** 第 $\alpha$ 个无限起始序数记作 $\omega_\alpha$，它总是一个极限序数。其基数（势）记作 $\aleph_\alpha$。
+</details>
+:::
+
+**9.5.6.6 Example:** The cardinality of $\omega_0 = \omega$ is $\aleph_0$, which is also the cardinality of the countable ordinal $\omega^2$ or $\varepsilon_0$. Also, $\omega_1$ is the smallest uncountable ordinal, which is the order type of the set of equivalence classes of well-orderings of the natural numbers. Then $\omega_2$ is the smallest ordinal whose cardinality is greater than $\aleph_1$, and so on, and $\omega_\omega$ is the limit of the $\omega_n$ for $n \in \mathbb{N}$.
+
+---
+
+![pixiv@Arch](pic/bsj8.jpg)
+
+## 9.6 Ordinal arithmetic | 序数算术
+
+Like other kinds of numbers, ordinals can be succeeded, added, multiplied, and exponentiated. The Cantor normal form provides a standardized way of writing ordinals. It uniquely represents each ordinal as a finite sum of ordinal powers of $\omega$. However, this cannot form the basis of a universal ordinal notation due to such self-referential representations as $\varepsilon_0 = \omega^{\varepsilon_0}$.
+
+### 9.6.1 Successor of ordinals | 序数的后继
+
+::: {.callout-note appearance="simple"}
+**9.6.1.1 Definition:** Let $(X, \preceq_X)$ be a well-ordered set representing the ordinal $\alpha$. The *successor* $\alpha + 1$ of $\alpha$ is represented by $(X \sqcup \{\infty\}, \preceq)$, where $a \preceq b$ iff $b = \infty$, or $a, b \in X$ and $a \preceq_X b$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.1.1 定义：** 设 $(X, \preceq_X)$ 是代表序数 $\alpha$ 的良序集。$\alpha$ 的 *后继* (successor) $\alpha + 1$ 由 $(X \sqcup \{\infty\}, \preceq)$ 代表，其中 $a \preceq b$ 当且仅当 $b = \infty$，或者 $a, b \in X$ 且 $a \preceq_X b$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**9.6.1.2 Lemma:** Let $(X, \preceq_X)$ be a well-ordered set. Then $(X \sqcup \{\infty\}, \preceq)$ representing its successor ordinal is a well-ordered set.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.1.2 引理：** 设 $(X, \preceq_X)$ 为良序集。则代表其后继序数的 $(X \sqcup \{\infty\}, \preceq)$ 也是良序集。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.1.3 Proposition:** The successor of an ordinal number $\alpha$ is the smallest ordinal number greater than $\alpha$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.1.3 命题：** 序数 $\alpha$ 的后继是大于 $\alpha$ 的最小序数。
+</details>
+:::
+
+In the von Neumann definition of ordinals, the successor of $\alpha$ is $\alpha \cup \{\alpha\}$.
+
+### 9.6.2 Addition of ordinals | 序数加法
+
+::: {.callout-note appearance="simple"}
+**9.6.2.1 Definition:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets representing ordinals $\alpha$ and $\beta$. The *sum* $\alpha + \beta$ of the two ordinals is represented by $(X \sqcup Y, \preceq)$, where $a \preceq b$ iff $a \in X$ and $b \in Y$, or $a, b \in X$ and $a \preceq_X b$, or $a, b \in Y$ and $a \preceq_Y b$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.1 定义：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 是分别代表序数 $\alpha$ 和 $\beta$ 的两个良序集。这两个序数的 *和* $\alpha + \beta$ 由 $(X \sqcup Y, \preceq)$ 代表，其中 $a \preceq b$ 当且仅当 ($a \in X$ 且 $b \in Y$)，或者 ($a, b \in X$ 且 $a \preceq_X b$)，或者 ($a, b \in Y$ 且 $a \preceq_Y b$)。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**9.6.2.2 Lemma:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets. Then $(X \sqcup Y, \preceq)$ representing their sum ordinal is a well-ordered set.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.2 引理：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 为两个良序集。则代表它们和序数的 $(X \sqcup Y, \preceq)$ 也是良序集。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.2.3 Proposition:** Ordinal addition is, in general, not commutative.
+
+*Proof:* For any $n \in \mathbb{N}$, $n + \omega = \omega < \omega + n$. $\blacksquare$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.3 命题：** 一般而言，序数加法不满足交换律。
+
+*证明：* 对于任何 $n \in \mathbb{N}$，有 $n + \omega = \omega < \omega + n$。$\blacksquare$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.2.4 Proposition:** Ordinal addition is associative.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.4 命题：** 序数加法满足结合律。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.2.5 Proposition:** Ordinal addition is strictly increasing and continuous in the right argument, that
+$$ \alpha < \beta \Rightarrow \gamma + \alpha < \gamma + \beta; \quad (116) $$
+it is non-strictly increasing and continuous in the left argument, that
+$$ \alpha < \beta \Rightarrow \alpha + \gamma \le \beta + \gamma. \quad (117) $$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.5 命题：** 序数加法关于右变元是严格递增且连续的，即：
+$$ \alpha < \beta \Rightarrow \gamma + \alpha < \gamma + \beta; \quad (116) $$
+关于左变元是非严格递增且连续的，即：
+$$ \alpha < \beta \Rightarrow \alpha + \gamma \le \beta + \gamma. \quad (117) $$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.2.6 Proposition:** Ordinal addition is left-cancellative, that
+$$ \alpha + \beta = \alpha + \gamma \Rightarrow \beta = \gamma. \quad (118) $$
+Furthermore, one can define left subtraction for ordinals $\beta \le \alpha$: there is a unique gamma such that $\alpha = \beta + \gamma$. Ordinal addition is not right-cancellative, and there is no right subtraction.
+
+*Proof:* Right cancellation does not work, as $3 + \omega = 0 + \omega = \omega$ but $3 > 0$. Nor does right subtraction, even when $\beta \le \alpha$: for example, there does not exist any $\gamma$ such that $\gamma + 42 = \omega$. $\blacksquare$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.2.6 命题：** 序数加法是左消去律成立的，即：
+$$ \alpha + \beta = \alpha + \gamma \Rightarrow \beta = \gamma. \quad (118) $$
+此外，可以为序数 $\beta \le \alpha$ 定义左减法：存在唯一的 $\gamma$ 使得 $\alpha = \beta + \gamma$。序数加法不满足右消去律，且不存在右减法。
+
+*证明：* 右消去律不成立，因为 $3 + \omega = 0 + \omega = \omega$ 但 $3 > 0$。右减法同样不成立，即使当 $\beta \le \alpha$ 时：例如，不存在任何 $\gamma$ 使得 $\gamma + 42 = \omega$。$\blacksquare$
+</details>
+:::
+
+If the ordinals less than $\alpha$ are closed under addition and contain 0, then $\alpha$ is an additively indecomposable ordinal.
+
+### 9.6.3 Multiplication of ordinals | 序数乘法
+
+::: {.callout-note appearance="simple"}
+**9.6.3.1 Definition:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets representing ordinals $\alpha$ and $\beta$. The *product* $\alpha \cdot \beta$ of the two ordinals is represented by $(X \times Y, \preceq)$, where $\preceq$ is lexicographical order with the least significant position first, in the sense that $(a_0, b_0) \preceq (a_1, b_1)$ iff either $b_0 \prec_Y b_1$ or $b_0 = b_1$ and $a_0 \preceq_X a_1$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.1 定义：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 是分别代表序数 $\alpha$ 和 $\beta$ 的两个良序集。这两个序数的 *积* $\alpha \cdot \beta$ 由 $(X \times Y, \preceq)$ 代表，其中 $\preceq$ 是“最低位优先”的字典序，即 $(a_0, b_0) \preceq (a_1, b_1)$ 当且仅当 $b_0 \prec_Y b_1$ 或者 $b_0 = b_1$ 且 $a_0 \preceq_X a_1$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**9.6.3.2 Lemma:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets. Then $(X \times Y, \preceq)$ representing their product ordinal is a well-ordered set.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.2 引理：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 为两个良序集。则代表它们积序数的 $(X \times Y, \preceq)$ 也是良序集。
+</details>
+:::
+
+As is the case with addition, ordinal multiplication on the natural numbers is the same as standard multiplication.
+
+::: {.callout-important appearance="simple"}
+**9.6.3.3 Proposition:** Ordinal multiplication is, in general, not commutative.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.3 命题：** 一般而言，序数乘法不满足交换律。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.3.4 Proposition:** A natural number greater than 1 never commutes with any infinite ordinal, and two infinite ordinals $\alpha$ and $\beta$ commute iff $\alpha^m = \beta^n$ for some $m, n \in \mathbb{N}$. Multiplicative commutativity is an equivalence relation on the ordinals greater than 1, and all equivalence classes are countably infinite.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.4 命题：** 大于 1 的自然数绝不与任何无限序数在乘法下交换。两个无限序数 $\alpha$ 和 $\beta$ 可交换当且仅当存在 $m, n \in \mathbb{N}$ 使得 $\alpha^m = \beta^n$。在大于 1 的序数集上，乘法交换性是一个等价关系，且所有的等价类都是可数无限的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.3.5 Proposition:** (1) Zero-product property: $\alpha \cdot \beta = 0$ iff $\alpha = 0$ or $\beta = 0$.
+(2) Multiplicative identity 1: $\alpha \cdot 1 = 1 \cdot \alpha = \alpha$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.5 命题：**
+(1) 零因子性质：$\alpha \cdot \beta = 0$ 当且仅当 $\alpha = 0$ 或 $\beta = 0$。
+(2) 乘法单位元 1：$\alpha \cdot 1 = 1 \cdot \alpha = \alpha$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.3.6 Proposition:** Ordinal multiplication is associative, $(\alpha \cdot \beta) \cdot \gamma = \alpha \cdot (\beta \cdot \gamma)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.6 命题：** 序数乘法满足结合律，$(\alpha \cdot \beta) \cdot \gamma = \alpha \cdot (\beta \cdot \gamma)$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.3.7 Proposition:** Ordinal multiplication is strictly increasing and continuous in the right argument: $(\alpha < \beta \wedge \gamma > 0) \Rightarrow \gamma \cdot \alpha < \gamma \cdot \beta$. Ordinal multiplication is not strictly increasing in the left argument: $\alpha \le \beta \Rightarrow \alpha \cdot \gamma \le \beta \cdot \gamma$.
+
+*Proof:* For example, $1 < 2$ but $1 \cdot \omega = 2 \cdot \omega = \omega$. $\blacksquare$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.7 命题：** 序数乘法关于右变元是严格递增且连续的：$(\alpha < \beta \wedge \gamma > 0) \Rightarrow \gamma \cdot \alpha < \gamma \cdot \beta$。序数乘法关于左变元不是严格递增的：$\alpha \le \beta \Rightarrow \alpha \cdot \gamma \le \beta \cdot \gamma$。
+
+*证明：* 例如，$1 < 2$ 但 $1 \cdot \omega = 2 \cdot \omega = \omega$。$\blacksquare$
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.3.8 Proposition:** Distributivity holds for ordinal multiplication over addition, on the left: $\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma$, but not on the right. There is a left cancellation law: if $\alpha > 0$ and $\alpha \cdot \beta = \alpha \cdot \gamma$, then $\beta = \gamma$, but no right cancellation law. A left division with remainder property holds: for all $\alpha \wedge \beta$ with $\beta > 0$, there are unique $\gamma$ and $\delta$ such that $\alpha = \beta \cdot \gamma + \delta$ and $\delta < \beta$.
+
+*Proof:* We have that $(1 + 1) \cdot \omega = 2 \cdot \omega = \omega$ is different from $1 \cdot \omega + 1 \cdot \omega = \omega + \omega$. Since $1 \cdot \omega = 2 \cdot \omega = \omega$, but $1 < 2$, the right cancellation fails. Right division does not work as there is no $\alpha$ such that $\alpha \cdot \omega \le \omega^\omega \le (\alpha + 1) \cdot \omega$. $\blacksquare$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.3.8 命题：** 序数乘法对加法满足左分配律：$\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma$，但右分配律不成立。左消去律成立：若 $\alpha > 0$ 且 $\alpha \cdot \beta = \alpha \cdot \gamma$，则 $\beta = \gamma$；但右消去律不成立。存在带余左除法：对于所有满足 $\beta > 0$ 的 $\alpha$ 和 $\beta$，存在唯一的 $\gamma$ 和 $\delta$ 使得 $\alpha = \beta \cdot \gamma + \delta$ 且 $\delta < \beta$。
+
+*证明：* 我们有 $(1 + 1) \cdot \omega = 2 \cdot \omega = \omega$，这不同于 $1 \cdot \omega + 1 \cdot \omega = \omega + \omega$。由于 $1 \cdot \omega = 2 \cdot \omega = \omega$ 但 $1 < 2$，因此右消去律失效。右除法不成立，因为不存在 $\alpha$ 满足 $\alpha \cdot \omega \le \omega^\omega \le (\alpha + 1) \cdot \omega$。$\blacksquare$
+</details>
+:::
+
+### 9.6.4 Exponentiation of ordinals | 序数指数运算
+
+::: {.callout-note appearance="simple"}
+**9.6.4.1 Definition:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets representing ordinals $\alpha$ and $\beta$. The *exponentiation* $\alpha^\beta$ of the two ordinals is represented by $(Y_{\text{fin}}^X, \preceq)$, where $Y_{\text{fin}}^X$ is the set of all maps $f: X \to Y$ with finite support, in the sense that $f(a) = 0$ for all but finitely many elements $a \in X$, and $\preceq$ is lexicographical order with the least significant position first, in the sense that $f \prec g$ iff there is $a \in X$ with $f(a) \prec_Y g(a)$ and $f(b) = g(b)$ for all $b \in X$ with $a \preceq_X b$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.4.1 定义：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 为分别代表序数 $\alpha$ 和 $\beta$ 的两个良序集。这两个序数的 *指数运算* $\alpha^\beta$ 由 $(Y_{\text{fin}}^X, \preceq)$ 代表，其中 $Y_{\text{fin}}^X$ 是所有满足有限支柱（即除有限个元素 $a \in X$ 外，其余 $f(a) = 0$）的映射 $f: X \to Y$ 的集合。$\preceq$ 是最低位优先的字典序：$f \prec g$ 当且仅当存在 $a \in X$ 满足 $f(a) \prec_Y g(a)$，且对于所有满足 $a \preceq_X b$ 的 $b \in X$ 都有 $f(b) = g(b)$。
+</details>
+:::
+
+::: {.callout-caution appearance="simple"}
+**9.6.4.2 Lemma:** Let $(X, \preceq_X)$ and $(Y, \preceq_Y)$ be two well-ordered sets. Then $(Y_{\text{fin}}^X, \preceq)$ representing their exponentiation ordinal is a well-ordered set.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.4.2 引理：** 设 $(X, \preceq_X)$ 和 $(Y, \preceq_Y)$ 为两个良序集。则代表它们指数序数的 $(Y_{\text{fin}}^X, \preceq)$ 也是良序集。
+</details>
+:::
+
+Both definitions simplify considerably if the exponent beta is a finite number, which agrees with the ordinary exponentiation of natural numbers.
+
+**9.6.4.3 Example:** The ordinal $\omega^2 = \omega \cdot \omega$.
+
+For infinite exponents, the definition may not be obvious. For example, $\alpha^\omega$ can be identified with a set of finite sequences of elements of $\alpha$, properly ordered. The equation $2^\omega = \omega$ expresses the fact that finite sequences of zeros and ones can be identified with natural numbers, using the binary number system.
+
+**9.6.4.4 Example:** The ordinal $\omega^\omega$ can be viewed as the order type of finite sequences of natural numbers; every element of $\omega^\omega$ is uniquely written in the form $\omega^{n_1} \cdot c_1 + \omega^{n_2} \cdot c_2 + \dots + \omega^{n_k} \cdot c_k$ where $k, n_1, \dots, n_k \in \mathbb{N}_0, c_1, \dots, c_k \in \mathbb{N}$, and $n_1 > \dots > n_k$.
+
+The same is true in general.
+
+::: {.callout-important appearance="simple"}
+**9.6.4.5 Proposition:** Every element of $\beta^\alpha$ is uniquely written in the form $\beta^{a_1} \cdot b_1 + \beta^{a_2} \cdot c_2 + \dots + \beta^{a_k} \cdot c_k$ where $k \in \mathbb{N}_0, a_1, \dots, a_k$ are ordinals smaller than $\alpha$ with $a_1 > \dots > a_k$, and $b_1, \dots, b_k$ are nonzero ordinals smaller than beta. This expression corresponds to the function $f: \alpha \to \beta$ which sends $a_i$ to $b_i$ for $i = 1, \dots, k$ and sends all other elements of $\alpha$ to 0.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.4.5 命题：** $\beta^\alpha$ 的每个元素都可以唯一地写成 $\beta^{a_1} \cdot b_1 + \beta^{a_2} \cdot c_2 + \dots + \beta^{a_k} \cdot c_k$ 的形式，其中 $k \in \mathbb{N}_0$，$a_1, \dots, a_k$ 是小于 $\alpha$ 且满足 $a_1 > \dots > a_k$ 的序数，$b_1, \dots, b_k$ 是小于 $\beta$ 的非零序数。此表达式对应于映射 $f: \alpha \to \beta$，该映射将 $a_i$ 映至 $b_i$ ($i = 1, \dots, k$)，并将其余 $\alpha$ 中的元素映至 0。
+</details>
+:::
+
+While the same exponent-notation is used for ordinal exponentiation and cardinal exponentiation, the two operations are quite different and should not be confused. The cardinal exponentiation $B^A$ is defined to be the cardinal number of the set of all functions $A \to B$, while the ordinal exponentiation $\beta^\alpha$ only contains the functions $\alpha \to \beta$ with finite support, typically a set of much smaller cardinality.
+
+::: {.callout-important appearance="simple"}
+**9.6.4.6 Properties of ordinal exponentiation:**
+
+(1) $\alpha^0 = 1, \alpha^1 = \alpha$.
+(2) $0^\alpha = 0$ if $0 < \alpha; 1^\alpha = 1$.
+(3) $\alpha^\beta \cdot \alpha^\gamma = \alpha^{\beta+\gamma}$.
+(4) $(\alpha^\beta)^\gamma = \alpha^{\beta\cdot\gamma}$.
+(5) Ordinal exponentiation is strictly increasing and continuous in the right argument: If $\gamma > 1$ and $\alpha < \beta$, then $\gamma^\alpha < \gamma^\beta$.
+(6) Ordinal exponentiation is non-strictly increasing in the left argument: If $\alpha < \beta$, then $\alpha^\gamma \le \beta^\gamma$.
+(7) If $\alpha > 1$ and $\alpha^\beta = \alpha^\gamma$, then $\beta = \gamma$.
+(8) If $\beta > 1$ and $\alpha > 0$ then there exist unique $\gamma, \delta$, and $\rho$ such that $\alpha = \beta^\gamma \cdot \delta + \rho$ such that $0 < \delta < \beta$ and $\rho < \beta^\gamma$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.4.6 序数指数运算的性质：**
+
+(1) $\alpha^0 = 1, \alpha^1 = \alpha$。
+(2) 若 $0 < \alpha$ 则 $0^\alpha = 0$；$1^\alpha = 1$。
+(3) $\alpha^\beta \cdot \alpha^\gamma = \alpha^{\beta+\gamma}$。
+(4) $(\alpha^\beta)^\gamma = \alpha^{\beta\cdot\gamma}$。
+(5) 序数指数运算关于右变元严格递增且连续：若 $\gamma > 1$ 且 $\alpha < \beta$，则 $\gamma^\alpha < \gamma^\beta$。
+(6) 序数指数运算关于左变元是非严格递增的：若 $\alpha < \beta$，则 $\alpha^\gamma \le \beta^\gamma$。
+(7) 若 $\alpha > 1$ 且 $\alpha^\beta = \alpha^\gamma$，则 $\beta = \gamma$。
+(8) 若 $\beta > 1$ 且 $\alpha > 0$，则存在唯一的 $\gamma, \delta$ 和 $\rho$ 使得 $\alpha = \beta^\gamma \cdot \delta + \rho$，其中 $0 < \delta < \beta$ 且 $\rho < \beta^\gamma$。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.6.4.7 Proposition:** There are $\alpha, \beta$, and $\gamma$ for which $(\alpha \cdot \beta)^\gamma \neq \alpha^\gamma \cdot \beta^\gamma$. Ordinal exponentiation is not strictly increasing in the left argument.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.4.7 命题：** 存在 $\alpha, \beta$ 和 $\gamma$ 使得 $(\alpha \cdot \beta)^\gamma \neq \alpha^\gamma \cdot \beta^\gamma$。序数指数运算关于左变元不是严格递增的。
+</details>
+:::
+
+### 9.6.5 Cantor normal form of ordinals | 序数的康托尔范式
+
+::: {.callout-note appearance="simple"}
+**9.6.5.1 Definition:** Let $\alpha$ be an ordinal number, its *Cantor normal form* is a decomposition of $\alpha$ into
+$$ \omega^{\beta_1} \cdot c_1 + \omega^{\beta_2} \cdot c_2 + \dots + \omega^{\beta_k} \cdot c_k, \quad (121) $$
+where $k \in \mathbb{N}_0, c_1, \dots, c_k \in \mathbb{N}$, and $\beta_1 > \dots > \beta_k \ge 0$ are ordinal numbers. The highest exponent $\beta_1$ is called the *degree* of $\alpha$, which is no greater than $\alpha$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.5.1 定义：** 设 $\alpha$ 为一个序数，其 *康托尔范式* (Cantor normal form) 是将 $\alpha$ 分解为：
+$$ \omega^{\beta_1} \cdot c_1 + \omega^{\beta_2} \cdot c_2 + \dots + \omega^{\beta_k} \cdot c_k, \quad (121) $$
+其中 $k \in \mathbb{N}_0, c_1, \dots, c_k \in \mathbb{N}$，且 $\beta_1 > \dots > \beta_k \ge 0$ 均为序数。最高幂次 $\beta_1$ 称为 $\alpha$ 的 *度* (degree)，它不大于 $\alpha$。
+</details>
+:::
+
+The Cantor normal form is considered the base-$\omega$ positional numeral system.
+
+::: {.callout-tip appearance="simple"}
+**9.6.5.2 Theorem:** The Cantor normal form of any ordinal number exists and is unique.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.5.2 定理：** 任何序数的康托尔范式均存在且唯一。
+</details>
+:::
+
+**9.6.5.3 Example:**
+(1) The degenerate case $\alpha = 0$ occurs when $k = 0$ and there are no $\beta$'s nor $c$'s.
+(2) This decomposition of alpha is called the Cantor normal form of alpha, and can be...
+(3) The equality $\beta_1 = \alpha$ applies iff $\alpha = \omega^\alpha$.
+
+::: {.callout-important appearance="simple"}
+**9.6.5.4 Proposition:** Ordinal sums in the Cantor normal form is
+$$ \omega^\beta \cdot c + \omega^{\beta'} \cdot c' = \begin{cases} \omega^\beta \cdot c + \omega^{\beta'} \cdot c' & \text{if } \beta' < \beta, \\ \omega^\beta \cdot (c + c') & \text{if } \beta' = \beta, \\ \omega^{\beta'} \cdot c' & \text{if } \beta' > \beta. \end{cases} \quad (123) $$
+Ordinal products in the Cantor normal form is done by noting the essential facts that when $0 < \alpha = \omega^{\beta_1} \cdot c_1 + \omega^{\beta_2} \cdot c_2 + \dots + \omega^{\beta_k} \cdot c_k$ is in Cantor normal form and $0 < \beta'$, then
+$$ \alpha \cdot \omega^{\beta'} = \omega^{\beta_1 + \beta'} \quad (124) $$
+and for $n \in \mathbb{N}$, we have
+$$ \alpha \cdot n = \omega^{\beta_1} \cdot c_1 \cdot n + \omega^{\beta_2} \cdot c_2 + \dots + \omega^{\beta_k} \cdot c_k. \quad (125) $$
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.6.5.4 命题：** 康托尔范式下的序数加法为：
+$$ \omega^\beta \cdot c + \omega^{\beta'} \cdot c' = \begin{cases} \omega^\beta \cdot c + \omega^{\beta'} \cdot c' & \text{若 } \beta' < \beta, \\ \omega^\beta \cdot (c + c') & \text{若 } \beta' = \beta, \\ \omega^{\beta'} \cdot c' & \text{若 } \beta' > \beta. \end{cases} \quad (123) $$
+康托尔范式下的序数乘法通过以下关键事实完成：当 $0 < \alpha = \omega^{\beta_1} \cdot c_1 + \dots + \omega^{\beta_k} \cdot c_k$ 且 $0 < \beta'$ 时，
+$$ \alpha \cdot \omega^{\beta'} = \omega^{\beta_1 + \beta'} \quad (124) $$
+且对于 $n \in \mathbb{N}$，有
+$$ \alpha \cdot n = \omega^{\beta_1} \cdot c_1 \cdot n + \omega^{\beta_2} \cdot c_2 + \dots + \omega^{\beta_k} \cdot c_k. \quad (125) $$
+</details>
+:::
+
+To compare two ordinals written in Cantor normal form, first compare $\beta_1$, then $c_1$, then $\beta_2$, then $c_2$, and so on. At the first occurrence of inequality, the ordinal that has the larger component is the larger ordinal. If they are the same until one terminates before the other, then the one that terminates first is smaller.
+
+---
+
+## 9.7 The order topology | 序拓扑
+
+### 9.7.1 The order topology
+
+::: {.callout-note appearance="simple"}
+**9.7.1.1 Definition:** Let $(X, \preceq)$ be a partially ordered set, and $a, b \in X$. A *ray* determined by $a$ or $b$ is one of the following:
+$$ \begin{aligned} ]a, \infty[ &= \{x : x > a\}, \\ ]-\infty, b[ &= \{x : x < b\}, \\ [a, \infty[ &= \{x : x \ge a\}, \\ ]-\infty, b] &= \{x : x \le b\}. \end{aligned} \quad (126) $$
+Sets of the first two types are called *open rays*, and sets of the last two types are called *closed rays*.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.1 定义：** 设 $(X, \preceq)$ 为偏序集，$a, b \in X$。由 $a$ 或 $b$ 确定的 *射线* (ray) 为以下之一：
+$$ \begin{aligned} ]a, \infty[ &= \{x : x > a\}, \\ ]-\infty, b[ &= \{x : x < b\}, \\ [a, \infty[ &= \{x : x \ge a\}, \\ ]-\infty, b] &= \{x : x \le b\}. \end{aligned} \quad (126) $$
+前两类集合称为 *开射线* (open rays)，后两类称为 *闭射线* (closed rays)。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.7.1.2 Definition:** Let $(X, \preceq)$ be a totally ordered set. The *order topology* $\mathcal{T}_{\preceq}$ on $(X, \preceq)$ is the topology generated by the subbase $\mathcal{S}_{\preceq}$ consisting of all open rays in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.2 定义：** 设 $(X, \preceq)$ 为全序集。$(X, \preceq)$ 上的 *序拓扑* (order topology) $\mathcal{T}_{\preceq}$ 是由包含 $X$ 中所有开射线的子基 $\mathcal{S}_{\preceq}$ 生成的拓扑。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.7.1.3 Definition:** Let $(X, \preceq)$ be a partially ordered set, and $a, b \in X$ with $a < b$. An *interval* determined by $a$ and $b$ is one of the following:
+$$ \begin{aligned} ]a, b[ &= \{x : a < x < b\}, \\ ]a, b] &= \{x : a < x \le b\}, \\ [a, b[ &= \{x : a \le x < b\}, \\ [a, b] &= \{x : a \le x \le b\}. \end{aligned} \quad (127) $$
+A set of the first type is called an *open interval* in $X$, a set of the last type is called a *closed interval* in $X$, and sets of the second and third types are called *half-open intervals* in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.3 定义：** 设 $(X, \preceq)$ 为一个偏序集，且 $a, b \in X$ 满足 $a < b$。由 $a$ 和 $b$ 确定的 *区间* (interval) 是以下之一：
+$$ \begin{aligned} ]a, b[ &= \{x : a < x < b\}, \\ ]a, b] &= \{x : a < x \le b\}, \\ [a, b[ &= \{x : a \le x < b\}, \\ [a, b] &= \{x : a \le x \le b\}. \end{aligned} \quad (127) $$
+第一类集合称为 $X$ 中的 *开区间*，最后一类称为 $X$ 中的 *闭区间*，第二和第三类称为 $X$ 中的 *半开区间*。
+</details>
+:::
+
+The notation used here generalizes the rays and intervals in $\mathbb{R}$.
+
+::: {.callout-important appearance="simple"}
+**9.7.1.4 Proposition:** Let $(X, \preceq)$ be a totally ordered set. The order topology $\mathcal{T}_{\preceq}$ on $(X, \preceq)$ is the topology generated by the base $\mathcal{B}_{\preceq}$ consisting of all sets of the following types:
+
+(1) All open intervals $]a, b[$ in $X$.
+(2) All intervals of the form $[a_0, b[$, where $a_0$ is the least element of $X$.
+(3) All intervals of the form $]a, b_0]$, where $b_0$ is the greatest element of $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.4 命题：** 设 $(X, \preceq)$ 为全序集。其上的序拓扑 $\mathcal{T}_{\preceq}$ 是由包含以下类型集合的基 $\mathcal{B}_{\preceq}$ 生成的拓扑：
+
+(1) $X$ 中所有的开区间 $]a, b[$。
+(2) 所有形式为 $[a_0, b[$ 的区间，其中 $a_0$ 是 $X$ 的最小元素。
+(3) 所有形式为 $]a, b_0]$ 的区间，其中 $b_0$ 是 $X$ 的最大元素。
+</details>
+:::
+
+If $X$ has no smallest element, there are no sets of type (2), and if $X$ has no largest element, there are no sets of type (3).
+
+::: {.callout-important appearance="simple"}
+**9.7.1.5 Proposition:** Open rays and open intervals in a totally ordered set are open in the order topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.5 命题：** 全序集中的开射线和开区间在序拓扑中是开集。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**9.7.1.6 Definition:** A partially ordered set $(X, \preceq)$ is a *lattice* if for every pair $a, b \in X$ there are $\sup\{a, b\}$ and $\inf\{a, b\}$ in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.6 定义：** 如果偏序集 $(X, \preceq)$ 中的每一对元素 $a, b$ 在 $X$ 中都存在上确界 $\sup\{a, b\}$ 和下确界 $\inf\{a, b\}$，则称其为一个 *格* (lattice)。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.7.1.7 Example:** Let $X = (\mathbb{R} \times \{0\}) \cup (\{0\} \times \mathbb{R}) \cup \{-\infty, \infty\}$ where both copies of $\mathbb{R}$ have the standard order, and $\pm\infty$ are minimum and maximum elements. This is a lattice. Then $\{(0, 0)\}$ is an intersection of two intervals $](0, -1), (0, 1)[$ and $](-1, 0), (1, 0)[$, but it's not an open interval of $X$ so not in $\mathcal{B}_{\preceq}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.7 示例：** 设 $X = (\mathbb{R} \times \{0\}) \cup (\{0\} \times \mathbb{R}) \cup \{-\infty, \infty\}$，其中两个 $\mathbb{R}$ 的副本具有标准序，$\pm\infty$ 为最小和最大元素。这是一个格。那么点 $\{(0, 0)\}$ 是两个区间 $](0, -1), (0, 1)[$ 和 $](-1, 0), (1, 0)[$ 的交集，但它不是 $X$ 的开区间，因此不在基 $\mathcal{B}_{\preceq}$ 中。
+</details>
+:::
+
+The example illustrates that what we might expect be a natural topology on a poset, isn't too natural, since the "intersection points" as above will be made into isolated points.
+
+::: {.callout-note appearance="simple"}
+**9.7.1.8 Definition:** Let $(X, \preceq)$ be a partially ordered set. The *order topology* $\mathcal{T}_{\preceq}$ on $(X, \preceq)$ is the topology generated by the subbase $\mathcal{S}_{\preceq}$ consisting of all totally ordered open rays and totally ordered open intervals in $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.8 定义：** 设 $(X, \preceq)$ 为偏序集。其上的 *序拓扑* $\mathcal{T}_{\preceq}$ 是由包含 $X$ 中所有全序开射线和全序开区间的子基 $\mathcal{S}_{\preceq}$ 生成的拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.7.1.9 Proposition:** Under this definition open intervals of $(X, \preceq)$ are not necessarily open, but note how for all totally ordered convex subsets $Y \subseteq X$ in the above example, the subspace topology and order topology coincide.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.1.9 命题：** 在此定义下，$(X, \preceq)$ 的开区间不一定是开集。但请注意，对于上述示例中所有全序凸子集 $Y \subseteq X$，子空间拓扑和序拓扑是一致的。
+</details>
+:::
+
+### 9.7.2 Examples of order topologies | 序拓扑示例
+
+::: {.callout-tip appearance="simple"}
+**9.7.2.1 Example:** The order topology on $(\mathbb{R}, \le)$ is the standard topology on $\mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.2.1 示例：** $(\mathbb{R}, \le)$ 上的序拓扑就是 $\mathbb{R}$ 上的标准拓扑。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.7.2.2 Example:** The order topology with respect to the lexicographical order on $\mathbb{R}^2$ is different from the standard topology; it is in fact the product of the discrete topology on $\mathbb{R}$ with the standard topology on $\mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.2.2 示例：** $\mathbb{R}^2$ 关于字典序的序拓扑不同于标准拓扑；它实际上是 $\mathbb{R}$ 上的离散拓扑与 $\mathbb{R}$ 上的标准拓扑的乘积。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.7.2.3 Example:** If we interpret $(\mathbb{R}^n, \le)$ as a categorical product of the poset $(\mathbb{R}, \le)$, that is $(x_1, \dots, x_n) \prec (y_1, \dots, y_n)$ iff $x_i < y_i$ for any $i \in \{1, \dots, n\}$, then the topology is the *slice topology*, that is $U \subseteq \mathbb{R}^n$ is open if for every $x \in \mathbb{R}^n$ and every slice $S_{k,x} = \{y \in \mathbb{R}^n : (\forall i \neq k)(y_i = x_i)\}$, the set $U \cap S_k$ is open in $S_k$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.2.3 示例：** 如果我们将 $(\mathbb{R}^n, \le)$ 解释为偏序集 $(\mathbb{R}, \le)$ 的范畴积，即 $(x_1, \dots, x_n) \prec (y_1, \dots, y_n)$ 当且仅当对任意 $i \in \{1, \dots, n\}$ 都有 $x_i < y_i$，那么该拓扑是 *切片拓扑* (slice topology)。也就是说，如果对于每个 $x \in \mathbb{R}^n$ 和每个切片 $S_{k,x} = \{y \in \mathbb{R}^n : (\forall i \neq k)(y_i = x_i)\}$，集合 $U \cap S_k$ 在 $S_k$ 中都是开集，则 $U \subseteq \mathbb{R}^n$ 是开集。
+</details>
+:::
+
+---
+
+### 9.7.3 Induced order topology | 诱导序拓扑
+
+If $A$ is a subset of a totally ordered set $(X, \preceq)$, then $A$ inherits a total order from $X$. The set $A$ has an order topology called the *induced order topology*. As a subset of $X$, $A$ also has a subspace topology. The subspace topology is always at least as fine as the induced order topology, but they are not in general the same.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+如果 $A$ 是全序集 $(X, \preceq)$ 的子集，那么 $A$ 继承了 $X$ 的全序。集合 $A$ 有一个序拓扑，称为 *诱导序拓扑*。作为 $X$ 的子集，$A$ 同时也具有子空间拓扑。子空间拓扑总是至少与诱导序拓扑一样细，但它们通常并不相同。
+</details>
+
+::: {.callout-important appearance="simple"}
+**9.7.3.1 Theorem:** Let $(X, \preceq)$ be a totally ordered set and $A \subseteq X$. The order topology $\mathcal{T}_1$ of the totally ordered subset $(A, \preceq|_A)$ may differ from the subspace topology $\mathcal{T}_2$ inherited from the order topology on $X$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.3.1 定理：** 设 $(X, \preceq)$ 为全序集且 $A \subseteq X$。全序子集 $(A, \preceq|_A)$ 的序拓扑 $\mathcal{T}_1$ 可能不同于从 $X$ 的序拓扑继承而来的子空间拓扑 $\mathcal{T}_2$。
+</details>
+:::
+
+> **Sketch of proof:** Let $(\mathbb{R}^2, \mathcal{T}_{\text{lex}})$ be plane with the lexicographical order topology, and $A = [0, 1]^2$. Check that $I = \{(x_1, x_2) \in \mathbb{R}^2 : x_1 = 0, x_2 > \frac{1}{2}\}$ behaves differently in $\mathcal{T}_1$ and $\mathcal{T}_2$. ■
+
+---
+
+### 9.7.4 Order topology for ordinals | 序数的序拓扑
+
+For any ordinal number $\lambda$ one can consider the spaces of ordinal numbers:
+$$ \begin{aligned} \lambda &= [0, \lambda[ = \{\alpha : \alpha < \lambda\}, \\ \lambda + 1 &= [0, \lambda] = \{\alpha : \alpha \le \lambda\} \end{aligned} \quad (128) $$
+together with the order topology. These spaces are called *ordinal spaces*.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+对于任何序数 $\lambda$，可以考虑序数空间：
+$$ \begin{aligned} \lambda &= [0, \lambda[ = \{\alpha : \alpha < \lambda\}, \\ \lambda + 1 &= [0, \lambda] = \{\alpha : \alpha \le \lambda\} \end{aligned} \quad (128) $$
+以及它们的序拓扑。这些空间被称为 *序数空间*。
+</details>
+
+::: {.callout-tip appearance="simple"}
+**9.7.4.1 Example:** The order topology on the ordinal $n$ or $\omega$ is the discrete topology.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.4.1 示例：** 序数 $n$ 或 $\omega$ 上的序拓扑是离散拓扑。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.7.4.2 Proposition:** An ordinal space is discrete iff it is less than or equal to $\omega$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.4.2 命题：** 一个序数空间是离散的，当且仅当它小于或等于 $\omega$。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.7.4.3 Example:** The order topology on the ordinal $\omega_1$, the set of all countable ordinals has the following properties:
+
+(1) The element $\omega_1$ is a limit point of the subset $[0, \omega_1[$ even though no sequence of elements in $[0, \omega_1[$ has the element $\omega_1$ as its limit.
+(2) In particular, $[0, \omega_1]$ is not first-countable.
+(3) The subspace $[0, \omega_1[$ is first-countable however, since the only point in $[0, \omega_1]$ without a countable neighborhood base is $\omega_1$, neither $[0, \omega_1[$ or $[0, \omega_1]$ is separable or second-countable.
+Also, $[0, \omega_1]$ is compact, while $[0, \omega_1[$ is sequentially compact and countably compact, but not compact or paracompact.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.4.3 示例：** 所有可数序数的集合——序数 $\omega_1$ 上的序拓扑具有以下性质：
+
+(1) 元素 $\omega_1$ 是子集 $[0, \omega_1[$ 的极限点，尽管 $[0, \omega_1[$ 中没有序列以 $\omega_1$ 为极限。
+(2) 特别地，$[0, \omega_1]$ 不是第一可数的。
+(3) 然而子空间 $[0, \omega_1[$ 是第一可数的。由于 $[0, \omega_1]$ 中唯一没有可数邻域基的点是 $\omega_1$，因此 $[0, \omega_1[$ 和 $[0, \omega_1]$ 都不是可分的，也不是第二可数的。
+此外，$[0, \omega_1]$ 是紧的，而 $[0, \omega_1[$ 是序列紧且可数紧的，但不是紧的或仿紧的。
+</details>
+:::
+
+::: {.callout-tip appearance="simple"}
+**9.7.4.4 Example:** The order topology on the ordinal $\omega \cdot 2$ is not the discrete topology, as the one-point set $\{\omega\}$ is not open.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.4.4 示例：** 序数 $\omega \cdot 2$ 上的序拓扑不是离散拓扑，因为单点集 $\{\omega\}$ 不是开集。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.7.4.5 Proposition:** A subset of $\omega + 1$ is open in the order topology iff either it is cofinite or it does not contain $\omega$ as an element.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.4.5 命题：** $\omega + 1$ 的子集在序拓扑中是开的，当且仅当它是余有限的，或者它不包含 $\omega$ 作为元素。
+</details>
+:::
+
+
+### 9.7.5 The long line | 长直线
+
+::: {.callout-note appearance="simple"}
+**9.7.5.1 Definition:** The *closed long ray* $L$ is $(\omega_1 \times [0, 1[, \preceq_{\text{lexi}})$ where $\preceq_{\text{lexi}}$ is the lexicographical order, equipped with the order topology. The open long ray is $L \setminus (0, 0)$ equipped with the induced order topology. The *long line* is obtained by gluing together two long rays identifying the two copies of $(0, 0)$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.5.1 定义：** *闭长射线* $L$ 是 $(\omega_1 \times [0, 1[, \preceq_{\text{lexi}})$，其中 $\preceq_{\text{lexi}}$ 是字典序，并装备有序拓扑。开长射线是装备了诱导序拓扑的 $L \setminus (0, 0)$。*长直线* (long line) 是通过将两条长射线在两个 $(0, 0)$ 副本处粘合而成的。
+</details>
+:::
+
+::: {.callout-important appearance="simple"}
+**9.7.5.2 Proposition:** The long line is equipped with the order topology on the disjoint union of the reversed open long ray and the closed long ray, totally ordered by letting the points of the latter be greater than the points of the former.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**9.7.5.2 命题：** 长直线装备了在一个反向开长射线与一个闭长射线的互不相交并集上的序拓扑。其全序结构定义为：使后者（闭长射线）的所有点都大于前者（反向开长射线）的所有点。
+</details>
+:::
