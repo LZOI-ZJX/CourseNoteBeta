@@ -45,6 +45,8 @@ website:
         href: sec19.qmd
       - text: "Exercise"
         href: Probset.qmd
+      - text: "Quiz"
+        href: Quiz.qmd
 
 format:
   html:

@@ -1,6 +1,6 @@
 ---
 title: "Fuzzy Mathematics"
-date: "2026-04-06"
+date: "2026-05-07"
 format:
   html:
     toc: true
@@ -75,6 +75,32 @@ $\chi_A$ 称为集合 $A$ 的特征函数。
 * **包含**：$\underset{\sim}{A} \subseteq \underset{\sim}{B} \iff \mu_{\underset{\sim}{A}}(x) \le \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)$
 * **相等**：$\underset{\sim}{A} = \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{B} \subseteq \underset{\sim}{A} \iff \mu_{\underset{\sim}{A}}(x) = \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)$
 * **真包含**：$\underset{\sim}{A} \subsetneq \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{A} \neq \underset{\sim}{B}$
+
+### <mark>模糊集合的基本运算 (Zadeh 算子)</mark>
+
+设 $\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，Zadeh 提出了模糊集合最经典的三大基本运算（即 **Zadeh 算子**）：
+
+* <mark>并集 (Union)</mark>：$\underset{\sim}{A} \cup \underset{\sim}{B}$
+
+  其隶属函数定义为**取大**运算：
+
+$$
+\mu_{\underset{\sim}{A} \cup \underset{\sim}{B}}(x) = \mu_{\underset{\sim}{A}}(x) \vee \mu_{\underset{\sim}{B}}(x) = \max\{\mu_{\underset{\sim}{A}}(x), \mu_{\underset{\sim}{B}}(x)\}
+$$
+
+* <mark>交集 (Intersection)</mark>：$\underset{\sim}{A} \cap \underset{\sim}{B}$
+
+  其隶属函数定义为**取小**运算：
+
+$$
+\mu_{\underset{\sim}{A} \cap \underset{\sim}{B}}(x) = \mu_{\underset{\sim}{A}}(x) \wedge \mu_{\underset{\sim}{B}}(x) = \min\{\mu_{\underset{\sim}{A}}(x), \mu_{\underset{\sim}{B}}(x)\}
+$$
+
+* <mark>补集 (Complement)</mark>：$\underset{\sim}{A}^c$
+
+  其隶属函数定义为：
+  
+  $$\mu_{\underset{\sim}{A}^c}(x) = 1 - \mu_{\underset{\sim}{A}}(x)$$
 
 ---
 
@@ -401,39 +427,39 @@ $$ f(\underset{\sim}{A}, \underset{\sim}{B})_\lambda = f(A_\lambda, B_\lambda), 
 *   $(\underset{\sim}{A} / \underset{\sim}{B})_\lambda = A_\lambda / B_\lambda \quad (0 \notin \operatorname{Supp} \underset{\sim}{B})$
 *   $(k\underset{\sim}{A})_\lambda = k A_\lambda, \quad k \in \mathbb{R}$
 
-## 模糊模式识别原则
+## 12. 模糊模式识别原则
 
-### <mark>最大隶属原则</mark>
+### 12.1 最大隶属原则
 
-设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
+设 $\tilde{A}_1, \tilde{A}_2, \dots, \tilde{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
 
 $x_0 \in X$ 为待识别元素。
 
 若存在 $i_0 \in \{1, 2, \dots, n\}$，s.t. 
 
-$$ \underset{\sim}{A}_{i_0}(x_0) = \max\{\underset{\sim}{A}_1(x_0), \underset{\sim}{A}_2(x_0), \dots, \underset{\sim}{A}_n(x_0)\} $$
-则认为 $x_0$ <mark>相对地归属于</mark> 模式 $\underset{\sim}{A}_{i_0}$。
+$$\tilde{A}_{i_0}(x_0) = \max\{\tilde{A}_1(x_0), \tilde{A}_2(x_0), \dots, \tilde{A}_n(x_0)\}$$
 
-### <mark>阈值原则</mark>
+则认为 $x_0$ 相对地归属于 模式 $\tilde{A}_{i_0}$。
+
+### 12.2 阈值原则
 
 **I型：**
 
-设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
+设 $\tilde{A}_1, \tilde{A}_2, \dots, \tilde{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
 
 $x_0 \in X$ 为待识别元素。取定 $\beta \in (0, 1]$。若存在 $i_1, i_2, \dots, i_k \in \{1, 2, \dots, n\}$ s.t.
 
-$$ \min\{\underset{\sim}{A}_{i_1}(x_0), \underset{\sim}{A}_{i_2}(x_0), \dots, \underset{\sim}{A}_{i_k}(x_0)\} \ge \beta $$
+$$\min\{\tilde{A}_{i_1}(x_0), \tilde{A}_{i_2}(x_0), \dots, \tilde{A}_{i_k}(x_0)\} \ge \beta$$
 
-则判定 $x_0$ 相对地隶属于 模式 $\underset{\sim}{A}_{i_1} \cap \underset{\sim}{A}_{i_2} \cap \dots \cap \underset{\sim}{A}_{i_k}$。
+则判定 $x_0$ 相对地隶属于 模式 $\tilde{A}_{i_1} \cap \tilde{A}_{i_2} \cap \dots \cap \tilde{A}_{i_k}$。
 
 **II型：**
 
 取定 $\alpha \in [0, 1)$。若
-$$
- \max\{\underset{\sim}{A}_1(x_0), \underset{\sim}{A}_2(x_0), \dots, \underset{\sim}{A}_n(x_0)\} < \alpha 
-$$
 
-则判定 <mark>不能识别</mark> $x_0$。
+$$\max\{\tilde{A}_1(x_0), \tilde{A}_2(x_0), \dots, \tilde{A}_n(x_0)\} < \alpha$$
+
+则判定不能识别 $x_0$。
 
 **III型：**
 
@@ -538,13 +564,13 @@ $$ N_L(\underset{\sim}{A}, \underset{\sim}{B}) = (\underset{\sim}{A} \circ \unde
 
 <mark>择近原则</mark>
 
-设 $\underset{\sim}{A}_1, \underset{\sim}{A}_2, \dots, \underset{\sim}{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式，$\underset{\sim}{B} \in \mathcal{F}(X)$ 为待识别对象。
+设 ${\underset{\sim}{A_1}}, {\underset{\sim}{A_2}}, \dots, {\underset{\sim}{A_n}} \in \mathcal{F}(X)$ 为 $n$ 个标准模式，${\underset{\sim}{B}} \in \mathcal{F}(X)$ 为待识别对象。
 
 若存在 $i_0 \in \{1, 2, \dots, n\}$，s.t. 
 
-$$ N(\underset{\sim}{A}_{i_0}, \underset{\sim}{B}) = \max\{N(\underset{\sim}{A}_1, \underset{\sim}{B}), \dots, N(\underset{\sim}{A}_n, \underset{\sim}{B})\} $$
+$$ N(\underset{\sim}{A_{i_0}}, \underset{\sim}{B}) = \max\{N(\underset{\sim}{A_1}, \underset{\sim}{B}), \dots, N(\underset{\sim}{A_n}, \underset{\sim}{B})\} $$
 
-则认为 $\underset{\sim}{B}$ 相对地归属于 模式 $\underset{\sim}{A}_{i_0}$。
+则认为 $\underset{\sim}{B}$ 相对地归属于 模式 $\underset{\sim}{A_{i_0}}$。
 
 ## 模糊关系与合成
 
@@ -580,13 +606,14 @@ $$ (\underset{\sim}{R} \circ \underset{\sim}{S}) \circ \underset{\sim}{Q} = \und
 
 <mark>prop.</mark> 对交集和并集的分配律：
 
-设 $\underset{\sim}{R}_i \in \mathcal{F}(X \times Y), \underset{\sim}{Q}_i \in \mathcal{F}(Y \times Z)$
+设 $\underset{\sim}{R_i} \in \mathcal{F}(X \times Y), \underset{\sim}{Q_i} \in \mathcal{F}(Y \times Z)$
+
 *   交集（仅包含于）：
-    $$ \underset{\sim}{R} \circ (\bigcap_{i \in I} \underset{\sim}{Q}_i) \subseteq \bigcap_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q}_i) $$
-    $$ (\bigcap_{i \in I} \underset{\sim}{R}_i) \circ \underset{\sim}{Q} \subseteq \bigcap_{i \in I} (\underset{\sim}{R}_i \circ \underset{\sim}{Q}) $$
+    $$ \underset{\sim}{R} \circ (\bigcap_{i \in I} \underset{\sim}{Q_i}) \subseteq \bigcap_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q_i}) $$
+    $$ (\bigcap_{i \in I} \underset{\sim}{R_i}) \circ \underset{\sim}{Q} \subseteq \bigcap_{i \in I} (\underset{\sim}{R_i} \circ \underset{\sim}{Q}) $$
 *   并集（相等）：
-    $$ \underset{\sim}{R} \circ (\bigcup_{i \in I} \underset{\sim}{Q}_i) = \bigcup_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q}_i) $$
-    $$ (\bigcup_{i \in I} \underset{\sim}{R}_i) \circ \underset{\sim}{Q} = \bigcup_{i \in I} (\underset{\sim}{R}_i \circ \underset{\sim}{Q}) $$
+    $$ \underset{\sim}{R} \circ (\bigcup_{i \in I} \underset{\sim}{Q_i}) = \bigcup_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q_i}) $$
+    $$ (\bigcup_{i \in I} \underset{\sim}{R_i}) \circ \underset{\sim}{Q} = \bigcup_{i \in I} (\underset{\sim}{R_i} \circ \underset{\sim}{Q}) $$
 
 <mark>prop.</mark> 数乘的结合性：
 
@@ -652,11 +679,11 @@ $$ \underset{\sim}{R}^k(x, y) = \bigvee_{x_1 \in X} \dots \bigvee_{x_{k-1} \in X
 2. 对称： $r_{ij} = r_{ji}$
 3. 传递： $\underset{\sim}{R}^2 \subseteq \underset{\sim}{R}$，即 $\bigvee_{k=1}^n (r_{ik} \wedge r_{kj}) \le r_{ij}$
 
-<mark>Thm.</mark> 设 $\underset{\sim}{R}_i \in \mathcal{F}(X \times X), \ i \in I$
+<mark>Thm.</mark> 设 $\underset{\sim}{R_i} \in \mathcal{F}(X \times X), \ i \in I$
 
-1. $\underset{\sim}{R}_i$ 自反 $\implies \bigcup_{i \in I} \underset{\sim}{R}_i$ 与 $\bigcap_{i \in I} \underset{\sim}{R}_i$ 自反
-2. $\underset{\sim}{R}_i$ 对称 $\implies \bigcup_{i \in I} \underset{\sim}{R}_i$ 与 $\bigcap_{i \in I} \underset{\sim}{R}_i$ 对称
-3. $\underset{\sim}{R}_i$ 传递 $\implies \bigcap_{i \in I} \underset{\sim}{R}_i$ 传递
+1. $\underset{\sim}{R_i}$ 自反 $\implies \bigcup_{i \in I} \underset{\sim}{R_i}$ 与 $\bigcap_{i \in I} \underset{\sim}{R_i}$ 自反
+2. $\underset{\sim}{R_i}$ 对称 $\implies \bigcup_{i \in I} \underset{\sim}{R_i}$ 与 $\bigcap_{i \in I} \underset{\sim}{R_i}$ 对称
+3. $\underset{\sim}{R_i}$ 传递 $\implies \bigcap_{i \in I} \underset{\sim}{R_i}$ 传递
 
 <mark>Thm.</mark> 设 $\underset{\sim}{R} \in \mathcal{F}(X \times X)$
 
@@ -719,3 +746,128 @@ $$ t(\underset{\sim}{R}) = \bigcup_{k=1}^n \underset{\sim}{R}^k $$
 若存在 $k, l \in \mathbb{N}, k < l$ s.t. $\underset{\sim}{R}^k = \underset{\sim}{R}^l$，
 
 则 $t(\underset{\sim}{R}) = \underset{\sim}{R}^k$。
+
+## 关系的投影与截影
+
+### 分明关系的投影与截影
+
+设 $R \subseteq X \times Y$, $x_0 \in X, y_0 \in Y$。
+
+* $R$ 在 $X (Y)$ 中的<mark>投影</mark>：
+    $$R_X = \{x \in X \mid \exists y \in Y \text{ s.t. } (x, y) \in R\}$$
+* $R$ 在 $x_0$ 处的<mark>截影</mark>：
+    $$R|_{x_0} = \{y \in Y \mid (x_0, y) \in R\}$$
+
+<mark>性质 1</mark>. 设 $R \subseteq X \times Y$，则特征函数满足：
+
+$$R_X(x) = \bigvee_{y \in Y} R(x, y), \quad x \in X$$
+$$R_Y(y) = \bigvee_{x \in X} R(x, y), \quad y \in Y$$
+
+
+<mark>性质 2</mark>. $R|_{x_0}(y) = R(x_0, y), \quad y \in Y$
+
+<mark>性质 3</mark>. 投影与截影的关系：
+
+$$
+R_X = \bigcup_{y \in Y} R|_y
+$$
+
+<mark>性质 4</mark>. 截影的代数表示：
+
+$$
+R|_{x_0} = ((\{x_0\} \times Y) \cap R)_Y
+$$
+$$
+R|_{y_0} = ((X \times \{y_0\}) \cap R)_X
+$$
+
+<mark>性质 5</mark>. 关系的还原：
+
+$$R = \bigcup_{x \in X} (\{x\} \times R|_x) = \bigcup_{y \in Y} (R|_y \times \{y\})$$
+
+<mark>性质 6</mark>. 设 $R_1, R_2 \subseteq X \times Y$, $x_0 \in X, y_0 \in Y$。若 $R_1 \subseteq R_2$，则：
+
+(1) $(R_1)_X \subseteq (R_2)_X \quad$ 且 $\quad (R_1)_Y \subseteq (R_2)_Y$
+
+(2) $R_1|_{x_0} \subseteq R_2|_{x_0} \quad$ 且 $\quad R_1|_{y_0} \subseteq R_2|_{y_0}$
+
+---
+
+### 模糊关系的投影与截影
+
+设 $\underset{\sim}{R}$ 是 $X$ 到 $Y$ 的模糊关系。对于 $\forall \lambda \in (0, 1]$，$\underset{\sim}{R}$ 的 $\lambda$-截集 $R_\lambda$ 是 $X$ 到 $Y$ 的分明关系。
+
+且 $R_\lambda$ 在 $X$ 中的投影 $(R_\lambda)_X$ 满足嵌套性质：
+
+$$\lambda_1 < \lambda_2 \implies R_{\lambda_2} \subseteq R_{\lambda_1} \implies (R_{\lambda_2})_X \subseteq (R_{\lambda_1})_X$$
+
+<mark>def. 模糊投影</mark> $\underset{\sim}{R} \in \mathcal{F}(X \times Y)$
+
+* $\underset{\sim}{R}$ 在 $X$ 中的投影： $\underset{\sim}{R_X} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda)_X$
+* $\underset{\sim}{R}$ 在 $Y$ 中的投影： $\underset{\sim}{R_Y} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda)_Y$
+
+<mark>def. 模糊截影</mark> $x_0 \in X, y_0 \in Y$
+
+* $\underset{\sim}{R}$ 在 $x_0$ 处的截影： $\underset{\sim}{R}|_{x_0} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda|_{x_0})$
+* $\underset{\sim}{R}$ 在 $y_0$ 处的截影： $\underset{\sim}{R}|_{y_0} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda|_{y_0})$
+
+*(对应分明关系的性质扩展：)*
+
+<mark>性质 7</mark>. 隶属函数表达：
+
+$$\underset{\sim}{R_X(x)} = \bigvee_{y \in Y} \underset{\sim}{R}(x, y)$$
+$$\underset{\sim}{R_Y(y)} = \bigvee_{x \in X} \underset{\sim}{R}(x, y)$$
+
+<mark>性质 8</mark>. $\underset{\sim}{R}|_{x_0}(y) = \underset{\sim}{R}(x_0, y), \quad \underset{\sim}{R}|_{y_0}(x) = \underset{\sim}{R}(x, y_0)$
+
+<mark>性质 9</mark>. $\underset{\sim}{R_X} = \bigcup_{y \in Y} \underset{\sim}{R}|_y, \quad \underset{\sim}{R_Y} = \bigcup_{x \in X} \underset{\sim}{R}|_x$
+
+<mark>性质 10</mark>. 
+
+$$\underset{\sim}{R}|_{x_0} = ((\{x_0\} \times Y) \cap \underset{\sim}{R})_Y$$
+$$\underset{\sim}{R}|_{y_0} = ((X \times \{y_0\}) \cap \underset{\sim}{R})_X$$
+
+<mark>性质 11</mark>. $\underset{\sim}{R} = \bigcup_{x \in X} (\{x\} \times \underset{\sim}{R}|_x) = \bigcup_{y \in Y} (\underset{\sim}{R}|_y \times \{y\})$
+
+<mark>性质 12</mark>. $\underset{\sim}{R_1}, \underset{\sim}{R_2} \in \mathcal{F}(X \times Y), x_0 \in X, y_0 \in Y$。若 $\underset{\sim}{R_1} \subseteq \underset{\sim}{R_2}$，则：
+
+$$(\underset{\sim}{R_1})_X \subseteq (\underset{\sim}{R_2})_X \quad \text{且} \quad (\underset{\sim}{R_1})_Y \subseteq (\underset{\sim}{R_2})_Y$$
+$$\underset{\sim}{R_1}|_{x_0} \subseteq \underset{\sim}{R_2}|_{x_0} \quad \text{且} \quad \underset{\sim}{R_1}|_{y_0} \subseteq \underset{\sim}{R_2}|_{y_0}$$
+
+---
+
+## 映射及其图像
+
+### 分明映射与集值映射
+
+<mark>Thm.</mark> 设映射 $f: X \to Y, x \mapsto f(x)=y$。则 $f$ 唯一确定一个 $X$ 到 $Y$ 的关系 $R_f$ (称为 $f$ 的<mark>图像</mark>)，满足：
+
+(1) $(R_f)_X = X$ (定义域为全集)
+(2) $\forall x \in X, \ R_f|_x = \{f(x)\}$ 是单点集。
+
+<mark>Thm.</mark> 给定关系 $R \subseteq X \times Y$，满足：
+
+(1) $R_X = X$
+(2) $\forall x \in X, \ R|_x = \{y_x\}$ 是单点集。
+
+则关系 $R$ 唯一确定一个映射 $f_R: X \to Y$，其图像为 $R$，且对任意的 $x \in X$ 有 $R|_x = \{f_R(x)\}$。
+
+<mark>def.</mark> 称映射 $\overline{f}: X \to \mathscr{P}(Y), x \mapsto \overline{f}(x)$ 为 $X$ 到 $Y$ 的<mark>集值映射</mark>。
+
+<mark>Thm.</mark> 设集值映射 $\overline{f}: X \to \mathscr{P}(Y), x \mapsto \overline{f}(x)$。$\overline{f}$ 可唯一确定一个 $X$ 到 $Y$ 的关系 $R_{\overline{f}}$ ($f$ 的图像) 满足：
+
+$$\forall x \in X, \text{有 } R_{\overline{f}}|_x = \overline{f}(x)$$
+
+<mark>Thm.</mark> 给定关系 $R \subseteq X \times Y$，可唯一确定一个集值映射 $\overline{f}_R: X \to \mathscr{P}(Y)$，其图像为 $R$，且 $\overline{f}_R(x) = R|_x$。
+
+### 模糊集值映射
+
+<mark>def.</mark> 称映射 $\tilde{f}: X \to \mathcal{F}(Y), x \mapsto \tilde{f}(x)$ 为 $X$ 到 $Y$ 的<mark>模糊集值映射</mark>。
+
+<mark>Thm.</mark> 给定模糊集值映射 $\tilde{f}: X \to \mathcal{F}(Y), x \mapsto \tilde{f}(x)$。可唯一确定一个模糊关系 $\underset{\sim}{R_{\tilde{f}}} \in \mathcal{F}(X \times Y)$ ($\tilde{f}$ 的图像)，满足对 $\forall x \in X$ 有：
+
+$$\underset{\sim}{R_{\tilde{f}}}|_x = \tilde{f}(x)$$
+
+<mark>Thm.</mark> 给定模糊关系 $\underset{\sim}{R} \in \mathcal{F}(X \times Y)$，可唯一确定一个模糊集值映射 $\tilde{f}_{\underset{\sim}{R}}: X \to \mathcal{F}(Y)$，其图像为 $\underset{\sim}{R}$，且对 $\forall x \in X$ 有：
+
+$$\tilde{f}_{\underset{\sim}{R}}(x) = \underset{\sim}{R}|_x$$

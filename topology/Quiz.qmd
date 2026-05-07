@@ -1,0 +1,122 @@
+---
+title: "Quiz"
+date: "2026-05-07"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+::: {.callout-note appearance="simple"}
+**Exercise 1:**  What is a topological space?
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+拓扑空间是一个二元组 $(X, \mathcal{T})$，其中 $X$ 是一个集合，$\mathcal{T}$ 是 $X$ 的子集族（这些子集被称为开集），并且满足以下三个公理：
+
+1. 空集 $\emptyset$ 和全集 $X$ 都在 $\mathcal{T}$ 中。
+2. $\mathcal{T}$ 中任意多个集合的并集仍在 $\mathcal{T}$ 中。
+3. $\mathcal{T}$ 中有限多个集合的交集仍在 $\mathcal{T}$ 中。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 2:**  Let $X = \{1, 2, 3, 4, 5\}$. Is $\mathcal{S} = \{\{1\}, \{3, 4\}, \{4, 5\}\}$ a topology on $X$? If not, what is the smallest topology containing $\mathcal{S}$?
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+$\mathcal{S}$ 不是 $X$ 上的拓扑，因为它不包含 $\emptyset$ 和 $X$，且其元素的并集（例如 $\{3, 4\} \cup \{4, 5\} = \{3, 4, 5\}$）也不在 $\mathcal{S}$ 中。
+
+包含 $\mathcal{S}$ 的最小拓扑即为以 $\mathcal{S}$ 作为子基生成的拓扑。
+首先，求 $\mathcal{S}$ 中元素的有限交以构成基 $\mathcal{B}$（注意空交为全集 $X$）：
+$\{3, 4\} \cap \{4, 5\} = \{4\}$，所以基为：
+$\mathcal{B} = \{\emptyset, X, \{1\}, \{4\}, \{3, 4\}, \{4, 5\}\}$
+
+然后，求基 $\mathcal{B}$ 中元素的任意并集即可得到最小拓扑 $\mathcal{T}$：
+$\mathcal{T} = \{\emptyset, \{1\}, \{4\}, \{3, 4\}, \{4, 5\}, \{1, 4\}, \{1, 3, 4\}, \{1, 4, 5\}, \{3, 4, 5\}, \{1, 3, 4, 5\}, X\}$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 3:**  What is a continuous map?
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+设 $X$ 和 $Y$ 是两个拓扑空间。一个映射 $f: X \to Y$ 称为连续映射，如果对于目标空间 $Y$ 中的任意开集 $V$，其在 $f$ 下的原像 $f^{-1}(V)$ 都是定义域空间 $X$ 中的开集。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 4:**  Let $f: \mathbb{R} \to \mathbb{R}$ be given as below. Find all values of $a, b$ so that $f$ is continuous.
+$$f(x) = \begin{cases} x^2 + ax + b & \text{if } x \in ]-\infty, 1[ \\ 3ax & \text{if } x \in [1, 2] \\ x + ab + 3b & \text{if } x \in ]2, \infty[ \end{cases}$$
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+要使分段函数 $f(x)$ 在全空间 $\mathbb{R}$ 上连续，需保证在分界点 $x=1$ 和 $x=2$ 处的左极限、右极限与函数值均相等。
+
+- 在 $x=1$ 处：
+$\lim_{x \to 1^-} f(x) = 1 + a + b$，$f(1) = 3a(1) = 3a$
+可得方程：$1 + a + b = 3a \implies b = 2a - 1$
+
+- 在 $x=2$ 处：
+$f(2) = 3a(2) = 6a$，$\lim_{x \to 2^+} f(x) = 2 + ab + 3b$
+可得方程：$6a = 2 + ab + 3b$
+
+将 $b = 2a - 1$ 代入第二个方程：
+$6a = 2 + a(2a - 1) + 3(2a - 1)$
+$6a = 2 + 2a^2 - a + 6a - 3$
+化简得：$2a^2 - a - 1 = 0$
+因式分解得：$(2a + 1)(a - 1) = 0$
+解得 $a = 1$ 或 $a = -\frac{1}{2}$。
+
+分别代回求 $b$：
+当 $a = 1$ 时，$b = 2(1) - 1 = 1$；
+当 $a = -\frac{1}{2}$ 时，$b = 2(-\frac{1}{2}) - 1 = -2$。
+
+因此，所有满足条件的值为 $(a, b) = (1, 1)$ 或 $(-\frac{1}{2}, -2)$。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 5:**  Show that the map $f = (f_1, f_2): Y \to X_1 \times X_2$ is continuous if and only if both of its component functions $f_1: Y \to X_1$ and $f_2: Y \to X_2$ are continuous.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+设 $\pi_1: X_1 \times X_2 \to X_1$ 和 $\pi_2: X_1 \times X_2 \to X_2$ 为自然投影映射，在乘积拓扑的定义下，它们均是连续映射。
+
+- **充分性（$\implies$）**：若 $f$ 连续，由于 $f_1 = \pi_1 \circ f$ 且 $f_2 = \pi_2 \circ f$，连续映射的复合仍是连续映射，故 $f_1$ 和 $f_2$ 均连续。
+
+- **必要性（$\Longleftarrow$）**：假设 $f_1, f_2$ 均连续。乘积空间 $X_1 \times X_2$ 上的拓扑可以由形如 $U_1 \times X_2 = \pi_1^{-1}(U_1)$ 和 $X_1 \times U_2 = \pi_2^{-1}(U_2)$ 的子基生成（其中 $U_1, U_2$ 分别是 $X_1, X_2$ 中的开集）。要证 $f$ 连续，只需验证子基中元素的拉回在 $Y$ 中是开集即可。
+对于任意 $U_1 \subset X_1$ 开，有 $f^{-1}(\pi_1^{-1}(U_1)) = (\pi_1 \circ f)^{-1}(U_1) = f_1^{-1}(U_1)$，因为 $f_1$ 连续，故此集合在 $Y$ 中开口。
+同理，对于 $U_2 \subset X_2$ 开，$f^{-1}(\pi_2^{-1}(U_2)) = f_2^{-1}(U_2)$ 在 $Y$ 中开口。
+因此 $f$ 是连续的。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 6:** Let $A = ]0, 1[ \cup ]1, 2[ \cup \{3\} \cup ([4, 5] \cap \mathbb{Q})$. What are the closure and the interior of $A$ as a subset of $]0, 5]$? No justification is needed.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+注意环境空间是 $X = ]0, 5]$，所有拓扑操作均在该子空间相对拓扑下进行。
+
+- **内部 (Interior)**：包含在 $A$ 中的最大开集。单点集 $\{3\}$ 和有理数集片段 $[4, 5] \cap \mathbb{Q}$ 不包含任何非空开区间，因此：
+$\text{Int}(A) = ]0, 1[ \cup ]1, 2[$
+
+- **闭包 (Closure)**：在 $X = ]0, 5]$ 中取各连通分支/子集的闭包。区间 $]0, 1[ \cup ]1, 2[$ 的闭包为 $]0, 2]$；孤立点 $\{3\}$ 是闭的；$[4, 5] \cap \mathbb{Q}$ 的闭包为实数段 $[4, 5]$。因此：
+$\text{Cl}(A) = ]0, 2] \cup \{3\} \cup [4, 5]$
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise 7:** Is the sequence space $\mathbb{R}^{\mathbb{N}}$ with the box topology connected? Justify your answer.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+不是连通的。可以通过构造两个非空的、不相交的开集将其划分。
+
+令 $A$ 为所有**有界数列**构成的集合（即 $\exists M>0, \forall n, |x_n| \le M$），$B$ 为所有**无界数列**构成的集合。显然 $A$ 和 $B$ 均非空（例如常数数列属于 $A$，$(n)$ 属于 $B$），互不相交，且满足 $\mathbb{R}^{\mathbb{N}} = A \cup B$。
+
+- **证明 $A$ 为开集**：任取 $(x_n) \in A$，存在界 $M$ 使 $|x_n| \le M$。在箱型拓扑中取基本开邻域 $U = \prod_{n=1}^{\infty} (x_n - 1, x_n + 1)$。对于任意序列 $(y_n) \in U$，有 $|y_n| < |x_n| + 1 \le M + 1$，说明 $(y_n)$ 也有界，因此 $U \subset A$。故 $A$ 开。
+
+- **证明 $B$ 为开集**：任取 $(x_n) \in B$，由于序列无界。同样取基本开邻域 $V = \prod_{n=1}^{\infty} (x_n - 1, x_n + 1)$。对于任意序列 $(y_n) \in V$，有 $|y_n| > |x_n| - 1$。因为序列 $(|x_n|)$ 无界，所以序列 $(|x_n| - 1)$ 同样无界，这意味着 $(y_n)$ 必须无界，因此 $V \subset B$。故 $B$ 开。
+
+由于 $\mathbb{R}^{\mathbb{N}}$ 能被划分为两个不相交的非空开子集 $A$ 和 $B$，所以它在箱型拓扑下是不连通的。
+</details>
+:::
