@@ -35,6 +35,14 @@ book:
       chapters:
         - lecture-notes/mineru-variational/15-intro.qmd
         - lecture-notes/mineru-variational/16-1d.qmd
+    - part: "课程作业"
+      chapters:
+        - lecture-notes/homework/hw04-week4.qmd
+        - lecture-notes/homework/hw05-week5.qmd
+        - lecture-notes/homework/hw06-week6.qmd
+        - lecture-notes/homework/hw07-week7.qmd
+        - lecture-notes/homework/hw08-week8.qmd
+        - lecture-notes/homework/hw09-week9.qmd
 
 execute:
   echo: false

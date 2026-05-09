@@ -1,6 +1,6 @@
 ---
 title: "INDUCED TOPOLOGIES"
-date: "2026-05-04"
+date: "2026-04-16"
 format:
   html:
     toc: true
@@ -55,19 +55,9 @@ Let $X$ and $Y$ be topological spaces.
 ::: {.callout-tip appearance="simple"}
 **8.1.1.4 The characteristic property of the initial topology:** Let $X$ be a set, $\{Y_j\}_{j \in J}$ be a family of topological spaces, and $\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}$ be a family of maps. A topology $\mathcal{T}_X$ on $X$ is the initial topology induced by $\mathcal{F}$ iff for any map $h: Z \to X$ is continuous provided that $g_j = f_j \circ h: Z \to Y_j$ is continuous for any $j \in J$.
 
+![](pic/8114.jpg)
 
-$$
-\begin{array}{ccc}
-  & X & \\
- _{f_j}\swarrow & & \nwarrow_{h} \\
- Y_j & \xleftarrow{g_j} & Z
-\end{array}
-$$
-
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
-**8.1.1.4 初始拓扑的特征性质**：设 $X$ 为一个集合，$\{Y_j\}_{j \in J}$ 为一族拓扑空间，且 $\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}$ 为一族映射。$X$ 上的拓扑 $\mathcal{T}_X$ 是由 $\mathcal{F}$ 诱导的初始拓扑，当且仅当对于任何映射 $h: Z \to X$，<span style="background-color:yellow;">只要对任意 $j \in J$，$g_j = f_j \circ h: Z \to Y_j$ 均连续，则 $h$ 连续。</span>
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.1.1.4 初始拓扑的特征性质**：设 $X$ 为一个集合，$\{Y_j\}_{j \in J}$ 为一族拓扑空间，且 $\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}$ 为一族映射。$X$ 上的拓扑 $\mathcal{T}_X$ 是由 $\mathcal{F}$ 诱导的初始拓扑，当且仅当对于任何映射 $h: Z \to X$，只要对任意 $j \in J$，$g_j = f_j \circ h: Z \to Y_j$ 均连续，则 $h$ 连续。</details>
 :::
 
 
@@ -75,9 +65,7 @@ $$
 *Proof:* Suppose $\mathcal{T}_X$ is the initial topology $\mathcal{T}_{\mathcal{F}}$. For any $U = f_j^{-1}(V_j) \in \mathcal{S}_{\mathcal{F}}$ where $j \in J$ and $V_j \in \mathcal{T}_j$ if $g_j$ is known continuous, then the preimage $W = g_j^{-1}(V_j) \in \mathcal{T}_Z$. Now that $W = h^{-1}(U)$ we conclude that $h$ is continuous.
 Suppose the continuity of $g_j = f_j \circ h$ for all $j \in J$ implies that of $h$. We let $Z = X$ and $h = \text{id}_X$. Then $\mathcal{T}_Z$ is a topology making $g_j = f_j: (X, \mathcal{T}_Z) \to (Y_j, \mathcal{T}_j)$ continuous for any $j \in J$, and then the continuity of $h$ implies that $\mathcal{T}_Z$ is finer than $\mathcal{T}_X$. Therefore, $\mathcal{T}_X$ is the coarsest among them, which is the initial topology $\mathcal{T}_{\mathcal{F}}$ by definition. $\blacksquare$
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
-*证明*：假设 $\mathcal{T}_X$ 是初始拓扑 $\mathcal{T}_{\mathcal{F}}$。对于任意 $U = f_j^{-1}(V_j) \in \mathcal{S}_{\mathcal{F}}$（其中 $j \in J$ 且 $V_j \in \mathcal{T}_j$），若已知 $g_j$ 连续，则原像 $W = g_j^{-1}(V_j) \in \mathcal{T}_Z$。由于 $W = h^{-1}(U)$，我们断定 $h$ 连续。
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>*证明*：假设 $\mathcal{T}_X$ 是初始拓扑 $\mathcal{T}_{\mathcal{F}}$。对于任意 $U = f_j^{-1}(V_j) \in \mathcal{S}_{\mathcal{F}}$（其中 $j \in J$ 且 $V_j \in \mathcal{T}_j$），若已知 $g_j$ 连续，则原像 $W = g_j^{-1}(V_j) \in \mathcal{T}_Z$。由于 $W = h^{-1}(U)$，我们断定 $h$ 连续。
 反之，假设对所有 $j \in J$，$g_j = f_j \circ h$ 的连续性蕴含了 $h$ 的连续性。令 $Z = X$ 且 $h = \text{id}_X$。则 $\mathcal{T}_Z$ 是使得 $g_j = f_j: (X, \mathcal{T}_Z) \to (Y_j, \mathcal{T}_j)$ 对任意 $j \in J$ 均连续的一种拓扑，此时 $h$ 的连续性意味着 $\mathcal{T}_Z$ 比 $\mathcal{T}_X$ 更细。因此，$\mathcal{T}_X$ 是这些拓扑中最粗糙的一个，根据定义，它就是初始拓扑 $\mathcal{T}_{\mathcal{F}}$。$\blacksquare$</details>
 
 ::: {.callout-important appearance="simple"}
@@ -99,42 +87,24 @@ Suppose the continuity of $g_j = f_j \circ h$ for all $j \in J$ implies that of 
 
 ::: {.callout-tip appearance="simple"}
 **8.1.2.3 Theorem:** Let $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ be a family of maps from topological spaces $(X_i, \mathcal{T}_i)$ to a set $Y$. The final topology induced by $\mathcal{G}$ is a topology on $Y$ given by
-$$\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(f_i^{-1}(V) \in \mathcal{T}_i)\}. \tag{77}$$
+$$\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(g_i^{-1}(V) \in \mathcal{T}_i)\}. \tag{77}$$
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.1.2.3 定理**：设 $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ 是从拓扑空间 $(X_i, \mathcal{T}_i)$ 到集合 $Y$ 的一族映射。由 $\mathcal{G}$ 诱导的终止拓扑是 $Y$ 上的一个拓扑，由下式给出：
-$$\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(f_i^{-1}(V) \in \mathcal{T}_i)\}。 \tag{77}$$
-</details>
+$$\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(g_i^{-1}(V) \in \mathcal{T}_i)\}。 \tag{77}$$</details>
 :::
 
 ::: {.callout-tip appearance="simple"}
-**8.1.2.4 The characteristic property of the final topology:** Let $Y$ be a set, $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ be a family of topological spaces, and $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ be a family of maps. A topology $\mathcal{T}_Y$ on $Y$ is the final topology induced by $\mathcal{G}$ iff for any map $h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)$ is continuous provided that $g_i = h \circ f_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)$ is continuous for any $i \in I$.
+**8.1.2.4 The characteristic property of the final topology:** Let $Y$ be a set, $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ be a family of topological spaces, and $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ be a family of maps. A topology $\mathcal{T}_Y$ on $Y$ is the final topology induced by $\mathcal{G}$ iff for any map $h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)$ is continuous provided that $f_i = h \circ g_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)$ is continuous for any $i \in I$.
 
-$$
-\begin{array}{ccc}
-(X_i, \mathcal{T}_i) & \xrightarrow{f_i} & (Y, \mathcal{T}_Y) \\
-_{g_i}\searrow & & \swarrow_{h} \\
-& (Z, \mathcal{T}_Z) &
-\end{array}
-$$
+![](pic/8124.jpg)
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
-**8.1.2.4 终止拓扑的特征性质**：设 $Y$ 为一个集合，$\{(X_i, \mathcal{T}_i)\}_{i \in I}$ 为一族拓扑空间，且 $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ 为一族映射。$Y$ 上的拓扑 $\mathcal{T}_Y$ 是由 $\mathcal{G}$ 诱导的终止拓扑，当且仅当对于任何映射 $h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)$，<span style="background-color:yellow;">只要对任意 $i \in I$，$g_i = h \circ f_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)$ 均连续，则 $h$ 连续。</span>
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.1.2.4 终止拓扑的特征性质**：设 $Y$ 为一个集合，$\{(X_i, \mathcal{T}_i)\}_{i \in I}$ 为一族拓扑空间，且 $\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}$ 为一族映射。$Y$ 上的拓扑 $\mathcal{T}_Y$ 是由 $\mathcal{G}$ 诱导的终止拓扑，当且仅当对于任何映射 $h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)$，只要对任意 $i \in I$，$f_i = h \circ g_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)$ 均连续，则 $h$ 连续。</details>
 :::
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开证明]</summary>
 
-*Proof:* Suppose $\mathcal{T}_Y$ is the final topology $\mathcal{T}_{\mathcal{G}}$. For any $W \in \mathcal{T}_Z$ if $g_i$ is known continuous, then the preimage $U_i = g_i^{-1}(W) \in \mathcal{T}_i$. Now that $U_i = f_i^{-1}(V) \in \mathcal{T}_i$ where $V = h^{-1}(W)$ we have $V \in \mathcal{T}_{\mathcal{G}}$. We conclude that $h$ is continuous.
-Suppose the continuity of $g_i = h \circ f_i$ for all $i \in I$ implies that of $h$. We let $Z = Y$ and $h = \text{id}_Y$. Then $\mathcal{T}_Z$ is a topology making $g_i = \text{id}_Y \circ f_i = f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)$ continuous for any $i \in I$, and then the continuity of $h: (Y, \mathcal{T}_Y) \to (Y, \mathcal{T}_Z)$ implies that $\mathcal{T}_Z$ is coarser than $\mathcal{T}_Y$. Therefore, $\mathcal{T}_Y$ is the finest among them, which is the final topology $\mathcal{T}_{\mathcal{G}}$ by definition. $\blacksquare$
-
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
-*证明*：假设 $\mathcal{T}_Y$ 是终止拓扑 $\mathcal{T}_{\mathcal{G}}$。对于任意 $W \in \mathcal{T}_Z$，若已知 $g_i$ 连续，则原像 $U_i = g_i^{-1}(W) \in \mathcal{T}_i$。由于 $U_i = f_i^{-1}(V) \in \mathcal{T}_i$（其中 $V = h^{-1}(W)$），我们得到 $V \in \mathcal{T}_{\mathcal{G}}$。由此断定 $h$ 连续。
-反之，假设对所有 $i \in I$，$g_i = h \circ f_i$ 的连续性蕴含了 $h$ 的连续性。令 $Z = Y$ 且 $h = \text{id}_Y$。设 $\mathcal{T}_Z$ 是使得 $g_i = \text{id}_Y \circ f_i = f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)$ 对任意 $i \in I$ 均连续的一种拓扑，此时 $h: (Y, \mathcal{T}_Y) \to (Y, \mathcal{T}_Z)$ 的连续性意味着 $\mathcal{T}_Z$ 比 $\mathcal{T}_Y$ 更粗。因此，$\mathcal{T}_Y$ 是这些拓扑中最精细的一个，根据定义，它就是终止拓扑 $\mathcal{T}_{\mathcal{G}}$。$\blacksquare$
-</details>
-</details>
-
-
+*Proof:* Suppose $\mathcal{T}_X$ is the final topology $\mathcal{T}_{\mathcal{G}}$. For any $W \in \mathcal{T}_Z$ if $f_i$ is known continuous, then the preimage $U_i = f_i^{-1}(W) \in \mathcal{T}_i$. Now that $U_i = g_i^{-1}(V) \in \mathcal{T}_i$ where $V = h^{-1}(W)$ we have $V \in \mathcal{T}_{\mathcal{G}}$. We conclude that $h$ is continuous.
+Suppose the continuity of $f_i = h \circ g_i$ for all $i \in I$ implies that of $h$. We let $Z = Y$ and $h = \text{id}_Y$. Then $\mathcal{T}_Z$ is a topology making $f_i = g_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)$ continuous for any $i \in I$, and then the continuity of $h$ implies that $\mathcal{T}_Z$ is coarser than $\mathcal{T}_Y$. Therefore, $\mathcal{T}_Y$ is the finest among them, which is the final topology $\mathcal{T}_{\mathcal{G}}$ by definition. $\blacksquare$
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>*证明*：假设 $\mathcal{T}_X$ 是终止拓扑 $\mathcal{T}_{\mathcal{G}}$。对于任意 $W \in \mathcal{T}_Z$，若已知 $f_i$ 连续，则原像 $U_i = f_i^{-1}(W) \in \mathcal{T}_i$。由于 $U_i = g_i^{-1}(V) \in \mathcal{T}_i$（其中 $V = h^{-1}(W)$），我们得到 $V \in \mathcal{T}_{\mathcal{G}}$。由此断定 $h$ 连续。
+反之，假设对所有 $i \in I$，$f_i = h \circ g_i$ 的连续性蕴含了 $h$ 的连续性。令 $Z = Y$ 且 $h = \text{id}_Y$。则 $\mathcal{T}_Z$ 是使得 $f_i = g_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)$ 对任意 $i \in I$ 均连续的一种拓扑，此时 $h$ 的连续性意味着 $\mathcal{T}_Z$ 比 $\mathcal{T}_Y$ 更粗。因此，$\mathcal{T}_Y$ 是这些拓扑中最精细的一个，根据定义，它就是终止拓扑 $\mathcal{T}_{\mathcal{G}}$。$\blacksquare$</details>
 
 ::: {.callout-important appearance="simple"}
 **8.1.2.5 Proposition:** The final topology on a set $X$ induced by the constant map $X \to *$ is the discrete topology.
@@ -149,10 +119,7 @@ Recall the weak and weak\* topologies in Functional Analysis on a topological ve
 回想泛函分析中，在拓扑域 $\mathbb{K}$ 上的拓扑向量空间 $(X, \mathcal{T}_X)$（定义 28.2.2.1）——特别是赋范向量空间及其连续对偶空间 $X^*$（定义 28.2.2.4），即连续 $\mathbb{K}$-线性泛函空间——上的弱拓扑和弱\*拓扑。这些拓扑将被定义为初始拓扑，并与乘积拓扑相关联。</details>
 
 There is a canonical pairing $\langle \cdot, \cdot \rangle : X \times X^* \to \mathbb{K}$ defined by $\langle x, \alpha \rangle = \alpha(x)$ for all $x \in X$ and $\alpha \in X^*$.
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
-存在正则配对 $\langle \cdot, \cdot \rangle : X \times X^* \to \mathbb{K}$，定义为对于所有 $x \in X$ 和 $\alpha \in X^*$，$\langle x, \alpha \rangle = \alpha(x)$ 。$ev_x(\alpha)=\alpha(x)$
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>存在正则配对 $\langle \cdot, \cdot \rangle : X \times X^* \to \mathbb{K}$，定义为对于所有 $x \in X$ 和 $\alpha \in X^*$，$\langle x, \alpha \rangle = \alpha(x)$。</details>
 
 ::: {.callout-note appearance="simple"}
 **8.1.3.1 Weak and weak\* topologies:** Let $(X, \mathcal{T}_X)$ be a topological vector space and $(X^*, \mathcal{T}_{X^*})$ be its continuous dual. The weak topology on $X$ is the initial topology $\mathcal{T}_{X, X^*}$ on $X$ induced by $X^*$. The weak\* topology on $X^*$ is the initial topology $\mathcal{T}_{X^*, X}$ on $X^*$ induced by $X$ seen as $\text{ev}(X) \subseteq X^{**}$.
@@ -241,6 +208,7 @@ Let $\alpha$ be a sequence in the continuous dual space $X^*$. It *converges* in
 </details>
 :::
 
+
 ![X(twitter)@?](pic/bsj3.jpg)
 
 ## 8.2 Subspace topology.
@@ -266,17 +234,9 @@ Let $\alpha$ be a sequence in the continuous dual space $X^*$. It *converges* in
 
 ::: {.callout-tip appearance="simple"}
 **8.2.1.3 The universal property of the subspace topology:** The subspace topology on $A$ is characterized by the following property. For any topological space $Y$ and a map $h: Y \to A$, $h$ is continuous iff $g = \iota_{A,X} \circ h: Y \to X$ is continuous.
+![](pic/8213.jpg)
 
-$$
-\begin{array}{ccc}
-A & & \\
-\downarrow^{\iota_{A,X}} & \nwarrow^{h} & \\
-X & \xleftarrow{g} & Y
-\end{array}
-$$
-
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.2.1.3 子空间拓扑的普遍性质**：子空间拓扑在 $A$ 上的特征性质如下：对于任何拓扑空间 $Y$ 和映射 $h: Y \to A$，$h$ 连续当且仅当 $g = \iota_{A,X} \circ h: Y \to X$ 连续。
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.2.1.3 子空间拓扑的普遍性质**：子空间拓扑在 $A$ 上的特征性质如下：对于任何拓扑空间 $Y$ 和映射 $h: Y \to A$，$h$ 连续当且仅当 $g = \iota_{A,X} \circ h: Y \to X$ 连续。</details>
 :::
 
 
@@ -295,46 +255,24 @@ Observe that a map $f: (Z, \mathcal{T}_Z) \to (X, \mathcal{T}_X)$ is continuous 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.2.2.2 命题**：连续单射 $f: Z \to X$ 是嵌入，当且仅当对于 $Z$ 中的任何开集 $W$，在 $X$ 中都存在一个开集 $U$ 使得 $W = f^{-1}(U)$。</details>
 :::
 
-::: {.callout-important appearance="simple" title="概念辨析：连续、开/闭映射与嵌入的区别"}
-将命题 8.2.2.2 的条件与以下拓扑学基本定义进行严格的集合论对比，可以一针见血地看透“嵌入”的本质。
-
-对于拓扑空间之间的映射 $f: Z \to X$：
-
-*   **连续 (Continuous)**：只要求“拉回去是开”。
-    *   *集合论视角*：$f^{-1}(\mathcal{T}_X) \subseteq \mathcal{T}_Z$。
-    *   *本质*：$X$ 的开集拉回来能构成 $Z$ 的开集，但 $Z$ 的拓扑可以比诱导拓扑更细（拥有更多“额外”的开集）。
-*   **开映射 (Open map)**：要求“推过去是开”。
-    *   *集合论视角*：$f(\mathcal{T}_Z) \subseteq \mathcal{T}_X$。即若 $W \in \mathcal{T}_Z$，必有 $f(W) \in \mathcal{T}_X$。
-*   **闭映射 (Closed map)**：要求“推过去是闭”。
-    *   *集合论视角*：$f(\mathcal{F}_Z) \subseteq \mathcal{F}_X$。即若 $C$ 在 $Z$ 中闭，必有 $f(C)$ 在 $X$ 中闭。
-
-**嵌入 (Embedding)**：要求“所有开集都必须是拉回来的”。
-
-*   **标准定义**：$f$ 是单射，且 $f: Z \to f(Z)$ 是同胚（$Z$ 与它的像在子空间拓扑下完全等价）。
-
-*   **等价的集合论表述（假设单射）**：
-    $$\mathcal{T}_Z = \{f^{-1}(U) : U \in \mathcal{T}_X\}$$
-
-*   *本质洞察*：嵌入不仅要求映射连续，还苛刻地要求 $Z$ 上的拓扑**完全由目标空间 $X$ 诱导**，绝对不允许 $Z$ 拥有任何私自添加的“额外拓扑结构”。
-:::
+Compare Proposition 8.2.2.2 with these definitions. A map $f: Z \to X$ between topological spaces is
+- continuous iff for any open $W$ in $Z$ there is an open $U$ in $X$ such that $W = f^{-1}(U)$;
+- open iff for any open $W$ in $Z$ there is an open $U$ in $X$ such that $\iota(W) = U$;
+- closed iff for any closed $C$ in $Z$ there is a closed $A$ in $X$ such that $f(C) = A$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>将命题 8.2.2.2 与以下定义进行比较。拓扑空间之间的映射 $f: Z \to X$ 是：
+- 连续的，当且仅当对于 $Z$ 中的任何开集 $W$，在 $X$ 中都存在一个开集 $U$ 使得 $W = f^{-1}(U)$；
+- 开的，当且仅当对于 $Z$ 中的任何开集 $W$，在 $X$ 中都存在一个开集 $U$ 使得 $\iota(W) = U$；
+- 闭的，当且仅当对于 $Z$ 中的任何闭集 $C$，在 $X$ 中都存在一个闭集 $A$ 使得 $f(C) = A$。</details>
 
 ::: {.callout-important appearance="simple"}
 **8.2.2.3 Proposition:** A map $f: Z \to X$ between topological spaces is an embedding iff $f|_{Z,f(Z)}$ is a homeomorphism.
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**8.2.2.3 命题**：<span style="background-color:yellow;">拓扑空间之间的映射 $f: Z \to X$ 是嵌入，当且仅当其限制映射 $f|_{Z,f(Z)}$ 是一个同胚。</span>
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>**8.2.2.3 命题**：拓扑空间之间的映射 $f: Z \to X$ 是嵌入，当且仅当其限制映射 $f|_{Z,f(Z)}$ 是一个同胚。</details>
 :::
 
 ::: {.callout-note appearance="simple"}
 **8.2.2.4 The universal property of embeddings:** An injection $f: Z \to X$ between topological spaces is an embedding iff for any map $h: Y \to Z$, it is continuous iff the composition $g = f \circ h: Y \to X$ is continuous.
 
-$$
-\begin{array}{ccc}
-Z & & \\
-\downarrow^{f} & \nwarrow^{h} & \\
-X & \xleftarrow{g} & Y
-\end{array}
-$$
+![](pic/8224.jpg)
 
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
@@ -461,18 +399,10 @@ $$ \mathcal{B}_{X \times Y} = \{U \times V : U \in \mathcal{T}_X, V \in \mathcal
 ::: {.callout-note appearance="simple"}
 **8.3.1.4 The universal property of the product topology of two spaces:** The product topology on $X \times Y$ is characterized by the following property. For any topological space $Z$ and a map $h: Z \to X \times Y$, $h$ is continuous iff $g_X = \text{pr}_X \circ h: Z \to X$ and $g_Y = \text{pr}_Y \circ h: Z \to Y$ are continuous.
 
-$$
-\begin{array}{ccc}
-X \times Y & \xrightarrow{\text{pr}_Y} & Y \\
-\downarrow^{\text{pr}_X} & \nwarrow^{h} & \uparrow_{g_Y} \\
-X & \xleftarrow{g_X} & Z
-\end{array}
-$$
+![](pic/8314.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.3.1.4 两个空间乘积拓扑的泛性质：** $X \times Y$ 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Z \to X \times Y$，$h$ 连续当且仅当 $g_X = \text{pr}_X \circ h: Z \to X$ 且 $g_Y = \text{pr}_Y \circ h: Z \to Y$ 均连续。
-
-**图解提示**：从右下角的 $Z$ 出发，不论你是直接飞去左上角的 $X \times Y$ 然后再投影下来，还是沿着外围先计算分量 $g_X$ 和 $g_Y$，结果都是相等的（即 $g_X = \text{pr}_X \circ h$ 且 $g_Y = \text{pr}_Y \circ h$）
 </details>
 :::
 
@@ -605,18 +535,10 @@ $$\begin{aligned} \mathcal{B}_{\prod_{i \in I} X_i} &= \left\{ \prod_{j \in J} U
 ::: {.callout-note appearance="simple"}
 **8.3.2.4 The universal property of the product topology:** The product topology on $\prod_{i \in I} X_i$ is characterized by the following property. For any topological space $Z$ and a map $h: Z \to \prod_{i \in I} X_i$, $h$ is continuous iff $g_i = \text{pr}_i \circ h: Z \to X_i$ is continuous for any $i \in I$.
 
-$$
-\begin{array}{ccc}
-\prod_{i \in I} X_i & & \\
-\downarrow^{\text{pr}_i} & \nwarrow^{h} & \\
-X_i & \xleftarrow{g_i} & Z
-\end{array}
-$$
+![](pic/8324.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**8.3.2.4 乘积拓扑的泛性质：** 
-
-$\prod_{i \in I} X_i$ 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Z \to \prod_{i \in I} X_i$，$h$ 连续当且仅当对任何 $i \in I$，复合映射 $g_i = \text{pr}_i \circ h: Z \to X_i$ 均连续。
+**8.3.2.4 乘积拓扑的泛性质：** $\prod_{i \in I} X_i$ 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Z \to \prod_{i \in I} X_i$，$h$ 连续当且仅当对任何 $i \in I$，复合映射 $g_i = \text{pr}_i \circ h: Z \to X_i$ 均连续。
 </details>
 :::
 
@@ -649,8 +571,6 @@ is open in $\prod_{i \in I} X_i$. ■
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.3.2.7 命题：** 若 $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ 是一族拓扑空间且 $A_i \subseteq X_i$ 是开子集，则乘积 $\prod_{i \in I} A_i$ 在 $\left( \prod_{i \in I} X_i, \mathcal{T}_{\prod_{i \in I} X_i} \right)$ 中是开集，当且仅当该乘积为空，或者所有 $A_i$ 在 $X_i$ 中均为开集且其中只有有限个是真子集。
-
-在无限维的乘积拓扑中，一堆开集乘在一起 $\prod A_i$ 想要成为合法的开集，条件是：除了有限的几个维度你可以在里面划定开子集外，剩下的所有维度，你必须毫无保留地填满整个空间（$A_i = X_i$）。 否则，哪怕你所有维度用的都是开集，乘出来的结果也不被承认是开集（8.3.2.8）
 </details>
 :::
 
@@ -658,11 +578,11 @@ is open in $\prod_{i \in I} X_i$. ■
 **8.3.2.8 Remark:** Alert: the open box is not open in the product space of infinitely many components!
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**8.3.2.8 备注：** 注意：<span style="background-color:yellow;">在无穷维分量的乘积空间中，“开盒子”（open box，即无穷个开集的笛卡尔积）通常不是开集！</span>
+**8.3.2.8 备注：** 注意：在无穷维分量的乘积空间中，“开盒子”（open box，即无穷个开集的笛卡尔积）通常不是开集！
 </details>
 :::
 
-### 8.3.3 Box topology | 箱拓扑
+### Box topology | 箱拓扑
 
 ::: {.callout-note appearance="simple"}
 **8.3.3.1 Definition:** For a family $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ of topological spaces, the *box topology* $\mathcal{T}_{\square_{i \in I} X_i}$ on $\prod_{i \in I} X_i$ is the topology generated by the base
@@ -753,13 +673,7 @@ $$\left\{ (\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i) : i \in I, p_{\hat
 ::: {.callout-note appearance="simple"}
 **8.4.1.4 The universal property of the quotient topology:** The quotient topology on $Y$ is characterized by the following property. For any topological space $Z$ and a map $h: Y \to Z$, $h$ is continuous iff $g = h \circ \pi: X \to Z$ is continuous.
 
-$$
-\begin{array}{ccc}
-X & \xrightarrow{g} & Z \\
-_{\pi}\downarrow & \nearrow_{h} & \\
-Y & &
-\end{array}
-$$
+![](pic/8414.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.4.1.4 商拓扑的泛性质：** $Y$ 上的商拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Y \to Z$，$h$ 连续当且仅当 $g = h \circ \pi: X \to Z$ 连续。
@@ -776,7 +690,7 @@ Observe that a map $g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$ is continuous 
 **8.4.2.1 Definition:** A surjection $g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$ is a *quotient map* iff $\mathcal{T}_Y$ equals the final topology on $Y$ induced by $\{g\}$. The space $Y$ is *quotientable* from $X$ if there is a quotient map $g: X \to Y$.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**8.4.2.1 定义：** <span style="background-color:yellow;">满射</span> $g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$ 是**商映射**（quotient map），当且仅当 $\mathcal{T}_Y$ 等于 $Y$ 上由 $\{g\}$ 诱导的终拓扑。若存在商映射 $g: X \to Y$，则称空间 $Y$ 是从 $X$ **可商的**（quotientable）。
+**8.4.2.1 定义：** 满射 $g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$ 是**商映射**（quotient map），当且仅当 $\mathcal{T}_Y$ 等于 $Y$ 上由 $\{g\}$ 诱导的终拓扑。若存在商映射 $g: X \to Y$，则称空间 $Y$ 是从 $X$ **可商的**（quotientable）。
 </details>
 :::
 
@@ -805,13 +719,7 @@ Compare Proposition 8.4.2.2 with these definitions. A map $g: X \to Y$ between t
 ::: {.callout-note appearance="simple"}
 **8.4.2.4 The universal property of quotient maps:** An surjection $g: X \to Y$ between topological spaces is a quotient map iff for any map $h: Y \to Z$, it is continuous iff the composition $f = h \circ g: X \to Z$ is continuous.
 
-$$
-\begin{array}{ccc}
-X & \xrightarrow{f} & Z \\
-_{g}\downarrow & \nearrow_{h} & \\
-Y & &
-\end{array}
-$$
+![](pic/8424.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.4.2.4 商映射的泛性质：** 拓扑空间之间的满射 $g: X \to Y$ 是商映射，当且仅当对于任何映射 $h: Y \to Z$，$h$ 连续当且仅当复合映射 $f = h \circ g: X \to Z$ 连续。
@@ -970,13 +878,7 @@ Recall for two sets $X$ and $Y$, their *disjoint union* is the set of elements i
 ::: {.callout-note appearance="simple"}
 **8.5.1.2 The universal property of the coproduct topology of two spaces:** The coproduct topology on $X \sqcup Y$ is characterized by the following property. For any topological space $Z$ and a map $h: X \sqcup Y \to Z$, $h$ is continuous iff $f_X = h \circ \iota_X: X \to Z$ and $f_Y = h \circ \iota_Y: Y \to Z$ are continuous.
 
-$$
-\begin{array}{ccc}
-X \sqcup Y & \xleftarrow{\iota_Y} & Y \\
-\uparrow^{\iota_X} & \searrow^{h} & \downarrow_{g_Y} \\
-X & \xrightarrow{g_X} & Z
-\end{array}
-$$
+![](pic/8512.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.5.1.2 两个空间余积拓扑的泛性质：** $X \sqcup Y$ 上的余积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: X \sqcup Y \to Z$，$h$ 连续当且仅当 $f_X = h \circ \iota_X: X \to Z$ 且 $f_Y = h \circ \iota_Y: Y \to Z$ 均连续。
@@ -994,21 +896,6 @@ $$\iota_i: X_i \to \bigsqcup_{i \in I} X_i, \quad p_i \mapsto (p_i, i). \quad (9
 
 For a family $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ of topological spaces, the *coproduct topology* on $\coprod_{i \in I} X_i$ is the final topology $\mathcal{T}_{\sqcup_{i \in I} X_i}$ induced by $\{\iota_i\}_{i \in I}$. We denote their *coproduct space* by $\sqcup_{i \in I} (X_i, \mathcal{T}_i) = \left( \sqcup_{i \in I} X_i, \mathcal{T}_{\sqcup_{i \in I} X_i} \right)$.
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开解释]</summary>
-
-* 痛点：现在你有任意多个（甚至不可数个）空间 $\{X_i\}_{i \in I}$，要把它们倒进同一个大缸里求并集。万一空间 $X_1$ 和 $X_2$ 里恰好都有一个叫 $p$ 的点，倒进去不就混淆了吗？
-* 数学操作：为了强行让它们“不相交”，我们给每个点贴上来源标签（公式 96）。$X_i \times \{i\}$ 的意思就是，空间 $X_i$ 里的点 $p$，现在改名叫 $(p, i)$。
-* 包含映射 $\iota_i$ (公式 97)：这就相当于把点 $p$ 贴上第 $i$ 号标签后，扔进大缸 $\coprod X_i$ 里。
-
-* 因为大缸里的各个子空间老死不相往来（完全不相交），所以它们各自的拓扑也互不干涉。
-* 大缸的子基 $\mathcal{S}_{\coprod X_i}$ 怎么算？直接把所有小空间各自的子基 $\mathcal{S}_i$ 简单粗暴地倒在一起（求不相交并）就行了。 不需要像乘积拓扑那样去费尽心思地做截面。
-* 完全继承了上一节的“免检金牌”。
-
-你要证明从大缸出发射向外部空间 $Z$ 的函数 $h$ 是连续的？
-
-* 捷径：不需要去大缸里找开集。你只要证明 $h$ 在每一个小空间 $X_i$ 上的表现（即复合映射 $f_i = h \circ \iota_i$）都是连续的就可以了。
-</details>
-
 ::: {.callout-important appearance="simple"}
 **8.5.2.1 Proposition:** If $\{(X_i, \mathcal{T}_i)\}_{i \in I}$ is a family of topological spaces with $\mathcal{S}_i$ a subbase for $\mathcal{T}_i$, then their coproduct topology $\mathcal{T}_{\sqcup_{i \in I} X_i}$ has a subbase
 $$\mathcal{S}_{\sqcup_{i \in I} X_i} = \bigsqcup_{i \in I} \mathcal{S}_i. \quad (98) \text{}$$
@@ -1022,13 +909,7 @@ $$\mathcal{S}_{\sqcup_{i \in I} X_i} = \bigsqcup_{i \in I} \mathcal{S}_i。$$
 ::: {.callout-note appearance="simple"}
 **8.5.2.2 The universal property of the coproduct topology:** The coproduct topology on $\bigsqcup_{i \in I} X_i$ is characterized by the following property. For any topological space $Z$ and a map $h: \bigsqcup_{i \in I} X_i \to Z$, $h$ is continuous iff $f_i = h \circ \iota_i: X_i \to Z$ is continuous for any $i \in I$.
 
-$$
-\begin{array}{ccc}
-\coprod_{i\in I} X_i & & \\
-\uparrow^{\iota_i} & \searrow^{h} & \\
-X_i & \xrightarrow{f_i} & Z
-\end{array}
-$$
+![](pic/8522.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.5.2.2 余积拓扑的泛性质：** $\bigsqcup_{i \in I} X_i$ 上的余积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: \bigsqcup_{i \in I} X_i \to Z$，$h$ 连续当且仅当对任何 $i \in I$，复合映射 $f_i = h \circ \iota_i: X_i \to Z$ 均连续。

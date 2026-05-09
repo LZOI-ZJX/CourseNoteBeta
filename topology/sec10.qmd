@@ -18,7 +18,7 @@ In what follows we will introduce many very concrete geometric ways to get quoti
 
 ### 10.1.1 Squeezing, identifying, and attaching spaces | 压缩、等同与附加空间
 
-Let $A$ be a subset of a topological space $X$. We may define an equivalence relation on $X$ by identifying all points of $A$. In the quotient space, we "squeeze" all points in $A$ to one point, which is denoted by $X/A$.
+Let $A$ be a subset of a topological space $X$. We may define an equivalence relation on $X$ by identifying all points of $A$. In the quotient space, we "squeeze" all points in $Y$ to one point, which is denoted by $X/Y$.
 
 ::: {.callout-note appearance="simple"}
 **10.1.1.1 Definition:** Let $A$ be a subset of a topological space $X$. Then the quotient space $X/A$ of $X$ by *squeezing* $A$ is by the equivalence relation
@@ -58,6 +58,13 @@ $$
 
 Let $X$ be a topological space. We may "identify" the points $a$ and $b$ in $X$ by the equivalence relation with $a \sim b$. Given a map from a subset $A$ to a subset $B$ of $X$ by identifying each point in $A$ to a specific point in $B$.
 
+::: {.callout-note appearance="simple"}
+**10.1.1.3 Definition:** Let $h: A \to B$ be a continuous map between disjoint subspaces of $X$. Then the quotient space $X/h$ of $X$ by *identifying* the domain with the range of $h$ is by the equivalence relation
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
+**10.1.1.3 定义：** 设 $h: A \to B$ 为 $X$ 的不交子空间之间的连续映射。那么通过*等同* $h$ 的定义域与值域而得到的 $X$ 的商空间 $X/h$ 是由以下等价关系给出的
+</details>
+:::
 
 ::: {.callout-note appearance="simple"}
 **10.1.1.3 Definition:** Let $h: A \to B$ be a continuous map between disjoint subspaces of $X$. Then the quotient space $X/h$ of $X$ by *identifying* the domain with the range of $h$ is by the equivalence relation
@@ -94,13 +101,13 @@ $$
 The construction of products and coproducts can be done to pointed sets (Definition 4.3.2.1), as well as to pointed topological spaces which yields natural topologies. The product of pointed topological spaces is called the smash product, and in particular, the coproduct of pointed topological spaces, called the wedge sum, preserves the connectedness.
 
 ::: {.callout-note appearance="simple"}
-**10.1.2.1 Definition:** Let $(X, p)$ and $(Y, q)$ be pointed sets. Their **wedge sum** is the pointed set $(X \lor Y, r)$ where
+**10.1.2.1 Definition:** Let $(X, p)$ and $(Y, q)$ be pointed sets. Their *wedge sum* is the pointed set $(X \lor Y, r)$ where
 $$
 X \lor Y = X \sqcup Y / \{p, q\}, \quad r = \{p, q\}. \quad (132)
 $$
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**10.1.2.1 定义：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合。它们的**楔和**是带点集合 $(X \lor Y, r)$，其中
+**10.1.2.1 定义：** 设 $(X, p)$ 和 $(Y, q)$ 为带点集合。它们的*楔和*是带点集合 $(X \lor Y, r)$，其中
 $$
 X \lor Y = X \sqcup Y / \{p, q\}, \quad r = \{p, q\}. \quad (132)
 $$
@@ -162,9 +169,9 @@ More generally, given a family of pointed spaces $\{(X_\alpha, p_\alpha)\}_{\alp
 ::: {.callout-note appearance="simple"}
 **10.1.3.1 Definition:** Let $X$ and $Y$ be topological spaces. Then
 
-* the **cone** of $X$ is the squeezing space $CX = X \times [0, 1] / X \times \{0\}$;
-* the **suspension** of $X$ is the quotient space $SX$ of $X \times [0, 1]$ given by squeezing $X \times \{0\}$ to one point, and also squeezing all points in $X \times \{1\}$ to another point;
-* the **join** of $X$ and $Y$ is the the quotient space $X \star Y$ given by $X \times Y \times [0, 1] / \sim$, where the equivalence is
+* the *cone* of $X$ is the squeezing space $CX = X \times [0, 1] / X \times \{0\}$;
+* the *suspension* of $X$ is the quotient space $SX$ of $X \times [0, 1]$ given by squeezing $X \times \{0\}$ to one point, and also squeezing all points in $X \times \{1\}$ to another point;
+* the *join* of $X$ and $Y$ is the the quotient space $X \star Y$ given by $X \times Y \times [0, 1] / \sim$, where the equivalence is
 $$
 (x, y_1, 0) \sim (x, y_2, 0), (x_1, y, 1) \sim (x_2, y, 1), \quad x, x_1, x_2 \in X; y, y_1, y_2 \in Y. \quad (134)
 $$
@@ -172,49 +179,36 @@ $$
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **10.1.3.1 定义：** 设 $X$ 和 $Y$ 为拓扑空间。那么
 
-* $X$ 的**锥**是压缩空间 $CX = X \times [0, 1] / X \times \{0\}$；
-* $X$ 的**悬挂**是 $X \times [0, 1]$ 的商空间 $SX$，由将 $X \times \{0\}$ 压缩为一点，同时也将 $X \times \{1\}$ 中的所有点压缩为另一点给出；
-* $X$ 和 $Y$ 的**联接**是由 $X \times Y \times [0, 1] / \sim$ 给出的商空间 $X \star Y$，其中等价关系为
+* $X$ 的*锥*是压缩空间 $CX = X \times [0, 1] / X \times \{0\}$；
+* $X$ 的*悬挂*是 $X \times [0, 1]$ 的商空间 $SX$，由将 $X \times \{0\}$ 压缩为一点，同时也将 $X \times \{1\}$ 中的所有点压缩为另一点给出；
+* $X$ 和 $Y$ 的*联接*是由 $X \times Y \times [0, 1] / \sim$ 给出的商空间 $X \star Y$，其中等价关系为
 $$
 (x, y_1, 0) \sim (x, y_2, 0), (x_1, y, 1) \sim (x_2, y, 1), \quad x, x_1, x_2 \in X; y, y_1, y_2 \in Y. \quad (134)
 $$
 </details>
 :::
 
-1. 锥空间 (Cone, $CX$)
-  * 物理动作：把空间 $X$ 向上拉伸出一个柱子 $X \times [0, 1]$，然后把顶端的整个盖子（$X \times \{0\}$）捏缩成一个点。
-  * 直觉：如果你拿一个圆（$S^1$）做底，向上拉成一个圆柱，再把圆柱的顶面捏成一个点，你得到的就是一个完美的圆锥体。这就是它名字的由来。
-  * 拓扑意义：任何空间的锥必定是可缩的 (contractible)，即可以连续形变成一个点（沿着母线滑向顶点即可）。
-2. 悬挂 (Suspension, $SX$)
-  * 物理动作：把空间 $X$ 向上拉伸出一个柱子，然后把顶端的盖子捏成一个点（北极），同时把底端的盖子也捏成另一个点（南极）。
-  * 直觉：如果你拿一个圆（$S^1$）做赤道，向上捏出一个北极，向下捏出一个南极，你得到的就是一个二维球面（$S^2$）！
-  * 公式推导：$S(S^n) = S^{n+1}$。悬挂操作是拓扑学里最标准的“升维机器”，它能把低维球面精确地升级为高一维的球面。
-3. 连接 (Join, $X \star Y$)
-  * 物理动作：这个稍微抽象一点。假设空间 $X$ 在左边，空间 $Y$ 在右边。你在 $X$ 里的每一点 $x$，和 $Y$ 里的每一点 $y$ 之间，都拉一根线段 $[0,1]$ 连接起来。
-  * 公式解读：$X \times Y \times [0, 1]$ 就是所有这些线段的集合。等价关系 $(x, y_1, 0) \sim (x, y_2, 0)$ 表示在线段的 $0$ 端（左端），所有的线段都汇聚在 $X$ 的点 $x$ 上（忽略了 $Y$ 的差异）；同理，在 $1$ 端（右端），所有的线段都汇聚在 $Y$ 的点 $y$ 上。
-  * 直觉：两个点的 Join 是一条线段；点和线段的 Join 是一个实心三角形；两条不相交线段的 Join 是一个实心四面体。
-
 ### 10.1.4 Mapping cylinders, cones and tori | 映射柱、映射锥与映射环面
 
 ::: {.callout-note appearance="simple"}
 **10.1.4.1 Definition:** Let $f: X \to Y$ be a continuous map between topological spaces. Then
 
-* the **mapping cylinder** of $f$ is the attaching space $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$ and $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$;
-* the **mapping cone** of $f$ is the quotient space $C_f = M_f / \sim$ where
+* the *mapping cylinder* of $f$ is the attaching space $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$ and $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$;
+* the *mapping cone* of $f$ is the quotient space $C_f = M_f / \sim$ where
 $$
 (x_1, 1) \sim (x_2, 1), (x, 0) \sim f(x), \quad x, x_1, x_2 \in X; \quad (135)
 $$
-* if $f: X \to X$ is a homeomorphism, the **mapping torus** of $f$ is the quotient space $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$.
+* if $f: X \to X$ is a homeomorphism, the *mapping torus* of $f$ is the quotient space $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **10.1.4.1 定义：** 设 $f: X \to Y$ 是拓扑空间之间的连续映射。那么
 
-* $f$ 的**映射柱**是附加空间 $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$，且 $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$；
-* $f$ 的**映射锥**是商空间 $C_f = M_f / \sim$，其中
+* $f$ 的*映射柱*是附加空间 $M_f = (X \times [0, 1]) \sqcup_{\tilde{f}} Y$，且 $\tilde{f}: X \times \{0\} \to Y$, $(x, 0) \mapsto f(x)$；
+* $f$ 的*映射锥*是商空间 $C_f = M_f / \sim$，其中
 $$
 (x_1, 1) \sim (x_2, 1), (x, 0) \sim f(x), \quad x, x_1, x_2 \in X; \quad (135)
 $$
-* 如果 $f: X \to X$ 是一个同胚，那么 $f$ 的**映射环面**是商空间 $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$。
+* 如果 $f: X \to X$ 是一个同胚，那么 $f$ 的*映射环面*是商空间 $T_f = X \times [0, 1] / (1, x) \sim (0, f(x))$。
 </details>
 :::
 
@@ -426,14 +420,14 @@ Then $\mathbb{C}P^n$ is the space of complex lines in $\mathbb{C}^{n+1}$ passing
 ## 10.3 Local homeomorphisms | 局部同胚
 
 ::: {.callout-note appearance="simple"}
-**10.3.0.1 Definition:** A map $f: X \to Y$ is a **local homeomorphism** iff
+**10.3.0.1 Definition:** A map $f: X \to Y$ is a *local homeomorphism* iff
 
 * $f$ is continuous;
 * $\mathcal{T}_X$ has a basis $\mathcal{B}$ such that $f(U)$ is open for any $U \in \mathcal{B}$,
 * and the submap $f|_{U, f(U)}: U \to f(U)$ is a homeomorphism.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-**10.3.0.1 定义：** 映射 $f: X \to Y$ 是一个**局部同胚**当且仅当
+**10.3.0.1 定义：** 映射 $f: X \to Y$ 是一个*局部同胚*当且仅当
 
 * $f$ 是连续的；
 * $\mathcal{T}_X$ 具有一组基 $\mathcal{B}$ 使得对于任何 $U \in \mathcal{B}$，$f(U)$ 是开的，

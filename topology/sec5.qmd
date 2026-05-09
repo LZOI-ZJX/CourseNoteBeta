@@ -10,6 +10,7 @@ format:
     css: custom.css
 ---
 
+%# MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES
 
 ## 5.1 The Category of Topological Spaces | 拓扑空间范畴
 
@@ -26,7 +27,6 @@ The category $\mathsf{Top}$.
 :::
 
 The category $\mathsf{Top}$ is a large but locally small category.
-
 范畴 $\mathsf{Top}$ 是一个大范畴，但是局部小范畴。
 
 ::: {.callout-caution appearance="simple"}
@@ -85,7 +85,6 @@ $$f: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y) \tag{39}$$
 
 * is *open* iff $(\forall U \in \mathcal{T}_X)(f(U) \in \mathcal{T}_Y)$;
 * is *closed* iff $(\forall A \in \mathcal{C}_X)(f(A) \in \mathcal{C}_Y)$, where $\mathcal{C}_X$ and $\mathcal{C}_Y$ are the collections of closed subsets of $X$ and $Y$, respectively.
-
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **5.2.1.1 定义：** 一个映射 $f: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)$：
 
@@ -228,14 +227,10 @@ Then of $A$,
 
 ::: {.callout-important appearance="simple"}
 **5.3.1.5 Proposition:** For any subset $A$ of a topological space $X$, we have
-
 * $\mathrm{Cl}(A) = A \cup \mathrm{Der}(A)$;
 * the set of isolated points of $A$ is $A \setminus \mathrm{Der}(A)$.
-
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
-
 **5.3.1.5 命题：** 对于拓扑空间 $X$ 的任何子集 $A$，我们有：
-
 * $\mathrm{Cl}(A) = A \cup \mathrm{Der}(A)$；
 * $A$ 的孤立点集为 $A \setminus \mathrm{Der}(A)$。
 </details>
@@ -434,12 +429,7 @@ Note that each $C_n$ Example 5.3.4.1 is the union of $2^n$ disjoint closed inter
 ## 5.5 Countable spaces | 可数空间
 
 ::: {.callout-note appearance="simple"}
-**5.5.0.1 Definition:** A topological space $X$ is
-
-* **separable** iff it has a countable dense subset; 
-* **first countable** iff it has a **countable** neighborhood base for every point; 
-* **second countable** iff it has a countable base.
-
+**5.5.0.1 Definition:** A topological space $X$ is *separable* iff it has a countable dense subset; it is *first countable* iff it has a neighborhood base for every point; and it is *second countable* iff it has a countable base.
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **5.5.0.1 定义：** 一个拓扑空间 $X$ 称为：
 
@@ -448,24 +438,6 @@ Note that each $C_n$ Example 5.3.4.1 is the union of $2^n$ disjoint closed inter
 * **第二可数的 (second countable)**，当且仅当它有一个可数基。
 </details>
 :::
-
-1. **可分的 (Separable)**
-
-* 严谨定义：空间 $X$ 中存在一个子集 $A$，满足 $A$ 是可数集，并且 $A$ 的闭包是整个空间（即 $\overline{A} = X$）。
-* 大白话理解：空间本身可能无限大、不可数（比如整条实数轴），但我能往里面撒一把“小米”（可数个点），这把小米能无限逼近空间中的任何一个位置。换句话说，空间里的任何一个非空开集，里面都至少包含一粒“小米”。
-* 经典例子：实数集 $\mathbb{R}$ 是可分的，因为有理数集 $\mathbb{Q}$ 是可数的，且在 $\mathbb{R}$ 中稠密（任何开区间里都含有理数）。
-
-2. **第一可数的 (First Countable)**
-
-* 严谨定义：空间 $X$ 中的每一个点 $x$，都有一个可数的局部基（邻域基） $\mathcal{B}_x = \{U_1, U_2, U_3, \dots\}$。这意味着对于包含 $x$ 的任何开集 $V$，总能在这个可数基里找到一个 $U_n$，使得 $x \in U_n \subseteq V$。
-* 大白话理解：这是一个局部性质。站在空间里的任意一点，我只需要用按顺序排好的一列开集（比如越来越小的圈），就能完全描述向这个点“无限逼近”的过程。它最重要的作用是保证了序列 (sequences) 足够用来刻画极限和连续性（否则在更一般的空间里，必须用复杂的“网”去刻画）。
-* 经典例子：任何度量空间都是第一可数的。对于任意点 $x$，取半径为 $\frac{1}{n}$ ($n \in \mathbb{N}$) 的开球系列 $\{B(x, \frac{1}{n})\}_{n=1}^\infty$，这自然构成了一个可数邻域基。
-
-3. **第二可数的 (Second Countable)**
-
-* 严谨定义：整个拓扑空间 $X$ 的拓扑 $\mathcal{T}$ 有一个可数基 $\mathcal{B}$。
-* 大白话理解：这是一个极强的全局性质。描述整个空间所有可能的形状，我只需要一本“页数可数的字典”（可数基）。空间里的任何一个开集，无论多么千奇百怪，都可以用这本字典里的词（基元素）并出来。
-* 经典例子：$\mathbb{R}^n$ 是第二可数的。它的可数基可以是：所有中心坐标为有理数、且半径也为有理数的开球的集合。
 
 The base in Example 3.2.1.3 and neighborhood base in Example 3.2.2.5 can be distrilled.
 

@@ -1,225 +1,265 @@
 # 第五节 多维问题
 
-# 二维问题
+## 二维问题
 
 初边值问题：
 
 $$
-\left\{ \begin{array}{l l} \frac {\partial u}{\partial t} = a \left(\frac {\partial^ {2} u}{\partial x ^ {2}} + \frac {\partial^ {2} u}{\partial y ^ {2}}\right) & 0 <   x, y <   1 \\ u (x,y,0)=f(x,y),\quad 0<x,y<1, \\ u (0, y, t) = u (1, y, t)=u (x, 0, t) = u (x, 1, t) = 0, & t\ge 0 \end{array} \right.
+\begin{cases}
+\displaystyle \frac{\partial u}{\partial t} = a \left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\right), & 0 < x, y < 1 \\[0.6em]
+u(x, y, 0) = f(x, y), & 0 < x, y < 1 \\[0.6em]
+u(0, y, t) = u(1, y, t) = u(x, 0, t) = u(x, 1, t) = 0, & t \ge 0
+\end{cases}
 $$
 
-取 $\Delta t = \tau, \Delta x = \Delta y = h$ , 形成网格:
+取 $\Delta t = \tau$，$\Delta x = \Delta y = h$，形成网格：
 
 $$
-D _ {h} = \left\{ \begin{array}{l l} & x _ {j} = j h, \quad j = 0, 1 \dots J \quad J h = 1 \\ (x _ {j}, y _ {l}, t _ {n}) & y _ {l} = l h, \quad l = 0, 1 \dots J \quad J h = 1 \\ & t _ {n} = n \tau \quad n \geq 0 \end{array} \right\}
+D_h = \left\{ (x_j, y_l, t_n) \,\middle|\, \begin{aligned} x_j &= jh,\quad j = 0, 1, \dots, J,\quad Jh = 1 \\ y_l &= lh,\quad l = 0, 1, \dots, J,\quad Jh = 1 \\ t_n &= n\tau,\quad n \ge 0 \end{aligned} \right\}
 $$
 
-并记: $\delta_{x}^{2} u_{j, l}^{n} = u_{j+1, l}^{n} - 2u_{j, l}^{n} + u_{j-1, l}^{n}$ ,
+并记：$\delta_x^2 u_{jl}^n = u_{j+1, l}^n - 2u_{jl}^n + u_{j-1, l}^n$，
 
 $$
-\delta_ {y} ^ {2} u _ {j, l} ^ {n} = u _ {j, l + 1} ^ {n} - 2 u _ {j, l} ^ {n} + u _ {j, l - 1} ^ {n}
+\delta_y^2 u_{jl}^n = u_{j, l+1}^n - 2u_{jl}^n + u_{j, l-1}^n
 $$
 
-# 5.1、一维格式的直接推广
+## 5.1 一维格式的直接推广
 
 一维扩散方程古典显式格式推广：
 
 $$
-\frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}}{\tau} = a \frac {1}{h ^ {2}} \left(\delta_ {x} ^ {2} u _ {j l} ^ {n} + \delta_ {y} ^ {2} u _ {j l} ^ {n}\right) \tag {5.1}
+\frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} = \frac{a}{h^2}\left(\delta_x^2 u_{jl}^n + \delta_y^2 u_{jl}^n\right) ， \tag{5.1}
 $$
 
-利用 Taylor 展开式分析截断误差为 $O\left(\tau + h^{2}\right)$ 
+利用 Taylor 展开式分析截断误差为 $O(\tau + h^2)$。
 
-计算格式
-
-$$
-u _ {j l} ^ {n + 1} = u _ {j l} ^ {n} + a \frac {\tau}{h ^ {2}} \left(\delta_ {x} ^ {2} u _ {j l} ^ {n} + \delta_ {y} ^ {2} u _ {j l} ^ {n}\right) \tag {5.2}
-$$
-
-可用Fourier法分析稳定性：
-
-设 $\lambda = \frac{\tau}{h^{2}}, u_{jl}^{n} = v^{n} e^{ik_{1}jh} e^{ik_{2}lh}$ , 代入(5.2), 有
+计算格式：
 
 $$
-v ^ {n + 1} = (1 + 2 a \lambda (\cos k _ {1} h - 1) + 2 a \lambda (\cos k _ {2} h - 1)) v ^ {n}
+u_{jl}^{n+1} = u_{jl}^n + a\frac{\tau}{h^2}\left(\delta_x^2 u_{jl}^n + \delta_y^2 u_{jl}^n\right) ， \tag{5.2}
 $$
 
-传播因子: $G\left(\lambda , k_{1}, k_{2}\right) = 1 - 4 a \lambda \left(\sin^{2} \frac{k_{1} h}{2} + \sin^{2} \frac{k_{2} h}{2}\right)$ 
+可用 Fourier 法分析稳定性：
 
-解得当 $a \lambda \leq \frac{1}{4}$ 时, $|G| \leq 1$ , 格式稳定。
-
-一般 $p$ 维显式格式稳定的条件是 $a \lambda \leq \frac{1}{2 p}$ 。
-
-一维古典隐式格式的推广
+设 $\lambda = \tau / h^2$，$u_{jl}^n = v^n e^{\mathrm{i}k_1 jh} e^{\mathrm{i}k_2 lh}$，代入 (5.2)，有
 
 $$
-\frac {u _ {j l} ^ {n} - u _ {j l} ^ {n - 1}}{\tau} = \frac {a}{h ^ {2}} \left(\delta_ {x} ^ {2} u _ {j l} ^ {n} + \delta_ {y} ^ {2} u _ {j l} ^ {n}\right) \tag {5.3}
+v^{n+1} = \bigl(1 + 2a\lambda(\cos k_1 h - 1) + 2a\lambda(\cos k_2 h - 1)\bigr) v^n
 $$
 
-格式的截断误差仍为 $O\left(\tau + h^{2}\right)$ , 但增长因子：
+传播因子：$G(\lambda, k_1, k_2) = 1 - 4a\lambda\left(\sin^2\frac{k_1 h}{2} + \sin^2\frac{k_2 h}{2}\right)$。
+
+解得当 $a\lambda \le \frac{1}{4}$ 时，$|G| \le 1$，格式稳定。
+
+一般 $p$ 维显式格式稳定当且仅当 $a\lambda \le \frac{1}{2p}$。
+
+一维古典隐式格式的推广：
 
 $$
-G (\lambda , k _ {1}, k _ {2}) = \frac {1}{1 + 4 a \lambda \left(\sin^ {2} \frac {k _ {1} h}{2} + \sin^ {2} \frac {k _ {2} h}{2}\right)}
+\frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} = \frac{a}{h^2}\left(\delta_x^2 u_{jl}^{n+1} + \delta_y^2 u_{jl}^{n+1}\right) ， \tag{5.3}
 $$
 
-$\left| \mathrm{G}(\lambda, k) \right| \leq 1.$ 格式无条件稳定。
-
-Crank - Nicolson格式：
+格式的截断误差仍为 $O(\tau + h^2)$，但增长因子：
 
 $$
-\frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}}{\tau} = \frac {a}{2 h ^ {2}} \left[ \delta_ {x} ^ {2} \left(u _ {j l} ^ {n + 1} + u _ {j l} ^ {n}\right) + \delta_ {y} ^ {2} \left(u _ {j l} ^ {n + 1} + u _ {j l} ^ {n}\right) \right] \tag {5.4}
+G(\lambda, k_1, k_2) = \frac{1}{1 + 4a\lambda\left(\sin^2\frac{k_1 h}{2} + \sin^2\frac{k_2 h}{2}\right)}
 $$
 
-格式具有二阶精度, $E = O\left(\tau^{2} + h^{2}\right)$ 。
+$|G(\lambda, k_1, k_2)| \le 1$，格式无条件稳定。
+
+Crank--Nicolson 格式：
 
 $$
-G (\lambda , k _ {1}, k _ {2}) = \frac {1 - 2 a \lambda \sin^ {2} \frac {k _ {1} h}{2} - 2 a \lambda \sin^ {2} \frac {k _ {2} h}{2}}{1 + 2 a \lambda \sin^ {2} \frac {k _ {1} h}{2} + 2 a \lambda \sin^ {2} \frac {k _ {2} h}{2}}
+\frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} = \frac{a}{2h^2}\left[\delta_x^2\left(u_{jl}^{n+1} + u_{jl}^n\right) + \delta_y^2\left(u_{jl}^{n+1} + u_{jl}^n\right)\right] ， \tag{5.4}
 $$
 
-对于任何 $\lambda, k_{1,2}, |G(\lambda, k_1, k_2)| \leq 1$ , 格式绝对稳定。
-
-# 5.2、交替方向隐式格式
-
-# 1: PR（Peaceman-Rachford）格式
+格式具有二阶精度，$E = O(\tau^2 + h^2)$。
 
 $$
-\left[ \frac {u _ {j l} ^ {n + \frac {1}{2}} - u _ {j l} ^ {n}}{\frac {\tau}{2}} = a \frac {1}{h ^ {2}} \left(\delta_ {x} ^ {2} u _ {j l} ^ {n + \frac {1}{2}} + \delta_ {y} ^ {2} u _ {j l} ^ {n}\right) \right.
+G(\lambda, k_1, k_2) = \frac{1 - 2a\lambda\sin^2\frac{k_1 h}{2} - 2a\lambda\sin^2\frac{k_2 h}{2}}{1 + 2a\lambda\sin^2\frac{k_1 h}{2} + 2a\lambda\sin^2\frac{k_2 h}{2}}
+$$
+
+对任意 $\lambda, k_{1,2}$，有 $|G(\lambda, k_1, k_2)| \le 1$，格式绝对稳定。
+
+## 5.2 交替方向隐式格式
+
+### PR（Peaceman-Rachford）格式
+
+$$
+\begin{cases}
+\displaystyle \frac{u_{jl}^{n+\frac{1}{2}} - u_{jl}^n}{\tau/2} = \frac{a}{h^2}\left(\delta_x^2 u_{jl}^{n+\frac{1}{2}} + \delta_y^2 u_{jl}^n\right) \\[0.8em]
+\displaystyle \frac{u_{jl}^{n+1} - u_{jl}^{n+\frac{1}{2}}}{\tau/2} = \frac{a}{h^2}\left(\delta_x^2 u_{jl}^{n+\frac{1}{2}} + \delta_y^2 u_{jl}^{n+1}\right) ，
+\end{cases} \tag{5.5}
+$$
+
+注：求解时每层需用两次追赶法。
+
+### PR 格式的特点
+
+#### 截断误差
+
+消去 $u_{jl}^{n+\frac{1}{2}}$、$\delta_x^2 u_{jl}^{n+\frac{1}{2}}$，可得
+
+$$
+\begin{aligned}
+&\left(1 + \frac{1}{4}\frac{\tau^2 a^2}{h^4}\delta_x^2\delta_y^2\right)\frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} \\
+&= \frac{a}{h^2}\left(\delta_x^2 + \delta_y^2\right)\frac{u_{jl}^{n+1} + u_{jl}^n}{2} ，
+\end{aligned} \tag{5.6}
+$$
+
+Taylor 展开分析截断误差：$O(\tau^2 + h^2)$。
+
+所以 PR 格式是二阶精度的格式。
+
+#### 稳定性
+
+改写 (5.6) 为
+
+$$
+\begin{aligned}
+&\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\left(1 - \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+1} \\
+&= \left(1 + \frac{a\lambda}{2}\delta_x^2\right)\left(1 + \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^n ，
+\end{aligned} \tag{5.7}
+$$
+
+Fourier 方法分析稳定性，得增长因子
+
+$$
+G(\lambda, k_1, k_2) = \frac{\bigl(1 - 2a\lambda\sin^2\frac{k_1 h}{2}\bigr)\bigl(1 - 2a\lambda\sin^2\frac{k_2 h}{2}\bigr)}{\bigl(1 + 2a\lambda\sin^2\frac{k_1 h}{2}\bigr)\bigl(1 + 2a\lambda\sin^2\frac{k_2 h}{2}\bigr)}
+$$
+
+所以 PR 格式是无条件稳定的。
+
+### 附：PR 格式的另一种推导方法
+
+也可以通过 Crank--Nicolson 格式变形的途径得到 Peaceman-Rachford 格式。首先将 Crank--Nicolson 格式变形为
+
+$$
+u_{jl}^{n+1} - \frac{a\lambda}{2}\left[\delta_x^2 u_{jl}^{n+1} + \delta_y^2 u_{jl}^{n+1}\right] = u_{jl}^n + \frac{a\lambda}{2}\left[\delta_x^2 u_{jl}^n + \delta_y^2 u_{jl}^n\right]
 $$
 
 $$
-\frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n + \frac {1}{2}}}{\frac {\tau}{2}} = a \frac {1}{h ^ {2}} \left(\delta_ {x} ^ {2} u _ {j l} ^ {n + \frac {1}{2}} + \delta_ {y} ^ {2} u _ {j l} ^ {n + 1}\right)
+\begin{aligned}
+&u_{jl}^{n+1} - \frac{a\lambda}{2}\left[\delta_x^2 u_{jl}^{n+1} + \delta_y^2 u_{jl}^{n+1}\right] + \frac{a^2\lambda^2}{4}\delta_x^2 \delta_y^2 u_{jl}^{n+1} \\
+&= u_{jl}^n + \frac{a\lambda}{2}\left[\delta_x^2 u_{jl}^n + \delta_y^2 u_{jl}^n\right] + \frac{a^2\lambda^2}{4}\delta_x^2 \delta_y^2\left[u_{jl}^n + O(\tau)\right]
+\end{aligned}
 $$
 
-注：求解时每层需用两次追赶法求解
+（注：因 $\lambda=\tau/h^2$，$\frac{a^2\lambda^2}{4}\delta_x^2\delta_y^2$ 作用于 $O(\tau)$ 的增量上整体为 $O(\tau^3)$；与式子两边同除以 $\tau$ 的尺度相配时，对截断误差贡献 $O(\tau^2)$，从而与 PR 格式的二阶截断相容。）
 
-(5.5) 
-
-# 格式的特点
-
-# 1、截断误差
-
-消去 $u_{jl}^{n + \frac{1}{2}}, \delta_x^2 u_{jl}^{n + \frac{1}{2}}$ , 可得
+忽略高阶小项，并因式分解得到
 
 $$
-\begin{array}{l} (1 + \frac {1}{4} \frac {\tau^ {2} a ^ {2}}{h ^ {4}} \delta_ {x} ^ {2} \delta_ {y} ^ {2}) \frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}}{\tau} \\ = \frac {a}{h ^ {2}} \left(\delta_ {x} ^ {2} + \delta_ {y} ^ {2}\right) \frac {u _ {j l} ^ {n + 1} + u _ {j l} ^ {n}}{2} \tag {5.6} \\ \end{array}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\left(1 - \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+1} = \left(1 + \frac{a\lambda}{2}\delta_x^2\right)\left(1 + \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^n 。
 $$
 
-Taylor展开分析截断误差: $O\left(\tau^{2} + h^{2}\right)$ 
+令 $\left(1 - \frac{a\lambda}{2}\delta_x^2\right)u_{jl}^{n+\frac{1}{2}} = \left(1 + \frac{a\lambda}{2}\delta_y^2\right)u_{jl}^n$，
 
-所以PR格式是二阶精度的格式
+则 $\left(1 - \frac{a\lambda}{2}\delta_y^2\right)u_{jl}^{n+1} = \left(1 + \frac{a\lambda}{2}\delta_x^2\right)u_{jl}^{n+\frac{1}{2}}$。
 
-# 2、稳定性
-
-改写（5.6）为
-
+所以有
 $$
-\begin{array}{l} \big( 1 - \frac {a \lambda}{2} \delta_ {x} ^ {2} \big) \big( 1 - \frac {a \lambda}{2} \delta_ {y} ^ {2} \big) \, u _ {j l} ^ {n + 1} \\ = \big( 1 + \frac {a \lambda}{2} \delta_ {x} ^ {2} \big) \big( 1 + \frac {a \lambda}{2} \delta_ {y} ^ {2} \big) \, u _ {j l} ^ {n} \tag {5.7} \\ \end{array}
-$$
-
-Fourier方法分析稳定性，得增长因子为
-
-$$
-G (\lambda , k _ {1}, k _ {2}) = \frac {(1 - 2 a \lambda \sin^ {2} \frac {k _ {1} h}{2}) (1 - 2 a \lambda \sin^ {2} \frac {k _ {2} h}{2})}{(1 + 2 a \lambda \sin^ {2} \frac {k _ {1} h}{2}) (1 + 2 a \lambda \sin^ {2} \frac {k _ {2} h}{2})}
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right) u_{jl}^{n+\frac{1}{2}} = \left(1 + \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^n \\
+\left(1 - \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+1} = \left(1 + \frac{a\lambda}{2}\delta_x^2\right) u_{jl}^{n+\frac{1}{2}}
+\end{cases}
 $$
 
-所以PR格式是无条件稳定的。
+注：PR 格式与 CN 格式有相同的精度，但计算量小很多。
 
-# 附、PR格式的另一种推导方法
-
-也可以通过 Crank—Nicolson 格式变形的途径得到 Peaceman-Rachford 格式，首先将 Crank—Nicolson 格式变形为
+### 其他形式的 ADI
 
 $$
-u _ {j l} ^ {n + 1} - \frac {a \lambda}{2} \Big [ \delta_ {x} ^ {2} u _ {j l} ^ {n + 1} + \delta_ {y} ^ {2} u _ {j l} ^ {n + 1} \Big ] = u _ {j l} ^ {n} + \frac {a \lambda}{2} \Big [ \delta_ {x} ^ {2} u _ {j l} ^ {n} + \delta_ {y} ^ {2} u _ {j l} ^ {n} \Big ]
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right) u_{jl}^{n+\frac{1}{2}} = \left(1 + \frac{a\lambda}{2}\delta_x^2\right)\left(1 + \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^n \\[0.6em]
+\left(1 - \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+1} = u_{jl}^{n+\frac{1}{2}}
+\end{cases}
 $$
 
-$$
-\frac {a ^ {2} \lambda^ {2}}{4} \delta_ {x} ^ {2} \delta_ {y} ^ {2} (u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}) = \frac {a ^ {2} \lambda^ {2}}{4} \delta_ {x} ^ {2} \delta_ {y} ^ {2} [ \delta_ {t} u _ {j l} ^ {n + \frac {1}{2}} + O (\tau^ {2}) ]
-$$
+格式特点：1．二阶精度；2．无条件稳定。
+
+### Douglas 格式
+
+Peaceman-Rachford 格式的缺点是无法推广到三维：它不能如二维格式那样保持对称形式的传播因子，无条件稳定性不再成立。下面的格式可以推广到三维。
+
+改写 (5.6) 为
 
 $$
-\begin{array}{l} \boldsymbol {u} _ {j l} ^ {n + 1} - \frac {a \lambda}{2} \Big [ \delta_ {x} ^ {2} \boldsymbol {u} _ {j l} ^ {n + 1} + \delta_ {y} ^ {2} \boldsymbol {u} _ {j l} ^ {n + 1} \Big ] + \frac {a ^ {2} \lambda^ {2}}{4} \delta_ {x} ^ {2} \delta_ {y} ^ {2} \boldsymbol {u} _ {j l} ^ {n + 1} \\ = u _ {j l} ^ {n} + \frac {a \lambda}{2} \left[ \delta_ {x} ^ {2} u _ {j l} ^ {n} + \delta_ {y} ^ {2} u _ {j l} ^ {n} \right] + \frac {a ^ {2} \lambda^ {2}}{4} \delta_ {x} ^ {2} \delta_ {y} ^ {2} \left[ u _ {j l} ^ {n} + \delta_ {t} u _ {j l} ^ {n + \frac {1}{2}} + O (\tau^ {2}) \right] \\ \end{array}
+\begin{aligned}
+&\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\left(1 - \frac{a\lambda}{2}\delta_y^2\right)\frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} \\
+&= \frac{a}{h^2}\left(\delta_x^2 + \delta_y^2\right) u_{jl}^n ，
+\end{aligned} \tag{5.8}
 $$
 
-忽略高阶无穷小项，并因式分解得到
+把 (5.8) 分裂为
 
 $$
-(1 - \frac {a \lambda}{2} \delta_ {x} ^ {2}) (1 - \frac {a \lambda}{2} \delta_ {y} ^ {2}) u _ {j l} ^ {n + 1} = (1 + \frac {a \lambda}{2} \delta_ {x} ^ {2}) (1 + \frac {a \lambda}{2} \delta_ {y} ^ {2}) u _ {j l} ^ {n}
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\dfrac{u_{jl}^{n+\frac{1}{2}} - u_{jl}^n}{\tau} = \dfrac{a}{h^2}\left(\delta_x^2 + \delta_y^2\right) u_{jl}^n \\[0.9em]
+\left(1 - \frac{a\lambda}{2}\delta_y^2\right)\dfrac{u_{jl}^{n+1} - u_{jl}^n}{\tau} = \dfrac{u_{jl}^{n+\frac{1}{2}} - u_{jl}^n}{\tau}
+\end{cases}
 $$
 
-令 $(1 - \frac{a\lambda}{2}\delta_x^2)u_{jl}^{n + \frac{1}{2}} = (1 + \frac{a\lambda}{2}\delta_y^2)u_{jl}^n$ 
-
-则 $(1 - \frac{a\lambda}{2}\delta_y^2)u_{jl}^{n + 1} = (1 + \frac{a\lambda}{2}\delta_x^2)u_{jl}^{n + \frac{1}{2}}$ 
-
-所以有: $\left\{ \begin{array}{l} (1 - \frac{a \lambda}{2} \delta_{x}^{2}) u_{j l}^{n + \frac{1}{2}} = (1 + \frac{a \lambda}{2} \delta_{y}^{2}) u_{j l}^{n} \\ (1 - \frac{a \lambda}{2} \delta_{y}^{2}) u_{j l}^{n + 1} = (1 + \frac{a \lambda}{2} \delta_{x}^{2}) u_{j l}^{n + \frac{1}{2}} \end{array} \right.$ 
-
-注：PR格式与CN格式有相同的精度，但计算量小很多。
-
-# 实际上还可以构造其他形式的ADI
+还可以表示为
 
 $$
-\left\{ \begin{array}{l} (1 - \frac {a \lambda}{2} \delta_ {x} ^ {2}) u _ {j l} ^ {n + \frac {1}{2}} = (1 + \frac {a \lambda}{2} \delta_ {x} ^ {2}) (1 + \frac {a \lambda}{2} \delta_ {y} ^ {2}) u _ {j l} ^ {n} \\ (1 - \frac {a \lambda}{2} \delta_ {y} ^ {2}) u _ {j l} ^ {n + 1} = u _ {j l} ^ {n + \frac {1}{2}} \end{array} \right.
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\left(u_{jl}^{n+\frac{1}{2}} - u_{jl}^n\right) = a\lambda\left(\delta_x^2 + \delta_y^2\right) u_{jl}^n \\[0.6em]
+u_{jl}^{n+1} - u_{jl}^{n+\frac{1}{2}} = \frac{a\lambda}{2}\delta_y^2\left(u_{jl}^{n+1} - u_{jl}^n\right)
+\end{cases}
 $$
 
-格式特点：1、二阶精度
+此格式称为 Douglas 格式；其稳定性、局部截断误差与 PR 格式相同，且易于向高维推广。
 
-2、无条件稳定
+### 三维 Douglas 格式
 
-# 2: Douglas格式
-
-Peaceman-Rachford 格式的缺点是无法推广到三维的情况。因为它不能象二维格式那样具有对称形式的传播因子, 无条件稳定性不成立。下面的格式可以推广到三维的情况。
-
-改写（5.6）为
+（注：在三维格式中，记空间网格节点为 $(x_i, y_j, z_l)$，对应解记为 $u_{ijl}^n$。）
 
 $$
-\begin{array}{l} (1 - \frac {a \lambda}{2} \delta_ {x} ^ {2}) (1 - \frac {a \lambda}{2} \delta_ {y} ^ {2}) \frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}}{\tau} \\ = \frac {a}{h ^ {2}} \left(\delta_ {x} ^ {2} + \delta_ {y} ^ {2}\right) u _ {j l} ^ {n} \tag {5.8} \\ \end{array}
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right)\left(u_{ijl}^{n+\frac{1}{3}} - u_{ijl}^n\right) = a\lambda\left(\delta_x^2 + \delta_y^2 + \delta_z^2\right) u_{ijl}^n \\[0.7em]
+u_{ijl}^{n+\frac{2}{3}} - u_{ijl}^{n+\frac{1}{3}} = \dfrac{a\lambda}{2}\delta_y^2\left(u_{ijl}^{n+\frac{2}{3}} - u_{ijl}^n\right) \\[0.7em]
+u_{ijl}^{n+1} - u_{ijl}^{n+\frac{2}{3}} = \dfrac{a\lambda}{2}\delta_z^2\left(u_{ijl}^{n+1} - u_{ijl}^n\right)
+\end{cases}
 $$
 
-把(5.8)分裂为
+同书 (5.35)。
+
+## 5.3 局部一维格式
+
+对方程建立如下的局部一维格式：
 
 $$
-\left\{ \begin{array}{l} (1 - \frac {a \lambda}{2} \delta_ {x} ^ {2}) \frac {\boldsymbol {u} _ {j l} ^ {n + \frac {1}{2}} - \boldsymbol {u} _ {j l} ^ {n}}{\tau} = \frac {a}{h ^ {2}} (\delta_ {x} ^ {2} + \delta_ {y} ^ {2}) \boldsymbol {u} _ {j l} ^ {n} \\ (1 - \frac {a \lambda}{2} \delta_ {y} ^ {2}) \frac {\boldsymbol {u} _ {j l} ^ {n + 1} - \boldsymbol {u} _ {j l} ^ {n}}{\tau} = \frac {\boldsymbol {u} _ {j l} ^ {n + \frac {1}{2}} - \boldsymbol {u} _ {j l} ^ {n}}{\tau} \end{array} \right.
+\begin{cases}
+\displaystyle \frac{u_{jl}^{n+\frac{1}{2}} - u_{jl}^n}{\tau} = \frac{a}{h^2}\delta_x^2\left(\frac{u_{jl}^{n+\frac{1}{2}} + u_{jl}^n}{2}\right) \\[0.9em]
+\displaystyle \frac{u_{jl}^{n+1} - u_{jl}^{n+\frac{1}{2}}}{\tau} = \frac{a}{h^2}\delta_y^2\left(\frac{u_{jl}^{n+1} + u_{jl}^{n+\frac{1}{2}}}{2}\right)
+\end{cases}
 $$
 
-还可以表示为:
+计算时，可化为 (5.9)：
 
 $$
-\left\{ \begin{array}{l} (1 - \frac {a \lambda}{2} \delta_ {x} ^ {2}) u _ {j l} ^ {n + \frac {1}{2}} - u _ {j l} ^ {n} = a \lambda (\delta_ {x} ^ {2} + \delta_ {y} ^ {2}) u _ {j l} ^ {n} \\ u _ {j l} ^ {n + 1} - u _ {j l} ^ {n + \frac {1}{2}} = \frac {a}{2} \lambda \delta_ {y} ^ {2} (u _ {j l} ^ {n + 1} - u _ {j l} ^ {n}) \end{array} \right.
+\begin{cases}
+\left(1 - \frac{a\lambda}{2}\delta_x^2\right) u_{jl}^{n+\frac{1}{2}} = \left(1 + \frac{a\lambda}{2}\delta_x^2\right) u_{jl}^n \\[0.7em]
+\left(1 - \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+1} = \left(1 + \frac{a\lambda}{2}\delta_y^2\right) u_{jl}^{n+\frac{1}{2}} ，
+\end{cases} \tag{5.9}
 $$
 
-此格式称为Douglas格式，它的稳定性、局部截断误差和PR格式相同，易于向高维推广。
+用两次追赶法即可求得 $\{u_{jl}^{n+1}\}$。
 
-# 三维的Douglas格式
+此格式与 PR 格式等价，是二阶绝对稳定格式；且可推广至三维。
 
-$$
-\left\{ \begin{array}{c} \bigl( 1 - \frac {a \lambda}{2} \delta_ {x} ^ {2} \bigr) \bigl( u _ {i j l} ^ {n + \frac {1}{3}} - u _ {i j l} ^ {n} \bigr) = a \lambda \bigl( \delta_ {x} ^ {2} + \delta_ {y} ^ {2} + \delta_ {z} ^ {2} \bigr) u _ {i j l} ^ {n} \\ u _ {i j l} ^ {n + \frac {2}{3}} - u _ {i j l} ^ {n + \frac {1}{3}} = \frac {a \lambda}{2} \delta_ {y} ^ {2} \bigl( u _ {i j l} ^ {n + \frac {2}{3}} - u _ {i j l} ^ {n} \bigr) \\ u _ {i j l} ^ {n + 1} - u _ {i j l} ^ {n + \frac {2}{3}} = \frac {a \lambda}{2} \delta_ {z} ^ {2} \bigl( u _ {i j l} ^ {n + 1} - u _ {i j l} ^ {n} \bigr) \end{array} \right.
-$$
+## 5.4 预测--校正格式
 
-同书（5.35）
-
-# 5.3、局部一维格式
-
-对于方程建立如下的局部一维格式:
+预测--校正联立格式 (5.10) 为
 
 $$
-\left\{ \begin{array}{l} \frac {1}{2} \frac {u _ {j l} ^ {n + \frac {1}{2}} - u _ {j l} ^ {n}}{\frac {\tau}{2}} = \frac {a}{h ^ {2}} \delta_ {x} ^ {2} \left(\frac {u _ {j l} ^ {n + \frac {1}{2}} + u _ {j l} ^ {n}}{2}\right) \\ \frac {1}{2} \frac {u _ {j l} ^ {n + 1} - u _ {j l} ^ {n + \frac {1}{2}}}{\frac {\tau}{2}} = \frac {a}{h ^ {2}} \delta_ {y} ^ {2} \left(\frac {u _ {j l} ^ {n + 1} + u _ {j l} ^ {n + \frac {1}{2}}}{2}\right) \end{array} \right.
+\begin{cases}
+\displaystyle \frac{u_{jl}^{n+\frac{1}{4}} - u_{jl}^n}{\tau/2} = \frac{a}{h^2}\delta_x^2 u_{jl}^{n+\frac{1}{4}} \\[0.8em]
+\displaystyle \frac{u_{jl}^{n+\frac{1}{2}} - u_{jl}^{n+\frac{1}{4}}}{\tau/2} = \frac{a}{h^2}\delta_y^2 u_{jl}^{n+\frac{1}{2}} \\[0.8em]
+\displaystyle \frac{u_{jl}^{n+1} - u_{jl}^n}{\tau} = \frac{a}{h^2}\left(\delta_x^2 + \delta_y^2\right) u_{jl}^{n+\frac{1}{2}} ，
+\end{cases} \tag{5.10}
 $$
 
-计算时，可化成：
-
-$$
-\left\{ \begin{array}{l} \left(1 - \frac {a}{2} \lambda \delta_ {x} ^ {2}\right) u _ {j l} ^ {n + \frac {1}{2}} = \left(1 + \frac {a}{2} \lambda \delta_ {x} ^ {2}\right) u _ {j l} ^ {n} \\ \left(1 - \frac {a}{2} \lambda \delta_ {y} ^ {2}\right) u _ {j l} ^ {n + 1} = \left(1 + \frac {a}{2} \lambda \delta_ {y} ^ {2}\right) u _ {j l} ^ {n + \frac {1}{2}} \end{array} \right. \tag {6.6}
-$$
-
-用2次追赶法即可求得 $\left\{\boldsymbol{u}_{jl}^{n+1}\right\}$ 。
-
-此格式与 $P - R$ 格式等价, 是二阶绝对稳定格式。且可推广至三维。
-
-# 5.4、预测-校正格式
-
-$$
-\begin{array}{l} \left[ \frac {u _ {j l} ^ {n + \frac {1}{4}} - u _ {j l} ^ {n}}{\frac {\tau}{2}} = \frac {a}{h ^ {2}} \delta_ {x} ^ {2} u _ {j l} ^ {n + \frac {1}{4}} \right. \\ \frac {\boldsymbol {u} _ {j l} ^ {n + \frac {1}{2}} - \boldsymbol {u} _ {j l} ^ {n + \frac {1}{4}}}{\frac {\tau}{2}} = \frac {\boldsymbol {a}}{h ^ {2}} \delta_ {y} ^ {2} \boldsymbol {u} _ {j l} ^ {n + \frac {1}{2}} \\ \frac {\boldsymbol {u} _ {j l} ^ {n + 1} - \boldsymbol {u} _ {j l} ^ {n}}{\tau} = \frac {\boldsymbol {a}}{h ^ {2}} \left(\delta_ {x} ^ {2} + \delta_ {y} ^ {2}\right) \boldsymbol {u} _ {j l} ^ {n + \frac {1}{2}} \tag {6.7} \\ \end{array}
-$$
-
-消去 $u^{n + \frac{1}{4}}$ 与 $u^{n + \frac{1}{2}}$ , 可得(5.8)
-
-所以此格式与 $P - R$ 格式等价, 是二阶绝对稳定格式
+消去 $u_{jl}^{n+\frac{1}{4}}$ 与 $u_{jl}^{n+\frac{1}{2}}$，可得 (5.8)。**所以此格式与 Douglas 格式等价**，是二阶绝对稳定格式。

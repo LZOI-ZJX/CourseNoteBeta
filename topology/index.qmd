@@ -10,6 +10,10 @@ format:
     css: custom.css
 ---
 
+![](https://ipcounter.ihcr.top/?mode=2&mail=zoenggingcoeng@gmail.com&str=&qq=2140887105&pic=Chtholly)
+
+
+
 # 2 Topology in mathematical analysis
 ## 2.1 Intervals | 区间
 
@@ -24,24 +28,19 @@ Denote by $\overline{\mathbb{R}} = \mathbb{R} \cup \{\pm\infty\}$ the *extended 
 #### 2.1.1.1 Definition | 定义
 
 An interval of $\mathbb{R}$ is a subset $I$ such that for any $x, y \in I$ we have $z \in I$ whenever $x < z < y$ or $y < z < x$. Let $\overline{a}, \overline{b} \in \overline{\mathbb{R}}$, an interval $I$ is one of the four types of sets:
-
 (1) $]\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} < x < \overline{b}\}$;
 (2) $[\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} \leq x \leq \overline{b}\}$;
 (3) $[\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} \leq x < \overline{b}\}$;
 (4) $]\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} < x \leq \overline{b}\}$.
 
-<details>
-<summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>$\mathbb{R}$ 的区间是指一个子集 $I$，满足对于任何 $x, y \in I$，只要 $x < z < y$ 或 $y < z < x$，就有 $z \in I$。设 $\overline{a}, \overline{b} \in \overline{\mathbb{R}}$，区间 $I$ 是以下四类集合之一：
-
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>$\mathbb{R}$ 的区间是指一个子集 $I$，满足对于任何 $x, y \in I$，只要 $x < z < y$ 或 $y < z < x$，就有 $z \in I$。设 $\overline{a}, \overline{b} \in \overline{\mathbb{R}}$，区间 $I$ 是以下四类集合之一：
 (1) $]\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} < x < \overline{b}\}$;
 (2) $[\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} \leq x \leq \overline{b}\}$;
 (3) $[\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} \leq x < \overline{b}\}$;
-(4) $]\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} < x \leq \overline{b}\}$。
-</details>
+(4) $]\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} < x \leq \overline{b}\}$。</details>
 :::
 
 For $\overline{a}, \overline{b} \in \overline{\mathbb{R}}$, we have:
-
 * $]\overline{a}, \overline{b}[ = [\overline{a}, \overline{b}[ = ]\overline{a}, \overline{b}] = \emptyset$ if $\overline{a} \geq \overline{b}$, and $[\overline{a}, \overline{b}] = \emptyset$ if $\overline{a} > \overline{b}$ or $\overline{a} = \overline{b} = \pm\infty$;
 * $[\overline{a}, \overline{b}] = \{\overline{a}\}$ if $\overline{a} = \overline{b} \in \mathbb{R}$.
 
@@ -52,31 +51,25 @@ For $\overline{a}, \overline{b} \in \overline{\mathbb{R}}$, we have:
 
 An interval $I$ of $\mathbb{R}$ is *empty* if it is an emptyset; it is *degenerate* if it has a single element; it is *proper* if it is neither empty nor degenerate.
 
-<details>
-<summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>$\mathbb{R}$ 的区间 $I$ 如果是空集，则称为*空的*；如果它只包含单个元素，则称为*退化的*；如果它既非空也非退化，则称为*适当的*。
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>$\mathbb{R}$ 的区间 $I$ 如果是空集，则称为*空的*；如果它只包含单个元素，则称为*退化的*；如果它既非空也非退化，则称为*适当的*。</details>
 :::
 
 ::: {.callout-important appearance="simple"}
 #### 2.1.1.3 Proposition | 命题
 
 Any *proper* interval $I$ of $\mathbb{R}$ is in one of the following forms for some $a, b \in \mathbb{R}$ with $a < b$:
-
 (1) $]a, b[$, $]a, \infty[$, $]-\infty, b[$, $]-\infty, \infty[ = \mathbb{R}$;
 (2) $[a, b]$;
 (3) $[a, b[$, $[a, \infty[$;
 (4) $]a, b]$, $]-\infty, b]$.
 The numbers $a$ and $b$ are called the *endpoints* of the interval $I$, with $a$ the *left endpoint* and $b$ the *right endpoint*. The empty interval $\emptyset$ has no endpoint while the degenerate interval $\{a\}$ has $a$ as both the left and the right endpoints.
 
-<details>
-<summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>$\mathbb{R}$ 的任何*适当*区间 $I$ 对于某些满足 $a < b$ 的 $a, b \in \mathbb{R}$，必为以下形式之一：
-
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>$\mathbb{R}$ 的任何*适当*区间 $I$ 对于某些满足 $a < b$ 的 $a, b \in \mathbb{R}$，必为以下形式之一：
 (1) $]a, b[$, $]a, \infty[$, $]-\infty, b[$, $]-\infty, \infty[ = \mathbb{R}$;
 (2) $[a, b]$;
 (3) $[a, b[$, $[a, \infty[$;
 (4) $]a, b]$, $]-\infty, b]$。
-数值 $a$ 和 $b$ 称为区间 $I$ 的*端点*，其中 $a$ 为*左端点*，$b$ 为*右端点*。空区间 $\emptyset$ 没有端点，而退化区间 $\{a\}$ 的左、右端点均为 $a$。
-</details>
+数值 $a$ 和 $b$ 称为区间 $I$ 的*端点*，其中 $a$ 为*左端点*，$b$ 为*右端点*。空区间 $\emptyset$ 没有端点，而退化区间 $\{a\}$ 的左、右端点均为 $a$。</details>
 :::
 
 We can use endpoints to classify intervals.
@@ -108,8 +101,7 @@ There is a characterizing property for open intervals.
 
 **Proposition:** An interval $I$ of $\mathbb{R}$ is open iff for any $x \in I$ there is an $\varepsilon > 0$ such that $]x - \varepsilon, x + \varepsilon[ \subseteq I$.
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>**命题：** $\mathbb{R}$ 的区间 $I$ 是开的，当且仅当对于任何 $x \in I$，存在一个 $\varepsilon > 0$，使得 $]x - \varepsilon, x + \varepsilon[ \subseteq I$。
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>**命题：** $\mathbb{R}$ 的区间 $I$ 是开的，当且仅当对于任何 $x \in I$，存在一个 $\varepsilon > 0$，使得 $]x - \varepsilon, x + \varepsilon[ \subseteq I$。</details>
 :::
 
 This could be used to define open sets.
@@ -119,8 +111,7 @@ This could be used to define open sets.
 
 **Definition:** A subset $U$ is *open* in $\mathbb{R}$ iff for any $x \in U$ there is an $\varepsilon > 0$ such that $]x - \varepsilon, x + \varepsilon[ \subseteq U$.
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>**定义：** 子集 $U$ 在 $\mathbb{R}$ 中是*开*的，当且仅当对于任何 $x \in U$，存在一个 $\varepsilon > 0$，使得 $]x - \varepsilon, x + \varepsilon[ \subseteq U$。
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>**定义：** 子集 $U$ 在 $\mathbb{R}$ 中是*开*的，当且仅当对于任何 $x \in U$，存在一个 $\varepsilon > 0$，使得 $]x - \varepsilon, x + \varepsilon[ \subseteq U$。</details>
 :::
 
 A straightforward property seen from the definition is the closedness under union.
@@ -138,8 +129,7 @@ A straightforward property seen from the definition is the closedness under unio
 
 **Theorem:** Any open subset $U$ of $\mathbb{R}$ is the disjoint union of countably many open intervals.
 
-<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅紫定理块]</summary>**定理：** $\mathbb{R}$ 的任何开子集 $U$ 都是可数个不相交开区间的并集。
-</details>
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅紫定理块]</summary>**定理：** $\mathbb{R}$ 的任何开子集 $U$ 都是可数个不相交开区间的并集。</details>
 :::
 
 *Proof:* An open interval is open by definition, and then the disjoint union of countably many open intervals is open.
@@ -194,12 +184,10 @@ The collection of open subsets is also closed under finite intersections.
 
 **Proposition:** A subset of $\mathbb{R}$ is closed iff its complement is open.
 
-<details><summary style="color: gray; cursor: pointer;"></summary>**命题：** $\mathbb{R}$ 的子集是闭的，当且仅当它的补集是开的。
-</details>
+<details><summary style="color: gray; cursor: pointer;"></summary>**命题：** $\mathbb{R}$ 的子集是闭的，当且仅当它的补集是开的。</details>
 :::
 
 Being closed is not the negation of being open! In particular, examples of subsets in the real line $\mathbb{R}$ include
-
 (1) open but not closed: open intervals $]a, b[$ for $-\infty \leq a < b \leq \infty$;
 (2) closed but not open: closed intervals $[a, b]$ for $-\infty \leq a \leq b \leq \infty$;
 (3) clopen: $\emptyset$ and $\mathbb{R}$;
@@ -345,7 +333,6 @@ $$f^{-1} \left( \prod_{j=1}^m B_j \right) = \bigcap_{j=1}^m f_j^{-1}(B_j) \text{
 #### 2.2.3.4 Lemma | 引理
 
 **Lemma:** The functions
-
 * add: $\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 + \dots + x_n$;
 * subtract: $\mathbb{R}^2 \to \mathbb{R}, (x_1, x_2) \mapsto x_1 - x_2$;
 * multiply: $\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 \dots x_n$;
@@ -355,17 +342,14 @@ $$f^{-1} \left( \prod_{j=1}^m B_j \right) = \bigcap_{j=1}^m f_j^{-1}(B_j) \text{
 * min: $\mathbb{R}^n \to \mathbb{R}$, taking the minimum of $(x_1, \dots, x_n)$
 are continuous under the standard topologies.
 
-<details>
-<summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红引理块]</summary>**引理：** 以下函数在标准拓扑下是连续的：
-
+<details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红引理块]</summary>**引理：** 以下函数在标准拓扑下是连续的：
 * 加法 (add)：$\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 + \dots + x_n$；
 * 减法 (subtract)：$\mathbb{R}^2 \to \mathbb{R}, (x_1, x_2) \mapsto x_1 - x_2$；
 * 乘法 (multiply)：$\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 \dots x_n$；
 * 除法 (divide)：$\mathbb{R} \times (\mathbb{R} \setminus \{0\}) \to \mathbb{R}, (x_1, x_2) \mapsto x_1 / x_2$；
 * 绝对值 (abs)：$\mathbb{R} \to \mathbb{R}, x \mapsto |x|$；
 * 最大值 (max)：$\mathbb{R}^n \to \mathbb{R}$，取 $(x_1, \dots, x_n)$ 的最大值；
-* 最小值 (min)：$\mathbb{R}^n \to \mathbb{R}$，取 $(x_1, \dots, x_n)$ 的最小值。
-</details>
+* 最小值 (min)：$\mathbb{R}^n \to \mathbb{R}$，取 $(x_1, \dots, x_n)$ 的最小值。</details>
 :::
 
 *Proof:* We justify the continuity of add at $x = (x_1, \dots, x_n) \in \mathbb{R}^n$ as an example. Then for any $\varepsilon > 0$ whenever $y = (y_1, \dots, y_n) \in \prod_{i=1}^n (x_i - \frac{\varepsilon}{n}, x_i + \frac{\varepsilon}{n}) \in \mathscr{B}_x^{\text{cube}}$ we have
@@ -379,7 +363,6 @@ Note that for continuity of divide we need the notion of open subsets of $\mathb
 #### 2.2.3.5 Theorem | 定理
 
 **Theorem:** If $f, g: \mathbb{R}^n \to \mathbb{R}$ are continuous functions, then
-
 * $f + g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) + g(p)$ is continuous;
 * $f - g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) - g(p)$ is continuous;
 * $f \cdot g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) \cdot g(p)$ is continuous;
@@ -390,7 +373,6 @@ Note that for continuity of divide we need the notion of open subsets of $\mathb
 where the continuities are relative to the topology $\mathscr{T}$ on $X$ and the standard topology on $\mathbb{R}$.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅紫定理块]</summary>**定理：** 若 $f, g: \mathbb{R}^n \to \mathbb{R}$ 是连续函数，则：
-
 * $f + g$ 是连续的；
 * $f - g$ 是连续的；
 * $f \cdot g$ 是连续的；
@@ -398,8 +380,7 @@ where the continuities are relative to the topology $\mathscr{T}$ on $X$ and the
 * $|f|$ 是连续的；
 * $\max(f, g)$ 是连续的；
 * $\min(f, g)$ 是连续的。
-其中连续性是相对于 $X$ 上的拓扑 $\mathscr{T}$ 和 $\mathbb{R}$ 上的标准拓扑而言的。
-</details>
+其中连续性是相对于 $X$ 上的拓扑 $\mathscr{T}$ 和 $\mathbb{R}$ 上的标准拓扑而言的。</details>
 :::
 
 *Proof:* By Lemma 2.2.3.3, $(f, g): \mathbb{R}^n \to \mathbb{R}^2$ is continuous. Then the functions $f + g = \text{add} \circ (f, g)$, $f - g = \text{subtract} \circ (f, g)$, $f \cdot g = \text{multiply} \circ (f, g)$, $f/g = \text{divide} \circ (f, g)$, $|f| = \text{abs} \circ (f)$, $\max(f, g) = \text{max} \circ (f, g)$, and $\min(f, g) = \text{min} \circ (f, g)$ are continuous on $\mathbb{R}^n \to \mathbb{R}$, since the composed maps on the left are continuous by Lemma 2.2.3.4. ■
@@ -424,17 +405,14 @@ Generalizing Proposition 2.1.2.3 and Proposition 2.1.2.5 for $\mathscr{T}_{\math
 #### 3.1.1.1 Definition | 定义
 
 **Definition:** A *topology* $\mathscr{T}$ on a set $X$ is a collection $\mathscr{T} \subseteq \mathscr{P}(X)$,
-
 * $\mathbf{O}_1$: $(\forall \mathscr{A} \subseteq \mathscr{T}) \left( \bigcup_{O \in \mathscr{A}} O \in \mathscr{T} \right)$, and
 * $\mathbf{O}_2$: $(\forall \mathscr{A} \subseteq \mathscr{T}) \left( |\mathscr{A}| < \infty \implies \bigcap_{O \in \mathscr{A}} O \in \mathscr{T} \right)$,
 then the pair $(X, \mathscr{T})$ is a *topological space*.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅绿定义块]</summary>**定义：** 集合 $X$ 上的一个*拓扑* $\mathscr{T}$ 是幂集 $\mathscr{P}(X)$ 的一个子集，满足：
-
 * $\mathbf{O}_1$：$\mathscr{T}$ 中任意族元素的并集仍在 $\mathscr{T}$ 中；
 * $\mathbf{O}_2$：$\mathscr{T}$ 中有限个元素的交集仍在 $\mathscr{T}$ 中。
-则二元组 $(X, \mathscr{T})$ 称为一个*拓扑空间*。
-</details>
+则二元组 $(X, \mathscr{T})$ 称为一个*拓扑空间*。</details>
 :::
 
 ::: {.callout-note appearance="simple"}
@@ -449,16 +427,13 @@ then the pair $(X, \mathscr{T})$ is a *topological space*.
 #### 3.1.1.3 Remark | 备注
 
 **Remark:** If $\mathscr{T}$ is a topology on a set $X$ then
-
 * $\mathbf{O}_3$: $\emptyset, X \in \mathscr{T}$,
 since $\emptyset = \bigcup_{O \in \emptyset} O \in \mathscr{T}$ and $X = \bigcap_{O \in \emptyset} O \in \mathscr{T}$. In some books $\mathbf{O}_3$ is included in the definition of topology. One also note that $\mathbf{O}_2$ is equivalent to $X \in \mathscr{T}$ and
 * $\mathbf{O}_2'$: $(\forall O_1, O_2 \in \mathscr{T})(O_1 \cap O_2 \in \mathscr{T})$.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅黄备注块]</summary>**备注：** 若 $\mathscr{T}$ 是集合 $X$ 上的一个拓扑，则：
-
 * $\mathbf{O}_3$：$\emptyset, X \in \mathscr{T}$。
-这是因为空并集为 $\emptyset$，空交集为 $X$。在某些书籍中，$\mathbf{O}_3$ 被包含在拓扑的定义内。还需注意 $\mathbf{O}_2$ 等价于 $X \in \mathscr{T}$ 且任意两个元的交集仍在其中（$\mathbf{O}_2'$）。
-</details>
+这是因为空并集为 $\emptyset$，空交集为 $X$。在某些书籍中，$\mathbf{O}_3$ 被包含在拓扑的定义内。还需注意 $\mathbf{O}_2$ 等价于 $X \in \mathscr{T}$ 且任意两个元的交集仍在其中（$\mathbf{O}_2'$）。</details>
 :::
 
 Of course, given a topology $\mathscr{T}$ the underlying space $X$ is known immediately — nothing but the largest member of $\mathscr{T}$!
@@ -477,7 +452,6 @@ A topological space can be defined equivalently by specifying its closed subsets
 #### 3.1.1.5 Proposition | 命题
 
 **Proposition:** A collection $\mathscr{C} \subseteq \mathscr{P}(X)$ is the collection of closed subsets of a topology on $X$ iff
-
 * $\mathbf{C}_1$: $(\forall \mathscr{A} \subseteq \mathscr{C}) \left( |\mathscr{A}| < \infty \implies \bigcup_{F \in \mathscr{A}} F \in \mathscr{C} \right)$; and
 * $\mathbf{C}_2$: $(\forall \mathscr{A} \subseteq \mathscr{C}) \left( \bigcap_{F \in \mathscr{A}} F \in \mathscr{C} \right)$;
 and in which case that
@@ -485,11 +459,9 @@ and in which case that
 is automatic, and the topology is given as $\mathscr{T} = \{U \subseteq X : U^c \in \mathscr{C}\}$.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>**命题：** 集合族 $\mathscr{C} \subseteq \mathscr{P}(X)$ 是 $X$ 上某个拓扑的闭集族，当且仅当：
-
 * $\mathbf{C}_1$：$\mathscr{C}$ 中有限个元素的并集仍在 $\mathscr{C}$ 中；
 * $\mathbf{C}_2$：$\mathscr{C}$ 中任意族元素的交集仍在 $\mathscr{C}$ 中。
-在这种情况下，$\mathbf{C}_3$（$\emptyset, X \in \mathscr{C}$）是自动成立的，且该拓扑由 $\mathscr{T} = \{U \subseteq X : U^c \in \mathscr{C}\}$ 给出。
-</details>
+在这种情况下，$\mathbf{C}_3$（$\emptyset, X \in \mathscr{C}$）是自动成立的，且该拓扑由 $\mathscr{T} = \{U \subseteq X : U^c \in \mathscr{C}\}$ 给出。</details>
 :::
 
 ::: {.callout-important appearance="simple"}
@@ -507,7 +479,6 @@ The default topology on $\mathbb{R}$ is the standard topology $\mathscr{T}_{\mat
 **3.1.2.3 Example:** The *lower limit topology* on $\mathbb{R}$ is the collection $\mathscr{T}_{\text{lower}} = \{ \text{unions of } [a, b[ \text{ for } a, b \in \mathbb{R} \} \cup \{\emptyset, \mathbb{R}\}$.
 
 **3.1.2.4 Question:** Are the following $\mathscr{T}$ topologies on $\mathbb{R}$?
-
 (1) $\mathscr{T} = \{ |A| = \infty \} \cup \{\emptyset\}$;
 (2) $\mathscr{T} = \{ ]-r, r[ : r > 0 \} \cup \{\emptyset, \mathbb{R}\}$.
 
@@ -532,7 +503,6 @@ From Definition 3.1.1.1 on a set of at most one elements there is a unique topol
 **3.1.3.2 Example:** A *point (topological) space* $(\{a\}, \{\emptyset, \{a\}\})$ is a singleton $\{a\}$ equipped with the unique topology, (the class of which) usually denoted by $*$.
 
 **3.1.3.3 Example:** There are exactly four topologies on $\{a, b\}$:
-
 (1) $\mathscr{T}_{\text{triv}} = \{\emptyset, \{a, b\}\}$ is the *trivial topology*
 (2) $\mathscr{T}_{\text{Sier}} = \{\emptyset, \{a\}, \{a, b\}\}$ is the *Sierpiński topology*
 (3) $\mathscr{T}'_{\text{Sier}} = \{\emptyset, \{b\}, \{a, b\}\}$ is the *Sierpiński topology* swapping $a$ and $b$;
@@ -572,24 +542,20 @@ From a family of topologies one can construct new topologies, analogous to the s
 #### 3.1.5.3 Theorem | 定理
 
 **Theorem:** Let $\{\mathscr{T}_i\}_{i \in I}$ be a family of topologies on a set $X$. Then
-
 (1) $\mathscr{T}_{\text{inf}} = \bigcap_{i \in I} \mathscr{T}_i$ is a topology on $X$, which is the *greatest lower bound* of the family;
 (2) $\mathscr{T}_{i_1} \cup \mathscr{T}_{i_2}$ may not be a topology on $X$ for some $i_0, i_1 \in I$;
 (3) $\mathscr{T}_{\text{sup}} = \bigcap \{ \mathscr{T} \text{ is a topology on } X : \mathscr{T} \supseteq \bigcup_{i \in I} \mathscr{T}_i \}$ is a topology on $X$, which is the *least upper bound* of the family.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅紫定理块]</summary>**定理：** 设 $\{\mathscr{T}_i\}_{i \in I}$ 是集合 $X$ 上的一个拓扑族。则：
-
 (1) $\mathscr{T}_{\text{inf}} = \bigcap_{i \in I} \mathscr{T}_i$ 是 $X$ 上的一个拓扑，且是该族拓扑的*最大下界*；
 (2) 对于某些 $i_0, i_1 \in I$，$\mathscr{T}_{i_1} \cup \mathscr{T}_{i_2}$ 可能不是 $X$ 上的拓扑；
-(3) $\mathscr{T}_{\text{sup}} = \bigcap \{ \mathscr{T} \text{ 是 } X \text{ 上的拓扑} : \mathscr{T} \supseteq \bigcup_{i \in I} \mathscr{T}_i \}$ 是 $X$ 上的一个拓扑，且是该族拓扑的*最小上界*。
-</details>
+(3) $\mathscr{T}_{\text{sup}} = \bigcap \{ \mathscr{T} \text{ 是 } X \text{ 上的拓扑} : \mathscr{T} \supseteq \bigcup_{i \in I} \mathscr{T}_i \}$ 是 $X$ 上的一个拓扑，且是该族拓扑的*最小上界*。</details>
 :::
 
 ## 3.2 Bases and neighborhood bases. | 基与邻域基
 
 In the definition of the real line we have used the collection of unions of open intervals. This is not very convenient and we want to start with the collection $\mathscr{B}$ of open intervals which is not a topology, but we shall generate a topology out of $\mathscr{B}$ by taking unions of its members. Actually $\mathscr{B}$ is a base of the standard topology.
 There have been two equivalent definitions for open subsets of $\mathbb{R}$.
-
 (1) A subset $U$ is open in $\mathbb{R}$ iff for any $x \in U$ there is an open interval $]a, b[$ such that $x \in I \subseteq U$.
 (2) A subset $U$ is open in $\mathbb{R}$ iff $U$ is the union of open intervals.
 In the first definition it is important open interval $]a, b[$ containing $x$, which we call an open neighborhood of $x$. In the second definition the open intervals are special.
@@ -678,7 +644,6 @@ is *continuous* iff $(\forall V \in \mathscr{T}_Y)(f^{-1}(V) \in \mathscr{T}_X)$
 #### 3.3.0.3 Proposition | 命题
 
 **Proposition:**
-
 (1) The *identity map* $\text{id}_X : X \to X, p \mapsto p$, is continuous;
 (2) The *empty map* $e : \emptyset \to X$ is continuous;
 (3) For any $q \in Y$, the *constant map* $c_q : X \to Y, p \mapsto q$, is continuous;
@@ -687,12 +652,10 @@ is *continuous* iff $(\forall V \in \mathscr{T}_Y)(f^{-1}(V) \in \mathscr{T}_X)$
 $$X \xrightarrow{f} Y \xrightarrow{g} Z$$
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>**命题：**
-
 (1) *恒等映射* $\text{id}_X : X \to X, p \mapsto p$ 是连续的；
 (2) *空映射* $e : \emptyset \to X$ 是连续的；
 (3) 对于任何 $q \in Y$，*常数映射* $c_q : X \to Y, p \mapsto q$ 是连续的；
-(4) 连续映射的复合仍是连续的。
-</details>
+(4) 连续映射的复合仍是连续的。</details>
 :::
 
 ::: {.callout-tip appearance="simple"}
@@ -860,14 +823,12 @@ $$X \xrightarrow{f} Y \xrightarrow{g} Z$$
 * Riemann mapping theorem.
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译 - 浅红命题块]</summary>**命题：** 以下各组空间是同胚的：
-
 * $\mathbb{Z}$ 与 $\mathbb{N}$；
 * 实直线与开区间；
 * 连续映射的图像与其定义域；
 * 去点球面 $\mathbb{S}^n \setminus \{p\}$ 与 $\mathbb{R}^n$；
 * 固定维度下的开球与开框（open boxes）；
-* 黎曼映射定理（涉及的空间）。
-</details>
+* 黎曼映射定理（涉及的空间）。</details>
 :::
 
 

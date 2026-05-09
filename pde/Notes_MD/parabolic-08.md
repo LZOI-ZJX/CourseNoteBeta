@@ -1,13 +1,3 @@
-# 第四章 抛物型方程的有限差分法
-
-## 主要内容
-
-- 常系数扩散方程  
-- 初边值问题  
-- 对流扩散方程  
-- 变系数方程  
-- 多维问题  
-
 ## 第一节 常系数扩散方程
 
 考虑一维扩散方程：
@@ -101,7 +91,7 @@ $$
 $$
 
 $$
-u _ {j} ^ {0} = \varphi_ {j} = \varphi (x _ {j}), u _ {0} ^ {n} = u _ {N} ^ {n} = 0, (1. 6) _ {2}
+u _ {j} ^ {0} = \varphi_ {j} = \varphi (x _ {j}), u _ {0} ^ {n} = u _ {N} ^ {n} = 0, \tag {1. 6(2)}
 $$
 
 其中 $j = 1,2,\dots ,N - 1,n = 1,2,\dots ,M - 1$ 
@@ -136,7 +126,7 @@ $$
 #### (2) 加权隐式格式
 
 $$
-\begin{array}{l} \frac {u _ {j} ^ {n + 1} - u _ {j} ^ {n}}{\tau} = a \left[ (1 - \theta) \frac {u _ {j + 1} ^ {n} - 2 u _ {j} ^ {n} + u _ {j - 1} ^ {n}}{h ^ {2}} \right. \\ \left. + \theta \frac {u _ {j + 1} ^ {n + 1} - 2 u _ {j} ^ {n + 1} + u _ {j - 1} ^ {n + 1}}{h ^ {2}} \right] \\ \end{array}
+\frac {u _ {j} ^ {n + 1} - u _ {j} ^ {n}}{\tau} = a \left[ (1 - \theta) \frac {u _ {j + 1} ^ {n} - 2 u _ {j} ^ {n} + u _ {j - 1} ^ {n}}{h ^ {2}} \right.  \left. + \theta \frac {u _ {j + 1} ^ {n + 1} - 2 u _ {j} ^ {n + 1} + u _ {j - 1} ^ {n + 1}}{h ^ {2}} \right] 
 $$
 
 $$
@@ -177,9 +167,7 @@ $$
 \text {无 条 件 稳 定 ， 当} \frac {1}{2} \leq \theta \leq 1
 $$
 
-$$
-\text {Crank-Nicolson 格式 } \left(\theta = \frac {1}{2}\right)\text{：}
-$$
+<span style="background-color:yellow;">Crank-Nicolson 格式 ： $\theta = \frac {1}{2}$ ：</span>
 
 $$
 \begin{array}{l} \frac {u _ {j} ^ {n + 1} - u _ {j} ^ {n}}{\tau} = \frac {a}{2} [ \frac {u _ {j + 1} ^ {n + 1} - 2 u _ {j} ^ {n + 1} + u _ {j - 1} ^ {n + 1}}{h ^ {2}} + \frac {u _ {j + 1} ^ {n} - 2 u _ {j} ^ {n} + u _ {j - 1} ^ {n}}{h ^ {2}} ] \\ u _ {j} ^ {0} = \varphi_ {j} = \varphi (x _ {j}), u _ {0} ^ {n} = u _ {N} ^ {n} = 0 \\ \end{array}
@@ -203,9 +191,11 @@ Crank-Nicolson格式的稳定性:
 
 无条件稳定
 
+<span style="background-color:yellow;">此外，当 $\theta=1$ 时，格式为向后差分格式；当 $\theta=0$ 时，格式为向前差分格式。</span>
+
 #### (3) 三层显式格式
 
-##### Richardson 格式
+##### <mark>Richardson 格式</mark>
 
 $$
 \frac {u _ {j} ^ {n + 1} - u _ {j} ^ {n - 1}}{2 \tau} = a \frac {u _ {j + 1} ^ {n} - 2 u _ {j} ^ {n} + u _ {j - 1} ^ {n}}{h ^ {2}}
@@ -229,15 +219,8 @@ $$
 
 设误差只在初始层的原点 $(j = 0)$ 发生, 即 $e_{j}^{0} = \delta_{j0} \varepsilon$ 
 
-$(\varepsilon > 0; \delta_{00} = 1, \delta_{j0} = 0$ 当 $j \neq 0), e_j^{-1} = 0,$ 而在以后计算
+$(\varepsilon > 0; \delta_{00} = 1, \delta_{j0} = 0$ 当 $j \neq 0), e_j^{-1} = 0,$ 而在以后计算中都是精确的
 
-中都是精确的，则初始误差的传递情况如表1：
-
-
-表1 $a \lambda = \frac{1}{2}$ 时 Richardson 格式的误差传播
-
-
-<table><tr><td>\</td><td>-4</td><td>-3</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>ε</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>0</td><td>ε</td><td>-2ε</td><td>ε</td><td>0</td><td>0</td><td>0</td></tr><tr><td>2</td><td>0</td><td>0</td><td>ε</td><td>-4ε</td><td>7ε</td><td>-4ε</td><td>ε</td><td>0</td><td>0</td></tr><tr><td>3</td><td>0</td><td>ε</td><td>-6ε</td><td>17ε</td><td>-24ε</td><td>17ε</td><td>-6ε</td><td>ε</td><td>0</td></tr><tr><td>4</td><td>ε</td><td>-8ε</td><td>31ε</td><td>-68ε</td><td>89ε</td><td>-68ε</td><td>31ε</td><td>-8ε</td><td>ε</td></tr><tr><td>5</td><td>-10ε</td><td>49ε</td><td>-144ε</td><td>273ε</td><td>-388ε</td><td>273ε</td><td>-144ε</td><td>49ε</td><td>-10ε</td></tr><tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
 
 ##### Fourier 方法分析 Richardson 格式的稳定性
 
@@ -280,7 +263,7 @@ $$
 
 破坏了 Von Neumann 条件，格式不稳定。此格式是无条件不稳定的。
 
-##### Du Fort-Frankel 格式
+##### <mark>Du Fort-Frankel 格式</mark>
 
 1953年 Du Fort-Frankel 格式
 

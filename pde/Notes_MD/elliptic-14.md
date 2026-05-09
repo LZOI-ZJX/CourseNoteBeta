@@ -1,4 +1,6 @@
-# 第四节 变系数方程
+# 第五章 椭圆型方程的差分方法（续二）
+
+## 第四节 变系数方程
 
 考虑变系数椭圆方程:
 
@@ -8,13 +10,15 @@ $$
 
 其中 $a(x, y)>0,\ c(x,y)\geqslant 0$（原稿中多出未出现的 $b(x,y)>0$，已删）。
 
-1: 直接差分方法
+### 直接差分方法
 
 $$
-\frac {1}{h ^ {2}} \delta_ {x} (a _ {i j} \delta_ {x} u _ {i j}) + \frac {1}{h ^ {2}} \delta_ {y} (a _ {i j} \delta_ {y} u _ {i j}) - c _ {i j} u _ {i j} = f _ {i j}
+\frac {1}{h ^ {2}} \delta_ {x} (a _ {i j} \delta_ {x} u _ {i j}) + \frac {1}{k ^ {2}} \delta_ {y} (a _ {i j} \delta_ {y} u _ {i j}) - c _ {i j} u _ {i j} = f _ {i j}
 $$
 
-# 2：有限体积法（积分差分方法）
+其中 $h$、$k$ 分别为 $x$、$y$ 方向的网格步长（与下节有限体积离散一致）。
+
+注：为书写简便，式中 $\delta_x(a_{ij}\delta_x u_{ij})$、$\delta_y(a_{ij}\delta_y u_{ij})$ 为简记；严格的半节点（$i\pm\frac12,\ j\pm\frac12$）展开与下文有限体积离散一致。
 
 $$
 \begin{array}{l} \iint_ {D _ {i j}} \frac {\partial}{\partial x} (a (x, y) \frac {\partial u}{\partial x}) d x d y \\ = \int_ {y _ {j - \frac {1}{2}}} ^ {y _ {j + \frac {1}{2}}} [ a (x _ {i + \frac {1}{2}}, y) \frac {\partial u}{\partial x} (x _ {i + \frac {1}{2}}, y) - a (x _ {i - \frac {1}{2}}, y) \frac {\partial u}{\partial x} (x _ {i - \frac {1}{2}}, y) ] d y \\ \end{array}
@@ -40,13 +44,11 @@ $$
 \begin{array}{l} \frac {1}{h ^ {2}} [ a _ {i + \frac {1}{2}, j} (u _ {i + 1, j} - u _ {i j}) - a _ {i - \frac {1}{2}, j} (u _ {i j} - u _ {i - 1, j}) ] \\ + \frac {1}{k ^ {2}} [ a _ {i, j + \frac {1}{2}} (u _ {i, j + 1} - u _ {i j}) - a _ {i , j - \frac {1}{2}} (u _ {i j} - u _ {i, j - 1}) ] - c _ {i j} u _ {i j} = f _ {i j} \\ \end{array}
 $$
 
-# 第六节 特征值问题
+## 第六节 特征值问题
 
-# The Eigenvalue Problem
+### 一维模型问题
 
-# Model Problem
-
-# Statement
+#### 问题提法（Statement）
 
 Find nontrivial $(u, \lambda)$ such that 
 
@@ -64,17 +66,11 @@ $$
 0 \leq \lambda^ {1} \leq \lambda^ {2} \leq \dots
 $$
 
-
-
-
-# Exact Solution
+#### 精确解（Exact Solution）
 
 $$
 - u _ {x x} - \lambda u = 0
 $$
-
-![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/13b6ad3ef885c132a0e28b07e9a5a7a62ad14f75ac182b415320c57154448827.jpg)
-
 
 $$
 u = A \sin \sqrt {\lambda} x + B \cos \sqrt {\lambda} x
@@ -85,14 +81,10 @@ u (0) = 0 \Rightarrow B = 0
 $$
 
 $$
-u (1) = 0 \Rightarrow A = 0 \text {o r} \lambda = k ^ {2} \pi^ {2}, k = 1, 2, \dots
+u (1) = 0 \Rightarrow A = 0 \text{ or } \lambda = k ^ {2} \pi^ {2}, k = 1, 2, \dots
 $$
 
-# The Eigenvalue Problem
-
-# Exact Solution
-
-Thus (choose $A = 1$ ) 
+于是（取 $A = 1$） 
 
 $$
 \left. \begin{array}{c} u ^ {k} = \sin k \pi x \\ \lambda^ {k} = k ^ {2} \pi^ {2} \end{array} \right\} k = 1, 2 \dots
@@ -100,43 +92,25 @@ $$
 
 Larger $k \Rightarrow$ more oscillatory $u^{k} \Rightarrow$ larger $\lambda$ . 
 
-# The Eigenvalue Problem
+#### 前四阶特征函数示意
 
-# Exact Solution
-
-
-1st Eigenfunction
-
+**第 1 特征函数**
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/f1511e5124d8cdbc70dfcbe1ccf9a936edc4bf773f081d2318efa9f46b05f9a5.jpg)
 
-
-
-2nd Eigenfunction
-
+**第 2 特征函数**
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/1924dac3714ab98fd1d93fb817dc985346084ddc5717eefa246fc5f2a0a45132.jpg)
 
-
-
-3rd Eigenfunction
-
+**第 3 特征函数**
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/2bb649f88cb5a3a5853bc1d06046f7bdee68f80e27dc599c9692830dce8646b0.jpg)
 
-
-
-4th Eigenfunction
-
+**第 4 特征函数**
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/4d11d3c553e23b10efdc4138e933e706e1a1e00764070e30945634d41f3727dd.jpg)
 
-
-# The Eigenvalue Problem
-
-# Discrete Equations
-
-# Difference Formulas
+### 一维离散方程与差分格式
 
 $$
 \begin{array}{l} - u _ {x x} = \lambda u, \quad u (0) = u (1) = 0 \\ \Downarrow \\ \end{array}
@@ -157,16 +131,14 @@ $$
 \hat {u} _ {0} = \hat {u} _ {n + 1} = 0
 $$
 
-# The Eigenvalue Problem
+### 一维误差分析
 
-# Error Analysis
+#### 离散特征向量与解析解
 
-Analytical Solution: $\hat{\boldsymbol{u}}^k,\hat{\lambda}^k\dots$ 
-
-Claim that 
+记离散特征向量为 $\boldsymbol{\hat{u}}^{k} = (\hat{u}_1^k,\ldots,\hat{u}_n^k)^{\mathsf T}$。在网点上与连续本征函数 $u^k(x)=\sin(k\pi x)$ 分量一致，可简记为
 
 $$
-\underline {{\hat {u}}} ^ {k} \equiv \underline {{u}} ^ {k}
+\boldsymbol{\hat{u}}^{k} \equiv \boldsymbol{u}^{k} \quad \text{（即 } \hat{u}_j^k = u^k(x_j),\ j=1,\ldots,n\text{）}
 $$
 
 $$
@@ -175,13 +147,9 @@ $$
 
 Note $\hat{u}_0^k = \hat{u}_{n + 1}^k = 0$ since $\sin (0) = \sin (k\pi) = 0.$ 
 
-# The Eigenvalue Problem
+#### $\hat{\lambda}^k$ 的推导
 
-# Error Analysis
-
-...Analytical Solution: $\hat{\boldsymbol{u}}^k,\hat{\lambda}^k\dots$ 
-
-What are $\hat{\lambda}^k$ ? 
+求 $\hat{\lambda}^k$（下式左端即离散 Laplace 算子作用在 $\hat{u}_j^k$ 上的结果，应等于 $\hat{\lambda}^k \hat{u}_j^k$）：
 
 $$
 - \frac {1}{\Delta x ^ {2}} \left\{\hat {u} _ {j - 1} ^ {k} - 2 \hat {u} _ {j} ^ {k} + \hat {u} _ {j + 1} ^ {k} \right\}
@@ -191,34 +159,32 @@ $$
 \begin{array}{l} = - \frac {1}{\Delta x ^ {2}} \left\{\sin \left(k \pi \left(x _ {j} - \Delta x\right)\right) - 2 \sin \left(k \pi x _ {j}\right) + \sin \left(k \pi \left(x _ {j} + \Delta x\right)\right) \right\} \\ = - \frac {1}{\Delta x ^ {2}} \underbrace {\left. \left. \sin (k \pi x _ {j} - k \pi \Delta x) + \sin (k \pi x _ {j} + k \pi \Delta x) \right. \right.} _ {2 \cos (k \pi \Delta x) \sin (k \pi x _ {j})} - 2 \sin (k \pi x _ {j}) \} \\ \end{array}
 $$
 
-# The Eigenvalue Problem
+#### 特征值恒等式与离散谱
 
-# Error Analysis
-
-...Analytical Solution: $\hat{\underline{u}}^k, \hat{\lambda}^k$ 
-
-Thus: 
+于是
 
 $$
 - \frac {1}{\Delta x ^ {2}} \left\{\hat {u} _ {j - 1} ^ {k} - 2 \hat {u} _ {j} ^ {k} + \hat {u} _ {j + 1} ^ {k} \right\}
 $$
 
 $$
-\begin{array}{l} = - \frac {1}{\Delta x ^ {2}} \left\{2 \cos (k \pi \Delta x) \sin (k \pi x _ {j}) - 2 \sin (k \pi x _ {j}) \right\} \\ = \frac {2}{\Delta x ^ {2}} \{1 - \cos (k \pi \Delta x) \} \sin (k \pi x _ {j}). \\ \end{array}
+\begin{array}{l} = - \frac {1}{\Delta x ^ {2}} \left\{2 \cos (k \pi \Delta x) \sin (k \pi x _ {j}) - 2 \sin (k \pi x _ {j}) \right\} \\ = \frac {2}{\Delta x ^ {2}} \{1 - \cos (k \pi \Delta x) \} \hat {u} _ {j} ^ {k}. \\ \end{array}
+$$
+
+对比差分方程 $\displaystyle -\frac{1}{\Delta x^2}\bigl(\hat{u}_{j-1}^k - 2\hat{u}_j^k + \hat{u}_{j+1}^k\bigr) = \hat{\lambda}^k \hat{u}_j^k$（即 $-\delta_x^2 \hat{u}_j^k / \Delta x^2 = \hat{\lambda}^k \hat{u}_j^k$），两边约去非零因子 $\hat{u}_j^k$（对内点 $j$ 成立），得离散特征值
+
+$$
+\hat {\lambda} ^ {k} = \frac {2}{\Delta x ^ {2}} \{1 - \cos (k \pi \Delta x) \}.
 $$
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/767db047d547777a6d8638847233aa0a703de989c7d34519bb0c816f4bc511ae.jpg)
 
 
 $$
-A \hat {u} ^ {k} = \hat {\lambda} ^ {k} \hat {u} ^ {k}
+A \boldsymbol{\hat{u}} ^ {k} = \hat {\lambda} ^ {k} \boldsymbol{\hat{u}} ^ {k}
 $$
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-...Analytical Solution: $\hat{\boldsymbol{u}}^k,\hat{\lambda}^k\dots$ 
+#### 图示补充
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/c0ebd445934ca36d7b9442d461809718c3beef9d1f8f51dddc1b3226e4b6ef08.jpg)
 
@@ -232,13 +198,7 @@ $$
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/f40c3add0b1e6bad8a7be9baa55c77febac5563ac43f2d4582cced20a6392dd9.jpg)
 
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-# Conclusions...
-
-# Low modes
+#### 结论：低模态（Low modes）
 
 For fixed $k$ , $\Delta x \to 0$ : 
 
@@ -247,16 +207,10 @@ $$
 $$
 
 $$
-\text {s e c o n d - o r d e r c o n v e r g e n c e}, \hat {\lambda} ^ {k} \rightarrow \lambda^ {k}.
+\text{second-order convergence},\quad \hat {\lambda} ^ {k} \rightarrow \lambda^ {k}.
 $$
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-# ...Conclusions...
-
-# High modes:
+#### 结论：高模态（High modes）
 
 For $k = n$ 
 
@@ -265,16 +219,12 @@ $$
 $$
 
 $$
-\begin{array}{l} \hat {\lambda} ^ {n} = \frac {2}{\Delta x ^ {2}} \{1 - \cos (\frac {n \pi}{n + 1}) \} \\ = 4 (n + 1) ^ {2} \quad \text {a s} \quad \Delta x \rightarrow 0 \\ \neq n ^ {2} \pi^ {2} = \lambda^ {n}. \\ \end{array}
+\begin{array}{l} \hat {\lambda} ^ {n} = \frac {2}{\Delta x ^ {2}} \{1 - \cos (\frac {n \pi}{n + 1}) \} \\ = 4 (n + 1) ^ {2} \quad \text{as} \quad \Delta x \rightarrow 0 \\ \neq n ^ {2} \pi^ {2} = \lambda^ {n}. \\ \end{array}
 $$
 
 High modes $(k\approx n)$ are not accurate. 
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-...Conclusions... 
+#### 低模态与高模态对比（例）
 
 Low modes vs. high modes 
 
@@ -286,11 +236,7 @@ Example: $n = 19, \Delta x = 1 / 20$
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/1ae3c0a9dd7b208c6ba81f6bbc58a310d44194c28c1143edc8d1b706aaab8e52.jpg)
 
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-...Conclusions... 
+#### 模态分辨与误差阶
 
 Low modes vs. high modes 
 
@@ -302,9 +248,7 @@ $$
 k \approx n
 $$
 
-N19 
-
-$\hat{u}^{k}$ resolved 
+$\boldsymbol{\hat{u}}^{k}$ resolved 
 
 $\hat{\lambda}^{k}$ accurate 
 
@@ -312,7 +256,7 @@ $$
 \hat {\lambda} ^ {k} - \lambda^ {k} \sim \mathcal {O} (\Delta x ^ {2})
 $$
 
-$\hat{\boldsymbol{u}}^k$ not resolved 
+$\boldsymbol{\hat{u}}^{k}$ not resolved 
 
 $\hat{\lambda}^k$ not accurate 
 
@@ -320,54 +264,38 @@ $\hat{\lambda}^{k}-\lambda^{k}$ is $\mathcal{O}(1)$
 
 BUT: as $\Delta x \to 0$ , $n \to \infty$ , so any fixed mode $k$ converges. 
 
-# The Eigenvalue Problem
-
-# Error Analysis
-
-...Conclusions... 
-
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/68e37ae3c0b757e7bde927163653b056e7855a25013c13c21120310bc3b83ec3.jpg)
-
-
-# The Eigenvalue Problem
-
-# Error Analysis
-
-...Conclusions 
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/15dfa48f36154ff4c3ad81aee3ac2922846b84f095ccbb7d10949d743cb84cfc.jpg)
 
-
-# The Eigenvalue Problem
-
-# Condition Number of $A$
+### 矩阵 $A$ 的条件数（一维）
 
 For a SPD matrix $M$ , the condition number $\kappa_{M}$ is given by 
 
 $$
-\kappa_ {M} = \frac {\text {m a x i m u m e i g e n v a l u e o f M}}{\text {m i n i m u m e i g e n v a l u e o f M}}.
+\kappa_ {M} = \frac {\text{maximum eigenvalue of } M}{\text{minimum eigenvalue of } M}.
 $$
 
 Thus, for our $A$ matrix, 
 
 $$
-\kappa_ {A} \rightarrow \frac {4 n ^ {2}}{\pi^ {2}} \mathrm {a s} \Delta x \rightarrow 0
+\kappa_ {A} \rightarrow \frac {4 n ^ {2}}{\pi^ {2}} \quad \text{as} \quad \Delta x \rightarrow 0
 $$
 
-grows (in $\mathbb{R}^{1}$ ) as number of grid points squared. N20 
+grows (in $\mathbb{R}^{1}$) as the number of grid points squared.
 
 Importance: understanding solution procedures. 
 
-# Eigenvalue Problem in 2D
+### 二维特征值问题
 
-# Statement
-
-$$
-- \nabla^ {2} u = \lambda u \quad \text {i n} \Omega
-$$
+#### 问题提法（Statement）
 
 $$
-u = 0 \quad \text {o n} \Gamma
+- \nabla^ {2} u = \lambda u \quad \text{in } \Omega
+$$
+
+$$
+u = 0 \quad \text{on } \Gamma
 $$
 
 Assume (for simplicity) 
@@ -381,54 +309,40 @@ Solutions $(u(x,y),\lambda)$
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-04-29/a958efed-5598-47bd-8351-732d0ca6a589/c2fcb9094e2d2bf7022e97d20fdd0aa7fb14e47c7521d36ad036585ca8dd31ab.jpg)
 
 
-# Eigenvalue Problem in 2D
-
-# Exact Solution
-
-# Eigenvalues
+#### 连续谱：本征函数与本征值
 
 $$
 \begin{array}{l} u ^ {k, l} (x, y) = \sin (k \pi x) \sin (l \pi y) \\ - \nabla^ {2} u ^ {k, l} = \left(k ^ {2} \pi^ {2} + l ^ {2} \pi^ {2}\right) u ^ {k, l} \\ \end{array}
 $$
 
-# Eigenvectors
-
 $$
 \lambda^ {k, l} = k ^ {2} \pi^ {2} + l ^ {2} \pi^ {2}, \quad k, l = 1, \dots
 $$
 
-# Eigenvalue Problem in 2D
-
-# Discrete Problem
-
-# Eigenvectors
+#### 离散问题与离散特征向量
 
 $$
-A \hat {u} = \hat {\lambda} \hat {u} \quad \Rightarrow \quad \left(\underline {{u}} ^ {k, l}, \hat {\lambda} ^ {k, l}\right)
+A \boldsymbol{\hat{u}} ^ {k, l} = \hat {\lambda} ^ {k, l} \boldsymbol{\hat{u}} ^ {k, l} \quad \Rightarrow \quad \left(\boldsymbol{\hat{u}} ^ {k, l}, \hat {\lambda} ^ {k, l}\right)
 $$
 
 $$
-\begin{array}{l} u _ {i, j} ^ {k, l} = \sin (k \pi x _ {i}) \sin (l \pi y _ {j}) \\ = \sin (k \pi i \Delta x) \sin (l \pi j \Delta y) \\ = \sin (\frac {k \pi i}{n + 1}) \sin (\frac {l \pi j}{m + 1}) \\ \end{array}
+\begin{array}{l} \hat{u} _ {i, j} ^ {k, l} = \sin (k \pi x _ {i}) \sin (l \pi y _ {j}) \\ = \sin (k \pi i \Delta x) \sin (l \pi j \Delta y) \\ = \sin (\frac {k \pi i}{n + 1}) \sin (\frac {l \pi j}{m + 1}) \\ \end{array}
 $$
 
 $$
 k, i = 1, \dots , n \quad l, j = 1, \dots , m
 $$
 
-# Eigenvalue Problem in 2D
-
-# Discrete Problem
-
-# Eigenvalues
+#### 离散特征值与高低模态
 
 $$
-\hat {\lambda} ^ {k, l} = \frac {2}{\Delta x} \{1 - \cos (k \pi \Delta x) \} + \frac {2}{\Delta y} \{1 - \cos (l \pi \Delta y) \}
+\hat {\lambda} ^ {k, l} = \frac {2}{\Delta x ^ {2}} \{1 - \cos (k \pi \Delta x) \} + \frac {2}{\Delta y ^ {2}} \{1 - \cos (l \pi \Delta y) \}
 $$
 
 Low Modes 
 
 $$
-\Delta x, \Delta y \rightarrow 0 (k, l \text {f i x e d})
+\Delta x, \Delta y \rightarrow 0 \quad (k, l \ \text{fixed})
 $$
 
 $$
@@ -442,25 +356,23 @@ k \approx n, l \approx m
 $$
 
 $$
-\begin{array}{l} \hat {\lambda} ^ {k, l} = 4 (n + 1) ^ {2} + 4 (m + 1) ^ {2} \\ \mathrm {a s} \Delta x, \Delta y \rightarrow 0 \\ \end{array}
+\begin{array}{l} \hat {\lambda} ^ {k, l} = 4 (n + 1) ^ {2} + 4 (m + 1) ^ {2} \\ \text{as} \quad \Delta x, \Delta y \rightarrow 0 \\ \end{array}
 $$
 
-# Condition Number of $A$
-
-# Eigenvalue Problem in 2D
+#### 矩阵 $A$ 的条件数（二维）
 
 $$
-\kappa_ {A} \rightarrow \frac {4 n ^ {2} + 4 m ^ {2}}{2 \pi^ {2}} \quad \text {a s} \Delta x, \Delta y \rightarrow 0
+\kappa_ {A} \rightarrow \frac {4 n ^ {2} + 4 m ^ {2}}{2 \pi^ {2}} \quad \text{as} \quad \Delta x, \Delta y \rightarrow 0
 $$
 
 $$
-\mathrm {I f} m \approx n
+\text{If } m \approx n
 $$
 
 $$
 \kappa_ {A} \rightarrow \frac {4 n ^ {2}}{\pi^ {2}}
 $$
 
-grows (in $\mathbb{R}^2$ ) as number of grid points. 
+grows (in $\mathbb{R}^2$) with the number of grid points in each coordinate direction.
 
-(better than in 1D, relatively speaking !!) 
+**注：** 若记一维未知量总数为 $N=n$，则 $\kappa_A=O(n^2)=O(N^2)$。若二维 $m\approx n$，未知量总数 $N\approx nm\approx n^2$，且 $\kappa_A=O(n^2)=O(N)$。相对**总自由度** $N$ 而言，二维条件数随 $N$ 的增长为 $O(N)$，慢于一维的 $O(N^2)$，故常说相对一维情形“更温和”（二者比较的是**相同意义下的问题规模 $N$**，而非单边的分段子数 $n$）。
