@@ -1,6 +1,0 @@
----
-title: "作业 HW4（第 4 周）"
-number-sections: false
----
-
-{{< include ../../Notes_MD/homework-hw04.md >}}
