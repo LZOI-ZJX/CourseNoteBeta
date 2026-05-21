@@ -2,9 +2,6 @@
 project:
   type: book
 
-website:
-  site-url: https://LZOI-ZJX.github.io/CourseNoteBeta/pde/
-
 book:
   title: "偏微分方程数值解"
   subtitle: "差分方法与变分原理讲义汇编"
@@ -54,3 +51,5 @@ format:
     toc-depth: 3
     number-sections: true
     html-math-method: mathjax
+
+jupyter: python3

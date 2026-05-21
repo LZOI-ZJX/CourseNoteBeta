@@ -1,5 +1,5 @@
 ---
-title: "椭圆型方程的差分方法（1）"
+title: "Poisson 方程"
 number-sections: false
 ---
 

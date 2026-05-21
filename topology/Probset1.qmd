@@ -1,0 +1,516 @@
+---
+title: "Problems QA"
+date: "2026-05-21"
+format:
+  html:
+    toc: true
+    number-sections: false
+    html-math-method: mathjax
+    theme: cosmo
+    css: custom.css
+---
+
+
+## Chapter 2
+
+::: {.callout-note appearance="simple"}
+**Exercise:**  Is it true that any closed subset $C$ of $\mathbb{R}$ is the disjoint union of countably many closed intervals? Is it true if we allow any number of closed intervals? Justify your answer.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+**1. 结论：不成立**
+
+**证明与反例：**
+
+最著名的反例是 **康托尔集 (Cantor set)**，记为 $\mathcal{C}$。
+
+* **闭性：** 康托尔集是通过从闭区间 $[0, 1]$ 中不断挖去开区间得到的，因此它是闭集。
+* **不含区间：** 康托尔集是完全不连通的（totally disconnected），它不包含任何长度大于 $0$ 的开区间。这意味着，如果我们将 $\mathcal{C}$ 写成不相交闭区间的并，这些“区间”必须全部是**单点**（即退化区间 $[x, x]$）。
+* **基数矛盾：** 康托尔集是不可数的（其基数为连续统势 $\mathfrak{c}$）。如果我们将其表示为可数个不相交闭区间的并，由于每个区间只能是单点，那么这个并集最多只能包含可数个点，这与康托尔集的不可数性矛盾。
+
+**2. 结论：成立**
+**证明：**
+这个结论在数学上是平凡的，因为我们可以利用单点集的性质。
+
+* **构造：** 对于任何集合 $C \subseteq \mathbb{R}$（不限于闭集），我们都可以将其写成其所有单点的并：
+    $$C = \bigcup_{x \in C} \{x\}$$
+* **性质：** 在 $\mathbb{R}$ 中，单点集 $\{x\}$ 等价于闭区间 $[x, x]$。
+* **不相交性：** 显然，对于不同的 $x, y \in C$，集合 $\{x\}$ 和 $\{y\}$ 是互不相交的。
+* **结论：** 因此，任何集合都可以表示为（可能不可数个）互不相交闭区间的并。
+
+</details>
+:::
+
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Prove that a subset $S \subseteq \mathbb{R}$ is closed if and only if its complement $S^c = \mathbb{R} \setminus S$ is open.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+
+我们将分两个方向证明这个充要条件。
+
+**1 必要性 ($\implies$)：若 $S$ 是闭集，则其补集 $S^c$ 是开集**
+
+1.  取任意点 $x \in S^c$，这意味着 $x \notin S$。
+2.  由于 $S$ 是闭集，它包含其所有的极限点（limit points）。既然 $x \notin S$，那么 $x$ 必然不是 $S$ 的极限点。
+3.  根据极限点的定义，由于 $x$ 不是极限点，必然存在某个 $\epsilon > 0$，使得开区间 $B(x, \epsilon) = (x - \epsilon, x + \epsilon)$ 不包含 $S$ 中的任何点。
+4.  因此，$B(x, \epsilon) \subseteq S^c$。
+5.  由于 $S^c$ 中的每一点都是其内点，得证 $S^c$ 是开集。
+
+**2 充分性 ($\impliedby$)：若 $S^c$ 是开集，则 $S$ 是闭集**
+
+1.  设 $x$ 是 $S$ 的一个极限点。我们需要证明 $x \in S$。
+2.  使用反证法：假设 $x \notin S$，则 $x \in S^c$。
+3.  因为 $S^c$ 是开集，存在某个 $\epsilon > 0$，使得 $B(x, \epsilon) \subseteq S^c$。
+4.  这意味着 $B(x, \epsilon) \cap S = \emptyset$，即 $x$ 的该邻域内不包含 $S$ 中的任何点。
+5.  这与“$x$ 是 $S$ 的极限点”的定义矛盾（极限点的定义要求 $x$ 的**每一个**邻域都必须包含 $S$ 中的点）。
+6.  因此，假设不成立，必然有 $x \in S$。
+7.  由于 $S$ 包含了其所有的极限点，得证 $S$ 是闭集。
+
+</details>
+:::
+
+## Chapter 3
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Are the following $\mathcal{T}$ topologies on $\mathbb{R}$?
+
+(1) $\mathcal{T} = \{|A| = \infty\} \cup \{\emptyset\}$;
+(2) $\mathcal{T} = \{]-r, r[ : r > 0\} \cup \{\emptyset, \mathbb{R}\}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+判断一个集合族 $\mathcal{T}$ 是否为 $\mathbb{R}$ 上的拓扑，需要验证拓扑的三条公理：
+
+1. $\emptyset$ 和 $\mathbb{R}$ 都在 $\mathcal{T}$ 中。
+2. $\mathcal{T}$ 中任意个元素的并集仍在 $\mathcal{T}$ 中。
+3. $\mathcal{T}$ 中有限个元素的交集仍在 $\mathcal{T}$ 中。
+
+**(1) $\mathcal{T} = \{|A| = \infty\} \cup \{\emptyset\}$**
+
+**结论：不是拓扑。**
+
+**理由：** 它不满足**有限交公理**。
+我们可以找到两个属于 $\mathcal{T}$ 的无限集，它们的交集是一个非空的有限集（但不属于 $\mathcal{T}$）。
+
+* **反例：** 考虑集合 $A = (\mathbb{Q} \cap \mathbb{R})$（所有有理数集）和 $B = ((\mathbb{R} \setminus \mathbb{Q}) \cup \{1\})$（所有无理数加上数字 $1$）。
+* 显然 $|A| = \infty$ 且 $|B| = \infty$，因此 $A, B \in \mathcal{T}$。
+* 然而，$A \cap B = \{1\}$。
+* 由于 $\{1\}$ 是一个有限集且不等于 $\emptyset$，所以 $\{1\} \notin \mathcal{T}$。
+* 因此，$\mathcal{T}$ 对有限交运算不封闭。
+
+---
+
+**(2) $\mathcal{T} = \{]-r, r[ : r > 0\} \cup \{\emptyset, \mathbb{R}\}$**
+
+**结论：是拓扑。**
+
+**证明：**
+
+1.  **包含空集与全集：** 定义中已明确给出 $\emptyset, \mathbb{R} \in \mathcal{T}$。
+2.  **任意并公理：** 设 $\{U_i\}_{i \in I}$ 是 $\mathcal{T}$ 中的一个子族。
+    * 如果其中某个 $U_i = \mathbb{R}$，则并集为 $\mathbb{R} \in \mathcal{T}$。
+    * 如果所有 $U_i$ 都是形如 $]-r_i, r_i[$ 的开区间，设 $R = \sup \{r_i : i \in I\}$。
+        * 若 $R = \infty$，则 $\bigcup U_i = \mathbb{R} \in \mathcal{T}$。
+        * 若 $R < \infty$，则 $\bigcup U_i = ]-R, R[ \in \mathcal{T}$（注：对称开区间的并集仍是对称开区间，且半径为原半径集合的上确界）。
+3.  **有限交公理：** 设 $U_1, U_2, \dots, U_n \in \mathcal{T}$。
+    * 如果其中任何一个是 $\emptyset$，交集为 $\emptyset \in \mathcal{T}$。
+    * 如果不含 $\emptyset$ 但含 $\mathbb{R}$，$\mathbb{R}$ 对交集结果无影响。
+    * 如果所有 $U_i$ 均为 $]-r_i, r_i[$，则：
+        $$\bigcap_{i=1}^n ]-r_i, r_i[ = ]-\min(r_i), \min(r_i)[$$
+    * 由于有限个数集的最小值 $\min(r_i)$ 仍然是一个大于 $0$ 的实数，该交集仍属于 $\mathcal{T}$。
+
+综上所述，(2) 满足拓扑的所有定义。
+
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Compare the trivial, discrete, cofinite, lower limit, standard topologies and the particular and excluded point topologies at 0 on $\mathbb{R}$.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+在拓扑学中，“比较”拓扑通常意味着建立它们之间的**粗细关系 (coarser/finer relationship)**。如果 $\mathcal{T}_1 \subseteq \mathcal{T}_2$，我们称 $\mathcal{T}_1$ 比 $\mathcal{T}_2$ 粗（coarser），$\mathcal{T}_2$ 比 $\mathcal{T}_1$ 细（finer）。
+
+为了方便表述，我们先记这些拓扑如下：
+
+* $\mathcal{T}_{triv}$: 拓扑 (Trivial topology) $\{\emptyset, \mathbb{R}\}$
+* $\mathcal{T}_{cof}$: 余有限拓扑 (Cofinite topology)
+* $\mathcal{T}_{std}$: 标准拓扑 (Standard / Euclidean topology)
+* $\mathcal{T}_{ll}$: 下限拓扑 (Lower limit topology / Sorgenfrey line)
+* $\mathcal{T}_{disc}$: 离散拓扑 (Discrete topology) $\mathcal{P}(\mathbb{R})$
+* $\mathcal{T}_{PP}$: 关于 $0$ 的特定点拓扑 (Particular point topology at $0$) $\{U \subseteq \mathbb{R} \mid 0 \in U\} \cup \{\emptyset\}$
+* $\mathcal{T}_{EP}$: 关于 $0$ 的排除点拓扑 (Excluded point topology at $0$) $\{U \subseteq \mathbb{R} \mid 0 \notin U\} \cup \{\mathbb{R}\}$
+
+**1. 核心比较链 (Main Sequence)**
+
+这五个拓扑形成了一个严格递增的包含链：
+$$\mathcal{T}_{triv} \subsetneq \mathcal{T}_{cof} \subsetneq \mathcal{T}_{std} \subsetneq \mathcal{T}_{ll} \subsetneq \mathcal{T}_{disc}$$
+
+**证明与理由：**
+* **$\mathcal{T}_{triv} \subsetneq \mathcal{T}_{cof}$:** 显然平凡拓扑是最粗的。严格包含是因为 $\mathbb{R} \setminus \{1\} \in \mathcal{T}_{cof}$ 但不在 $\mathcal{T}_{triv}$ 中。
+* **$\mathcal{T}_{cof} \subsetneq \mathcal{T}_{std}$:** 任何余有限集 $\mathbb{R} \setminus \{x_1, \dots, x_n\}$ 都可以写成有限个开区间的并集，因而是标准开集。严格包含是因为 $(0, 1) \in \mathcal{T}_{std}$，但它的补集是无限的，所以不在 $\mathcal{T}_{cof}$ 中。
+* **$\mathcal{T}_{std} \subsetneq \mathcal{T}_{ll}$:** 任何标准开区间 $(a, b)$ 都可以写成下限拓扑基元素的并集：$(a, b) = \bigcup_{n=1}^\infty [a + \frac{1}{n}, b)$，因而是下限拓扑的开集。严格包含是因为 $[0, 1) \in \mathcal{T}_{ll}$，但它在 $0$ 处不包含任何标准开邻域，故不在 $\mathcal{T}_{std}$ 中。
+* **$\mathcal{T}_{ll} \subsetneq \mathcal{T}_{disc}$:** 显然离散拓扑是最细的（包含所有子集）。严格包含是因为单点集 $\{0\} \in \mathcal{T}_{disc}$，但不在 $\mathcal{T}_{ll}$ 中。
+
+**2. 特定点拓扑 $\mathcal{T}_{PP}$ 与 排除点拓扑 $\mathcal{T}_{EP}$**
+
+这两个拓扑除了介于最粗和最细拓扑之间，**与上述主链中的其他拓扑均不可比（Incomparable）**，并且它们**彼此也不可比**。
+
+* **与平凡/离散拓扑的关系：** $$\mathcal{T}_{triv} \subsetneq \mathcal{T}_{PP} \subsetneq \mathcal{T}_{disc}$$
+    $$\mathcal{T}_{triv} \subsetneq \mathcal{T}_{EP} \subsetneq \mathcal{T}_{disc}$$
+* **$\mathcal{T}_{PP}$ 与 $\mathcal{T}_{EP}$ 不可比：** $\{0\} \in \mathcal{T}_{PP}$ 但 $\{0\} \notin \mathcal{T}_{EP}$；反之 $\{1\} \in \mathcal{T}_{EP}$ 但 $\{1\} \notin \mathcal{T}_{PP}$。
+* **与其他拓扑不可比的反例：**
+    * $\mathcal{T}_{PP}$ 和 $\mathcal{T}_{std}$：$\{0\} \in \mathcal{T}_{PP}$ 但不在 $\mathcal{T}_{std}$ 中；区间 $(1, 2) \in \mathcal{T}_{std}$，但由于不包含 $0$，所以不在 $\mathcal{T}_{PP}$ 中。
+    * $\mathcal{T}_{EP}$ 和 $\mathcal{T}_{std}$：$\{1\} \in \mathcal{T}_{EP}$ 但不在 $\mathcal{T}_{std}$ 中；区间 $(-1, 1) \in \mathcal{T}_{std}$，但由于它包含 $0$（且不是全集），所以不在 $\mathcal{T}_{EP}$ 中。
+    * (同样的逻辑也适用于它们与 $\mathcal{T}_{cof}$ 和 $\mathcal{T}_{ll}$ 的比较)。
+
+**总结图示**
+
+如果用 Hasse 图（包含关系，越向上越“细”）来表示，结构如下：
+
+```text
+          T_discrete
+         /    |     \
+        /     |      \
+       /    T_ll      \
+      /       |        \
+    T_PP    T_std     T_EP
+      \       |        /
+       \    T_cof     /
+        \     |      /
+         \    |     /
+          T_trivial
+```
+(注：$\mathcal{T}_{PP}$ 和 $\mathcal{T}_{EP}$ 仅与 $\mathcal{T}_{disc}$ 和 $\mathcal{T}_{triv}$ 有直接的包含连线，它们独立于中间的主链。)
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Let $\{\mathcal{T}_i\}_{i \in I}$ be a family of topologies on a set $X$. Then
+
+(1) $\mathcal{T}_{\text{inf}} = \bigcap_{i \in I} \mathcal{T}_i$ is a topology on $X$, which is the *greatest lower bound* of the family;
+(2) $\mathcal{T}_{i_1} \cup \mathcal{T}_{i_2}$ may not be a topology on $X$ for some $i_1, i_2 \in I$;
+(3) $\mathcal{T}_{\text{sup}} = \bigcap\{\mathcal{T} \text{ is a topology on } X : \mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i\}$ is a topology on $X$, which is the *least upper bound* of the family.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+**证明 (1)**
+
+首先证明 $\mathcal{T}_{\text{inf}}$ 是 $X$ 上的一个拓扑：
+
+1.  **包含空集与全集：** 对于所有的 $i \in I$，由于 $\mathcal{T}_i$ 是拓扑，所以 $\emptyset \in \mathcal{T}_i$ 且 $X \in \mathcal{T}_i$。因此，它们必然属于所有拓扑的交集：$\emptyset, X \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}$。
+2.  **任意并公理：** 设 $\{U_\alpha\}_{\alpha \in A}$ 是 $\mathcal{T}_{\text{inf}}$ 的任意子族。这意味着对于每一个 $i \in I$，都有 $\{U_\alpha\}_{\alpha \in A} \subseteq \mathcal{T}_i$。因为每个 $\mathcal{T}_i$ 都是拓扑，所以 $\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}_i$。由于这对于所有 $i \in I$ 都成立，故 $\bigcup_{\alpha \in A} U_\alpha \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}$。
+3.  **有限交公理：** 设 $U_1, U_2, \dots, U_n \in \mathcal{T}_{\text{inf}}$。类似地，对于所有的 $i \in I$，这些集合都在 $\mathcal{T}_i$ 中。因为 $\mathcal{T}_i$ 是拓扑，$\bigcap_{k=1}^n U_k \in \mathcal{T}_i$。因此，$\bigcap_{k=1}^n U_k \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}$。
+综上所述，$\mathcal{T}_{\text{inf}}$ 是一个拓扑。
+
+接着证明它是**最大下界 (Greatest Lower Bound)**：
+
+* **下界：** 根据交集的定义，显然对于任意 $i \in I$，都有 $\mathcal{T}_{\text{inf}} \subseteq \mathcal{T}_i$。所以它是该族的一个下界。
+* **最大：** 假设存在另一个拓扑 $\mathcal{T}'$，使得对于所有 $i \in I$ 都有 $\mathcal{T}' \subseteq \mathcal{T}_i$。那么 $\mathcal{T}'$ 中的任何元素必然也属于所有的 $\mathcal{T}_i$，因此 $\mathcal{T}' \subseteq \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}$。这证明了 $\mathcal{T}_{\text{inf}}$ 是所有下界中最大的。
+
+---
+
+**证明 (2)**
+
+我们需要构造一个反例来证明两个拓扑的并集未必是拓扑。
+令集合 $X = \{a, b, c\}$。
+定义 $X$ 上的两个拓扑：
+
+* $\mathcal{T}_1 = \{\emptyset, X, \{a\}\}$
+* $\mathcal{T}_2 = \{\emptyset, X, \{b\}\}$
+
+考虑它们的并集：
+$\mathcal{T}_1 \cup \mathcal{T}_2 = \{\emptyset, X, \{a\}, \{b\}\}$
+
+要使该并集成为拓扑，它必须对任意并运算封闭。然而：
+$\{a\} \in \mathcal{T}_1 \cup \mathcal{T}_2$ 且 $\{b\} \in \mathcal{T}_1 \cup \mathcal{T}_2$，但是它们的并集 $\{a\} \cup \{b\} = \{a, b\} \notin \mathcal{T}_1 \cup \mathcal{T}_2$。
+因此，$\mathcal{T}_1 \cup \mathcal{T}_2$ 对并集不封闭，它**不是** $X$ 上的拓扑。
+
+---
+
+**证明 (3)**
+
+令集合族 $\mathbb{S} = \{\mathcal{T} : \mathcal{T} \text{ 是 } X \text{ 上的拓扑，且 } \mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i\}$。
+首先，$\mathbb{S}$ 不是空集，因为离散拓扑 $\mathcal{P}(X)$ （包含 $X$ 的所有子集）一定是一个包含 $\bigcup_{i \in I} \mathcal{T}_i$ 的拓扑，所以 $\mathcal{P}(X) \in \mathbb{S}$。
+
+根据定义，$\mathcal{T}_{\text{sup}} = \bigcap_{\mathcal{T} \in \mathbb{S}} \mathcal{T}$。
+
+首先证明 $\mathcal{T}_{\text{sup}}$ 是拓扑：
+由于 $\mathbb{S}$ 是一族拓扑，根据 (1) 中的结论（任意一族拓扑的交集仍是拓扑），$\mathcal{T}_{\text{sup}}$ 作为 $\mathbb{S}$ 中所有拓扑的交集，**必然是一个拓扑**。
+
+接着证明它是**最小上界 (Least Upper Bound)**：
+
+* **上界：** 对于任意给定的 $i \in I$ 和任意 $\mathcal{T} \in \mathbb{S}$，根据 $\mathbb{S}$ 的定义有 $\mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i \supseteq \mathcal{T}_i$。因为 $\mathcal{T}_{\text{sup}}$ 是所有这些 $\mathcal{T}$ 的交集，且每个 $\mathcal{T}$ 都包含 $\mathcal{T}_i$，所以 $\mathcal{T}_{\text{sup}} \supseteq \mathcal{T}_i$。因此，$\mathcal{T}_{\text{sup}}$ 是该族的一个上界。
+* **最小：** 假设存在另一个拓扑 $\mathcal{T}^*$，它是 $\{\mathcal{T}_i\}_{i \in I}$ 的上界，即对于所有 $i \in I$ 都有 $\mathcal{T}^* \supseteq \mathcal{T}_i$。这意味着 $\mathcal{T}^* \supseteq \bigcup_{i \in I} \mathcal{T}_i$。
+因为 $\mathcal{T}^*$ 是一个满足该包含关系的拓扑，根据定义，$\mathcal{T}^*$ 属于集合族 $\mathbb{S}$。
+既然 $\mathcal{T}_{\text{sup}}$ 是 $\mathbb{S}$ 中**所有**元素的交集，那么它必然是其中任何一个元素的子集，即 $\mathcal{T}_{\text{sup}} \subseteq \mathcal{T}^*$。这证明了 $\mathcal{T}_{\text{sup}}$ 是所有上界中最小的。
+
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** The collection $\mathcal{T}_{\mathbb{R}^n}=\{\text{open \ subsets \ of } \mathbb{R}\}$  is a topology on $\mathbb{R}^n$.
+
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+$\mathcal{T}_{\mathbb{R}^n}$ 为 $\mathbb{R}^n$ 中所有开集的集合族（即可以表示为任意多个开球或开区间（盒）的并集的集合）。证明其构成 $\mathbb{R}^n$ 上的拓扑，需验证拓扑空间的三个公理：
+
+(1) 包含空集与全集：
+空集 $\emptyset$ 可以视为零个开球的并集，故 $\emptyset \in \mathcal{T}_{\mathbb{R}^n}$；全空间 $\mathbb{R}^n$ 可表示为空间中所有开球的并集（例如以所有点为中心，半径为 $1$ 的开球之并），故 $\mathbb{R}^n \in \mathcal{T}_{\mathbb{R}^n}$。
+
+(2) 对任意并集封闭：
+设 $\{U_\alpha\}_{\alpha \in A}$ 是 $\mathcal{T}_{\mathbb{R}^n}$ 中的任意一族子集。因为每个 $U_\alpha$ 都是一族开球的并集，所以这些 $U_\alpha$ 的并集 $\bigcup_{\alpha \in A} U_\alpha$ 显然也是一族开球的并集。根据定义，$\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}_{\mathbb{R}^n}$。
+
+(3) 对有限交集封闭：
+只需证明两个集合相交的情况。设 $U_1, U_2 \in \mathcal{T}_{\mathbb{R}^n}$，若 $U_1 \cap U_2 = \emptyset$，则属于 $\mathcal{T}_{\mathbb{R}^n}$；若非空，任取 $x \in U_1 \cap U_2$。
+因为 $x \in U_1$ 且 $x \in U_2$，由开集的定义，存在以 $x$ 为中心的开球 $B(x, r_1) \subseteq U_1$ 且 $B(x, r_2) \subseteq U_2$。
+取半径 $r = \min(r_1, r_2) > 0$，则有开球 $B(x, r) \subseteq B(x, r_1) \cap B(x, r_2) \subseteq U_1 \cap U_2$。
+这说明对于交集中的每一个点 $x$，都存在一个开球完全包含于该交集中。因此 $U_1 \cap U_2$ 可以表示为这些包含在内的小开球的并集，故 $U_1 \cap U_2 \in \mathcal{T}_{\mathbb{R}^n}$。
+
+综上所述，$\mathcal{T}_{\mathbb{R}^n}$ 满足拓扑公理，确实构成了 $\mathbb{R}^n$ 上的一个拓扑。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Show that the collection $\mathcal{B}_{\text{lower}} = \{[a, b[ : a, b \in \mathbb{R}\}$ is a base for the lower limit topology $\mathcal{T}_{\text{lower}}$ on $\mathbb{R}$ as $\mathcal{T}_{\text{lower}} = \{\text{unions of }[a,b) \text{ for } a,b \in \mathbb{R}\}$ , and that in $\mathcal{T}_{\text{lower}}$ each member of $\mathcal{B}_{\text{lower}}$ is clopen. Show that $\mathcal{T}_{\text{lower}}$ does not have a countable base.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+**1. 证明 $\mathcal{B}_{\text{lower}}$ 是一组拓扑基**
+
+* **覆盖性：** 对任意 $x \in \mathbb{R}$，存在 $[x, x+1[ \in \mathcal{B}_{\text{lower}}$ 使得 $x \in [x, x+1[$，覆盖了整个 $\mathbb{R}$。
+
+* **交集条件：** 设有两个基元素 $[a, b[$ 和 $[c, d[$，且 $x \in [a, b[ \cap [c, d[$。它们的交集为 $[a, b[ \cap [c, d[ = [\max(a, c), \min(b, d)[$。只要交集非空，它本身就依然属于 $\mathcal{B}_{\text{lower}}$。因此显然存在包含 $x$ 且包含于该交集中的基元素。由它生成的即为下限拓扑 $\mathcal{T}_{\text{lower}}$。
+
+**2. 证明基元素是既开又闭集 (Clopen)**
+
+设 $B = [a, b[ \in \mathcal{B}_{\text{lower}}$。
+
+* **开集：** 因为 $B$ 本身是拓扑基中的元素，所以它在 $\mathcal{T}_{\text{lower}}$ 中必然是开集。
+
+* **闭集：** 考虑 $B$ 的补集 $\mathbb{R} \setminus [a, b[ = (-\infty, a[ \cup [b, +\infty[$。
+注意到 $(-\infty, a[ = \bigcup_{n=1}^{\infty} [a-n, a[$，且 $[b, +\infty[ = \bigcup_{n=1}^{\infty} [b, b+n[$。补集的两部分均可表示为无穷多个基元素的并集，因此补集是开集。补集为开集，则原集合 $[a, b[$ 为闭集。
+
+**3. 证明 $\mathcal{T}_{\text{lower}}$ 不存在可数基**
+
+利用反证法。
+
+* 假设 $\mathcal{T}_{\text{lower}}$ 存在一个可数的基 $\mathcal{B}'$。
+
+* 对于任意 $x \in \mathbb{R}$，集合 $[x, x+1[$ 是包含 $x$ 的开集。根据基的定义，必定存在某个基元素 $B_x \in \mathcal{B}'$ 使得 $x \in B_x \subseteq [x, x+1[$。
+
+* 因为 $x \in B_x$ 且 $B_x$ 包含在以 $x$ 为下限的区间内，所以 $x$ 是集合 $B_x$ 的唯一最小值，即 $\min(B_x) = x$。
+
+* 如果实数 $x \neq y$，那么对应的基元素必定不相同（$B_x \neq B_y$），因为它们的最小值不同。
+
+* 这就建立了一个从不可数集 $\mathbb{R}$ 到可数集 $\mathcal{B}'$ 的单射（$x \mapsto B_x$）。这要求 $\mathcal{B}'$ 的基数至少为不可数，与可数假设矛盾。故 $\mathcal{T}_{\text{lower}}$ 没有可数基。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Let $(X, \mathcal{T}_X)$ and $(Y, \mathcal{T}_Y)$ be topological spaces.
+
+(1) If $\mathcal{T}_X$ is discrete, then which maps $X \to Y$ are continuous?
+
+(2) If $\mathcal{T}_Y$ is discrete, then which maps $X \to Y$ are continuous?
+
+(3) If $\mathcal{T}_X$ is trivial, then which maps $X \to Y$ are continuous?
+
+(4) If $\mathcal{T}_Y$ is trivial, then which maps $X \to Y$ are continuous?
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+根据连续映射的定义：映射 $f: X \to Y$ 是连续的，当且仅当对于 $Y$ 中的任意开集 $V \in \mathcal{T}_Y$，其原像 $f^{-1}(V)$ 都是 $X$ 中的开集（即 $f^{-1}(V) \in \mathcal{T}_X$）。
+
+(1) **所有的映射都是连续的。**
+因为 $\mathcal{T}_X$ 是离散拓扑，这意味着 $X$ 的所有子集都是开集。对于任意映射 $f$ 以及 $Y$ 中的任意开集 $V$，其原像 $f^{-1}(V)$ 作为 $X$ 的一个子集，在 $X$ 中必然是开集。
+
+(2) **局部常数映射（Locally constant maps）是连续的。**
+因为 $\mathcal{T}_Y$ 是离散拓扑，这意味着 $Y$ 中的所有子集（包括所有的单点集 $\{y\}$）都是开集。为了使 $f$ 连续，对于任意 $y \in Y$，其原像 $f^{-1}(\{y\})$ 必须在 $X$ 中是开集。这等价于要求映射 $f$ 在每一点的某个邻域内取值不变（即在 $X$ 的每个连通分支上都是常数）。
+
+(3) **满足“对 $Y$ 中的任意开集 $V$，$f^{-1}(V) = \emptyset$ 或 $f^{-1}(V) = X$” 的映射是连续的（常数映射必然包含在内）。**
+因为 $\mathcal{T}_X$ 是平凡拓扑（密着拓扑），$X$ 中的开集仅有 $\emptyset$ 和 $X$ 自身。因此，若 $f$ 连续，对于 $Y$ 中的任何开集 $V$，$f^{-1}(V)$ 只能是 $\emptyset$ 或 $X$。所有的常数映射都天然满足这一条件；如果空间 $Y$ 至少满足 $T_0$ 分离公理，那么**只有**常数映射是连续的。
+
+(4) **所有的映射都是连续的。**
+因为 $\mathcal{T}_Y$ 是平凡拓扑，$Y$ 中的开集只有 $\emptyset$ 和 $Y$。对于任意的映射 $f$，这两个开集的原像分别为 $f^{-1}(\emptyset) = \emptyset$ 和 $f^{-1}(Y) = X$。由于 $\emptyset$ 和 $X$ 属于 $X$ 上的任何拓扑 $\mathcal{T}_X$，原像总是开集，因此所有映射都必然连续。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** A sequence $(p_n)_{n\in\mathbb{N}}$ in a topological space $(X,\mathcal{T})$ converges to $p\in X$, denoted by $p_n\to p$, iff
+$$(\forall U \in \mathcal{N}_{X,p})(\exists A \in \mathcal{F}_{\mathbb{N}})(n \in A \implies p_n \in U)$$
+
+(1) Recall that in mathematical analysis a function is continuous iff it maps any convergent sequence to a convergent sequence. Show that it is not the case in general topological spaces.
+(2) Recall that of Euclidean spaces a subset is closed iff it contains the limit of any convergent sequence. Show that it is not the case in general topological spaces.
+
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+这两个问题都可以通过构造一个特定的拓扑空间——**带有可数补拓扑（cocountable topology）的实数集**来提供反例。
+
+设 $X = \mathbb{R}$，其拓扑 $\mathcal{T}_{cc}$ 定义为：开集 $U \in \mathcal{T}_{cc}$ 当且仅当 $U = \emptyset$ 或 $X \setminus U$ 是可数集（即补集可数）。
+在这个拓扑空间中，一个序列 $x_n \to x$ 当且仅当该序列**最终为常数**（即存在 $N \in \mathbb{N}$，使得对所有 $n \ge N$ 都有 $x_n = x$）。
+（简要证明：如果 $x_n \to x$ 但序列中有无穷多项不等于 $x$，设这些项构成集合 $S = \{x_n : x_n \neq x\}$。因为 $S$ 是序列的子集，所以 $S$ 是可数集。此时 $U = \mathbb{R} \setminus S$ 是包含 $x$ 的开集，但 $U$ 却遗漏了序列中无穷多个不等于 $x$ 的项，这与 $x_n \to x$ 的定义矛盾。）
+
+**(1) 序列连续不蕴含拓扑连续的反例：**
+
+* 考虑恒等映射 $f: (\mathbb{R}, \mathcal{T}_{cc}) \to (\mathbb{R}, \mathcal{T}_{\text{std}})$，其中 $\mathcal{T}_{\text{std}}$ 是实数集上的标准欧几里得拓扑。
+
+* 对于 $(\mathbb{R}, \mathcal{T}_{cc})$ 中的任意收敛序列 $x_n \to x$，由上述性质可知它最终为常数 $x$。因此映射后的序列 $f(x_n) = x_n$ 最终也为常数，自然在标准拓扑下收敛于 $f(x) = x$。这说明映射 $f$ 将收敛序列映为了收敛序列。
+
+* 然而，映射 $f$ 并不是连续的。例如，区间 $(0, 1)$ 是 $(\mathbb{R}, \mathcal{T}_{\text{std}})$ 中的开集，但它的原像 $f^{-1}((0, 1)) = (0, 1)$ 在 $(\mathbb{R}, \mathcal{T}_{cc})$ 中不是开集（因为其补集 $\mathbb{R} \setminus (0, 1)$ 是不可数的）。
+
+**(2) 包含所有收敛序列极限的集合不一定是闭集的反例：**
+
+* 在拓扑空间 $(\mathbb{R}, \mathcal{T}_{cc})$ 中，考虑子集 $A = (0, 1)$。
+
+* 假设 $(x_n)$ 是 $A$ 中的任意收敛序列，且在 $\mathbb{R}$ 中收敛于极限 $x$。根据前面证明的性质，该序列最终必定等于常数 $x$。由于序列的所有项都在 $A$ 中，所以常数项也就是极限 $x$ 也必然属于 $A$。因此，$A$ 包含了其所有收敛序列的极限（即 $A$ 是序列闭集）。
+
+* 然而，$A$ 在该可数补拓扑下并不是闭集。根据定义，闭集的补集必须是开集，这意味着闭集本身必须是可数集或者是全集 $\mathbb{R}$。由于 $A = (0, 1)$ 是一个不可数集，因此它在 $(\mathbb{R}, \mathcal{T}_{cc})$ 中不是闭集。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Find all topologies on $X = \{a,b,c\}$ up to homeomorphisms.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+在同胚意义下（即在集合元素的置换下等价），包含 3 个元素的集合 $X = \{a, b, c\}$ 上共有 9 种不同的拓扑结构等价类。我们可以按照其中开集的数量和包含结构进行分类列举（以下各举一例作为该同胚类的代表）：
+
+* **1. 平凡拓扑（包含 2 个开集）：** $\mathcal{T}_1 = \{\emptyset, X\}$
+
+* **2. 仅含一个单元素开集（包含 3 个开集）：** $\mathcal{T}_2 = \{\emptyset, \{a\}, X\}$
+
+* **3. 仅含一个双元素开集（包含 3 个开集）：** $\mathcal{T}_3 = \{\emptyset, \{a, b\}, X\}$
+
+* **4. 包含嵌套的单元素和双元素开集（包含 4 个开集）：** $\mathcal{T}_4 = \{\emptyset, \{a\}, \{a, b\}, X\}$
+
+* **5. 包含互补的单元素和双元素开集（包含 4 个开集）：** $\mathcal{T}_5 = \{\emptyset, \{c\}, \{a, b\}, X\}$
+
+* **6. 由两个单元素开集生成的拓扑（包含 5 个开集）：** $\mathcal{T}_6 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, X\}$
+
+* **7. 由两个双元素开集生成的拓扑（包含 5 个开集）：** $\mathcal{T}_7 = \{\emptyset, \{a\}, \{a, b\}, \{a, c\}, X\}$
+
+* **8. 包含三个单元素/双元素特定组合的拓扑（包含 6 个开集）：** $\mathcal{T}_8 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, X\}$
+
+* **9. 离散拓扑（包含 8 个开集）：** $\mathcal{T}_9 = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, X\}$
+
+*(补充：在包含 3 个元素的集合上，所有的拓扑空间总数为 29 个。通过 $a, b, c$ 元素的相互置换，这 29 个拓扑都可以归类到上述 9 种同胚等价类中的某一种。)*
+</details>
+:::
+
+## Chapter 4
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Proposition: In **Set** all monomorphisms and epimorphisms are extremal.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+在范畴 $\mathbf{Set}$ 中，单射 (Monomorphism) 即为单射函数，满射 (Epimorphism) 即为满射函数，同构 (Isomorphism) 即为双射函数。
+
+**1. 证明所有单射都是极端单射 (Extremal Monomorphisms)**
+
+* 设 $m: A \to B$ 为一个单射。根据极端单射的定义，我们需要证明：若存在分解 $m = f \circ e$，其中 $e: A \to C$ 是满射，则 $e$ 必定是同构。
+
+* 因为 $m$ 是单射，所以合成函数 $f \circ e$ 也是单射。
+
+* 假设存在 $x, y \in A$ 使得 $e(x) = e(y)$，那么两边同时作用 $f$ 得到 $f(e(x)) = f(e(y))$，即 $m(x) = m(y)$。由于 $m$ 是单射，必然得出 $x = y$。
+
+* 因此，$e$ 必定是单射。既然已知 $e$ 既是单射又是满射，那么 $e$ 就是一个双射（即 $\mathbf{Set}$ 中的同构）。故证明 $m$ 是极端单射。
+
+**2. 证明所有满射都是极端满射 (Extremal Epimorphisms)**
+
+* 设 $e: A \to B$ 为一个满射。根据极端满射的定义，我们需要证明：若存在分解 $e = m \circ f$，其中 $m: C \to B$ 是单射，则 $m$ 必定是同构。
+
+* 因为 $e$ 是满射，所以对于任意的 $b \in B$，都存在 $a \in A$ 使得 $e(a) = b$。
+
+* 将分解 $e = m \circ f$ 代入，得到 $(m \circ f)(a) = b$，即 $m(f(a)) = b$。这说明对于 $B$ 中的任意元素 $b$，在 $C$ 中都存在至少一个元素 $c = f(a)$ 使得 $m(c) = b$。
+
+* 因此，$m$ 必定是满射。既然已知 $m$ 是单射，现在又得出 $m$ 是满射，那么 $m$ 就是一个双射（即 $\mathbf{Set}$ 中的同构）。故证明 $e$ 是极端满射。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Proposition: In Set the endomorphisms are maps $f: X \to X$ for some $X \in \mathbf{Set}$; the class of endomorphisms of $X$ is denoted $\text{Map}(X;X)$; the idempotents are projections; the automorphisms are bijections $f: X \to X$. The automorphism group of $X \in \mathbf{Set}$ is its permutation group $S_X$.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+**1. 自同态与自同构**
+
+* 在范畴 $\mathbf{Set}$ 中，对象为集合，态射为函数。根据范畴论定义，对象 $X$ 的自同态是从 $X$ 到 $X$ 的态射，即普通的函数 $f: X \to X$。
+
+* 自同构是可逆的自同态。在 $\mathbf{Set}$ 中，态射可逆当且仅当该函数是双射。所有从 $X$ 到 $X$ 的双射在函数复合运算下构成一个群，这正是 $X$ 的对称群（或置换群）$S_X$。
+
+**2. 证明幂等元是分裂的 (All idempotents in Set are split)**
+
+* 设 $e: X \to X$ 是 $\mathbf{Set}$ 中的一个幂等元，即满足 $e \circ e = e$（对所有 $x \in X$，有 $e(e(x)) = e(x)$）。
+
+* 要证明 $e$ 是分裂的，需构造一个对象（集合）$A$ 及映射 $r: X \to A$ (收缩) 和 $s: A \to X$ (截面)，使得 $r \circ s = \text{id}_A$ 且 $s \circ r = e$。
+
+* 取 $A$ 为映射 $e$ 的像集，即 $A = \text{Im}(e) = \{e(x) \mid x \in X\}$。
+
+* 定义截面 $s: A \to X$ 为包含映射，即对任意 $a \in A$，$s(a) = a$。
+
+* 定义收缩 $r: X \to A$ 为 $e$ 限制其上域后的函数，即对任意 $x \in X$，$r(x) = e(x)$。
+
+* 验证 $r \circ s = \text{id}_A$：任取 $a \in A$，因 $A$ 是 $e$ 的像集，必存在 $x \in X$ 使 $a = e(x)$。于是代入计算得 $r(s(a)) = r(a) = e(a) = e(e(x)) = e(x) = a$。
+
+* 验证 $s \circ r = e$：任取 $x \in X$，计算得 $s(r(x)) = s(e(x))$。由于 $e(x) \in A$，包含映射 $s$ 不改变其值，所以 $s(e(x)) = e(x)$。
+
+* 因此，$\mathbf{Set}$ 中的任意幂等元 $e$ 都可以通过其像集分裂，这种操作相当于先将 $X$ 投影（投射并收缩）到其像集 $A$ 上，然后再将 $A$ 嵌入回 $X$ 中。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** Proposition: In **Set** the empty set $\emptyset$ is an initial object and any singleton is a terminal object, the isomorphism class of which denoted by $\ast$. There is no zero object or morphism in **Set**.
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+在范畴 $\mathbf{Set}$ 中，对象是集合，态射是函数。
+
+**1. 证明空集 $\emptyset$ 是初始对象 (Initial Object)**
+
+* 初始对象要求：对于 $\mathbf{Set}$ 中的任意对象（集合）$X$，存在唯一的态射（函数）$f: \emptyset \to X$。
+
+* 根据函数的定义，函数是从定义域到到达域的笛卡尔积的子集。由于 $\emptyset \times X = \emptyset$，唯一可能的子集就是空集本身。这个“空函数”满足函数的所有条件（“对于定义域中的每个元素”这一前提是空虚地为真）。因此，存在且仅存在一个从 $\emptyset$ 到 $X$ 的函数。故空集是初始对象。
+
+**2. 证明任意单元素集合 $\{*\}$ 是终结对象 (Terminal Object)**
+
+* 终结对象要求：对于 $\mathbf{Set}$ 中的任意对象（集合）$X$，存在唯一的态射（函数）$f: X \to \{*\}$。
+
+* 对于 $X$ 中的任意元素 $x$，由于到达域中只有一个元素 $*$，我们别无选择，只能将所有 $x$ 映射到该唯一元素，即定义 $f(x) = *$。这种映射方式是唯一确定的，因此对于任何集合 $X$，存在且仅存在一个到单元素集合的函数。故单元素集合是终结对象。
+
+**3. 证明不存在零对象 (Zero Object)**
+
+* 零对象的定义为：在范畴中既是初始对象又是终结对象的对象。
+
+* 根据范畴论的性质，任意两个初始对象彼此同构，任意两个终结对象也彼此同构。在 $\mathbf{Set}$ 中，这意味着任何零对象必须同时与空集同构（存在双射），且与单元素集合同构。显然，空集（势为0）与单元素集合（势为1）之间不存在双射，不可能同构。因此 $\mathbf{Set}$ 中不存在零对象。
+
+**4. 证明不存在零态射 (Zero Morphism)**
+
+* 若一个范畴存在零态射，则对于范畴内的任意两个对象 $X$ 和 $Y$，同态集 $\text{Hom}(X, Y)$ 非空（必须至少包含一个零态射）。
+
+* 然而，在 $\mathbf{Set}$ 中，若取 $X$ 为任意非空集合，$Y = \emptyset$，则不存在任何从非空集合映射到空集的函数。这意味着同态集 $\text{Hom}(X, \emptyset)$ 是空集。既然对于某些对象对连态射都不存在，自然无法在全局定义零态射。
+</details>
+:::
+
+::: {.callout-note appearance="simple"}
+**Exercise:** What are the monomorphisms, epimorphisms, and bimorphisms in $\mathbf{Set}_*$? Which of them are split?
+<details><summary style="color: gray; cursor: pointer;">[点击展开解答]</summary>
+
+在点集范畴 $\mathbf{Set}_*$ 中，对象是带有基点的集合 $(X, x_0)$，态射是保基点的函数，即满足 $f(x_0) = y_0$ 的函数 $f: X \to Y$。
+
+**1. 单射、满射与双态射的刻画**
+
+* **单射 (Monomorphisms):** 在 $\mathbf{Set}_*$ 中，单射恰好是**单射函数** (Injective functions)。证明思路与在 $\mathbf{Set}$ 中相同，若态射非单射，总可以通过构造从自由点集出发的不同态射使其复合相等来得出矛盾。
+
+* **满射 (Epimorphisms):** 在 $\mathbf{Set}_*$ 中，满射恰好是**满射函数** (Surjective functions)。若 $f: (X, x_0) \to (Y, y_0)$ 不是满射，即存在 $y \in Y \setminus \text{Im}(f)$。我们可以构造两个从 $Y$ 到两点集 $(\{0, 1\}, 0)$ 的保基点函数 $g_1, g_2$：令 $g_1$ 将 $Y$ 全映射到 $0$；令 $g_2(y) = 1$，其余映射到 $0$。此时 $g_1 \circ f = g_2 \circ f$ 但 $g_1 \neq g_2$，说明 $f$ 不是满射态射。
+
+* **双态射 (Bimorphisms):** 既是单射态射又是满射态射的态射。因此，双态射恰好是**双射保基点函数** (Bijective basepoint-preserving functions)。
+
+**2. 分裂性 (Splitness)**
+
+* **分裂单射 (Split Monomorphisms):** $\mathbf{Set}_*$ 中的**所有单射都是分裂的**。设 $f: X \to Y$ 是单射，我们需要构造左逆 $g: Y \to X$ 使得 $g \circ f = \text{id}_X$。对于 $y \in \text{Im}(f)$，由于 $f$ 是单射，存在唯一的 $x$ 使 $f(x)=y$，定义 $g(y)=x$。对于 $y \notin \text{Im}(f)$，统一将其映射到基点 $x_0$ 即可。因为已知 $f(x_0)=y_0$，从而 $g(y_0)=x_0$，这保证了 $g$ 是一个合法的保基点态射。
+
+* **分裂满射 (Split Epimorphisms):** 假设选择公理 (Axiom of Choice) 成立，$\mathbf{Set}_*$ 中的**所有满射也都是分裂的**。设 $f: X \to Y$ 是满射，我们需要构造右逆 $g: Y \to X$ 使得 $f \circ g = \text{id}_Y$。对于基点 $y_0$，我们严格规定 $g(y_0) = x_0$（这是合法的，因为 $f(x_0)=y_0$）。对于 $Y$ 中的其他元素 $y \neq y_0$，利用选择公理在非空的原像集 $f^{-1}(y)$ 中任选一个元素定义为 $g(y)$。这样构造的 $g$ 满足保基点性质且为 $f$ 的右逆。
+
+* **分裂双态射 (Split Bimorphisms):** 显然**所有双态射都是分裂的**（它们在 $\mathbf{Set}_*$ 中就是同构态射）。
+</details>
+:::

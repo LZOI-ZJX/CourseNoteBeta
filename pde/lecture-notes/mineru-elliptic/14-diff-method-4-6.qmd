@@ -1,5 +1,5 @@
 ---
-title: "椭圆型方程的差分方法（4–6）"
+title: "变系数方程 特征值问题"
 number-sections: false
 ---
 

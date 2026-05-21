@@ -1,0 +1,464 @@
+---
+title: "Homework 10"
+format:
+  html:
+    toc: true
+    number-sections: false
+    mathjax: true
+---
+
+## Prob 5 & 6
+
+**5. 微分方程的定解问题**
+
+$$\begin{cases} -\frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right) + qu = f, & a < x < b, \\ u(a) = 0, u(b) = 0, \end{cases}$$
+
+其中 $p(x) \ge p_0 > 0, q(x) \ge 0$。试推导对应的 Ritz 形式及 Galerkin 形式的变分问题，叙述及证明三个问题之间的关系。
+
+**解答**
+
+### 一、 Galerkin 形式的推导（弱形式）
+
+定义试探空间和测试空间为 $V = H_0^1(a,b)$，即在区间 $(a,b)$ 上平方可积、具有一阶弱导数且满足零边界条件 $v(a)=v(b)=0$ 的 Sobolev 空间。
+
+将原微分方程两端同乘任意测试函数 $v \in V$，并在区间 $(a,b)$ 上积分：
+$$-\int_a^b \frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right)v \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+对第一项使用分部积分法：
+$$-\left[p(x)\frac{\mathrm{d}u}{\mathrm{d}x}v(x)\right]_a^b + \int_a^b p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\frac{\mathrm{d}v}{\mathrm{d}x} \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+由于测试函数满足 $v(a)=v(b)=0$，边界项 $-\left[p(x)u'v\right]_a^b$ 消去。
+
+**对应的 Galerkin 形式变分问题为：**
+求 $u \in H_0^1(a,b)$，使得对任意 $v \in H_0^1(a,b)$，均满足：
+$$a(u,v) = (f,v)$$
+其中，双线性型 $a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x$，右端泛函 $(f,v) = \int_a^b f(x)v \, \mathrm{d}x$。
+
+### 二、 Ritz 形式的推导（极小值问题）
+
+基于算子的对称正定性，可以构造对应的总势能泛函 $J(v) = \frac{1}{2}a(v,v) - (f,v)$。
+
+**对应的 Ritz 形式变分问题为：**
+求 $u \in H_0^1(a,b)$，使得泛函 $J(u)$ 在空间 $H_0^1(a,b)$ 中取得极小值，即：
+$$J(u) = \min_{v \in H_0^1(a,b)} J(v)$$
+其中 $J(v) = \int_a^b \left[ \frac{1}{2} p(x) \left(\frac{\mathrm{d}v}{\mathrm{d}x}\right)^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x$。
+
+### 三、 三个问题之间的关系及证明
+
+设原微分方程的定解问题为 **(D)**，Galerkin 弱形式问题为 **(G)**，Ritz 极小值问题为 **(R)**。
+
+#### 1. 关系叙述
+* **(G) 与 (R) 是完全等价的**：解 Galerkin 问题等价于解 Ritz 泛函极小值问题。
+* **(D) $\implies$ (G), (R)**：若 (D) 存在经典解（即 $u \in C^2(a,b) \cap C[a,b]$），则它必然是 (G) 和 (R) 的解。
+* **(G), (R) $\implies$ (D)**：若 (G) 或 (R) 的弱解满足足够的光滑性（即 $u \in C^2(a,b)$），则它必然是原定解问题 (D) 的经典解。
+
+#### 2. 关系证明
+
+##### (1) (D) 推出 (G)
+若 $u$ 是 (D) 的经典解，自然满足同乘 $v$ 后的积分恒等式，通过分部积分直接得到 (G)（详细推导见第一部分）。
+
+##### (2) (G) 等价于 (R)
+已知条件 $p(x) \ge p_0 > 0, q(x) \ge 0$ 保证了双线性型 $a(v,v)$ 具有对称性和正定性（即 $a(v,v) \ge 0$，且 $a(v,v)=0 \iff v=0$）。
+
+* **从 (G) 推 (R)：** 设 $u$ 是 (G) 的解，即对任意 $v$ 有 $a(u,v) = (f,v)$。对空间中的任意函数 $w = u + v$，计算其泛函值：
+    $$J(u+v) = \frac{1}{2}a(u+v, u+v) - (f, u+v)$$
+    利用双线性型的对称性和线性展开：
+    $$J(u+v) = \left[ \frac{1}{2}a(u,u) - (f,u) \right] + [a(u,v) - (f,v)] + \frac{1}{2}a(v,v)$$
+    由于 $a(u,v) - (f,v) = 0$，可得 $J(u+v) = J(u) + \frac{1}{2}a(v,v)$。
+    由正定性知 $\frac{1}{2}a(v,v) \ge 0$ 且仅当 $v=0$ 时取等号，因此 $J(u+v) \ge J(u)$ 恒成立。故 $u$ 使泛函取得极小值，即 (R) 成立。
+
+* **从 (R) 推 (G)：** 设 $u$ 使 $J(u)$ 极小化。对任意固定的 $v \in H_0^1(a,b)$ 和实数参数 $t$，定义标量函数 $\phi(t) = J(u+tv)$。因 $u$ 是极小值点，$\phi(t)$ 必在 $t=0$ 处取极小值，故 $\phi'(0) = 0$。
+    展开 $\phi(t)$：
+    $$\phi(t) = J(u) + t[a(u,v) - (f,v)] + \frac{t^2}{2}a(v,v)$$
+    对其关于 $t$ 求导并令 $t=0$：
+    $$\phi'(0) = a(u,v) - (f,v) = 0$$
+    即对任意 $v \in H_0^1(a,b)$，都有 $a(u,v) = (f,v)$，此即 (G) 成立。
+
+##### (3) (G) 推出 (D) （在解足够光滑的条件下）
+假设 (G) 的解 $u$ 足够光滑（$u \in C^2(a,b)$）。由 (G) 可知：
+$$\int_a^b \left( p(x)u'v' + q(x)uv - f(x)v \right) \mathrm{d}x = 0$$
+对 $p(x)u'v'$ 项进行逆向的分部积分：
+$$\int_a^b p(x)u'v' \, \mathrm{d}x = [p(x)u'v]_a^b - \int_a^b (p(x)u')'v \, \mathrm{d}x$$
+因 $v \in H_0^1(a,b)$，边界项为 0。将其代回积分恒等式提取公因式 $v$：
+$$\int_a^b \left[ -(p(x)u')' + q(x)u - f(x) \right] v \, \mathrm{d}x = 0$$
+根据变分法基本引理，由于上式对任意测试函数 $v \in H_0^1(a,b)$ 均成立，方括号内的项必须在 $(a,b)$ 上几乎处处为 0，即：
+$$-\frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right) + q(x)u = f(x)$$
+又因为解 $u \in H_0^1(a,b)$，它天然满足零边界条件 $u(a)=0, u(b)=0$。因此，它完全满足原定解问题 (D)。
+
+### 边界条件 (1) 的变分问题
+
+给定边界条件：$u(a)=0, \quad p(b)\frac{\mathrm{d}u(b)}{\mathrm{d}x} + \alpha u(b) = g$，其中 $\alpha \ge 0$。
+
+**Galerkin 形式推导：**
+首先定义测试函数空间。由于 $x=a$ 处为本质边界条件（Dirichlet条件），测试函数在此处须满足零条件；$x=b$ 处为自然边界条件（Robin/混合条件），测试函数在此处无特殊限制。定义测试空间 $V = \{ v \in H^1(a,b) \mid v(a) = 0 \}$。
+
+将微分方程两端同乘 $v \in V$ 并积分，进行分部积分：
+$$- \left[ p(x)u'(x)v(x) \right]_a^b + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+展开边界项并代入边界条件：
+由于 $v(a) = 0$，有 $p(a)u'(a)v(a) = 0$。
+由 $x=b$ 处的边界条件得 $p(b)u'(b) = g - \alpha u(b)$。代入上式：
+$$- (g - \alpha u(b))v(b) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+移项整理，得到 **Galerkin 形式变分问题**：
+求 $u \in V$，使得对任意 $v \in V$，均满足 $a(u,v) = F(v)$，其中：
+$$a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x + \alpha u(b)v(b)$$
+$$F(v) = \int_a^b f(x)v \, \mathrm{d}x + g v(b)$$
+
+**Ritz 形式推导：**
+因为 $p(x) \ge p_0 > 0, q(x) \ge 0$ 且 $\alpha \ge 0$，双线性型 $a(u,v)$ 依然是对称且正定的。对应的势能泛函 $J(v) = \frac{1}{2}a(v,v) - F(v)$。
+
+**Ritz 形式变分问题**为：
+求 $u \in V$，使得 $J(u) = \min_{v \in V} J(v)$，其中：
+$$J(v) = \int_a^b \left[ \frac{1}{2} p(x) (v')^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x + \frac{1}{2}\alpha v(b)^2 - g v(b)$$
+
+### 边界条件 (2) 的变分问题
+
+给定边界条件：$p(a)\frac{\mathrm{d}u(a)}{\mathrm{d}x} - \alpha u(a) = g, \quad \frac{\mathrm{d}u(b)}{\mathrm{d}x} = 0$，其中 $\alpha \ge 0$。
+
+**Galerkin 形式推导：**
+两端均为自然边界条件（Robin与Neumann），空间无本质边界条件约束。定义试探与测试空间为 $V = H^1(a,b)$。
+
+对微分方程乘 $v \in V$ 积分并分部积分，展开边界项：
+$$- p(b)u'(b)v(b) + p(a)u'(a)v(a) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+代入边界条件 $p(b)u'(b) = 0$ 以及 $p(a)u'(a) = \alpha u(a) + g$：
+$$- 0 \cdot v(b) + (\alpha u(a) + g)v(a) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+整理得到 **Galerkin 形式变分问题**：
+求 $u \in V$，使得对任意 $v \in V$，均满足 $a(u,v) = F(v)$，其中：
+$$a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x + \alpha u(a)v(a)$$
+$$F(v) = \int_a^b f(x)v \, \mathrm{d}x - g v(a)$$
+
+**Ritz 形式推导：**
+同理，构造对应的势能泛函。**Ritz 形式变分问题**为：
+求 $u \in V$，使得 $J(u) = \min_{v \in V} J(v)$，其中：
+$$J(v) = \int_a^b \left[ \frac{1}{2} p(x) (v')^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x + \frac{1}{2}\alpha v(a)^2 + g v(a)$$
+
+### 边界条件 (3) 的变分问题
+
+给定边界条件：$u(a)=u_0, \quad u(b)=u_1$。
+
+**Galerkin 形式推导：**
+这是非齐次 Dirichlet 边界条件。解所在的试探空间（流形）定义为 $U = \{ u \in H^1(a,b) \mid u(a) = u_0, u(b) = u_1 \}$。
+测试函数空间必须是对应的齐次空间，即 $V = H_0^1(a,b) = \{ v \in H^1(a,b) \mid v(a) = 0, v(b) = 0 \}$。
+
+分部积分后，边界项为 $- [p(x)u'(x)v(x)]_a^b$。因为测试函数 $v \in V$ 满足 $v(a)=v(b)=0$，边界项完全消去。
+
+**Galerkin 形式变分问题**为：
+求 $u \in U$，使得对任意 $v \in V$，均满足：
+$$\int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x$$
+
+**Ritz 形式推导：**
+**Ritz 形式变分问题**为：
+求 $u \in U$，使得 $J(u) = \min_{w \in U} J(w)$，其中泛函形式与原定解问题内部相同（无额外边界项）：
+$$J(w) = \int_a^b \left[ \frac{1}{2} p(x) (w')^2 + \frac{1}{2} q(x)w^2 - f(x)w \right] \mathrm{d}x$$
+
+## Prob 7
+
+**题目**
+
+$$\begin{cases} -\nabla \cdot (k \nabla u) = f, & (x,y) \in \Omega \\ u|_{\partial\Omega} = 0 \end{cases}$$
+
+其中 $k = k(x,y) \ge k_0 > 0$，试推导对应的 Ritz 及 Galerkin 形式的变分问题。叙述及证明 3 个问题之间的关系。
+
+---
+
+### 一、 Galerkin 形式的推导（弱形式）
+
+由于边界条件为齐次 Dirichlet 边界条件 $u|_{\partial\Omega} = 0$，我们定义试探函数空间和测试函数空间为 $V = H_0^1(\Omega)$。该空间中的函数在 $\Omega$ 上平方可积，具有一阶弱偏导数，且在边界 $\partial\Omega$ 上的迹为零。
+
+将原方程两端同乘任意一个测试函数 $v \in V$，并在区域 $\Omega$ 上进行多重积分：
+$$- \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y$$
+
+利用格林第一公式（多维分部积分公式）对左端进行展开：
+$$- \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y = \int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s$$
+其中 $\boldsymbol{n}$ 为边界 $\partial\Omega$ 的单位外法向量。
+
+因为测试函数 $v \in H_0^1(\Omega)$，在边界上 $v|_{\partial\Omega} = 0$，所以边界积分项消去，即 $\int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s = 0$。
+
+**对应的 Galerkin 形式变分问题为：**
+求 $u \in H_0^1(\Omega)$，使得对任意 $v \in H_0^1(\Omega)$，均满足：
+$$a(u,v) = (f,v)$$
+其中，双线性型 $a(u,v) = \int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y$，右端线性泛函 $(f,v) = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y$。
+
+### 二、 Ritz 形式的推导（极小值问题）
+
+已知 $k(x,y) \ge k_0 > 0$，双线性型 $a(u,v)$ 满足对称性（$a(u,v) = a(v,u)$）和正定性（$a(v,v) \ge 0$ 且等号当且仅当 $v=0$ 时成立）。因此可以构造系统的总势能泛函 $J(v) = \frac{1}{2}a(v,v) - (f,v)$。
+
+**对应的 Ritz 形式变分问题为：**
+求 $u \in H_0^1(\Omega)$，使得泛函 $J(u)$ 在空间 $H_0^1(\Omega)$ 中取得极小值，即：
+$$J(u) = \min_{v \in H_0^1(\Omega)} J(v)$$
+其中泛函的具体形式为：
+$$J(v) = \int_\Omega \left( \frac{1}{2} k |\nabla v|^2 - f v \right) \mathrm{d}x\mathrm{d}y$$
+
+### 三、 三个问题之间的关系及证明
+
+设原偏微分方程定解问题为 **(D)**，Galerkin 弱形式问题为 **(G)**，Ritz 极小值问题为 **(R)**。
+
+**1. 关系叙述**
+* **(G) 与 (R) 是完全等价的**。
+* **(D) $\implies$ (G), (R)**：若 (D) 存在经典解（即 $u \in C^2(\Omega) \cap C(\bar{\Omega})$），则它必然是 (G) 和 (R) 的解。
+* **(G), (R) $\implies$ (D)**：若 (G) 或 (R) 的弱解满足足够的光滑性（即 $u \in C^2(\Omega) \cap C(\bar{\Omega})$），则它必然是原定解问题 (D) 的经典解。
+
+**2. 关系证明**
+
+**(1) (D) 推出 (G)**
+若 $u$ 是 (D) 的经典解，将其代入方程两端同乘 $v \in H_0^1(\Omega)$ 并积分，由于 $u$ 足够光滑，格林公式严格成立，通过与第一部分相同的分部积分步骤，边界项消去，直接可推导得出 $u$ 满足 (G) 的恒等式。
+
+**(2) (G) 等价于 (R)**
+* **(G) $\implies$ (R)**：设 $u$ 是 (G) 的解，即 $\forall v \in H_0^1(\Omega)$，有 $a(u,v) = (f,v)$。
+  任取空间中另一函数 $w = u + v \in H_0^1(\Omega)$，考察其泛函值：
+  $$J(u+v) = \frac{1}{2}a(u+v, u+v) - (f, u+v)$$
+  利用双线性型的对称性和线性性质展开：
+  $$J(u+v) = \left[ \frac{1}{2}a(u,u) - (f,u) \right] + [a(u,v) - (f,v)] + \frac{1}{2}a(v,v)$$
+  由于 $u$ 满足 (G)，中间项 $a(u,v) - (f,v) = 0$。因此 $J(u+v) = J(u) + \frac{1}{2}a(v,v)$。
+  因为 $k \ge k_0 > 0$，对任意 $v \neq 0$，有 $a(v,v) = \int_\Omega k |\nabla v|^2 \mathrm{d}x\mathrm{d}y > 0$。
+  所以 $J(u+v) \ge J(u)$ 恒成立，即 $u$ 是泛函的全局极小值点，(R) 成立。
+
+* **(R) $\implies$ (G)**：设 $u$ 使泛函 $J$ 取极小值。
+  对任意固定的 $v \in H_0^1(\Omega)$ 和实数参数 $t$，定义关于 $t$ 的实函数 $\phi(t) = J(u+tv)$。
+  由于 $u$ 是极小值点，$\phi(t)$ 必在 $t=0$ 处取得极小值，由费马引理知一阶变分为零，即 $\phi'(0) = 0$。
+  将 $\phi(t)$ 展开：
+  $$\phi(t) = J(u) + t[a(u,v) - (f,v)] + \frac{t^2}{2}a(v,v)$$
+  对其求导：$\phi'(t) = a(u,v) - (f,v) + t \cdot a(v,v)$。
+  令 $t=0$，得 $\phi'(0) = a(u,v) - (f,v) = 0$。
+  即对任意 $v \in H_0^1(\Omega)$ 都有 $a(u,v) = (f,v)$，(G) 成立。
+
+**(3) (G) 推出 (D) （在解足够光滑的条件下）**
+假设 (G) 的解 $u \in C^2(\Omega) \cap C(\bar{\Omega})$。由 (G) 知道：
+$$\int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_\Omega f v \, \mathrm{d}x\mathrm{d}y = 0 \quad (\forall v \in H_0^1(\Omega))$$
+对第一项进行逆向的格林第一公式（分部积分）：
+$$\int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y = - \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s$$
+由于测试函数 $v \in H_0^1(\Omega)$，边界项积分为 $0$。将其代回 (G) 的表达式：
+$$\int_\Omega \left[ -\nabla \cdot (k \nabla u) - f \right] v \, \mathrm{d}x\mathrm{d}y = 0$$
+根据变分法基本引理，由于上式对任意 $v \in H_0^1(\Omega)$ 均成立（特别地，对任意无穷次可微且具紧支集的函数 $C_0^\infty(\Omega)$ 也成立），方括号内的项必须在 $\Omega$ 内几乎处处为零：
+$$-\nabla \cdot (k \nabla u) = f, \quad (x,y) \in \Omega$$
+同时，由于解 $u \in H_0^1(\Omega)$，其在边界上的迹天然为零，即满足 $u|_{\partial\Omega} = 0$。
+因此 $u$ 完全满足原偏微分方程定解问题 (D)。
+
+## Prob 8
+
+**题目**
+
+平面区域 $\Omega$ 的边界 $\partial\Omega$ 分为互不重叠的两部分 $\partial\Omega_1$ 和 $\partial\Omega_2$。微分方程的定解问题为：
+
+$$\begin{cases} -\Delta u = f, & (x,y) \in \Omega, \\ u|_{\partial\Omega_1} = 0, \\ \left[ \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u \right]_{\partial\Omega_2} = g. \end{cases}$$
+
+其中 $\alpha \ge 0$，$\boldsymbol{n}$ 为 $\partial\Omega$ 上的外法向，试推导对应的 Ritz 及 Galerkin 形式的变分问题，叙述及证明 3 个问题之间的关系。
+
+---
+
+### 一、 变分空间的定义与 Galerkin 形式的推导（弱形式）
+
+首先定义容许的函数空间。由于边界 $\partial\Omega_1$ 上给定齐次 Dirichlet 边界条件（本质边界条件），试探函数和测试函数必须在此边界上取值为零。定义函数空间为：
+$$V = \{ v \in H^1(\Omega) \mid v = 0 \text{ a.e. on } \partial\Omega_1 \}$$
+该空间中的函数在 $\Omega$ 上平方可积，具有一阶弱偏导数，且在边界 $\partial\Omega_1$ 上的迹为零。
+
+将原微分方程 $-\Delta u = f$ 两端同乘任意测试函数 $v \in V$，并在区域 $\Omega$ 上积分：
+$$-\int_\Omega \Delta u \cdot v \, \mathrm{d}x\mathrm{d}y = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y$$
+
+利用格林第一公式（Green's first identity）对左端进行分部积分：
+$$\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y$$
+
+将边界积分拆分为 $\partial\Omega_1$ 和 $\partial\Omega_2$ 两部分：
+$$\int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_{\partial\Omega_1} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s + \int_{\partial\Omega_2} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s$$
+
+* 由于 $v \in V$，在 $\partial\Omega_1$ 上 $v = 0$，故 $\int_{\partial\Omega_1} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = 0$。
+* 在 $\partial\Omega_2$ 上，根据自然边界条件（Robin条件）有 $\frac{\partial u}{\partial \boldsymbol{n}} = g - \alpha u$，代入积分得到 $\int_{\partial\Omega_2} (g - \alpha u) v \, \mathrm{d}s$。
+
+代回原式并移项：
+$$\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega_2} (g - \alpha u) v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y$$
+$$\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s$$
+
+**对应的 Galerkin 形式变分问题为：**
+求 $u \in V$，使得对任意 $v \in V$，均满足：
+$$a(u,v) = F(v)$$
+其中，双线性型 $a(u,v) = \int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s$，
+右端线性泛函 $F(v) = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s$。
+
+---
+
+### 二、 Ritz 形式的推导（极小值问题）
+
+已知 $\alpha \ge 0$，可以验证双线性型 $a(u,v)$ 满足对称性 $a(u,v) = a(v,u)$ 且在空间 $V$ 上正定。由此可构造系统对应的总势能泛函 $J(v) = \frac{1}{2}a(v,v) - F(v)$。
+
+将具体表达式代入：
+$$J(v) = \frac{1}{2} \int_\Omega |\nabla v|^2 \, \mathrm{d}x\mathrm{d}y + \frac{1}{2} \int_{\partial\Omega_2} \alpha v^2 \, \mathrm{d}s - \int_\Omega f v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega_2} g v \, \mathrm{d}s$$
+
+**对应的 Ritz 形式变分问题为：**
+求 $u \in V$，使得泛函 $J(u)$ 在空间 $V$ 中取得极小值，即：
+$$J(u) = \min_{v \in V} J(v)$$
+
+---
+
+### 三、 三个问题之间的关系及证明
+
+设原微分方程定解问题为 **(D)**，Galerkin 弱形式问题为 **(G)**，Ritz 极小值问题为 **(R)**。
+
+#### 1. 关系叙述
+
+* **(G) $\iff$ (R)**：这两种变分形式在 $\alpha \ge 0$ 时完全等价。
+* **(D) $\implies$ (G), (R)**：若 (D) 存在经典解（即 $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$），则它必然是 (G) 和 (R) 的解。
+* **(G), (R) $\implies$ (D)**：若变分问题 (G) 或 (R) 的解满足足够的光滑性条件（$u \in C^2(\Omega) \cap C^1(\bar{\Omega})$），则它必然是原定解问题 (D) 的经典解。
+
+#### 2. 关系证明
+
+##### (1) (D) 推出 (G)
+若 $u$ 是 (D) 的经典解，则在 $\Omega$ 内部有 $-\Delta u = f$。两端同乘任意 $v \in V$ 并积分，由于 $u$ 足够光滑，格林公式严格成立。顺着第一部分的推导过程，在处理边界积分时运用给定的边界条件，可直接得到 (G) 形式成立。
+
+##### (2) (G) 等价于 (R)
+
+* **(G) 推 (R)：**
+    设 $u$ 是 (G) 的解。对任意函数 $w = u + v \in V$，考察其泛函值：
+    $$J(u+v) = \frac{1}{2}a(u+v, u+v) - F(u+v)$$
+    利用双线性型的双线性和对称性展开：
+    $$J(u+v) = \left[ \frac{1}{2}a(u,u) - F(u) \right] + [a(u,v) - F(v)] + \frac{1}{2}a(v,v)$$
+    由于 $u$ 满足 (G)，故 $a(u,v) - F(v) = 0$。于是 $J(u+v) = J(u) + \frac{1}{2}a(v,v)$。
+    由 $\alpha \ge 0$ 知 $a(v,v) \ge 0$ 恒成立，因此 $J(u+v) \ge J(u)$。即 $u$ 使泛函取得全局极小值，(R) 成立。
+* **(R) 推 (G)：**
+    设 $u$ 是 (R) 的极小值点。对任意 $v \in V$ 及实数 $t$，定义函数 $\phi(t) = J(u+tv)$。
+    因 $\phi(t)$ 在 $t=0$ 处取极小值，必须满足 $\phi'(0) = 0$。
+    $$\phi(t) = J(u) + t[a(u,v) - F(v)] + \frac{1}{2}t^2 a(v,v)$$
+    对 $t$ 求导得 $\phi'(t) = a(u,v) - F(v) + t \cdot a(v,v)$。
+    令 $t=0$ 得 $\phi'(0) = a(u,v) - F(v) = 0$。即对任意 $v \in V$ 有 $a(u,v) = F(v)$，(G) 成立。
+
+##### (3) (G) 推出 (D) （在解足够光滑的条件下）
+假设 (G) 的解 $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$，则对任意 $v \in V$ 有：
+$$\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s$$
+对第一项进行逆向格林第一公式展开：
+$$\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y = -\int_\Omega \Delta u \cdot v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s$$
+由于 $v \in V$，$\int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_{\partial\Omega_2} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s$。代回并合并同类项得到：
+$$\int_\Omega (-\Delta u - f) v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \left( \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u - g \right) v \, \mathrm{d}s = 0$$
+首先选取具有紧支集的光滑测试函数 $v \in C_0^\infty(\Omega) \subset V$，此时边界项为 0。由变分法基本引理得：
+$$-\Delta u = f \quad \text{在 } \Omega \text{ 中成立}$$
+将此结果代回原式，则体积分项为 0，剩下边界积分：
+$$\int_{\partial\Omega_2} \left( \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u - g \right) v \, \mathrm{d}s = 0$$
+由于 $v$ 在 $\partial\Omega_2$ 上可以任意取值，再用一次变分法基本引理，得到：
+$$\frac{\partial u}{\partial \boldsymbol{n}} + \alpha u = g \quad \text{在 } \partial\Omega_2 \text{ 上成立}$$
+同时，由 $u \in V$ 的定义天然满足本质边界条件 $u = 0$ 在 $\partial\Omega_1$ 上成立。
+综上，$u$ 满足原定解问题 (D) 的所有方程与条件。
+
+## Prob 11
+
+### 第11题 (1) 
+
+**问题模型：**
+定解问题：$-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2} = x^2, \quad (0 < x < 1)$
+边界条件：$u(0) = 0, \quad u(1) = 0$
+试探函数：$u_h(x) = \sum_{i=1}^3 c_i x^i (1-x)$
+
+**1. 建立 Galerkin 弱形式**
+选取测试函数 $v$ 满足 $v(0)=0, v(1)=0$。对原方程两边同乘 $v$ 并积分：
+
+
+$$\int_0^1 \left(-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2}\right) v \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x$$
+
+
+利用分部积分，并代入零边界条件：
+
+
+$$\int_0^1 u' v' \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x$$
+
+**2. 确定基函数**
+由试探函数形式可知，取三个基函数分别为：
+$\varphi_1(x) = x(1-x) = x - x^2$
+$\varphi_2(x) = x^2(1-x) = x^2 - x^3$
+$\varphi_3(x) = x^3(1-x) = x^3 - x^4$
+
+其一阶导数为：
+$\varphi_1'(x) = 1 - 2x$
+$\varphi_2'(x) = 2x - 3x^2$
+$\varphi_3'(x) = 3x^2 - 4x^3$
+
+**3. 计算刚度矩阵 $K$ 和载荷向量 $\boldsymbol{F}$**
+矩阵元素 $K_{ij} = \int_0^1 \varphi_i'(x) \varphi_j'(x) \, \mathrm{d}x$：
+
+* $K_{11} = \int_0^1 (1-2x)^2 \, \mathrm{d}x = \left[ x - 2x^2 + \frac{4}{3}x^3 \right]_0^1 = \frac{1}{3}$
+* $K_{12} = K_{21} = \int_0^1 (1-2x)(2x-3x^2) \, \mathrm{d}x = \int_0^1 (2x - 7x^2 + 6x^3) \, \mathrm{d}x = 1 - \frac{7}{3} + \frac{6}{4} = \frac{1}{6}$
+* $K_{13} = K_{31} = \int_0^1 (1-2x)(3x^2-4x^3) \, \mathrm{d}x = \int_0^1 (3x^2 - 10x^3 + 8x^4) \, \mathrm{d}x = 1 - \frac{10}{4} + \frac{8}{5} = \frac{1}{10}$
+* $K_{22} = \int_0^1 (2x-3x^2)^2 \, \mathrm{d}x = \int_0^1 (4x^2 - 12x^3 + 9x^4) \, \mathrm{d}x = \frac{4}{3} - 3 + \frac{9}{5} = \frac{2}{15}$
+* $K_{23} = K_{32} = \int_0^1 (2x-3x^2)(3x^2-4x^3) \, \mathrm{d}x = \int_0^1 (6x^3 - 17x^4 + 12x^5) \, \mathrm{d}x = \frac{6}{4} - \frac{17}{5} + \frac{12}{6} = \frac{1}{10}$
+* $K_{33} = \int_0^1 (3x^2-4x^3)^2 \, \mathrm{d}x = \int_0^1 (9x^4 - 24x^5 + 16x^6) \, \mathrm{d}x = \frac{9}{5} - 4 + \frac{16}{7} = \frac{3}{35}$
+
+载荷向量元素 $F_i = \int_0^1 x^2 \varphi_i(x) \, \mathrm{d}x$：
+
+* $F_1 = \int_0^1 (x^3 - x^4) \, \mathrm{d}x = \frac{1}{4} - \frac{1}{5} = \frac{1}{20}$
+* $F_2 = \int_0^1 (x^4 - x^5) \, \mathrm{d}x = \frac{1}{5} - \frac{1}{6} = \frac{1}{30}$
+* $F_3 = \int_0^1 (x^5 - x^6) \, \mathrm{d}x = \frac{1}{6} - \frac{1}{7} = \frac{1}{42}$
+
+**4. 求解线性方程组**
+
+$$\begin{pmatrix}
+1/3 & 1/6 & 1/10 \\
+1/6 & 2/15 & 1/10 \\
+1/10 & 1/10 & 3/35
+\end{pmatrix}
+\begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}
+=
+\begin{pmatrix} 1/20 \\ 1/30 \\ 1/42 \end{pmatrix}$$
+
+解此线性方程组，可得精准解为：$c_1 = \frac{1}{12}, \quad c_2 = \frac{1}{12}, \quad c_3 = \frac{1}{12}$。
+
+**5. 最终解**
+代回试探函数：
+
+
+$$u_h(x) = \frac{1}{12}x(1-x) + \frac{1}{12}x^2(1-x) + \frac{1}{12}x^3(1-x) = \frac{1}{12}x(1-x)(1+x+x^2) = \frac{1}{12}(x - x^4)$$
+
+
+*(注：这恰好是该微分方程的精确解。)*
+
+---
+
+### 第11题 (2) 
+
+**问题模型：**
+定解问题：$-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2} = x^2, \quad (0 < x < 1)$
+边界条件：$u(0) = 0, \quad u'(1) = 0$ （本质边界条件 + 自然边界条件）
+Galerkin 弱形式：因自然边界条件 $u'(1)=0$，边界项 $[u'v]_0^1$ 自然消去，变分问题同上为 $\int_0^1 u' v' \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x$。
+
+#### 用仅满足约束(本质)边界条件的试探函数 $c_1 x + c_2 x^2$
+
+**1. 确定基函数**
+$\varphi_1(x) = x, \quad \varphi_2(x) = x^2$ （满足 $u(0)=0$，不满足 $u'(1)=0$）
+其导数为：$\varphi_1'(x) = 1, \quad \varphi_2'(x) = 2x$
+
+**2. 计算刚度矩阵和载荷向量**
+
+* $K_{11} = \int_0^1 1 \cdot 1 \, \mathrm{d}x = 1$
+* $K_{12} = K_{21} = \int_0^1 1 \cdot 2x \, \mathrm{d}x = 1$
+* $K_{22} = \int_0^1 (2x)^2 \, \mathrm{d}x = \frac{4}{3}$
+* $F_1 = \int_0^1 x^2 \cdot x \, \mathrm{d}x = \int_0^1 x^3 \, \mathrm{d}x = \frac{1}{4}$
+* $F_2 = \int_0^1 x^2 \cdot x^2 \, \mathrm{d}x = \int_0^1 x^4 \, \mathrm{d}x = \frac{1}{5}$
+
+**3. 求解方程**
+
+$$\begin{pmatrix} 1 & 1 \\ 1 & 4/3 \end{pmatrix}
+\begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
+=
+\begin{pmatrix} 1/4 \\ 1/5 \end{pmatrix}$$
+
+由 $c_1 + c_2 = \frac{1}{4}$ 且 $c_1 + \frac{4}{3}c_2 = \frac{1}{5}$。
+下式减上式可得：$\frac{1}{3}c_2 = \frac{1}{5} - \frac{1}{4} = -\frac{1}{20} \implies c_2 = -\frac{3}{20}$。
+代回可得：$c_1 = \frac{1}{4} - \left(-\frac{3}{20}\right) = \frac{8}{20} = \frac{2}{5}$。
+
+**结果：** $u_h(x) = \frac{2}{5}x - \frac{3}{20}x^2$。
+
+---
+
+#### 用满足约束和自然边界条件的试探函数 $c_1 x \left(1 - \frac{x}{2}\right)$
+
+**1. 确定基函数**
+$\varphi_1(x) = x - \frac{1}{2}x^2$ （满足 $u(0)=0$ 且 $\varphi_1'(1) = 1 - 1 = 0$）
+其导数为：$\varphi_1'(x) = 1 - x$
+
+**2. 计算单元素矩阵和载荷**
+
+* $K_{11} = \int_0^1 (1-x)^2 \, \mathrm{d}x = \int_0^1 (1 - 2x + x^2) \, \mathrm{d}x = 1 - 1 + \frac{1}{3} = \frac{1}{3}$
+* $F_1 = \int_0^1 x^2 \left(x - \frac{1}{2}x^2\right) \, \mathrm{d}x = \int_0^1 \left(x^3 - \frac{1}{2}x^4\right) \, \mathrm{d}x = \frac{1}{4} - \frac{1}{10} = \frac{3}{20}$
+
+**3. 求解方程**
+$\frac{1}{3} c_1 = \frac{3}{20} \implies c_1 = \frac{9}{20}$
+
+**结果：** $u_h(x) = \frac{9}{20}x \left(1 - \frac{x}{2}\right) = \frac{9}{20}x - \frac{9}{40}x^2$。

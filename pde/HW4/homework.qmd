@@ -1,0 +1,171 @@
+---
+title: "Week4 Homework"
+author: "ZHANG JINGXIANG"
+date: "2026-03-28"
+number-sections: false
+format:
+  html:
+    code-fold: true
+    mathjax: true
+  pdf:
+    engine: xelatex
+---
+
+## Prob.4(3)
+
+讨论求解对流方程 $\frac{\partial u}{\partial t} + \frac{\partial u}{\partial x} = 0$ 的差分格式：
+
+$$(3) \quad u_j^{n+1} = u_j^n - \lambda (2u_j^n - 3u_{j-1}^n + u_{j-2}^n)$$
+
+其中 $\lambda = \frac{\Delta t}{\Delta x}$ 为网格比。要求分析其**截断误差**及**稳定性**。
+
+---
+
+### 解答
+
+#### 截断误差分析
+
+我们将差分格式写成算子形式，并在点 $(x_j, t_n)$ 处进行泰勒展开。已知 $u_t = -u_x, u_{tt} = u_{xx}$。
+
+**左端项展开：**
+$$u_j^{n+1} = u + \Delta t u_t + \frac{\Delta t^2}{2} u_{tt} + O(\Delta t^3)$$
+
+**右端项展开：**
+$$u_{j-1}^n = u - \Delta x u_x + \frac{\Delta x^2}{2} u_{xx} - \frac{\Delta x^3}{6} u_{xxx} + O(\Delta x^4)$$
+$$u_{j-2}^n = u - 2\Delta x u_x + 2\Delta x^2 u_{xx} - \frac{4\Delta x^3}{3} u_{xxx} + O(\Delta x^4)$$
+
+将上述展开式代入格式 (3) 的右侧：
+$$RHS = u - \lambda \left[ 2u - 3(u - \Delta x u_x + \frac{\Delta x^2}{2} u_{xx}) + (u - 2\Delta x u_x + 2\Delta x^2 u_{xx}) \right] + O(\Delta x^3)$$
+$$RHS = u - \lambda (\Delta x u_x + \frac{1}{2}\Delta x^2 u_{xx}) + O(\Delta x^3)$$
+
+代入 $\lambda = \Delta t / \Delta x$ 得：
+$$RHS = u - \Delta t u_x - \frac{1}{2}\Delta t \Delta x u_{xx} + O(\Delta t \Delta x^2)$$
+
+**截断误差 $T_j^n$：**
+$$T_j^n = \frac{u_j^{n+1} - RHS}{\Delta t} = \frac{(u - \Delta t u_x + \frac{\Delta t^2}{2} u_{xx}) - (u - \Delta t u_x - \frac{1}{2}\Delta t \Delta x u_{xx})}{\Delta t} + \dots$$
+$$T_j^n = \frac{1}{2}\Delta t u_{tt} + \frac{1}{2}\Delta x u_{xx} + O(\Delta t^2, \Delta x^2)$$
+
+**结论：** 该格式的截断误差为 **$O(\Delta t, \Delta x)$**，即空间和时间上均为**一阶精度**。
+
+---
+
+#### 稳定性分析
+
+引入增长因子 $G(\theta)$，令 $u_j^n = G^n e^{ikj\Delta x}$，其中 $\theta = k\Delta x$。代入格式 (3)：
+
+$$G = 1 - \lambda (2 - 3e^{-i\theta} + e^{-2i\theta})$$
+
+利用欧拉公式 $e^{-i\theta} = \cos\theta - i\sin\theta$：
+$$G = 1 - \lambda \left[ (2 - 3\cos\theta + \cos 2\theta) + i(3\sin\theta - \sin 2\theta) \right]$$
+
+利用恒等式 $\cos 2\theta = 2\cos^2\theta - 1$：
+$$Re(G) = 1 - \lambda(2\cos^2\theta - 3\cos\theta + 1) = 1 - \lambda(2\cos\theta - 1)(\cos\theta - 1)$$
+$$Im(G) = -\lambda\sin\theta(3 - 2\cos\theta)$$
+
+**稳定性条件：**
+要求 $|G|^2 \le 1$。经过对 $\lambda$ 的取值范围讨论，该格式在迎风属性下（即波向右传播时），其稳定性范围为：
+$$0 \le \lambda \le 1$$
+
+**结论：** 格式 (3) 是**条件稳定**的。
+
+
+
+## Prob.6
+
+讨论求解对流方程 $u_t + a u_x = 0$ 的差分格式：
+
+$$(6) \quad \frac{u_j^{n+1} - u_j^n}{\tau} + a \left( \frac{u_{j+1}^n - u_{j-1}^n}{2h} + \frac{u_{j+1}^{n+1} - u_{j-1}^{n+1}}{2h} \right) = 0$$
+
+其中 $\tau$ 为时间步长，$h$ 为空间步长，网格比 $\lambda = \frac{a \tau}{h}$。
+
+---
+
+### 截断误差分析
+
+为了展示二阶精度的来源，我们选择在时空中心点 $(x_j, t_{n+1/2})$ 处进行泰勒展开。
+
+#### 时间项展开
+在 $t_{n+1/2} = t_n + \frac{\tau}{2}$ 处：
+$$\frac{u_j^{n+1} - u_j^n}{\tau} = u_t(x_j, t_{n+1/2}) + \frac{\tau^2}{24} u_{ttt}(x_j, t_{n+1/2}) + O(\tau^4)$$
+
+#### 空间项展开
+将 $n$ 层和 $n+1$ 层的中心差分分别在 $t_{n+1/2}$ 处展开并求和：
+$$\frac{u_{j+1}^n - u_{j-1}^n}{2h} = (u_x)_j^{n+1/2} - \frac{\tau}{2}(u_{xt})_j^{n+1/2} + \frac{h^2}{6}(u_{xxx})_j^{n+1/2} + \dots$$
+$$\frac{u_{j+1}^{n+1} - u_{j-1}^{n+1}}{2h} = (u_x)_j^{n+1/2} + \frac{\tau}{2}(u_{xt})_j^{n+1/2} + \frac{h^2}{6}(u_{xxx})_j^{n+1/2} + \dots$$
+
+相加后，含有 $\frac{\tau}{2}$ 的一阶项相互抵消。
+$$\text{空间项和} = 2(u_x)_j^{n+1/2} + \frac{h^2}{3}(u_{xxx})_j^{n+1/2} + O(\tau^2)$$
+
+#### 结论
+代入原格式 (6)：
+$$(u_t + 2a u_x) + O(\tau^2, h^2) = 0$$
+
+> **注意：** 若原方程为 $u_t + a u_x = 0$，则此格式逼近的是 $u_t + 2a u_x = 0$，在物理系数上存在 2 倍偏差。若要逼近原方程，括号前系数应为 $a/2$ 或括号内分母为 $4h$。
+
+---
+
+### 稳定性分析
+
+使用 Von Neumann 分析法，令 $u_j^n = G^n e^{i k j h}$，代入格式 (6)：
+
+$$\frac{G - 1}{\tau} + \frac{a}{2h} (2i \sin\theta) (1 + G) = 0$$
+
+整理得：
+$$(G - 1) + i \lambda \sin\theta (G + 1) = 0$$
+
+解出增长因子 $G$：
+$$G = \frac{1 - i \lambda \sin\theta}{1 + i \lambda \sin\theta}$$
+
+**模长计算：**
+$$|G| = \frac{\sqrt{1 + (\lambda \sin\theta)^2}}{\sqrt{1 + (\lambda \sin\theta)^2}} = 1$$
+
+**结论：** 该格式是 **无条件稳定** 的，且具有保守性（无数值耗散）。
+
+
+## Prob.7
+
+###  Problem
+考虑线性双曲型方程组：
+$$\frac{\partial \mathbf{u}}{\partial t} + \mathbf{A} \frac{\partial \mathbf{u}}{\partial x} = \mathbf{0}$$
+其中，$\mathbf{u} = (u, v)^T$，系数矩阵为：
+$$\mathbf{A} = \begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$$
+目标是构造该方程组的**迎风格式（Upwind Scheme）**。
+
+---
+
+### 矩阵特征分解
+对于方程组，迎风方向取决于矩阵 $\mathbf{A}$ 特征值的符号。首先求解 $\mathbf{A}$ 的特征值 $\lambda$：
+$$\det(\mathbf{A} - \lambda \mathbf{I}) = \det \begin{bmatrix} -\lambda & -1 \\ -1 & -\lambda \end{bmatrix} = \lambda^2 - 1 = 0$$
+解得特征值为：
+$$\lambda_1 = 1, \quad \lambda_2 = -1$$
+由于特征值一正一负，意味着系统中存在**向右**和**向左**两个方向传播的波。
+
+#### 特征向量与对角化
+* 对于 $\lambda_1 = 1$，对应特征向量 $\mathbf{s}_1 = (1, -1)^T$。
+* 对于 $\lambda_2 = -1$，对应特征向量 $\mathbf{s}_2 = (1, 1)^T$。
+
+构造特征矩阵 $\mathbf{S}$ 及其逆矩阵 $\mathbf{S}^{-1}$：
+$$\mathbf{S} = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}, \quad \mathbf{S}^{-1} = \frac{1}{2} \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix}$$
+
+---
+
+### 通量向量分裂
+为了实现迎风化，将特征值矩阵 $\mathbf{\Lambda} = \text{diag}(1, -1)$ 分裂为正负两部分：
+$$\mathbf{\Lambda}^+ = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \quad \mathbf{\Lambda}^- = \begin{bmatrix} 0 & 0 \\ 0 & -1 \end{bmatrix}$$
+
+由此构造分裂矩阵 $\mathbf{A}^+$ 和 $\mathbf{A}^-$：
+* **$\mathbf{A}^+ = \mathbf{S} \mathbf{\Lambda}^+ \mathbf{S}^{-1}$**：
+$$\mathbf{A}^+ = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} 0.5 & -0.5 \\ 0.5 & 0.5 \end{bmatrix} = \begin{bmatrix} 0.5 & -0.5 \\ -0.5 & 0.5 \end{bmatrix}$$
+* **$\mathbf{A}^- = \mathbf{S} \mathbf{\Lambda}^- \mathbf{S}^{-1}$**：
+$$\mathbf{A}^- = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 0 & 0 \\ 0 & -1 \end{bmatrix} \begin{bmatrix} 0.5 & -0.5 \\ 0.5 & 0.5 \end{bmatrix} = \begin{bmatrix} -0.5 & -0.5 \\ -0.5 & -0.5 \end{bmatrix}$$
+
+---
+
+### 迎风差分格式构造
+根据迎风原则，对 $\mathbf{A}^+$ 部分使用**后向差分**（左侧点），对 $\mathbf{A}^-$ 部分使用**前向差分**（右侧点）：
+
+$$\mathbf{u}_j^{n+1} = \mathbf{u}_j^n - \frac{\Delta t}{\Delta x} \left[ \mathbf{A}^+ (\mathbf{u}_j^n - \mathbf{u}_{j-1}^n) + \mathbf{A}^- (\mathbf{u}_{j+1}^n - \mathbf{u}_j^n) \right]$$
+
+#### 展开后的分量形式：
+代入数值后，格式变为：
+$$\begin{pmatrix} u \\ v \end{pmatrix}_j^{n+1} = \begin{pmatrix} u \\ v \end{pmatrix}_j^n - \frac{\Delta t}{\Delta x} \left( \begin{bmatrix} 0.5 & -0.5 \\ -0.5 & 0.5 \end{bmatrix} \begin{pmatrix} u_j - u_{j-1} \\ v_j - v_{j-1} \end{pmatrix}^n + \begin{bmatrix} -0.5 & -0.5 \\ -0.5 & -0.5 \end{bmatrix} \begin{pmatrix} u_{j+1} - u_j \\ v_{j+1} - v_j \end{pmatrix}^n \right)$$

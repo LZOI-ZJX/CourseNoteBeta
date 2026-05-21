@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Homework 10</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="homework_files/libs/clipboard/clipboard.min.js"></script>
+<script src="homework_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="homework_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="homework_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="homework_files/libs/quarto-html/popper.min.js"></script>
+<script src="homework_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="homework_files/libs/quarto-html/anchor.min.js"></script>
+<link href="homework_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="homework_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="homework_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="homework_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="homework_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#prob-5-6" id="toc-prob-5-6" class="nav-link active" data-scroll-target="#prob-5-6">Prob 5 &amp; 6</a>
+  <ul class="collapse">
+  <li><a href="#一-galerkin-形式的推导弱形式" id="toc-一-galerkin-形式的推导弱形式" class="nav-link" data-scroll-target="#一-galerkin-形式的推导弱形式">一、 Galerkin 形式的推导（弱形式）</a></li>
+  <li><a href="#二-ritz-形式的推导极小值问题" id="toc-二-ritz-形式的推导极小值问题" class="nav-link" data-scroll-target="#二-ritz-形式的推导极小值问题">二、 Ritz 形式的推导（极小值问题）</a></li>
+  <li><a href="#三-三个问题之间的关系及证明" id="toc-三-三个问题之间的关系及证明" class="nav-link" data-scroll-target="#三-三个问题之间的关系及证明">三、 三个问题之间的关系及证明</a></li>
+  <li><a href="#边界条件-1-的变分问题" id="toc-边界条件-1-的变分问题" class="nav-link" data-scroll-target="#边界条件-1-的变分问题">边界条件 (1) 的变分问题</a></li>
+  <li><a href="#边界条件-2-的变分问题" id="toc-边界条件-2-的变分问题" class="nav-link" data-scroll-target="#边界条件-2-的变分问题">边界条件 (2) 的变分问题</a></li>
+  <li><a href="#边界条件-3-的变分问题" id="toc-边界条件-3-的变分问题" class="nav-link" data-scroll-target="#边界条件-3-的变分问题">边界条件 (3) 的变分问题</a></li>
+  </ul></li>
+  <li><a href="#prob-7" id="toc-prob-7" class="nav-link" data-scroll-target="#prob-7">Prob 7</a>
+  <ul class="collapse">
+  <li><a href="#一-galerkin-形式的推导弱形式-1" id="toc-一-galerkin-形式的推导弱形式-1" class="nav-link" data-scroll-target="#一-galerkin-形式的推导弱形式-1">一、 Galerkin 形式的推导（弱形式）</a></li>
+  <li><a href="#二-ritz-形式的推导极小值问题-1" id="toc-二-ritz-形式的推导极小值问题-1" class="nav-link" data-scroll-target="#二-ritz-形式的推导极小值问题-1">二、 Ritz 形式的推导（极小值问题）</a></li>
+  <li><a href="#三-三个问题之间的关系及证明-1" id="toc-三-三个问题之间的关系及证明-1" class="nav-link" data-scroll-target="#三-三个问题之间的关系及证明-1">三、 三个问题之间的关系及证明</a></li>
+  </ul></li>
+  <li><a href="#prob-8" id="toc-prob-8" class="nav-link" data-scroll-target="#prob-8">Prob 8</a>
+  <ul class="collapse">
+  <li><a href="#一-变分空间的定义与-galerkin-形式的推导弱形式" id="toc-一-变分空间的定义与-galerkin-形式的推导弱形式" class="nav-link" data-scroll-target="#一-变分空间的定义与-galerkin-形式的推导弱形式">一、 变分空间的定义与 Galerkin 形式的推导（弱形式）</a></li>
+  <li><a href="#二-ritz-形式的推导极小值问题-2" id="toc-二-ritz-形式的推导极小值问题-2" class="nav-link" data-scroll-target="#二-ritz-形式的推导极小值问题-2">二、 Ritz 形式的推导（极小值问题）</a></li>
+  <li><a href="#三-三个问题之间的关系及证明-2" id="toc-三-三个问题之间的关系及证明-2" class="nav-link" data-scroll-target="#三-三个问题之间的关系及证明-2">三、 三个问题之间的关系及证明</a></li>
+  </ul></li>
+  <li><a href="#prob-11" id="toc-prob-11" class="nav-link" data-scroll-target="#prob-11">Prob 11</a>
+  <ul class="collapse">
+  <li><a href="#第11题-1" id="toc-第11题-1" class="nav-link" data-scroll-target="#第11题-1">第11题 (1)</a></li>
+  <li><a href="#第11题-2" id="toc-第11题-2" class="nav-link" data-scroll-target="#第11题-2">第11题 (2)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework 10</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="prob-5-6" class="level2">
+<h2 class="anchored" data-anchor-id="prob-5-6">Prob 5 &amp; 6</h2>
+<p><strong>5. 微分方程的定解问题</strong></p>
+<p><span class="math display">\[\begin{cases} -\frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right) + qu = f, &amp; a &lt; x &lt; b, \\ u(a) = 0, u(b) = 0, \end{cases}\]</span></p>
+<p>其中 <span class="math inline">\(p(x) \ge p_0 &gt; 0, q(x) \ge 0\)</span>。试推导对应的 Ritz 形式及 Galerkin 形式的变分问题，叙述及证明三个问题之间的关系。</p>
+<p><strong>解答</strong></p>
+<section id="一-galerkin-形式的推导弱形式" class="level3">
+<h3 class="anchored" data-anchor-id="一-galerkin-形式的推导弱形式">一、 Galerkin 形式的推导（弱形式）</h3>
+<p>定义试探空间和测试空间为 <span class="math inline">\(V = H_0^1(a,b)\)</span>，即在区间 <span class="math inline">\((a,b)\)</span> 上平方可积、具有一阶弱导数且满足零边界条件 <span class="math inline">\(v(a)=v(b)=0\)</span> 的 Sobolev 空间。</p>
+<p>将原微分方程两端同乘任意测试函数 <span class="math inline">\(v \in V\)</span>，并在区间 <span class="math inline">\((a,b)\)</span> 上积分： <span class="math display">\[-\int_a^b \frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right)v \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>对第一项使用分部积分法： <span class="math display">\[-\left[p(x)\frac{\mathrm{d}u}{\mathrm{d}x}v(x)\right]_a^b + \int_a^b p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\frac{\mathrm{d}v}{\mathrm{d}x} \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>由于测试函数满足 <span class="math inline">\(v(a)=v(b)=0\)</span>，边界项 <span class="math inline">\(-\left[p(x)u'v\right]_a^b\)</span> 消去。</p>
+<p><strong>对应的 Galerkin 形式变分问题为：</strong> 求 <span class="math inline">\(u \in H_0^1(a,b)\)</span>，使得对任意 <span class="math inline">\(v \in H_0^1(a,b)\)</span>，均满足： <span class="math display">\[a(u,v) = (f,v)\]</span> 其中，双线性型 <span class="math inline">\(a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x\)</span>，右端泛函 <span class="math inline">\((f,v) = \int_a^b f(x)v \, \mathrm{d}x\)</span>。</p>
+</section>
+<section id="二-ritz-形式的推导极小值问题" class="level3">
+<h3 class="anchored" data-anchor-id="二-ritz-形式的推导极小值问题">二、 Ritz 形式的推导（极小值问题）</h3>
+<p>基于算子的对称正定性，可以构造对应的总势能泛函 <span class="math inline">\(J(v) = \frac{1}{2}a(v,v) - (f,v)\)</span>。</p>
+<p><strong>对应的 Ritz 形式变分问题为：</strong> 求 <span class="math inline">\(u \in H_0^1(a,b)\)</span>，使得泛函 <span class="math inline">\(J(u)\)</span> 在空间 <span class="math inline">\(H_0^1(a,b)\)</span> 中取得极小值，即： <span class="math display">\[J(u) = \min_{v \in H_0^1(a,b)} J(v)\]</span> 其中 <span class="math inline">\(J(v) = \int_a^b \left[ \frac{1}{2} p(x) \left(\frac{\mathrm{d}v}{\mathrm{d}x}\right)^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x\)</span>。</p>
+</section>
+<section id="三-三个问题之间的关系及证明" class="level3">
+<h3 class="anchored" data-anchor-id="三-三个问题之间的关系及证明">三、 三个问题之间的关系及证明</h3>
+<p>设原微分方程的定解问题为 <strong>(D)</strong>，Galerkin 弱形式问题为 <strong>(G)</strong>，Ritz 极小值问题为 <strong>(R)</strong>。</p>
+<section id="关系叙述" class="level4">
+<h4 class="anchored" data-anchor-id="关系叙述">1. 关系叙述</h4>
+<ul>
+<li><strong>(G) 与 (R) 是完全等价的</strong>：解 Galerkin 问题等价于解 Ritz 泛函极小值问题。</li>
+<li><strong>(D) <span class="math inline">\(\implies\)</span> (G), (R)</strong>：若 (D) 存在经典解（即 <span class="math inline">\(u \in C^2(a,b) \cap C[a,b]\)</span>），则它必然是 (G) 和 (R) 的解。</li>
+<li><strong>(G), (R) <span class="math inline">\(\implies\)</span> (D)</strong>：若 (G) 或 (R) 的弱解满足足够的光滑性（即 <span class="math inline">\(u \in C^2(a,b)\)</span>），则它必然是原定解问题 (D) 的经典解。</li>
+</ul>
+</section>
+<section id="关系证明" class="level4">
+<h4 class="anchored" data-anchor-id="关系证明">2. 关系证明</h4>
+<section id="d-推出-g" class="level5">
+<h5 class="anchored" data-anchor-id="d-推出-g">(1) (D) 推出 (G)</h5>
+<p>若 <span class="math inline">\(u\)</span> 是 (D) 的经典解，自然满足同乘 <span class="math inline">\(v\)</span> 后的积分恒等式，通过分部积分直接得到 (G)（详细推导见第一部分）。</p>
+</section>
+<section id="g-等价于-r" class="level5">
+<h5 class="anchored" data-anchor-id="g-等价于-r">(2) (G) 等价于 (R)</h5>
+<p>已知条件 <span class="math inline">\(p(x) \ge p_0 &gt; 0, q(x) \ge 0\)</span> 保证了双线性型 <span class="math inline">\(a(v,v)\)</span> 具有对称性和正定性（即 <span class="math inline">\(a(v,v) \ge 0\)</span>，且 <span class="math inline">\(a(v,v)=0 \iff v=0\)</span>）。</p>
+<ul>
+<li><p><strong>从 (G) 推 (R)：</strong> 设 <span class="math inline">\(u\)</span> 是 (G) 的解，即对任意 <span class="math inline">\(v\)</span> 有 <span class="math inline">\(a(u,v) = (f,v)\)</span>。对空间中的任意函数 <span class="math inline">\(w = u + v\)</span>，计算其泛函值： <span class="math display">\[J(u+v) = \frac{1}{2}a(u+v, u+v) - (f, u+v)\]</span> 利用双线性型的对称性和线性展开： <span class="math display">\[J(u+v) = \left[ \frac{1}{2}a(u,u) - (f,u) \right] + [a(u,v) - (f,v)] + \frac{1}{2}a(v,v)\]</span> 由于 <span class="math inline">\(a(u,v) - (f,v) = 0\)</span>，可得 <span class="math inline">\(J(u+v) = J(u) + \frac{1}{2}a(v,v)\)</span>。 由正定性知 <span class="math inline">\(\frac{1}{2}a(v,v) \ge 0\)</span> 且仅当 <span class="math inline">\(v=0\)</span> 时取等号，因此 <span class="math inline">\(J(u+v) \ge J(u)\)</span> 恒成立。故 <span class="math inline">\(u\)</span> 使泛函取得极小值，即 (R) 成立。</p></li>
+<li><p><strong>从 (R) 推 (G)：</strong> 设 <span class="math inline">\(u\)</span> 使 <span class="math inline">\(J(u)\)</span> 极小化。对任意固定的 <span class="math inline">\(v \in H_0^1(a,b)\)</span> 和实数参数 <span class="math inline">\(t\)</span>，定义标量函数 <span class="math inline">\(\phi(t) = J(u+tv)\)</span>。因 <span class="math inline">\(u\)</span> 是极小值点，<span class="math inline">\(\phi(t)\)</span> 必在 <span class="math inline">\(t=0\)</span> 处取极小值，故 <span class="math inline">\(\phi'(0) = 0\)</span>。 展开 <span class="math inline">\(\phi(t)\)</span>： <span class="math display">\[\phi(t) = J(u) + t[a(u,v) - (f,v)] + \frac{t^2}{2}a(v,v)\]</span> 对其关于 <span class="math inline">\(t\)</span> 求导并令 <span class="math inline">\(t=0\)</span>： <span class="math display">\[\phi'(0) = a(u,v) - (f,v) = 0\]</span> 即对任意 <span class="math inline">\(v \in H_0^1(a,b)\)</span>，都有 <span class="math inline">\(a(u,v) = (f,v)\)</span>，此即 (G) 成立。</p></li>
+</ul>
+</section>
+<section id="g-推出-d-在解足够光滑的条件下" class="level5">
+<h5 class="anchored" data-anchor-id="g-推出-d-在解足够光滑的条件下">(3) (G) 推出 (D) （在解足够光滑的条件下）</h5>
+<p>假设 (G) 的解 <span class="math inline">\(u\)</span> 足够光滑（<span class="math inline">\(u \in C^2(a,b)\)</span>）。由 (G) 可知： <span class="math display">\[\int_a^b \left( p(x)u'v' + q(x)uv - f(x)v \right) \mathrm{d}x = 0\]</span> 对 <span class="math inline">\(p(x)u'v'\)</span> 项进行逆向的分部积分： <span class="math display">\[\int_a^b p(x)u'v' \, \mathrm{d}x = [p(x)u'v]_a^b - \int_a^b (p(x)u')'v \, \mathrm{d}x\]</span> 因 <span class="math inline">\(v \in H_0^1(a,b)\)</span>，边界项为 0。将其代回积分恒等式提取公因式 <span class="math inline">\(v\)</span>： <span class="math display">\[\int_a^b \left[ -(p(x)u')' + q(x)u - f(x) \right] v \, \mathrm{d}x = 0\]</span> 根据变分法基本引理，由于上式对任意测试函数 <span class="math inline">\(v \in H_0^1(a,b)\)</span> 均成立，方括号内的项必须在 <span class="math inline">\((a,b)\)</span> 上几乎处处为 0，即： <span class="math display">\[-\frac{\mathrm{d}}{\mathrm{d}x}\left(p(x)\frac{\mathrm{d}u}{\mathrm{d}x}\right) + q(x)u = f(x)\]</span> 又因为解 <span class="math inline">\(u \in H_0^1(a,b)\)</span>，它天然满足零边界条件 <span class="math inline">\(u(a)=0, u(b)=0\)</span>。因此，它完全满足原定解问题 (D)。</p>
+</section>
+</section>
+</section>
+<section id="边界条件-1-的变分问题" class="level3">
+<h3 class="anchored" data-anchor-id="边界条件-1-的变分问题">边界条件 (1) 的变分问题</h3>
+<p>给定边界条件：<span class="math inline">\(u(a)=0, \quad p(b)\frac{\mathrm{d}u(b)}{\mathrm{d}x} + \alpha u(b) = g\)</span>，其中 <span class="math inline">\(\alpha \ge 0\)</span>。</p>
+<p><strong>Galerkin 形式推导：</strong> 首先定义测试函数空间。由于 <span class="math inline">\(x=a\)</span> 处为本质边界条件（Dirichlet条件），测试函数在此处须满足零条件；<span class="math inline">\(x=b\)</span> 处为自然边界条件（Robin/混合条件），测试函数在此处无特殊限制。定义测试空间 <span class="math inline">\(V = \{ v \in H^1(a,b) \mid v(a) = 0 \}\)</span>。</p>
+<p>将微分方程两端同乘 <span class="math inline">\(v \in V\)</span> 并积分，进行分部积分： <span class="math display">\[- \left[ p(x)u'(x)v(x) \right]_a^b + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>展开边界项并代入边界条件： 由于 <span class="math inline">\(v(a) = 0\)</span>，有 <span class="math inline">\(p(a)u'(a)v(a) = 0\)</span>。 由 <span class="math inline">\(x=b\)</span> 处的边界条件得 <span class="math inline">\(p(b)u'(b) = g - \alpha u(b)\)</span>。代入上式： <span class="math display">\[- (g - \alpha u(b))v(b) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>移项整理，得到 <strong>Galerkin 形式变分问题</strong>： 求 <span class="math inline">\(u \in V\)</span>，使得对任意 <span class="math inline">\(v \in V\)</span>，均满足 <span class="math inline">\(a(u,v) = F(v)\)</span>，其中： <span class="math display">\[a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x + \alpha u(b)v(b)\]</span> <span class="math display">\[F(v) = \int_a^b f(x)v \, \mathrm{d}x + g v(b)\]</span></p>
+<p><strong>Ritz 形式推导：</strong> 因为 <span class="math inline">\(p(x) \ge p_0 &gt; 0, q(x) \ge 0\)</span> 且 <span class="math inline">\(\alpha \ge 0\)</span>，双线性型 <span class="math inline">\(a(u,v)\)</span> 依然是对称且正定的。对应的势能泛函 <span class="math inline">\(J(v) = \frac{1}{2}a(v,v) - F(v)\)</span>。</p>
+<p><strong>Ritz 形式变分问题</strong>为： 求 <span class="math inline">\(u \in V\)</span>，使得 <span class="math inline">\(J(u) = \min_{v \in V} J(v)\)</span>，其中： <span class="math display">\[J(v) = \int_a^b \left[ \frac{1}{2} p(x) (v')^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x + \frac{1}{2}\alpha v(b)^2 - g v(b)\]</span></p>
+</section>
+<section id="边界条件-2-的变分问题" class="level3">
+<h3 class="anchored" data-anchor-id="边界条件-2-的变分问题">边界条件 (2) 的变分问题</h3>
+<p>给定边界条件：<span class="math inline">\(p(a)\frac{\mathrm{d}u(a)}{\mathrm{d}x} - \alpha u(a) = g, \quad \frac{\mathrm{d}u(b)}{\mathrm{d}x} = 0\)</span>，其中 <span class="math inline">\(\alpha \ge 0\)</span>。</p>
+<p><strong>Galerkin 形式推导：</strong> 两端均为自然边界条件（Robin与Neumann），空间无本质边界条件约束。定义试探与测试空间为 <span class="math inline">\(V = H^1(a,b)\)</span>。</p>
+<p>对微分方程乘 <span class="math inline">\(v \in V\)</span> 积分并分部积分，展开边界项： <span class="math display">\[- p(b)u'(b)v(b) + p(a)u'(a)v(a) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>代入边界条件 <span class="math inline">\(p(b)u'(b) = 0\)</span> 以及 <span class="math inline">\(p(a)u'(a) = \alpha u(a) + g\)</span>： <span class="math display">\[- 0 \cdot v(b) + (\alpha u(a) + g)v(a) + \int_a^b p(x)u'v' \, \mathrm{d}x + \int_a^b q(x)uv \, \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p>整理得到 <strong>Galerkin 形式变分问题</strong>： 求 <span class="math inline">\(u \in V\)</span>，使得对任意 <span class="math inline">\(v \in V\)</span>，均满足 <span class="math inline">\(a(u,v) = F(v)\)</span>，其中： <span class="math display">\[a(u,v) = \int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x + \alpha u(a)v(a)\]</span> <span class="math display">\[F(v) = \int_a^b f(x)v \, \mathrm{d}x - g v(a)\]</span></p>
+<p><strong>Ritz 形式推导：</strong> 同理，构造对应的势能泛函。<strong>Ritz 形式变分问题</strong>为： 求 <span class="math inline">\(u \in V\)</span>，使得 <span class="math inline">\(J(u) = \min_{v \in V} J(v)\)</span>，其中： <span class="math display">\[J(v) = \int_a^b \left[ \frac{1}{2} p(x) (v')^2 + \frac{1}{2} q(x)v^2 - f(x)v \right] \mathrm{d}x + \frac{1}{2}\alpha v(a)^2 + g v(a)\]</span></p>
+</section>
+<section id="边界条件-3-的变分问题" class="level3">
+<h3 class="anchored" data-anchor-id="边界条件-3-的变分问题">边界条件 (3) 的变分问题</h3>
+<p>给定边界条件：<span class="math inline">\(u(a)=u_0, \quad u(b)=u_1\)</span>。</p>
+<p><strong>Galerkin 形式推导：</strong> 这是非齐次 Dirichlet 边界条件。解所在的试探空间（流形）定义为 <span class="math inline">\(U = \{ u \in H^1(a,b) \mid u(a) = u_0, u(b) = u_1 \}\)</span>。 测试函数空间必须是对应的齐次空间，即 <span class="math inline">\(V = H_0^1(a,b) = \{ v \in H^1(a,b) \mid v(a) = 0, v(b) = 0 \}\)</span>。</p>
+<p>分部积分后，边界项为 <span class="math inline">\(- [p(x)u'(x)v(x)]_a^b\)</span>。因为测试函数 <span class="math inline">\(v \in V\)</span> 满足 <span class="math inline">\(v(a)=v(b)=0\)</span>，边界项完全消去。</p>
+<p><strong>Galerkin 形式变分问题</strong>为： 求 <span class="math inline">\(u \in U\)</span>，使得对任意 <span class="math inline">\(v \in V\)</span>，均满足： <span class="math display">\[\int_a^b \left(p(x)u'v' + q(x)uv\right) \mathrm{d}x = \int_a^b f(x)v \, \mathrm{d}x\]</span></p>
+<p><strong>Ritz 形式推导：</strong> <strong>Ritz 形式变分问题</strong>为： 求 <span class="math inline">\(u \in U\)</span>，使得 <span class="math inline">\(J(u) = \min_{w \in U} J(w)\)</span>，其中泛函形式与原定解问题内部相同（无额外边界项）： <span class="math display">\[J(w) = \int_a^b \left[ \frac{1}{2} p(x) (w')^2 + \frac{1}{2} q(x)w^2 - f(x)w \right] \mathrm{d}x\]</span></p>
+</section>
+</section>
+<section id="prob-7" class="level2">
+<h2 class="anchored" data-anchor-id="prob-7">Prob 7</h2>
+<p><strong>题目</strong></p>
+<p><span class="math display">\[\begin{cases} -\nabla \cdot (k \nabla u) = f, &amp; (x,y) \in \Omega \\ u|_{\partial\Omega} = 0 \end{cases}\]</span></p>
+<p>其中 <span class="math inline">\(k = k(x,y) \ge k_0 &gt; 0\)</span>，试推导对应的 Ritz 及 Galerkin 形式的变分问题。叙述及证明 3 个问题之间的关系。</p>
+<hr>
+<section id="一-galerkin-形式的推导弱形式-1" class="level3">
+<h3 class="anchored" data-anchor-id="一-galerkin-形式的推导弱形式-1">一、 Galerkin 形式的推导（弱形式）</h3>
+<p>由于边界条件为齐次 Dirichlet 边界条件 <span class="math inline">\(u|_{\partial\Omega} = 0\)</span>，我们定义试探函数空间和测试函数空间为 <span class="math inline">\(V = H_0^1(\Omega)\)</span>。该空间中的函数在 <span class="math inline">\(\Omega\)</span> 上平方可积，具有一阶弱偏导数，且在边界 <span class="math inline">\(\partial\Omega\)</span> 上的迹为零。</p>
+<p>将原方程两端同乘任意一个测试函数 <span class="math inline">\(v \in V\)</span>，并在区域 <span class="math inline">\(\Omega\)</span> 上进行多重积分： <span class="math display">\[- \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y\]</span></p>
+<p>利用格林第一公式（多维分部积分公式）对左端进行展开： <span class="math display">\[- \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y = \int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s\]</span> 其中 <span class="math inline">\(\boldsymbol{n}\)</span> 为边界 <span class="math inline">\(\partial\Omega\)</span> 的单位外法向量。</p>
+<p>因为测试函数 <span class="math inline">\(v \in H_0^1(\Omega)\)</span>，在边界上 <span class="math inline">\(v|_{\partial\Omega} = 0\)</span>，所以边界积分项消去，即 <span class="math inline">\(\int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s = 0\)</span>。</p>
+<p><strong>对应的 Galerkin 形式变分问题为：</strong> 求 <span class="math inline">\(u \in H_0^1(\Omega)\)</span>，使得对任意 <span class="math inline">\(v \in H_0^1(\Omega)\)</span>，均满足： <span class="math display">\[a(u,v) = (f,v)\]</span> 其中，双线性型 <span class="math inline">\(a(u,v) = \int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y\)</span>，右端线性泛函 <span class="math inline">\((f,v) = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y\)</span>。</p>
+</section>
+<section id="二-ritz-形式的推导极小值问题-1" class="level3">
+<h3 class="anchored" data-anchor-id="二-ritz-形式的推导极小值问题-1">二、 Ritz 形式的推导（极小值问题）</h3>
+<p>已知 <span class="math inline">\(k(x,y) \ge k_0 &gt; 0\)</span>，双线性型 <span class="math inline">\(a(u,v)\)</span> 满足对称性（<span class="math inline">\(a(u,v) = a(v,u)\)</span>）和正定性（<span class="math inline">\(a(v,v) \ge 0\)</span> 且等号当且仅当 <span class="math inline">\(v=0\)</span> 时成立）。因此可以构造系统的总势能泛函 <span class="math inline">\(J(v) = \frac{1}{2}a(v,v) - (f,v)\)</span>。</p>
+<p><strong>对应的 Ritz 形式变分问题为：</strong> 求 <span class="math inline">\(u \in H_0^1(\Omega)\)</span>，使得泛函 <span class="math inline">\(J(u)\)</span> 在空间 <span class="math inline">\(H_0^1(\Omega)\)</span> 中取得极小值，即： <span class="math display">\[J(u) = \min_{v \in H_0^1(\Omega)} J(v)\]</span> 其中泛函的具体形式为： <span class="math display">\[J(v) = \int_\Omega \left( \frac{1}{2} k |\nabla v|^2 - f v \right) \mathrm{d}x\mathrm{d}y\]</span></p>
+</section>
+<section id="三-三个问题之间的关系及证明-1" class="level3">
+<h3 class="anchored" data-anchor-id="三-三个问题之间的关系及证明-1">三、 三个问题之间的关系及证明</h3>
+<p>设原偏微分方程定解问题为 <strong>(D)</strong>，Galerkin 弱形式问题为 <strong>(G)</strong>，Ritz 极小值问题为 <strong>(R)</strong>。</p>
+<p><strong>1. 关系叙述</strong> * <strong>(G) 与 (R) 是完全等价的</strong>。 * <strong>(D) <span class="math inline">\(\implies\)</span> (G), (R)</strong>：若 (D) 存在经典解（即 <span class="math inline">\(u \in C^2(\Omega) \cap C(\bar{\Omega})\)</span>），则它必然是 (G) 和 (R) 的解。 * <strong>(G), (R) <span class="math inline">\(\implies\)</span> (D)</strong>：若 (G) 或 (R) 的弱解满足足够的光滑性（即 <span class="math inline">\(u \in C^2(\Omega) \cap C(\bar{\Omega})\)</span>），则它必然是原定解问题 (D) 的经典解。</p>
+<p><strong>2. 关系证明</strong></p>
+<p><strong>(1) (D) 推出 (G)</strong> 若 <span class="math inline">\(u\)</span> 是 (D) 的经典解，将其代入方程两端同乘 <span class="math inline">\(v \in H_0^1(\Omega)\)</span> 并积分，由于 <span class="math inline">\(u\)</span> 足够光滑，格林公式严格成立，通过与第一部分相同的分部积分步骤，边界项消去，直接可推导得出 <span class="math inline">\(u\)</span> 满足 (G) 的恒等式。</p>
+<p><strong>(2) (G) 等价于 (R)</strong> * <strong>(G) <span class="math inline">\(\implies\)</span> (R)</strong>：设 <span class="math inline">\(u\)</span> 是 (G) 的解，即 <span class="math inline">\(\forall v \in H_0^1(\Omega)\)</span>，有 <span class="math inline">\(a(u,v) = (f,v)\)</span>。 任取空间中另一函数 <span class="math inline">\(w = u + v \in H_0^1(\Omega)\)</span>，考察其泛函值： <span class="math display">\[J(u+v) = \frac{1}{2}a(u+v, u+v) - (f, u+v)\]</span> 利用双线性型的对称性和线性性质展开： <span class="math display">\[J(u+v) = \left[ \frac{1}{2}a(u,u) - (f,u) \right] + [a(u,v) - (f,v)] + \frac{1}{2}a(v,v)\]</span> 由于 <span class="math inline">\(u\)</span> 满足 (G)，中间项 <span class="math inline">\(a(u,v) - (f,v) = 0\)</span>。因此 <span class="math inline">\(J(u+v) = J(u) + \frac{1}{2}a(v,v)\)</span>。 因为 <span class="math inline">\(k \ge k_0 &gt; 0\)</span>，对任意 <span class="math inline">\(v \neq 0\)</span>，有 <span class="math inline">\(a(v,v) = \int_\Omega k |\nabla v|^2 \mathrm{d}x\mathrm{d}y &gt; 0\)</span>。 所以 <span class="math inline">\(J(u+v) \ge J(u)\)</span> 恒成立，即 <span class="math inline">\(u\)</span> 是泛函的全局极小值点，(R) 成立。</p>
+<ul>
+<li><strong>(R) <span class="math inline">\(\implies\)</span> (G)</strong>：设 <span class="math inline">\(u\)</span> 使泛函 <span class="math inline">\(J\)</span> 取极小值。 对任意固定的 <span class="math inline">\(v \in H_0^1(\Omega)\)</span> 和实数参数 <span class="math inline">\(t\)</span>，定义关于 <span class="math inline">\(t\)</span> 的实函数 <span class="math inline">\(\phi(t) = J(u+tv)\)</span>。 由于 <span class="math inline">\(u\)</span> 是极小值点，<span class="math inline">\(\phi(t)\)</span> 必在 <span class="math inline">\(t=0\)</span> 处取得极小值，由费马引理知一阶变分为零，即 <span class="math inline">\(\phi'(0) = 0\)</span>。 将 <span class="math inline">\(\phi(t)\)</span> 展开： <span class="math display">\[\phi(t) = J(u) + t[a(u,v) - (f,v)] + \frac{t^2}{2}a(v,v)\]</span> 对其求导：<span class="math inline">\(\phi'(t) = a(u,v) - (f,v) + t \cdot a(v,v)\)</span>。 令 <span class="math inline">\(t=0\)</span>，得 <span class="math inline">\(\phi'(0) = a(u,v) - (f,v) = 0\)</span>。 即对任意 <span class="math inline">\(v \in H_0^1(\Omega)\)</span> 都有 <span class="math inline">\(a(u,v) = (f,v)\)</span>，(G) 成立。</li>
+</ul>
+<p><strong>(3) (G) 推出 (D) （在解足够光滑的条件下）</strong> 假设 (G) 的解 <span class="math inline">\(u \in C^2(\Omega) \cap C(\bar{\Omega})\)</span>。由 (G) 知道： <span class="math display">\[\int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_\Omega f v \, \mathrm{d}x\mathrm{d}y = 0 \quad (\forall v \in H_0^1(\Omega))\]</span> 对第一项进行逆向的格林第一公式（分部积分）： <span class="math display">\[\int_\Omega k \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y = - \int_\Omega \nabla \cdot (k \nabla u) v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega} (k \nabla u \cdot \boldsymbol{n}) v \, \mathrm{d}s\]</span> 由于测试函数 <span class="math inline">\(v \in H_0^1(\Omega)\)</span>，边界项积分为 <span class="math inline">\(0\)</span>。将其代回 (G) 的表达式： <span class="math display">\[\int_\Omega \left[ -\nabla \cdot (k \nabla u) - f \right] v \, \mathrm{d}x\mathrm{d}y = 0\]</span> 根据变分法基本引理，由于上式对任意 <span class="math inline">\(v \in H_0^1(\Omega)\)</span> 均成立（特别地，对任意无穷次可微且具紧支集的函数 <span class="math inline">\(C_0^\infty(\Omega)\)</span> 也成立），方括号内的项必须在 <span class="math inline">\(\Omega\)</span> 内几乎处处为零： <span class="math display">\[-\nabla \cdot (k \nabla u) = f, \quad (x,y) \in \Omega\]</span> 同时，由于解 <span class="math inline">\(u \in H_0^1(\Omega)\)</span>，其在边界上的迹天然为零，即满足 <span class="math inline">\(u|_{\partial\Omega} = 0\)</span>。 因此 <span class="math inline">\(u\)</span> 完全满足原偏微分方程定解问题 (D)。</p>
+</section>
+</section>
+<section id="prob-8" class="level2">
+<h2 class="anchored" data-anchor-id="prob-8">Prob 8</h2>
+<p><strong>题目</strong></p>
+<p>平面区域 <span class="math inline">\(\Omega\)</span> 的边界 <span class="math inline">\(\partial\Omega\)</span> 分为互不重叠的两部分 <span class="math inline">\(\partial\Omega_1\)</span> 和 <span class="math inline">\(\partial\Omega_2\)</span>。微分方程的定解问题为：</p>
+<p><span class="math display">\[\begin{cases} -\Delta u = f, &amp; (x,y) \in \Omega, \\ u|_{\partial\Omega_1} = 0, \\ \left[ \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u \right]_{\partial\Omega_2} = g. \end{cases}\]</span></p>
+<p>其中 <span class="math inline">\(\alpha \ge 0\)</span>，<span class="math inline">\(\boldsymbol{n}\)</span> 为 <span class="math inline">\(\partial\Omega\)</span> 上的外法向，试推导对应的 Ritz 及 Galerkin 形式的变分问题，叙述及证明 3 个问题之间的关系。</p>
+<hr>
+<section id="一-变分空间的定义与-galerkin-形式的推导弱形式" class="level3">
+<h3 class="anchored" data-anchor-id="一-变分空间的定义与-galerkin-形式的推导弱形式">一、 变分空间的定义与 Galerkin 形式的推导（弱形式）</h3>
+<p>首先定义容许的函数空间。由于边界 <span class="math inline">\(\partial\Omega_1\)</span> 上给定齐次 Dirichlet 边界条件（本质边界条件），试探函数和测试函数必须在此边界上取值为零。定义函数空间为： <span class="math display">\[V = \{ v \in H^1(\Omega) \mid v = 0 \text{ a.e. on } \partial\Omega_1 \}\]</span> 该空间中的函数在 <span class="math inline">\(\Omega\)</span> 上平方可积，具有一阶弱偏导数，且在边界 <span class="math inline">\(\partial\Omega_1\)</span> 上的迹为零。</p>
+<p>将原微分方程 <span class="math inline">\(-\Delta u = f\)</span> 两端同乘任意测试函数 <span class="math inline">\(v \in V\)</span>，并在区域 <span class="math inline">\(\Omega\)</span> 上积分： <span class="math display">\[-\int_\Omega \Delta u \cdot v \, \mathrm{d}x\mathrm{d}y = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y\]</span></p>
+<p>利用格林第一公式（Green’s first identity）对左端进行分部积分： <span class="math display">\[\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y\]</span></p>
+<p>将边界积分拆分为 <span class="math inline">\(\partial\Omega_1\)</span> 和 <span class="math inline">\(\partial\Omega_2\)</span> 两部分： <span class="math display">\[\int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_{\partial\Omega_1} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s + \int_{\partial\Omega_2} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s\]</span></p>
+<ul>
+<li>由于 <span class="math inline">\(v \in V\)</span>，在 <span class="math inline">\(\partial\Omega_1\)</span> 上 <span class="math inline">\(v = 0\)</span>，故 <span class="math inline">\(\int_{\partial\Omega_1} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = 0\)</span>。</li>
+<li>在 <span class="math inline">\(\partial\Omega_2\)</span> 上，根据自然边界条件（Robin条件）有 <span class="math inline">\(\frac{\partial u}{\partial \boldsymbol{n}} = g - \alpha u\)</span>，代入积分得到 <span class="math inline">\(\int_{\partial\Omega_2} (g - \alpha u) v \, \mathrm{d}s\)</span>。</li>
+</ul>
+<p>代回原式并移项： <span class="math display">\[\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega_2} (g - \alpha u) v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y\]</span> <span class="math display">\[\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s\]</span></p>
+<p><strong>对应的 Galerkin 形式变分问题为：</strong> 求 <span class="math inline">\(u \in V\)</span>，使得对任意 <span class="math inline">\(v \in V\)</span>，均满足： <span class="math display">\[a(u,v) = F(v)\]</span> 其中，双线性型 <span class="math inline">\(a(u,v) = \int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s\)</span>， 右端线性泛函 <span class="math inline">\(F(v) = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s\)</span>。</p>
+<hr>
+</section>
+<section id="二-ritz-形式的推导极小值问题-2" class="level3">
+<h3 class="anchored" data-anchor-id="二-ritz-形式的推导极小值问题-2">二、 Ritz 形式的推导（极小值问题）</h3>
+<p>已知 <span class="math inline">\(\alpha \ge 0\)</span>，可以验证双线性型 <span class="math inline">\(a(u,v)\)</span> 满足对称性 <span class="math inline">\(a(u,v) = a(v,u)\)</span> 且在空间 <span class="math inline">\(V\)</span> 上正定。由此可构造系统对应的总势能泛函 <span class="math inline">\(J(v) = \frac{1}{2}a(v,v) - F(v)\)</span>。</p>
+<p>将具体表达式代入： <span class="math display">\[J(v) = \frac{1}{2} \int_\Omega |\nabla v|^2 \, \mathrm{d}x\mathrm{d}y + \frac{1}{2} \int_{\partial\Omega_2} \alpha v^2 \, \mathrm{d}s - \int_\Omega f v \, \mathrm{d}x\mathrm{d}y - \int_{\partial\Omega_2} g v \, \mathrm{d}s\]</span></p>
+<p><strong>对应的 Ritz 形式变分问题为：</strong> 求 <span class="math inline">\(u \in V\)</span>，使得泛函 <span class="math inline">\(J(u)\)</span> 在空间 <span class="math inline">\(V\)</span> 中取得极小值，即： <span class="math display">\[J(u) = \min_{v \in V} J(v)\]</span></p>
+<hr>
+</section>
+<section id="三-三个问题之间的关系及证明-2" class="level3">
+<h3 class="anchored" data-anchor-id="三-三个问题之间的关系及证明-2">三、 三个问题之间的关系及证明</h3>
+<p>设原微分方程定解问题为 <strong>(D)</strong>，Galerkin 弱形式问题为 <strong>(G)</strong>，Ritz 极小值问题为 <strong>(R)</strong>。</p>
+<section id="关系叙述-1" class="level4">
+<h4 class="anchored" data-anchor-id="关系叙述-1">1. 关系叙述</h4>
+<ul>
+<li><strong>(G) <span class="math inline">\(\iff\)</span> (R)</strong>：这两种变分形式在 <span class="math inline">\(\alpha \ge 0\)</span> 时完全等价。</li>
+<li><strong>(D) <span class="math inline">\(\implies\)</span> (G), (R)</strong>：若 (D) 存在经典解（即 <span class="math inline">\(u \in C^2(\Omega) \cap C^1(\bar{\Omega})\)</span>），则它必然是 (G) 和 (R) 的解。</li>
+<li><strong>(G), (R) <span class="math inline">\(\implies\)</span> (D)</strong>：若变分问题 (G) 或 (R) 的解满足足够的光滑性条件（<span class="math inline">\(u \in C^2(\Omega) \cap C^1(\bar{\Omega})\)</span>），则它必然是原定解问题 (D) 的经典解。</li>
+</ul>
+</section>
+<section id="关系证明-1" class="level4">
+<h4 class="anchored" data-anchor-id="关系证明-1">2. 关系证明</h4>
+<section id="d-推出-g-1" class="level5">
+<h5 class="anchored" data-anchor-id="d-推出-g-1">(1) (D) 推出 (G)</h5>
+<p>若 <span class="math inline">\(u\)</span> 是 (D) 的经典解，则在 <span class="math inline">\(\Omega\)</span> 内部有 <span class="math inline">\(-\Delta u = f\)</span>。两端同乘任意 <span class="math inline">\(v \in V\)</span> 并积分，由于 <span class="math inline">\(u\)</span> 足够光滑，格林公式严格成立。顺着第一部分的推导过程，在处理边界积分时运用给定的边界条件，可直接得到 (G) 形式成立。</p>
+</section>
+<section id="g-等价于-r-1" class="level5">
+<h5 class="anchored" data-anchor-id="g-等价于-r-1">(2) (G) 等价于 (R)</h5>
+<ul>
+<li><strong>(G) 推 (R)：</strong> 设 <span class="math inline">\(u\)</span> 是 (G) 的解。对任意函数 <span class="math inline">\(w = u + v \in V\)</span>，考察其泛函值： <span class="math display">\[J(u+v) = \frac{1}{2}a(u+v, u+v) - F(u+v)\]</span> 利用双线性型的双线性和对称性展开： <span class="math display">\[J(u+v) = \left[ \frac{1}{2}a(u,u) - F(u) \right] + [a(u,v) - F(v)] + \frac{1}{2}a(v,v)\]</span> 由于 <span class="math inline">\(u\)</span> 满足 (G)，故 <span class="math inline">\(a(u,v) - F(v) = 0\)</span>。于是 <span class="math inline">\(J(u+v) = J(u) + \frac{1}{2}a(v,v)\)</span>。 由 <span class="math inline">\(\alpha \ge 0\)</span> 知 <span class="math inline">\(a(v,v) \ge 0\)</span> 恒成立，因此 <span class="math inline">\(J(u+v) \ge J(u)\)</span>。即 <span class="math inline">\(u\)</span> 使泛函取得全局极小值，(R) 成立。</li>
+<li><strong>(R) 推 (G)：</strong> 设 <span class="math inline">\(u\)</span> 是 (R) 的极小值点。对任意 <span class="math inline">\(v \in V\)</span> 及实数 <span class="math inline">\(t\)</span>，定义函数 <span class="math inline">\(\phi(t) = J(u+tv)\)</span>。 因 <span class="math inline">\(\phi(t)\)</span> 在 <span class="math inline">\(t=0\)</span> 处取极小值，必须满足 <span class="math inline">\(\phi'(0) = 0\)</span>。 <span class="math display">\[\phi(t) = J(u) + t[a(u,v) - F(v)] + \frac{1}{2}t^2 a(v,v)\]</span> 对 <span class="math inline">\(t\)</span> 求导得 <span class="math inline">\(\phi'(t) = a(u,v) - F(v) + t \cdot a(v,v)\)</span>。 令 <span class="math inline">\(t=0\)</span> 得 <span class="math inline">\(\phi'(0) = a(u,v) - F(v) = 0\)</span>。即对任意 <span class="math inline">\(v \in V\)</span> 有 <span class="math inline">\(a(u,v) = F(v)\)</span>，(G) 成立。</li>
+</ul>
+</section>
+<section id="g-推出-d-在解足够光滑的条件下-1" class="level5">
+<h5 class="anchored" data-anchor-id="g-推出-d-在解足够光滑的条件下-1">(3) (G) 推出 (D) （在解足够光滑的条件下）</h5>
+<p>假设 (G) 的解 <span class="math inline">\(u \in C^2(\Omega) \cap C^1(\bar{\Omega})\)</span>，则对任意 <span class="math inline">\(v \in V\)</span> 有： <span class="math display">\[\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \alpha u v \, \mathrm{d}s = \int_\Omega f v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} g v \, \mathrm{d}s\]</span> 对第一项进行逆向格林第一公式展开： <span class="math display">\[\int_\Omega \nabla u \cdot \nabla v \, \mathrm{d}x\mathrm{d}y = -\int_\Omega \Delta u \cdot v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s\]</span> 由于 <span class="math inline">\(v \in V\)</span>，<span class="math inline">\(\int_{\partial\Omega} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s = \int_{\partial\Omega_2} \frac{\partial u}{\partial \boldsymbol{n}} v \, \mathrm{d}s\)</span>。代回并合并同类项得到： <span class="math display">\[\int_\Omega (-\Delta u - f) v \, \mathrm{d}x\mathrm{d}y + \int_{\partial\Omega_2} \left( \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u - g \right) v \, \mathrm{d}s = 0\]</span> 首先选取具有紧支集的光滑测试函数 <span class="math inline">\(v \in C_0^\infty(\Omega) \subset V\)</span>，此时边界项为 0。由变分法基本引理得： <span class="math display">\[-\Delta u = f \quad \text{在 } \Omega \text{ 中成立}\]</span> 将此结果代回原式，则体积分项为 0，剩下边界积分： <span class="math display">\[\int_{\partial\Omega_2} \left( \frac{\partial u}{\partial \boldsymbol{n}} + \alpha u - g \right) v \, \mathrm{d}s = 0\]</span> 由于 <span class="math inline">\(v\)</span> 在 <span class="math inline">\(\partial\Omega_2\)</span> 上可以任意取值，再用一次变分法基本引理，得到： <span class="math display">\[\frac{\partial u}{\partial \boldsymbol{n}} + \alpha u = g \quad \text{在 } \partial\Omega_2 \text{ 上成立}\]</span> 同时，由 <span class="math inline">\(u \in V\)</span> 的定义天然满足本质边界条件 <span class="math inline">\(u = 0\)</span> 在 <span class="math inline">\(\partial\Omega_1\)</span> 上成立。 综上，<span class="math inline">\(u\)</span> 满足原定解问题 (D) 的所有方程与条件。</p>
+</section>
+</section>
+</section>
+</section>
+<section id="prob-11" class="level2">
+<h2 class="anchored" data-anchor-id="prob-11">Prob 11</h2>
+<section id="第11题-1" class="level3">
+<h3 class="anchored" data-anchor-id="第11题-1">第11题 (1)</h3>
+<p><strong>问题模型：</strong> 定解问题：<span class="math inline">\(-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2} = x^2, \quad (0 &lt; x &lt; 1)\)</span> 边界条件：<span class="math inline">\(u(0) = 0, \quad u(1) = 0\)</span> 试探函数：<span class="math inline">\(u_h(x) = \sum_{i=1}^3 c_i x^i (1-x)\)</span></p>
+<p><strong>1. 建立 Galerkin 弱形式</strong> 选取测试函数 <span class="math inline">\(v\)</span> 满足 <span class="math inline">\(v(0)=0, v(1)=0\)</span>。对原方程两边同乘 <span class="math inline">\(v\)</span> 并积分：</p>
+<p><span class="math display">\[\int_0^1 \left(-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2}\right) v \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x\]</span></p>
+<p>利用分部积分，并代入零边界条件：</p>
+<p><span class="math display">\[\int_0^1 u' v' \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x\]</span></p>
+<p><strong>2. 确定基函数</strong> 由试探函数形式可知，取三个基函数分别为： <span class="math inline">\(\varphi_1(x) = x(1-x) = x - x^2\)</span> <span class="math inline">\(\varphi_2(x) = x^2(1-x) = x^2 - x^3\)</span> <span class="math inline">\(\varphi_3(x) = x^3(1-x) = x^3 - x^4\)</span></p>
+<p>其一阶导数为： <span class="math inline">\(\varphi_1'(x) = 1 - 2x\)</span> <span class="math inline">\(\varphi_2'(x) = 2x - 3x^2\)</span> <span class="math inline">\(\varphi_3'(x) = 3x^2 - 4x^3\)</span></p>
+<p><strong>3. 计算刚度矩阵 <span class="math inline">\(K\)</span> 和载荷向量 <span class="math inline">\(\boldsymbol{F}\)</span></strong> 矩阵元素 <span class="math inline">\(K_{ij} = \int_0^1 \varphi_i'(x) \varphi_j'(x) \, \mathrm{d}x\)</span>：</p>
+<ul>
+<li><span class="math inline">\(K_{11} = \int_0^1 (1-2x)^2 \, \mathrm{d}x = \left[ x - 2x^2 + \frac{4}{3}x^3 \right]_0^1 = \frac{1}{3}\)</span></li>
+<li><span class="math inline">\(K_{12} = K_{21} = \int_0^1 (1-2x)(2x-3x^2) \, \mathrm{d}x = \int_0^1 (2x - 7x^2 + 6x^3) \, \mathrm{d}x = 1 - \frac{7}{3} + \frac{6}{4} = \frac{1}{6}\)</span></li>
+<li><span class="math inline">\(K_{13} = K_{31} = \int_0^1 (1-2x)(3x^2-4x^3) \, \mathrm{d}x = \int_0^1 (3x^2 - 10x^3 + 8x^4) \, \mathrm{d}x = 1 - \frac{10}{4} + \frac{8}{5} = \frac{1}{10}\)</span></li>
+<li><span class="math inline">\(K_{22} = \int_0^1 (2x-3x^2)^2 \, \mathrm{d}x = \int_0^1 (4x^2 - 12x^3 + 9x^4) \, \mathrm{d}x = \frac{4}{3} - 3 + \frac{9}{5} = \frac{2}{15}\)</span></li>
+<li><span class="math inline">\(K_{23} = K_{32} = \int_0^1 (2x-3x^2)(3x^2-4x^3) \, \mathrm{d}x = \int_0^1 (6x^3 - 17x^4 + 12x^5) \, \mathrm{d}x = \frac{6}{4} - \frac{17}{5} + \frac{12}{6} = \frac{1}{10}\)</span></li>
+<li><span class="math inline">\(K_{33} = \int_0^1 (3x^2-4x^3)^2 \, \mathrm{d}x = \int_0^1 (9x^4 - 24x^5 + 16x^6) \, \mathrm{d}x = \frac{9}{5} - 4 + \frac{16}{7} = \frac{3}{35}\)</span></li>
+</ul>
+<p>载荷向量元素 <span class="math inline">\(F_i = \int_0^1 x^2 \varphi_i(x) \, \mathrm{d}x\)</span>：</p>
+<ul>
+<li><span class="math inline">\(F_1 = \int_0^1 (x^3 - x^4) \, \mathrm{d}x = \frac{1}{4} - \frac{1}{5} = \frac{1}{20}\)</span></li>
+<li><span class="math inline">\(F_2 = \int_0^1 (x^4 - x^5) \, \mathrm{d}x = \frac{1}{5} - \frac{1}{6} = \frac{1}{30}\)</span></li>
+<li><span class="math inline">\(F_3 = \int_0^1 (x^5 - x^6) \, \mathrm{d}x = \frac{1}{6} - \frac{1}{7} = \frac{1}{42}\)</span></li>
+</ul>
+<p><strong>4. 求解线性方程组</strong></p>
+<p><span class="math display">\[\begin{pmatrix}
+1/3 &amp; 1/6 &amp; 1/10 \\
+1/6 &amp; 2/15 &amp; 1/10 \\
+1/10 &amp; 1/10 &amp; 3/35
+\end{pmatrix}
+\begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}
+=
+\begin{pmatrix} 1/20 \\ 1/30 \\ 1/42 \end{pmatrix}\]</span></p>
+<p>解此线性方程组，可得精准解为：<span class="math inline">\(c_1 = \frac{1}{12}, \quad c_2 = \frac{1}{12}, \quad c_3 = \frac{1}{12}\)</span>。</p>
+<p><strong>5. 最终解</strong> 代回试探函数：</p>
+<p><span class="math display">\[u_h(x) = \frac{1}{12}x(1-x) + \frac{1}{12}x^2(1-x) + \frac{1}{12}x^3(1-x) = \frac{1}{12}x(1-x)(1+x+x^2) = \frac{1}{12}(x - x^4)\]</span></p>
+<p><em>(注：这恰好是该微分方程的精确解。)</em></p>
+<hr>
+</section>
+<section id="第11题-2" class="level3">
+<h3 class="anchored" data-anchor-id="第11题-2">第11题 (2)</h3>
+<p><strong>问题模型：</strong> 定解问题：<span class="math inline">\(-\frac{\mathrm{d}^2 u}{\mathrm{d}x^2} = x^2, \quad (0 &lt; x &lt; 1)\)</span> 边界条件：<span class="math inline">\(u(0) = 0, \quad u'(1) = 0\)</span> （本质边界条件 + 自然边界条件） Galerkin 弱形式：因自然边界条件 <span class="math inline">\(u'(1)=0\)</span>，边界项 <span class="math inline">\([u'v]_0^1\)</span> 自然消去，变分问题同上为 <span class="math inline">\(\int_0^1 u' v' \, \mathrm{d}x = \int_0^1 x^2 v \, \mathrm{d}x\)</span>。</p>
+<section id="用仅满足约束本质边界条件的试探函数-c_1-x-c_2-x2" class="level4">
+<h4 class="anchored" data-anchor-id="用仅满足约束本质边界条件的试探函数-c_1-x-c_2-x2">用仅满足约束(本质)边界条件的试探函数 <span class="math inline">\(c_1 x + c_2 x^2\)</span></h4>
+<p><strong>1. 确定基函数</strong> <span class="math inline">\(\varphi_1(x) = x, \quad \varphi_2(x) = x^2\)</span> （满足 <span class="math inline">\(u(0)=0\)</span>，不满足 <span class="math inline">\(u'(1)=0\)</span>） 其导数为：<span class="math inline">\(\varphi_1'(x) = 1, \quad \varphi_2'(x) = 2x\)</span></p>
+<p><strong>2. 计算刚度矩阵和载荷向量</strong></p>
+<ul>
+<li><span class="math inline">\(K_{11} = \int_0^1 1 \cdot 1 \, \mathrm{d}x = 1\)</span></li>
+<li><span class="math inline">\(K_{12} = K_{21} = \int_0^1 1 \cdot 2x \, \mathrm{d}x = 1\)</span></li>
+<li><span class="math inline">\(K_{22} = \int_0^1 (2x)^2 \, \mathrm{d}x = \frac{4}{3}\)</span></li>
+<li><span class="math inline">\(F_1 = \int_0^1 x^2 \cdot x \, \mathrm{d}x = \int_0^1 x^3 \, \mathrm{d}x = \frac{1}{4}\)</span></li>
+<li><span class="math inline">\(F_2 = \int_0^1 x^2 \cdot x^2 \, \mathrm{d}x = \int_0^1 x^4 \, \mathrm{d}x = \frac{1}{5}\)</span></li>
+</ul>
+<p><strong>3. 求解方程</strong></p>
+<p><span class="math display">\[\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 4/3 \end{pmatrix}
+\begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
+=
+\begin{pmatrix} 1/4 \\ 1/5 \end{pmatrix}\]</span></p>
+<p>由 <span class="math inline">\(c_1 + c_2 = \frac{1}{4}\)</span> 且 <span class="math inline">\(c_1 + \frac{4}{3}c_2 = \frac{1}{5}\)</span>。 下式减上式可得：<span class="math inline">\(\frac{1}{3}c_2 = \frac{1}{5} - \frac{1}{4} = -\frac{1}{20} \implies c_2 = -\frac{3}{20}\)</span>。 代回可得：<span class="math inline">\(c_1 = \frac{1}{4} - \left(-\frac{3}{20}\right) = \frac{8}{20} = \frac{2}{5}\)</span>。</p>
+<p><strong>结果：</strong> <span class="math inline">\(u_h(x) = \frac{2}{5}x - \frac{3}{20}x^2\)</span>。</p>
+<hr>
+</section>
+<section id="用满足约束和自然边界条件的试探函数-c_1-x-left1---fracx2right" class="level4">
+<h4 class="anchored" data-anchor-id="用满足约束和自然边界条件的试探函数-c_1-x-left1---fracx2right">用满足约束和自然边界条件的试探函数 <span class="math inline">\(c_1 x \left(1 - \frac{x}{2}\right)\)</span></h4>
+<p><strong>1. 确定基函数</strong> <span class="math inline">\(\varphi_1(x) = x - \frac{1}{2}x^2\)</span> （满足 <span class="math inline">\(u(0)=0\)</span> 且 <span class="math inline">\(\varphi_1'(1) = 1 - 1 = 0\)</span>） 其导数为：<span class="math inline">\(\varphi_1'(x) = 1 - x\)</span></p>
+<p><strong>2. 计算单元素矩阵和载荷</strong></p>
+<ul>
+<li><span class="math inline">\(K_{11} = \int_0^1 (1-x)^2 \, \mathrm{d}x = \int_0^1 (1 - 2x + x^2) \, \mathrm{d}x = 1 - 1 + \frac{1}{3} = \frac{1}{3}\)</span></li>
+<li><span class="math inline">\(F_1 = \int_0^1 x^2 \left(x - \frac{1}{2}x^2\right) \, \mathrm{d}x = \int_0^1 \left(x^3 - \frac{1}{2}x^4\right) \, \mathrm{d}x = \frac{1}{4} - \frac{1}{10} = \frac{3}{20}\)</span></li>
+</ul>
+<p><strong>3. 求解方程</strong> <span class="math inline">\(\frac{1}{3} c_1 = \frac{3}{20} \implies c_1 = \frac{9}{20}\)</span></p>
+<p><strong>结果：</strong> <span class="math inline">\(u_h(x) = \frac{9}{20}x \left(1 - \frac{x}{2}\right) = \frac{9}{20}x - \frac{9}{40}x^2\)</span>。</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

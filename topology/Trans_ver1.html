@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-04-05">
+
+<title>拓扑学讲义</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Trans_ver1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Trans_ver1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Trans_ver1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Trans_ver1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Trans_ver1_files/libs/quarto-html/popper.min.js"></script>
+<script src="Trans_ver1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Trans_ver1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Trans_ver1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Trans_ver1_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Trans_ver1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Trans_ver1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Trans_ver1_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#topology-in-mathematical-analysis" id="toc-topology-in-mathematical-analysis" class="nav-link active" data-scroll-target="#topology-in-mathematical-analysis">2 Topology in mathematical analysis</a>
+  <ul class="collapse">
+  <li><a href="#intervals-区间" id="toc-intervals-区间" class="nav-link" data-scroll-target="#intervals-区间">2.1 Intervals | 区间</a>
+  <ul class="collapse">
+  <li><a href="#intervals-of-the-real-line-实直线的区间" id="toc-intervals-of-the-real-line-实直线的区间" class="nav-link" data-scroll-target="#intervals-of-the-real-line-实直线的区间">2.1.1 Intervals of the real line | 实直线的区间</a></li>
+  <li><a href="#open-and-closed-intervals-开区间与闭区间" id="toc-open-and-closed-intervals-开区间与闭区间" class="nav-link" data-scroll-target="#open-and-closed-intervals-开区间与闭区间">2.1.2 Open and closed intervals | 开区间与闭区间</a></li>
+  </ul></li>
+  <li><a href="#continuous-functions-连续函数" id="toc-continuous-functions-连续函数" class="nav-link" data-scroll-target="#continuous-functions-连续函数">2.2 Continuous functions | 连续函数</a>
+  <ul class="collapse">
+  <li><a href="#definition-of-continuous-functions-by-open-subsets" id="toc-definition-of-continuous-functions-by-open-subsets" class="nav-link" data-scroll-target="#definition-of-continuous-functions-by-open-subsets">2.2.1 Definition of continuous functions by open subsets</a></li>
+  <li><a href="#open-subsets-and-open-balls-开子集与开球" id="toc-open-subsets-and-open-balls-开子集与开球" class="nav-link" data-scroll-target="#open-subsets-and-open-balls-开子集与开球">2.2.2 Open subsets and open balls | 开子集与开球</a></li>
+  <li><a href="#constructing-continuous-functions-构造连续函数" id="toc-constructing-continuous-functions-构造连续函数" class="nav-link" data-scroll-target="#constructing-continuous-functions-构造连续函数">2.2.3 Constructing continuous functions | 构造连续函数</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#topological-spaces-拓扑空间" id="toc-topological-spaces-拓扑空间" class="nav-link" data-scroll-target="#topological-spaces-拓扑空间">3 TOPOLOGICAL SPACES | 拓扑空间</a>
+  <ul class="collapse">
+  <li><a href="#topology-拓扑" id="toc-topology-拓扑" class="nav-link" data-scroll-target="#topology-拓扑">3.1 Topology | 拓扑</a>
+  <ul class="collapse">
+  <li><a href="#definition-of-topological-spaces-拓扑空间的定义" id="toc-definition-of-topological-spaces-拓扑空间的定义" class="nav-link" data-scroll-target="#definition-of-topological-spaces-拓扑空间的定义">3.1.1 Definition of topological spaces | 拓扑空间的定义</a></li>
+  <li><a href="#examples-of-topologies-on-a-finite-set" id="toc-examples-of-topologies-on-a-finite-set" class="nav-link" data-scroll-target="#examples-of-topologies-on-a-finite-set">3.1.3 Examples of topologies on a finite set</a></li>
+  <li><a href="#comparing-topologies-拓扑的比较" id="toc-comparing-topologies-拓扑的比较" class="nav-link" data-scroll-target="#comparing-topologies-拓扑的比较">3.1.5 Comparing topologies | 拓扑的比较</a></li>
+  </ul></li>
+  <li><a href="#bases-and-neighborhood-bases.-基与邻域基" id="toc-bases-and-neighborhood-bases.-基与邻域基" class="nav-link" data-scroll-target="#bases-and-neighborhood-bases.-基与邻域基">3.2 Bases and neighborhood bases. | 基与邻域基</a>
+  <ul class="collapse">
+  <li><a href="#bases-基" id="toc-bases-基" class="nav-link" data-scroll-target="#bases-基">3.2.1 Bases | 基</a></li>
+  <li><a href="#neighborhood-bases.-邻域基" id="toc-neighborhood-bases.-邻域基" class="nav-link" data-scroll-target="#neighborhood-bases.-邻域基">3.2.2 Neighborhood bases. | 邻域基</a></li>
+  </ul></li>
+  <li><a href="#continuous-maps-连续映射" id="toc-continuous-maps-连续映射" class="nav-link" data-scroll-target="#continuous-maps-连续映射">3.3 Continuous maps | 连续映射</a></li>
+  <li><a href="#homeomorphisms-同胚" id="toc-homeomorphisms-同胚" class="nav-link" data-scroll-target="#homeomorphisms-同胚">3.4 Homeomorphisms | 同胚</a></li>
+  <li><a href="#topological-properties-拓扑性质" id="toc-topological-properties-拓扑性质" class="nav-link" data-scroll-target="#topological-properties-拓扑性质">3.5 Topological properties | 拓扑性质</a></li>
+  </ul></li>
+  <li><a href="#category-theory-范畴论" id="toc-category-theory-范畴论" class="nav-link" data-scroll-target="#category-theory-范畴论">4 CATEGORY THEORY | 范畴论</a>
+  <ul class="collapse">
+  <li><a href="#categories-范畴" id="toc-categories-范畴" class="nav-link" data-scroll-target="#categories-范畴">4.1 Categories | 范畴</a>
+  <ul class="collapse">
+  <li><a href="#metacategories-元范畴" id="toc-metacategories-元范畴" class="nav-link" data-scroll-target="#metacategories-元范畴">4.1.1 Metacategories | 元范畴</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">拓扑学讲义</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 5, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="topology-in-mathematical-analysis" class="level1">
+<h1>2 Topology in mathematical analysis</h1>
+<section id="intervals-区间" class="level2">
+<h2 class="anchored" data-anchor-id="intervals-区间">2.1 Intervals | 区间</h2>
+<p>In this section we review subsets of the real line <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<section id="intervals-of-the-real-line-实直线的区间" class="level3">
+<h3 class="anchored" data-anchor-id="intervals-of-the-real-line-实直线的区间">2.1.1 Intervals of the real line | 实直线的区间</h3>
+Denote by <span class="math inline">\(\overline{\mathbb{R}} = \mathbb{R} \cup \{\pm\infty\}\)</span> the <em>extended real line</em>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+用 <span class="math inline">\(\overline{\mathbb{R}} = \mathbb{R} \cup \{\pm\infty\}\)</span> 表示<em>扩展实直线</em>。
+</details>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.1.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An interval of <span class="math inline">\(\mathbb{R}\)</span> is a subset <span class="math inline">\(I\)</span> such that for any <span class="math inline">\(x, y \in I\)</span> we have <span class="math inline">\(z \in I\)</span> whenever <span class="math inline">\(x &lt; z &lt; y\)</span> or <span class="math inline">\(y &lt; z &lt; x\)</span>. Let <span class="math inline">\(\overline{a}, \overline{b} \in \overline{\mathbb{R}}\)</span>, an interval <span class="math inline">\(I\)</span> is one of the four types of sets: (1) <span class="math inline">\(]\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} &lt; x &lt; \overline{b}\}\)</span>; (2) <span class="math inline">\([\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} \leq x \leq \overline{b}\}\)</span>; (3) <span class="math inline">\([\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} \leq x &lt; \overline{b}\}\)</span>; (4) <span class="math inline">\(]\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} &lt; x \leq \overline{b}\}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<span class="math inline">\(\mathbb{R}\)</span> 的区间是指一个子集 <span class="math inline">\(I\)</span>，满足对于任何 <span class="math inline">\(x, y \in I\)</span>，只要 <span class="math inline">\(x &lt; z &lt; y\)</span> 或 <span class="math inline">\(y &lt; z &lt; x\)</span>，就有 <span class="math inline">\(z \in I\)</span>。设 <span class="math inline">\(\overline{a}, \overline{b} \in \overline{\mathbb{R}}\)</span>，区间 <span class="math inline">\(I\)</span> 是以下四类集合之一： (1) <span class="math inline">\(]\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} &lt; x &lt; \overline{b}\}\)</span>; (2) <span class="math inline">\([\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} \leq x \leq \overline{b}\}\)</span>; (3) <span class="math inline">\([\overline{a}, \overline{b}[ = \{x \in \mathbb{R} : \overline{a} \leq x &lt; \overline{b}\}\)</span>; (4) <span class="math inline">\(]\overline{a}, \overline{b}] = \{x \in \mathbb{R} : \overline{a} &lt; x \leq \overline{b}\}\)</span>。
+</details>
+</div>
+</div>
+<p>For <span class="math inline">\(\overline{a}, \overline{b} \in \overline{\mathbb{R}}\)</span>, we have: * <span class="math inline">\(]\overline{a}, \overline{b}[ = [\overline{a}, \overline{b}[ = ]\overline{a}, \overline{b}] = \emptyset\)</span> if <span class="math inline">\(\overline{a} \geq \overline{b}\)</span>, and <span class="math inline">\([\overline{a}, \overline{b}] = \emptyset\)</span> if <span class="math inline">\(\overline{a} &gt; \overline{b}\)</span> or <span class="math inline">\(\overline{a} = \overline{b} = \pm\infty\)</span>; * <span class="math inline">\([\overline{a}, \overline{b}] = \{\overline{a}\}\)</span> if <span class="math inline">\(\overline{a} = \overline{b} \in \mathbb{R}\)</span>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.1.2 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An interval <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is <em>empty</em> if it is an emptyset; it is <em>degenerate</em> if it has a single element; it is <em>proper</em> if it is neither empty nor degenerate.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<span class="math inline">\(\mathbb{R}\)</span> 的区间 <span class="math inline">\(I\)</span> 如果是空集，则称为<em>空的</em>；如果它只包含单个元素，则称为<em>退化的</em>；如果它既非空也非退化，则称为<em>适当的</em>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.1.3 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Any <em>proper</em> interval <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is in one of the following forms for some <span class="math inline">\(a, b \in \mathbb{R}\)</span> with <span class="math inline">\(a &lt; b\)</span>: (1) <span class="math inline">\(]a, b[\)</span>, <span class="math inline">\(]a, \infty[\)</span>, <span class="math inline">\(]-\infty, b[\)</span>, <span class="math inline">\(]-\infty, \infty[ = \mathbb{R}\)</span>; (2) <span class="math inline">\([a, b]\)</span>; (3) <span class="math inline">\([a, b[\)</span>, <span class="math inline">\([a, \infty[\)</span>; (4) <span class="math inline">\(]a, b]\)</span>, <span class="math inline">\(]-\infty, b]\)</span>. The numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are called the <em>endpoints</em> of the interval <span class="math inline">\(I\)</span>, with <span class="math inline">\(a\)</span> the <em>left endpoint</em> and <span class="math inline">\(b\)</span> the <em>right endpoint</em>. The empty interval <span class="math inline">\(\emptyset\)</span> has no endpoint while the degenerate interval <span class="math inline">\(\{a\}\)</span> has <span class="math inline">\(a\)</span> as both the left and the right endpoints.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<span class="math inline">\(\mathbb{R}\)</span> 的任何<em>适当</em>区间 <span class="math inline">\(I\)</span> 对于某些满足 <span class="math inline">\(a &lt; b\)</span> 的 <span class="math inline">\(a, b \in \mathbb{R}\)</span>，必为以下形式之一： (1) <span class="math inline">\(]a, b[\)</span>, <span class="math inline">\(]a, \infty[\)</span>, <span class="math inline">\(]-\infty, b[\)</span>, <span class="math inline">\(]-\infty, \infty[ = \mathbb{R}\)</span>; (2) <span class="math inline">\([a, b]\)</span>; (3) <span class="math inline">\([a, b[\)</span>, <span class="math inline">\([a, \infty[\)</span>; (4) <span class="math inline">\(]a, b]\)</span>, <span class="math inline">\(]-\infty, b]\)</span>。 数值 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 称为区间 <span class="math inline">\(I\)</span> 的<em>端点</em>，其中 <span class="math inline">\(a\)</span> 为<em>左端点</em>，<span class="math inline">\(b\)</span> 为<em>右端点</em>。空区间 <span class="math inline">\(\emptyset\)</span> 没有端点，而退化区间 <span class="math inline">\(\{a\}\)</span> 的左、右端点均为 <span class="math inline">\(a\)</span>。
+</details>
+</div>
+</div>
+<p>We can use endpoints to classify intervals.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.1.4 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An interval <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is <em>open</em> iff it contains none of its endpoints, is <em>closed</em> iff it contains all of its endpoints.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<span class="math inline">\(\mathbb{R}\)</span> 的区间 <span class="math inline">\(I\)</span> 是<em>开</em>的，当且仅当它不包含任何端点；是<em>闭</em>的，当且仅当它包含其所有端点。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>2.1.1.5 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> Being closed is not the negation of being open! The intervals <span class="math inline">\(\emptyset\)</span> and <span class="math inline">\(\mathbb{R}\)</span> are both open and closed. The intervals <span class="math inline">\(]a, b]\)</span> and <span class="math inline">\([a, b[\)</span> are neither open nor closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 闭并不是开的否定！区间 <span class="math inline">\(\emptyset\)</span> 和 <span class="math inline">\(\mathbb{R}\)</span> 既是开的也是闭的。区间 <span class="math inline">\(]a, b]\)</span> 和 <span class="math inline">\([a, b[\)</span> 既不是开的也不是闭的。
+</details>
+</div>
+</div>
+</section>
+<section id="open-and-closed-intervals-开区间与闭区间" class="level3">
+<h3 class="anchored" data-anchor-id="open-and-closed-intervals-开区间与闭区间">2.1.2 Open and closed intervals | 开区间与闭区间</h3>
+<p>The union and intersection of finitely many open/closed intervals, if still an interval, is open/closed. This also holds for the union of infinitely many open intervals and the intersection of infinitely many closed intervals. However, <span class="math inline">\(\bigcap_{n=1}^{\infty}]-\frac{1}{n}, 1 + \frac{1}{n}[ = [0, 1]\)</span> is a closed (not open) interval as the intersection of open intervals, while <span class="math inline">\(\bigcup_{n=1}^{\infty}[\frac{1}{n}, 1 - \frac{1}{n}] = ]0, 1[\)</span> is an open (not closed) interval as the union of closed intervals. There is a characterizing property for open intervals.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.1 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> An interval <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is open iff for any <span class="math inline">\(x \in I\)</span> there is an <span class="math inline">\(\varepsilon &gt; 0\)</span> such that <span class="math inline">\(]x - \varepsilon, x + \varepsilon[ \subseteq I\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的区间 <span class="math inline">\(I\)</span> 是开的，当且仅当对于任何 <span class="math inline">\(x \in I\)</span>，存在一个 <span class="math inline">\(\varepsilon &gt; 0\)</span>，使得 <span class="math inline">\(]x - \varepsilon, x + \varepsilon[ \subseteq I\)</span>。
+</details>
+</div>
+</div>
+<p>This could be used to define open sets.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.2.2 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subset <span class="math inline">\(U\)</span> is <em>open</em> in <span class="math inline">\(\mathbb{R}\)</span> iff for any <span class="math inline">\(x \in U\)</span> there is an <span class="math inline">\(\varepsilon &gt; 0\)</span> such that <span class="math inline">\(]x - \varepsilon, x + \varepsilon[ \subseteq U\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 子集 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(\mathbb{R}\)</span> 中是<em>开</em>的，当且仅当对于任何 <span class="math inline">\(x \in U\)</span>，存在一个 <span class="math inline">\(\varepsilon &gt; 0\)</span>，使得 <span class="math inline">\(]x - \varepsilon, x + \varepsilon[ \subseteq U\)</span>。
+</details>
+</div>
+</div>
+<p>A straightforward property seen from the definition is the closedness under union.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.3 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The union of open subsets of <span class="math inline">\(\mathbb{R}\)</span> is open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的开子集的并集是开的。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.1.2.4 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Any open subset <span class="math inline">\(U\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is the disjoint union of countably many open intervals.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的任何开子集 <span class="math inline">\(U\)</span> 都是可数个不相交开区间的并集。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> An open interval is open by definition, and then the disjoint union of countably many open intervals is open. Suppose <span class="math inline">\(U\)</span> is an open subset of <span class="math inline">\(\mathbb{R}\)</span>. For any <span class="math inline">\(x \in U\)</span> let <span class="math inline">\(]a_x, b_x[\)</span> be the maximal open interval in <span class="math inline">\(U\)</span> containing <span class="math inline">\(x\)</span>. Then for any <span class="math inline">\(x, y \in U\)</span> the intervals <span class="math inline">\(]a_x, b_x[\)</span> and <span class="math inline">\(]a_y, b_y[\)</span> either coincide or are disjoint: if <span class="math inline">\(z \in ]a_x, b_x[ \cap ]a_y, b_y[\)</span>, then by maximality <span class="math inline">\(]a_z, b_z[ = ]a_x, b_x[ = ]a_y, b_y[\)</span>. Then <span class="math inline">\(U = \bigcup_{i \in A} I_i\)</span> where <span class="math inline">\(A\)</span> is a countable index set and each <span class="math inline">\(I_i\)</span> is an open interval. Since <span class="math inline">\(\mathbb{Q}\)</span> is dense in <span class="math inline">\(\mathbb{R}\)</span>, by axiom of choice, there is an injection <span class="math inline">\(q : A \to \mathbb{Q}\)</span> such that <span class="math inline">\(q(i) \in I_i\)</span>. Therefore, <span class="math inline">\(A\)</span> is countable. ■</p>
+<p>The collection of open subsets is also closed under finite intersections.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.5 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The intersection of finitely many open subsets of <span class="math inline">\(\mathbb{R}\)</span> is open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的有限个开子集的交集是开的。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.2.6 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> Let <span class="math inline">\(A\)</span> be a subset of <span class="math inline">\(\mathbb{R}\)</span>. A point <span class="math inline">\(x \in \mathbb{R}\)</span> is an <em>adherent point</em> of <span class="math inline">\(A\)</span> iff <span class="math inline">\(A \cap ]x - \varepsilon, x + \varepsilon[ \neq \emptyset\)</span> for any <span class="math inline">\(\varepsilon &gt; 0\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 设 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(\mathbb{R}\)</span> 的一个子集。点 <span class="math inline">\(x \in \mathbb{R}\)</span> 是 <span class="math inline">\(A\)</span> 的一个<em>粘附点</em>（触点），当且仅当对于任何 <span class="math inline">\(\varepsilon &gt; 0\)</span>，都有 <span class="math inline">\(A \cap ]x - \varepsilon, x + \varepsilon[ \neq \emptyset\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.1.2.7 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subset <span class="math inline">\(C\)</span> is <em>closed</em> in <span class="math inline">\(\mathbb{R}\)</span> iff it contains all of its adherent points.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的子集 <span class="math inline">\(C\)</span> 是<em>闭</em>的，当且仅当它包含其所有的粘附点。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.8 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The intersection of closed subsets of <span class="math inline">\(\mathbb{R}\)</span> is closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的闭子集的交集是闭的。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> Let <span class="math inline">\(C = \bigcap_{i \in A} C_i\)</span> be the intersection of closed subsets <span class="math inline">\(C_i\)</span> of <span class="math inline">\(\mathbb{R}\)</span>. For any adherent point <span class="math inline">\(x\)</span> of <span class="math inline">\(C\)</span>, we have <span class="math inline">\(C \cap ]x - \varepsilon, x + \varepsilon[ \neq \emptyset\)</span> for any <span class="math inline">\(\varepsilon &gt; 0\)</span>. This implies that <span class="math inline">\(C_i \cap ]x - \varepsilon, x + \varepsilon[ \neq \emptyset\)</span> for any <span class="math inline">\(\varepsilon &gt; 0\)</span> and <span class="math inline">\(x \in C_i\)</span> since <span class="math inline">\(C_i\)</span> is closed for any <span class="math inline">\(i \in A\)</span>. Therefore, <span class="math inline">\(x \in C\)</span> and <span class="math inline">\(C\)</span> is closed. ■</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.9 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The union of finitely many closed subsets of <span class="math inline">\(\mathbb{R}\)</span> is closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的有限个闭子集的并集是闭的。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.1.2.10 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> A subset of <span class="math inline">\(\mathbb{R}\)</span> is closed iff its complement is open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+</summary>
+<strong>命题：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的子集是闭的，当且仅当它的补集是开的。
+</details>
+</div>
+</div>
+<p>Being closed is not the negation of being open! In particular, examples of subsets in the real line <span class="math inline">\(\mathbb{R}\)</span> include (1) open but not closed: open intervals <span class="math inline">\(]a, b[\)</span> for <span class="math inline">\(-\infty \leq a &lt; b \leq \infty\)</span>; (2) closed but not open: closed intervals <span class="math inline">\([a, b]\)</span> for <span class="math inline">\(-\infty \leq a \leq b \leq \infty\)</span>; (3) clopen: <span class="math inline">\(\emptyset\)</span> and <span class="math inline">\(\mathbb{R}\)</span>; (4) neither open nor closed: half-closed intervals <span class="math inline">\([a, b[\)</span> and <span class="math inline">\(]a, b]\)</span> for <span class="math inline">\(-\infty \leq a &lt; b \leq \infty\)</span>. Are there other clopen subsets? No.</p>
+</section>
+</section>
+<section id="continuous-functions-连续函数" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-functions-连续函数">2.2 Continuous functions | 连续函数</h2>
+<section id="definition-of-continuous-functions-by-open-subsets" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-continuous-functions-by-open-subsets">2.2.1 Definition of continuous functions by open subsets</h3>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.2.1.2 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> A function <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> is continuous iff for any <span class="math inline">\(V \in \mathscr{T}_{\mathbb{R}}\)</span> we have <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 函数 <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> 是连续的，当且仅当对于任何 <span class="math inline">\(V \in \mathscr{T}_{\mathbb{R}}\)</span>，其原像 <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}}\)</span>。
+</details>
+</div>
+</div>
+<p>Recall of the definition of continuous vector-valued functions of multiple real variables by the epsilon-delta language in An3.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.2.1.3 Epsilon-delta language | ε-δ 语言
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Epsilon-delta language for continuous vector-valued functions of multiple real variables:</strong> A function <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous at <span class="math inline">\(x \in \mathbb{R}^n\)</span> iff <span class="math inline">\((\forall \varepsilon &gt; 0)(\exists \delta &gt; 0)(\|y - x\|_2 &lt; \delta \implies \|f(y) - f(x)\|_2 &lt; \varepsilon)\)</span>; it is continuous iff it is continuous at all <span class="math inline">\(x \in \mathbb{R}^n\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>多元实值连续向量函数的 ε-δ 语言：</strong> 函数 <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> 在 <span class="math inline">\(x \in \mathbb{R}^n\)</span> 处连续，当且仅当 <span class="math inline">\((\forall \varepsilon &gt; 0)(\exists \delta &gt; 0)(\|y - x\|_2 &lt; \delta \implies \|f(y) - f(x)\|_2 &lt; \varepsilon)\)</span>；该函数是连续的，当且仅当它在所有 <span class="math inline">\(x \in \mathbb{R}^n\)</span> 处均连续。
+</details>
+</div>
+</div>
+<p>We wish to give a definition of a collection <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> of subsets of <span class="math inline">\(\mathbb{R}^n\)</span> for <span class="math inline">\(n \in \mathbb{N}_0\)</span>, so that a multiple variable version of Theorem 2.2.1.2 would hold. Recall that the <em>open ball</em> <span class="math inline">\(\mathbb{B}^n(x, r)\)</span> centered at <span class="math inline">\(x \in \mathbb{R}^n\)</span> of radius <span class="math inline">\(r &gt; 0\)</span> in the Euclidean space <span class="math inline">\(\mathbb{R}^n\)</span> for <span class="math inline">\(n \in \mathbb{N}_0\)</span> is defined as <span class="math inline">\(\mathbb{B}^n(x, r) = \{y \in \mathbb{R}^n : \|y - x\|_2 &lt; r\}\)</span>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2.2.1.4 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subset <span class="math inline">\(U\)</span> is <em>open</em> in <span class="math inline">\(\mathbb{R}^n\)</span> for <span class="math inline">\(n \in \mathbb{N}_0\)</span> iff for any <span class="math inline">\(x \in U\)</span> there is an <span class="math inline">\(\varepsilon &gt; 0\)</span> such that <span class="math inline">\(\mathbb{B}^n(x, \varepsilon) \subseteq U\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 对于 <span class="math inline">\(n \in \mathbb{N}_0\)</span>，<span class="math inline">\(\mathbb{R}^n\)</span> 的子集 <span class="math inline">\(U\)</span> 是<em>开</em>的，当且仅当对于任何 <span class="math inline">\(x \in U\)</span>，存在一个 <span class="math inline">\(\varepsilon &gt; 0\)</span>，使得 <span class="math inline">\(\mathbb{B}^n(x, \varepsilon) \subseteq U\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.2.1.5 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Any open subset <span class="math inline">\(U\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> is the union of countably many open balls which may overlap.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> <span class="math inline">\(\mathbb{R}^n\)</span> 的任何开子集 <span class="math inline">\(U\)</span> 都是可数个（可能重叠的）开球的并集。
+</details>
+</div>
+</div>
+<p>Now let <span class="math display">\[
+\begin{aligned}
+\mathscr{T}_{\mathbb{R}^n} &amp;= \{\text{open subsets of } \mathbb{R}^n\} = \{\text{union of arbitrarily many open balls}\} \\
+&amp;= \{\text{union of countably many open balls}\}.
+\end{aligned} \tag{10}
+\]</span> as in Definition 2.2.1.4. Then we have the following Theorem 2.2.1.6.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.2.1.6 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> A function <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous iff for any <span class="math inline">\(V \in \mathscr{T}_{\mathbb{R}^m}\)</span> we have <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}^n}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 函数 <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> 是连续的，当且仅当对于任何 <span class="math inline">\(V \in \mathscr{T}_{\mathbb{R}^m}\)</span>，其原像 <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}^n}\)</span>。
+</details>
+</div>
+</div>
+</section>
+<section id="open-subsets-and-open-balls-开子集与开球" class="level3">
+<h3 class="anchored" data-anchor-id="open-subsets-and-open-balls-开子集与开球">2.2.2 Open subsets and open balls | 开子集与开球</h3>
+<p>We have seen that open balls plays a central role in continuous functions between Euclidean spaces. In the epsilon-delta language Definition 2.2.1.3, we use open balls to characterize continuity of functions. Let <span class="math display">\[
+\mathscr{B}_{\mathbb{R}^n} = \{\mathbb{B}^n(x, r) : x \in \mathbb{R}^n, r &gt; 0\} \tag{11}
+\]</span></p>
+<p>be the collection of all open balls in <span class="math inline">\(\mathbb{R}^n\)</span> and for any <span class="math inline">\(x \in \mathbb{R}^n\)</span> let <span class="math display">\[
+\mathscr{B}_x = \{\mathbb{B}^n(x, r) : r &gt; 0\} \tag{12}
+\]</span> be the collection of all open balls in <span class="math inline">\(\mathbb{R}^n\)</span> centered at <span class="math inline">\(x\)</span>. We say that <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n}\)</span> <em>generates</em> <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> in the sense that <span class="math display">\[
+\mathscr{T}_{\mathbb{R}^n} = \left\{ \bigcup_{B \in \mathscr{A}} B : \mathscr{A} \subseteq \mathscr{B}_{\mathbb{R}^n} \right\}. \tag{13}
+\]</span> We say that <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n, x}\)</span> <em>locally generates</em> <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> at <span class="math inline">\(x \in \mathbb{R}^n\)</span> in the sense that for any <span class="math inline">\(U \in \mathscr{T}_{\mathbb{R}^n}\)</span> with <span class="math inline">\(x \in U\)</span> there is <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}^n, x}\)</span> such that <span class="math inline">\(x \in V \subseteq U\)</span>. Definition 2.2.1.3 can now be written equivalently as the following corollaries.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.2.1 Corollary | 推论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Corollary:</strong> A function <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous iff for any <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}^m}\)</span> we have <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}^n}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红推论块]
+</summary>
+<strong>推论：</strong> 函数 <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> 是连续的，当且仅当对于任何开球 <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}^m}\)</span>，其原像 <span class="math inline">\(U = f^{-1}(V) \in \mathscr{T}_{\mathbb{R}^n}\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.2.2 Corollary | 推论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Corollary:</strong> A function <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous at <span class="math inline">\(x \in \mathbb{R}^n\)</span> iff for any <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}^m, f(x)}\)</span> we have <span class="math inline">\(U = f^{-1}(V) \in \mathscr{B}_{\mathbb{R}^n, x}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红推论块]
+</summary>
+<strong>推论：</strong> 函数 <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> 在 <span class="math inline">\(x \in \mathbb{R}^n\)</span> 处连续，当且仅当对于任何以 <span class="math inline">\(f(x)\)</span> 为中心的开球 <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}^m, f(x)}\)</span>，其原像 <span class="math inline">\(U = f^{-1}(V)\)</span> 包含一个以 <span class="math inline">\(x\)</span> 为中心的开球（即属于 <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n, x}\)</span>）。
+</details>
+</div>
+</div>
+<p>There are many different collections of open sets that generates <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span>, for instance, <span class="math display">\[
+\mathscr{B}_{\mathbb{R}^n}^{\text{cube}} = \left\{ \prod_{i=1}^n ]x_i - r, x_i + r[ : x \in \mathbb{R}^n, r &gt; 0 \right\}, \tag{14}
+\]</span> and many different collections of open sets that locally generates <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> at any <span class="math inline">\(x \in \mathbb{R}^n\)</span>, for instance, <span class="math display">\[
+\mathscr{B}_{\mathbb{R}^n, x}^{\text{cube}} = \left\{ \prod_{i=1}^n ]x_i - r, x_i + r[ : r &gt; 0 \right\}. \tag{15}
+\]</span></p>
+</section>
+<section id="constructing-continuous-functions-构造连续函数" class="level3">
+<h3 class="anchored" data-anchor-id="constructing-continuous-functions-构造连续函数">2.2.3 Constructing continuous functions | 构造连续函数</h3>
+<p>Using the new definition Theorem 2.2.1.6 of continuous functions, we immediately know that the composition of continuous functions is continuous.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.2.3.1 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> If <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> and <span class="math inline">\(g: \mathbb{R}^m \to \mathbb{R}^k\)</span> be continuous functions, then <span class="math inline">\(g \circ f: \mathbb{R}^n \to \mathbb{R}^k\)</span> is also continuous.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 若 <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> 和 <span class="math inline">\(g: \mathbb{R}^m \to \mathbb{R}^k\)</span> 是连续函数，则复合函数 <span class="math inline">\(g \circ f: \mathbb{R}^n \to \mathbb{R}^k\)</span> 也是连续的。
+</details>
+</div>
+</div>
+<p>We recall a lemma for the preimage of maps to product sets.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.3.2 Lemma | 引理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Lemma:</strong> For sets <span class="math inline">\(X, Y\)</span> let <span class="math inline">\(f = (f_1, \dots, f_m): X \to Y^m\)</span> be given by <span class="math inline">\(f(p) = (f_1(p), \dots, f_m(p))\)</span> where <span class="math inline">\(f_j: X \to Y\)</span> are maps for <span class="math inline">\(j \in \{1, \dots, m\}\)</span>. Then for any subsets <span class="math inline">\(B_j\)</span> of <span class="math inline">\(Y\)</span>, <span class="math inline">\(j \in \{1, \dots, m\}\)</span>, we have <span class="math display">\[
+f^{-1} \left( \prod_{j=1}^m B_j \right) = \bigcap_{j=1}^m f_j^{-1}(B_j). \tag{16}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红引理块]
+</summary>
+<strong>引理：</strong> 对于集合 <span class="math inline">\(X, Y\)</span>，设 <span class="math inline">\(f = (f_1, \dots, f_m): X \to Y^m\)</span> 由 <span class="math inline">\(f(p) = (f_1(p), \dots, f_m(p))\)</span> 给出，其中 <span class="math inline">\(f_j: X \to Y\)</span> 是 <span class="math inline">\(j \in \{1, \dots, m\}\)</span> 的映射。则对于 <span class="math inline">\(Y\)</span> 的任何子集 <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j \in \{1, \dots, m\}\)</span>)，我们有： <span class="math display">\[f^{-1} \left( \prod_{j=1}^m B_j \right) = \bigcap_{j=1}^m f_j^{-1}(B_j) \text{。}\]</span>
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.3.3 Lemma | 引理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Lemma:</strong> A vector-valued function <span class="math inline">\(f = (f_1, \dots, f_m): \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous iff the component function <span class="math inline">\(f_j\)</span> is continuous for any <span class="math inline">\(j \in \{1, \dots, m\}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红引理块]
+</summary>
+<strong>引理：</strong> 向量值函数 <span class="math inline">\(f = (f_1, \dots, f_m): \mathbb{R}^n \to \mathbb{R}^m\)</span> 是连续的，当且仅当对每个 <span class="math inline">\(j \in \{1, \dots, m\}\)</span>，其分量函数 <span class="math inline">\(f_j\)</span> 都是连续的。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> If <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(f_i^{-1}(V) = f^{-1}(\mathbb{R}^{i-1} \times V \times \mathbb{R}^{n-i}) \in \mathscr{B}_{\mathbb{R}^n}^{\text{cube}}\)</span> for any <span class="math inline">\(i \in \{1, \dots, n\}\)</span> and <span class="math inline">\(V \in \mathscr{B}_{\mathbb{R}}\)</span>, and <span class="math inline">\(f_i\)</span> is continuous. If <span class="math inline">\(f_i\)</span> is continuous for all <span class="math inline">\(i \in \{1, \dots, n\}\)</span>, then for any <span class="math inline">\(V = \prod_{i=1}^n V_i\)</span> in <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n}^{\text{cube}}\)</span> where <span class="math inline">\(V_i \in \mathscr{B}_{\mathbb{R}}\)</span> for any <span class="math inline">\(i \in \{1, \dots, n\}\)</span>, <span class="math inline">\(f^{-1}(V) = \bigcap_{i=1}^n f_i^{-1}(V_i) \in \mathscr{T}\)</span>, and <span class="math inline">\(f\)</span> is continuous. ■</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.3.4 Lemma | 引理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Lemma:</strong> The functions * add: <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 + \dots + x_n\)</span>; * subtract: <span class="math inline">\(\mathbb{R}^2 \to \mathbb{R}, (x_1, x_2) \mapsto x_1 - x_2\)</span>; * multiply: <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 \dots x_n\)</span>; * divide: <span class="math inline">\(\mathbb{R} \times (\mathbb{R} \setminus \{0\}) \to \mathbb{R}, (x_1, x_2) \mapsto x_1 / x_2\)</span>; * abs: <span class="math inline">\(\mathbb{R} \to \mathbb{R}, x \mapsto |x|\)</span>; * max: <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span>, taking the maximum of <span class="math inline">\((x_1, \dots, x_n)\)</span>; * min: <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span>, taking the minimum of <span class="math inline">\((x_1, \dots, x_n)\)</span> are continuous under the standard topologies.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红引理块]
+</summary>
+<strong>引理：</strong> 以下函数在标准拓扑下是连续的： * 加法 (add)：<span class="math inline">\(\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 + \dots + x_n\)</span>； * 减法 (subtract)：<span class="math inline">\(\mathbb{R}^2 \to \mathbb{R}, (x_1, x_2) \mapsto x_1 - x_2\)</span>； * 乘法 (multiply)：<span class="math inline">\(\mathbb{R}^n \to \mathbb{R}, (x_1, \dots, x_n) \mapsto x_1 \dots x_n\)</span>； * 除法 (divide)：<span class="math inline">\(\mathbb{R} \times (\mathbb{R} \setminus \{0\}) \to \mathbb{R}, (x_1, x_2) \mapsto x_1 / x_2\)</span>； * 绝对值 (abs)：<span class="math inline">\(\mathbb{R} \to \mathbb{R}, x \mapsto |x|\)</span>； * 最大值 (max)：<span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span>，取 <span class="math inline">\((x_1, \dots, x_n)\)</span> 的最大值； * 最小值 (min)：<span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span>，取 <span class="math inline">\((x_1, \dots, x_n)\)</span> 的最小值。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> We justify the continuity of add at <span class="math inline">\(x = (x_1, \dots, x_n) \in \mathbb{R}^n\)</span> as an example. Then for any <span class="math inline">\(\varepsilon &gt; 0\)</span> whenever <span class="math inline">\(y = (y_1, \dots, y_n) \in \prod_{i=1}^n (x_i - \frac{\varepsilon}{n}, x_i + \frac{\varepsilon}{n}) \in \mathscr{B}_x^{\text{cube}}\)</span> we have <span class="math display">\[
+|\text{add}(y) - \text{add}(x)| \leq \sum_{i=1}^n |y_i - x_i| \leq \varepsilon, \tag{17}
+\]</span> and therefore add is continuous at <span class="math inline">\(x\)</span>. Note that for continuity of divide we need the notion of open subsets of <span class="math inline">\(\mathbb{R} \times (\mathbb{R} \setminus \{0\})\)</span>, which are elements of <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> intersecting <span class="math inline">\(\mathbb{R} \times (\mathbb{R} \setminus \{0\})\)</span>; see Definition 6.1.1.1. ■</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>2.2.3.5 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> If <span class="math inline">\(f, g: \mathbb{R}^n \to \mathbb{R}\)</span> are continuous functions, then * <span class="math inline">\(f + g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) + g(p)\)</span> is continuous; * <span class="math inline">\(f - g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) - g(p)\)</span> is continuous; * <span class="math inline">\(f \cdot g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p) \cdot g(p)\)</span> is continuous; * <span class="math inline">\(f/g: \mathbb{R}^n \to \mathbb{R}, p \mapsto f(p)/g(p)\)</span> is continuous if <span class="math inline">\(0 \notin g(X)\)</span>; * <span class="math inline">\(|f|: \mathbb{R}^n \to \mathbb{R}, p \mapsto |f(p)|\)</span> is continuous; * <span class="math inline">\(\max(f, g): \mathbb{R}^n \to \mathbb{R}, p \mapsto \max(f(p), g(p))\)</span> is continuous; * <span class="math inline">\(\min(f, g): \mathbb{R}^n \to \mathbb{R}, p \mapsto \min(f(p), g(p))\)</span> is continuous where the continuities are relative to the topology <span class="math inline">\(\mathscr{T}\)</span> on <span class="math inline">\(X\)</span> and the standard topology on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 若 <span class="math inline">\(f, g: \mathbb{R}^n \to \mathbb{R}\)</span> 是连续函数，则： * <span class="math inline">\(f + g\)</span> 是连续的； * <span class="math inline">\(f - g\)</span> 是连续的； * <span class="math inline">\(f \cdot g\)</span> 是连续的； * 若 <span class="math inline">\(0 \notin g(X)\)</span>，则 <span class="math inline">\(f/g\)</span> 是连续的； * <span class="math inline">\(|f|\)</span> 是连续的； * <span class="math inline">\(\max(f, g)\)</span> 是连续的； * <span class="math inline">\(\min(f, g)\)</span> 是连续的。 其中连续性是相对于 <span class="math inline">\(X\)</span> 上的拓扑 <span class="math inline">\(\mathscr{T}\)</span> 和 <span class="math inline">\(\mathbb{R}\)</span> 上的标准拓扑而言的。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> By Lemma 2.2.3.3, <span class="math inline">\((f, g): \mathbb{R}^n \to \mathbb{R}^2\)</span> is continuous. Then the functions <span class="math inline">\(f + g = \text{add} \circ (f, g)\)</span>, <span class="math inline">\(f - g = \text{subtract} \circ (f, g)\)</span>, <span class="math inline">\(f \cdot g = \text{multiply} \circ (f, g)\)</span>, <span class="math inline">\(f/g = \text{divide} \circ (f, g)\)</span>, <span class="math inline">\(|f| = \text{abs} \circ (f)\)</span>, <span class="math inline">\(\max(f, g) = \text{max} \circ (f, g)\)</span>, and <span class="math inline">\(\min(f, g) = \text{min} \circ (f, g)\)</span> are continuous on <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span>, since the composed maps on the left are continuous by Lemma 2.2.3.4. ■</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>2.2.3.6 Corollary | 推论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Corollary:</strong> In particular, the set <span class="math inline">\(C(\mathbb{R}^n; \mathbb{R})\)</span> of continuous functions <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}\)</span> with addition, scalar multiplication, and product is an <span class="math inline">\(\mathbb{R}\)</span>-algebra.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红推论块]
+</summary>
+<strong>推论：</strong> 特别地，由所有连续函数组成的集合 <span class="math inline">\(C(\mathbb{R}^n; \mathbb{R})\)</span> 在函数加法、标量乘法和乘积运算下构成一个 <span class="math inline">\(\mathbb{R}\)</span>-代数。
+</details>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="topological-spaces-拓扑空间" class="level1">
+<h1>3 TOPOLOGICAL SPACES | 拓扑空间</h1>
+<section id="topology-拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="topology-拓扑">3.1 Topology | 拓扑</h2>
+<section id="definition-of-topological-spaces-拓扑空间的定义" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-topological-spaces-拓扑空间的定义">3.1.1 Definition of topological spaces | 拓扑空间的定义</h3>
+<p>Generalizing Proposition 2.1.2.3 and Proposition 2.1.2.5 for <span class="math inline">\(\mathscr{T}_{\mathbb{R}}\)</span> on <span class="math inline">\(\mathbb{R}\)</span>, we give the definition of a topology on any set.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.1.1.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A <em>topology</em> <span class="math inline">\(\mathscr{T}\)</span> on a set <span class="math inline">\(X\)</span> is a collection <span class="math inline">\(\mathscr{T} \subseteq \mathscr{P}(X)\)</span>, * <span class="math inline">\(\mathbf{O}_1\)</span>: <span class="math inline">\((\forall \mathscr{A} \subseteq \mathscr{T}) \left( \bigcup_{O \in \mathscr{A}} O \in \mathscr{T} \right)\)</span>, and * <span class="math inline">\(\mathbf{O}_2\)</span>: <span class="math inline">\((\forall \mathscr{A} \subseteq \mathscr{T}) \left( |\mathscr{A}| &lt; \infty \implies \bigcap_{O \in \mathscr{A}} O \in \mathscr{T} \right)\)</span>, then the pair <span class="math inline">\((X, \mathscr{T})\)</span> is a <em>topological space</em>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 集合 <span class="math inline">\(X\)</span> 上的一个<em>拓扑</em> <span class="math inline">\(\mathscr{T}\)</span> 是幂集 <span class="math inline">\(\mathscr{P}(X)\)</span> 的一个子集，满足： * <span class="math inline">\(\mathbf{O}_1\)</span>：<span class="math inline">\(\mathscr{T}\)</span> 中任意族元素的并集仍在 <span class="math inline">\(\mathscr{T}\)</span> 中； * <span class="math inline">\(\mathbf{O}_2\)</span>：<span class="math inline">\(\mathscr{T}\)</span> 中有限个元素的交集仍在 <span class="math inline">\(\mathscr{T}\)</span> 中。 则二元组 <span class="math inline">\((X, \mathscr{T})\)</span> 称为一个<em>拓扑空间</em>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.1.1.2 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subset <span class="math inline">\(A\)</span> of a topological space <span class="math inline">\((X, \mathscr{T})\)</span> is <em>open</em> iff <span class="math inline">\(A \in \mathscr{T}\)</span>, is <em>closed</em> iff <span class="math inline">\(A^c \in \mathscr{T}\)</span>, and is <em>clopen</em> iff it is both closed and open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 拓扑空间 <span class="math inline">\((X, \mathscr{T})\)</span> 的子集 <span class="math inline">\(A\)</span> 是<em>开</em>的，当且仅当 <span class="math inline">\(A \in \mathscr{T}\)</span>；是<em>闭</em>的，当且仅当其补集 <span class="math inline">\(A^c \in \mathscr{T}\)</span>；如果它既是开的又是闭的，则称其为<em>开闭集</em>（clopen）。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.1.1.3 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> If <span class="math inline">\(\mathscr{T}\)</span> is a topology on a set <span class="math inline">\(X\)</span> then * <span class="math inline">\(\mathbf{O}_3\)</span>: <span class="math inline">\(\emptyset, X \in \mathscr{T}\)</span>, since <span class="math inline">\(\emptyset = \bigcup_{O \in \emptyset} O \in \mathscr{T}\)</span> and <span class="math inline">\(X = \bigcap_{O \in \emptyset} O \in \mathscr{T}\)</span>. In some books <span class="math inline">\(\mathbf{O}_3\)</span> is included in the definition of topology. One also note that <span class="math inline">\(\mathbf{O}_2\)</span> is equivalent to <span class="math inline">\(X \in \mathscr{T}\)</span> and * <span class="math inline">\(\mathbf{O}_2'\)</span>: <span class="math inline">\((\forall O_1, O_2 \in \mathscr{T})(O_1 \cap O_2 \in \mathscr{T})\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 若 <span class="math inline">\(\mathscr{T}\)</span> 是集合 <span class="math inline">\(X\)</span> 上的一个拓扑，则： * <span class="math inline">\(\mathbf{O}_3\)</span>：<span class="math inline">\(\emptyset, X \in \mathscr{T}\)</span>。 这是因为空并集为 <span class="math inline">\(\emptyset\)</span>，空交集为 <span class="math inline">\(X\)</span>。在某些书籍中，<span class="math inline">\(\mathbf{O}_3\)</span> 被包含在拓扑的定义内。还需注意 <span class="math inline">\(\mathbf{O}_2\)</span> 等价于 <span class="math inline">\(X \in \mathscr{T}\)</span> 且任意两个元的交集仍在其中（<span class="math inline">\(\mathbf{O}_2'\)</span>）。
+</details>
+</div>
+</div>
+<p>Of course, given a topology <span class="math inline">\(\mathscr{T}\)</span> the underlying space <span class="math inline">\(X\)</span> is known immediately — nothing but the largest member of <span class="math inline">\(\mathscr{T}\)</span>!</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.1.1.4 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> In the future when we refer to a topological space <span class="math inline">\((X, \mathscr{T}_X)\)</span> we may omit the topology <span class="math inline">\(\mathscr{T}_X\)</span> in the notation and uses <span class="math inline">\(X\)</span> solely. In this case, <span class="math inline">\(X\)</span> is equipped with a default topology <span class="math inline">\(\mathscr{T}_X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 今后在提到拓扑空间 <span class="math inline">\((X, \mathscr{T}_X)\)</span> 时，我们可能会在记号中省略拓扑 <span class="math inline">\(\mathscr{T}_X\)</span> 而仅使用 <span class="math inline">\(X\)</span>。在这种情况下，<span class="math inline">\(X\)</span> 被假定配备了一个默认拓扑 <span class="math inline">\(\mathscr{T}_X\)</span>。
+</details>
+</div>
+</div>
+<p>A topological space can be defined equivalently by specifying its closed subsets through Kuratowski closure axioms.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.1.1.5 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> A collection <span class="math inline">\(\mathscr{C} \subseteq \mathscr{P}(X)\)</span> is the collection of closed subsets of a topology on <span class="math inline">\(X\)</span> iff * <span class="math inline">\(\mathbf{C}_1\)</span>: <span class="math inline">\((\forall \mathscr{A} \subseteq \mathscr{C}) \left( |\mathscr{A}| &lt; \infty \implies \bigcup_{F \in \mathscr{A}} F \in \mathscr{C} \right)\)</span>; and * <span class="math inline">\(\mathbf{C}_2\)</span>: <span class="math inline">\((\forall \mathscr{A} \subseteq \mathscr{C}) \left( \bigcap_{F \in \mathscr{A}} F \in \mathscr{C} \right)\)</span>; and in which case that * <span class="math inline">\(\mathbf{C}_3\)</span>: <span class="math inline">\(\emptyset, X \in \mathscr{C}\)</span> is automatic, and the topology is given as <span class="math inline">\(\mathscr{T} = \{U \subseteq X : U^c \in \mathscr{C}\}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 集合族 <span class="math inline">\(\mathscr{C} \subseteq \mathscr{P}(X)\)</span> 是 <span class="math inline">\(X\)</span> 上某个拓扑的闭集族，当且仅当： * <span class="math inline">\(\mathbf{C}_1\)</span>：<span class="math inline">\(\mathscr{C}\)</span> 中有限个元素的并集仍在 <span class="math inline">\(\mathscr{C}\)</span> 中； * <span class="math inline">\(\mathbf{C}_2\)</span>：<span class="math inline">\(\mathscr{C}\)</span> 中任意族元素的交集仍在 <span class="math inline">\(\mathscr{C}\)</span> 中。 在这种情况下，<span class="math inline">\(\mathbf{C}_3\)</span>（<span class="math inline">\(\emptyset, X \in \mathscr{C}\)</span>）是自动成立的，且该拓扑由 <span class="math inline">\(\mathscr{T} = \{U \subseteq X : U^c \in \mathscr{C}\}\)</span> 给出。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.1.2.1 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The collection <span class="math inline">\(\mathscr{T}_{\mathbb{R}}\)</span> in Definition 2.1.2.2 is a topology on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 定义 2.1.2.2 中的集合族 <span class="math inline">\(\mathscr{T}_{\mathbb{R}}\)</span> 是 <span class="math inline">\(\mathbb{R}\)</span> 上的一个拓扑。
+</details>
+</div>
+</div>
+<p><strong>3.1.2.2 Example:</strong> The <em>standard topology</em> on <span class="math inline">\(\mathbb{R}\)</span> is the collection <span class="math inline">\(\mathscr{T}_{\mathbb{R}}\)</span> of open subsets as in Definition 2.1.2.2.</p>
+<p>The default topology on <span class="math inline">\(\mathbb{R}\)</span> is the standard topology <span class="math inline">\(\mathscr{T}_{\mathbb{R}}\)</span> (Remark 3.1.1.4).</p>
+<p><strong>3.1.2.3 Example:</strong> The <em>lower limit topology</em> on <span class="math inline">\(\mathbb{R}\)</span> is the collection <span class="math inline">\(\mathscr{T}_{\text{lower}} = \{ \text{unions of } [a, b[ \text{ for } a, b \in \mathbb{R} \} \cup \{\emptyset, \mathbb{R}\}\)</span>.</p>
+<p><strong>3.1.2.4 Question:</strong> Are the following <span class="math inline">\(\mathscr{T}\)</span> topologies on <span class="math inline">\(\mathbb{R}\)</span>? (1) <span class="math inline">\(\mathscr{T} = \{ |A| = \infty \} \cup \{\emptyset\}\)</span>; (2) <span class="math inline">\(\mathscr{T} = \{ ]-r, r[ : r &gt; 0 \} \cup \{\emptyset, \mathbb{R}\}\)</span>.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.1.2.5 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The collection <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> as in Definition 2.2.1.4 is a topology on <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 定义 2.2.1.4 中的集合族 <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> 是 <span class="math inline">\(\mathbb{R}^n\)</span> 上的一个拓扑。
+</details>
+</div>
+</div>
+<p><strong>3.1.2.6 Example:</strong> The <em>standard topology</em> on <span class="math inline">\(\mathbb{R}^n\)</span> for <span class="math inline">\(n \in \mathbb{N}_0\)</span> is the collection <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> of open subsets as in Definition 2.2.1.4.</p>
+<p>The default topology on <span class="math inline">\(\mathbb{R}^n\)</span> is the standard topology <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span> (Remark 3.1.1.4).</p>
+</section>
+<section id="examples-of-topologies-on-a-finite-set" class="level3">
+<h3 class="anchored" data-anchor-id="examples-of-topologies-on-a-finite-set">3.1.3 Examples of topologies on a finite set</h3>
+<p>From Definition 3.1.1.1 on a set of at most one elements there is a unique topology.</p>
+<p><strong>3.1.3.1 Example:</strong> The <em>empty (topological) space</em> <span class="math inline">\((\emptyset, \{\emptyset\})\)</span> is the empty set <span class="math inline">\(\emptyset\)</span> equipped with the unique topology, usually denoted by <span class="math inline">\(\emptyset\)</span>.</p>
+<p><strong>3.1.3.2 Example:</strong> A <em>point (topological) space</em> <span class="math inline">\((\{a\}, \{\emptyset, \{a\}\})\)</span> is a singleton <span class="math inline">\(\{a\}\)</span> equipped with the unique topology, (the class of which) usually denoted by <span class="math inline">\(*\)</span>.</p>
+<p><strong>3.1.3.3 Example:</strong> There are exactly four topologies on <span class="math inline">\(\{a, b\}\)</span>: (1) <span class="math inline">\(\mathscr{T}_{\text{triv}} = \{\emptyset, \{a, b\}\}\)</span> is the <em>trivial topology</em> (2) <span class="math inline">\(\mathscr{T}_{\text{Sier}} = \{\emptyset, \{a\}, \{a, b\}\}\)</span> is the <em>Sierpiński topology</em> (3) <span class="math inline">\(\mathscr{T}'_{\text{Sier}} = \{\emptyset, \{b\}, \{a, b\}\}\)</span> is the <em>Sierpiński topology</em> swapping <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>; (4) <span class="math inline">\(\mathscr{T}_{\text{disc}} = \{\emptyset, \{a\}, \{b\}, \{a, b\}\}\)</span> is the <em>discrete topology</em>.</p>
+<p>We call <span class="math inline">\((\{a, b\}, \mathscr{T}_{\text{Sier}})\)</span> the <em>Sierpiński space</em>.</p>
+<p><strong>3.1.3.4 Question:</strong> How many topologies are there on <span class="math inline">\(\{a, b, c\}\)</span>?</p>
+<p>The trivial and discrete topologies can be generalized onto any set.</p>
+<p><strong>Example:</strong> The <em>trivial topology</em> on <span class="math inline">\(X\)</span> is the collection <span class="math inline">\(\mathscr{T}_{triv}=\{\emptyset, \mathbb{R} \}\)</span>, which is the coarest topology on <span class="math inline">\(X\)</span>.</p>
+</section>
+<section id="comparing-topologies-拓扑的比较" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-topologies-拓扑的比较">3.1.5 Comparing topologies | 拓扑的比较</h3>
+<p>We compare two topologies as subcollections of <span class="math inline">\(\mathscr{P}(X)\)</span>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.1.5.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> Let <span class="math inline">\(\mathscr{T}_1\)</span> and <span class="math inline">\(\mathscr{T}_2\)</span> be two topologies on <span class="math inline">\(X\)</span> such that <span class="math inline">\(\mathscr{T}_1 \subseteq \mathscr{T}_2\)</span>, then <span class="math inline">\(\mathscr{T}_1\)</span> is <em>coarser</em> than <span class="math inline">\(\mathscr{T}_2\)</span> and <span class="math inline">\(\mathscr{T}_2\)</span> is <em>finer</em> than <span class="math inline">\(\mathscr{T}_1\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 设 <span class="math inline">\(\mathscr{T}_1\)</span> 和 <span class="math inline">\(\mathscr{T}_2\)</span> 为集合 <span class="math inline">\(X\)</span> 上的两个拓扑。若 <span class="math inline">\(\mathscr{T}_1 \subseteq \mathscr{T}_2\)</span>，则称 <span class="math inline">\(\mathscr{T}_1\)</span> 比 <span class="math inline">\(\mathscr{T}_2\)</span> 更<em>粗</em>（coarser），<span class="math inline">\(\mathscr{T}_2\)</span> 比 <span class="math inline">\(\mathscr{T}_1\)</span> 更<em>细</em>（finer）。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.1.5.2 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> For any set <span class="math inline">\(X\)</span>, the trivial topology <span class="math inline">\(\mathscr{T}_{\text{triv}}\)</span> is the coarsest topology on <span class="math inline">\(X\)</span>, while the discrete topology <span class="math inline">\(\mathscr{T}_{\text{disc}}\)</span> is the finest topology on <span class="math inline">\(X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 对于任何集合 <span class="math inline">\(X\)</span>，平凡拓扑 <span class="math inline">\(\mathscr{T}_{\text{triv}}\)</span> 是 <span class="math inline">\(X\)</span> 上最粗的拓扑，而离散拓扑 <span class="math inline">\(\mathscr{T}_{\text{disc}}\)</span> 是 <span class="math inline">\(X\)</span> 上最细的拓扑。
+</details>
+</div>
+</div>
+<p>From a family of topologies one can construct new topologies, analogous to the supremum and infernum of subsets of the reals.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.1.5.3 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Let <span class="math inline">\(\{\mathscr{T}_i\}_{i \in I}\)</span> be a family of topologies on a set <span class="math inline">\(X\)</span>. Then (1) <span class="math inline">\(\mathscr{T}_{\text{inf}} = \bigcap_{i \in I} \mathscr{T}_i\)</span> is a topology on <span class="math inline">\(X\)</span>, which is the <em>greatest lower bound</em> of the family; (2) <span class="math inline">\(\mathscr{T}_{i_1} \cup \mathscr{T}_{i_2}\)</span> may not be a topology on <span class="math inline">\(X\)</span> for some <span class="math inline">\(i_0, i_1 \in I\)</span>; (3) <span class="math inline">\(\mathscr{T}_{\text{sup}} = \bigcap \{ \mathscr{T} \text{ is a topology on } X : \mathscr{T} \supseteq \bigcup_{i \in I} \mathscr{T}_i \}\)</span> is a topology on <span class="math inline">\(X\)</span>, which is the <em>least upper bound</em> of the family.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 设 <span class="math inline">\(\{\mathscr{T}_i\}_{i \in I}\)</span> 是集合 <span class="math inline">\(X\)</span> 上的一个拓扑族。则： (1) <span class="math inline">\(\mathscr{T}_{\text{inf}} = \bigcap_{i \in I} \mathscr{T}_i\)</span> 是 <span class="math inline">\(X\)</span> 上的一个拓扑，且是该族拓扑的<em>最大下界</em>； (2) 对于某些 <span class="math inline">\(i_0, i_1 \in I\)</span>，<span class="math inline">\(\mathscr{T}_{i_1} \cup \mathscr{T}_{i_2}\)</span> 可能不是 <span class="math inline">\(X\)</span> 上的拓扑； (3) <span class="math inline">\(\mathscr{T}_{\text{sup}} = \bigcap \{ \mathscr{T} \text{ 是 } X \text{ 上的拓扑} : \mathscr{T} \supseteq \bigcup_{i \in I} \mathscr{T}_i \}\)</span> 是 <span class="math inline">\(X\)</span> 上的一个拓扑，且是该族拓扑的<em>最小上界</em>。
+</details>
+</div>
+</div>
+</section>
+</section>
+<section id="bases-and-neighborhood-bases.-基与邻域基" class="level2">
+<h2 class="anchored" data-anchor-id="bases-and-neighborhood-bases.-基与邻域基">3.2 Bases and neighborhood bases. | 基与邻域基</h2>
+<p>In the definition of the real line we have used the collection of unions of open intervals. This is not very convenient and we want to start with the collection <span class="math inline">\(\mathscr{B}\)</span> of open intervals which is not a topology, but we shall generate a topology out of <span class="math inline">\(\mathscr{B}\)</span> by taking unions of its members. Actually <span class="math inline">\(\mathscr{B}\)</span> is a base of the standard topology. There have been two equivalent definitions for open subsets of <span class="math inline">\(\mathbb{R}\)</span>. (1) A subset <span class="math inline">\(U\)</span> is open in <span class="math inline">\(\mathbb{R}\)</span> iff for any <span class="math inline">\(x \in U\)</span> there is an open interval <span class="math inline">\(]a, b[\)</span> such that <span class="math inline">\(x \in I \subseteq U\)</span>. (2) A subset <span class="math inline">\(U\)</span> is open in <span class="math inline">\(\mathbb{R}\)</span> iff <span class="math inline">\(U\)</span> is the union of open intervals. In the first definition it is important open interval <span class="math inline">\(]a, b[\)</span> containing <span class="math inline">\(x\)</span>, which we call an open neighborhood of <span class="math inline">\(x\)</span>. In the second definition the open intervals are special.</p>
+<section id="bases-基" class="level3">
+<h3 class="anchored" data-anchor-id="bases-基">3.2.1 Bases | 基</h3>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.2.1.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subcollection <span class="math inline">\(\mathscr{B} \subseteq \mathscr{P}(X)\)</span> is a <em>base</em> for a topology <span class="math inline">\(\mathscr{T}\)</span> on <span class="math inline">\(X\)</span> iff <span class="math inline">\(\mathscr{T} = \left\{ \bigcup_{W \in \mathscr{A}} W : \mathscr{A} \subseteq \mathscr{B} \right\}\)</span> and then <span class="math inline">\(\mathscr{B}\)</span> is called a <em>topological base</em>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 子集合族 <span class="math inline">\(\mathscr{B} \subseteq \mathscr{P}(X)\)</span> 是 <span class="math inline">\(X\)</span> 上拓扑 <span class="math inline">\(\mathscr{T}\)</span> 的一个<em>基</em>（base），当且仅当 <span class="math inline">\(\mathscr{T} = \left\{ \bigcup_{W \in \mathscr{A}} W : \mathscr{A} \subseteq \mathscr{B} \right\}\)</span>，此时 <span class="math inline">\(\mathscr{B}\)</span> 被称为一个<em>拓扑基</em>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.2.1.2 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Let <span class="math inline">\(\mathscr{B} \subseteq \mathscr{P}(X)\)</span> be a base for the topology <span class="math inline">\(\mathscr{T}\)</span>. Then <span class="math inline">\(U \in \mathscr{T}\)</span> iff <span class="math inline">\((\forall p \in U)(\exists W \in \mathscr{B})(p \in W \subseteq U)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 设 <span class="math inline">\(\mathscr{B} \subseteq \mathscr{P}(X)\)</span> 为拓扑 <span class="math inline">\(\mathscr{T}\)</span> 的一个基。则 <span class="math inline">\(U \in \mathscr{T}\)</span> 当且仅当 <span class="math inline">\((\forall p \in U)(\exists W \in \mathscr{B})(p \in W \subseteq U)\)</span>。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> If <span class="math inline">\((\forall p \in U)(\exists W_p \in \mathscr{B})(p \in W_p \subseteq U)\)</span>, then <span class="math inline">\(U = \bigcup_{p \in U} W_p \in \mathscr{T}\)</span>. If <span class="math inline">\(U = \bigcup_{W \in \mathscr{A}} W \in \mathscr{T}\)</span> for some <span class="math inline">\(\mathscr{A} \subseteq \mathscr{B}\)</span> then for any <span class="math inline">\(p \in U\)</span> there is a <span class="math inline">\(W \in \mathscr{A}\)</span> with <span class="math inline">\(p \in W\)</span> and <span class="math inline">\(W \subseteq U\)</span> as required. ■</p>
+</section>
+<section id="neighborhood-bases.-邻域基" class="level3">
+<h3 class="anchored" data-anchor-id="neighborhood-bases.-邻域基">3.2.2 Neighborhood bases. | 邻域基</h3>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.2.2.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> Let <span class="math inline">\(X\)</span> be a topological space with <span class="math inline">\(p \in X\)</span>. A subset <span class="math inline">\(N\)</span> is a <em>neighborhood</em> of <span class="math inline">\(p\)</span> in <span class="math inline">\(X\)</span> if there is an open subset <span class="math inline">\(U\)</span> of <span class="math inline">\(X\)</span> such that <span class="math inline">\(x \in U \subseteq N\)</span>. We denote by <span class="math inline">\(\mathscr{N}_{X,p}\)</span> the collection of neighborhoods of <span class="math inline">\(p\)</span> in <span class="math inline">\(X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 设 <span class="math inline">\(X\)</span> 是一个拓扑空间且 <span class="math inline">\(p \in X\)</span>。如果存在 <span class="math inline">\(X\)</span> 的一个开子集 <span class="math inline">\(U\)</span> 使得 <span class="math inline">\(x \in U \subseteq N\)</span>，则称子集 <span class="math inline">\(N\)</span> 是 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(X\)</span> 中的一个<em>邻域</em>。我们用 <span class="math inline">\(\mathscr{N}_{X,p}\)</span> 表示 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(X\)</span> 中的所有邻域构成的族。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.2.2.2 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A subcollection <span class="math inline">\(\mathscr{B}_{X,p} \subseteq \mathscr{N}_{X,p}\)</span> is a <em>neighborhood base</em> for <span class="math inline">\(p \in X\)</span> in topological space <span class="math inline">\(X\)</span> iff for any <span class="math inline">\(N \in \mathscr{N}_{X,p}\)</span> there is <span class="math inline">\(W \in \mathscr{B}_{X,p}\)</span> contained in <span class="math inline">\(N\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 拓扑空间 <span class="math inline">\(X\)</span> 中的子族 <span class="math inline">\(\mathscr{B}_{X,p} \subseteq \mathscr{N}_{X,p}\)</span> 是 <span class="math inline">\(p \in X\)</span> 的一个<em>邻域基</em>，当且仅当对于任何 <span class="math inline">\(N \in \mathscr{N}_{X,p}\)</span>，都存在包含于 <span class="math inline">\(N\)</span> 中的 <span class="math inline">\(W \in \mathscr{B}_{X,p}\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.2.2.3 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Let <span class="math inline">\(\mathscr{B}_{X,p} \subseteq \mathscr{P}(X)\)</span> be a neighborhood base for <span class="math inline">\(p \in X\)</span> in topological space <span class="math inline">\((X, \mathscr{T})\)</span>. Then <span class="math inline">\(U \in \mathscr{T}\)</span> iff <span class="math inline">\((\forall p \in U)(\exists W \in \mathscr{B}_{X,p})(W \subseteq U)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 设 <span class="math inline">\(\mathscr{B}_{X,p} \subseteq \mathscr{P}(X)\)</span> 是拓扑空间 <span class="math inline">\((X, \mathscr{T})\)</span> 中 <span class="math inline">\(p \in X\)</span> 的一个邻域基。则 <span class="math inline">\(U \in \mathscr{T}\)</span> 当且仅当 <span class="math inline">\((\forall p \in U)(\exists W \in \mathscr{B}_{X,p})(W \subseteq U)\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.2.2.4 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Let <span class="math inline">\(X\)</span> be a topological space. A collection <span class="math inline">\(\mathscr{B}\)</span> is a base for <span class="math inline">\(\mathscr{T}\)</span> iff it is a neighborhood base for any <span class="math inline">\(p \in X\)</span> in <span class="math inline">\(X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 设 <span class="math inline">\(X\)</span> 是一个拓扑空间。集合族 <span class="math inline">\(\mathscr{B}\)</span> 是 <span class="math inline">\(\mathscr{T}\)</span> 的基，当且仅当它是 <span class="math inline">\(X\)</span> 中任何 <span class="math inline">\(p \in X\)</span> 的邻域基。
+</details>
+</div>
+</div>
+<p><em>Proof:</em> If <span class="math inline">\((\forall p \in U)(\exists W_p \in \mathscr{B})(p \in W_p \subseteq U)\)</span>, then <span class="math inline">\(U = \bigcup_{p \in U} W_p \in \mathscr{T}\)</span>. If <span class="math inline">\(U = \bigcup_{W \in \mathscr{A}} W \in \mathscr{T}\)</span> for some <span class="math inline">\(\mathscr{A} \subseteq \mathscr{B}\)</span> then for any <span class="math inline">\(p \in U\)</span> there is a <span class="math inline">\(W \in \mathscr{A}\)</span> with <span class="math inline">\(p \in W\)</span> and <span class="math inline">\(W \subseteq U\)</span> as required. ■</p>
+<p><strong>3.2.2.5 Example:</strong> The collection <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n, x}\)</span> is a neighborhood base for any <span class="math inline">\(x \in \mathbb{R}^n\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span> equipped with the standard topology <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span>.</p>
+<p><strong>3.2.2.6 Example:</strong> The collection <span class="math inline">\(\mathscr{B}_{\mathbb{R}^n, x}^{\text{cube}}\)</span> is a neighborhood base for any <span class="math inline">\(x \in \mathbb{R}^n\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span> equipped with the standard topology <span class="math inline">\(\mathscr{T}_{\mathbb{R}^n}\)</span>.</p>
+</section>
+</section>
+<section id="continuous-maps-连续映射" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-maps-连续映射">3.3 Continuous maps | 连续映射</h2>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.3.0.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A map <span class="math display">\[f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\]</span> is <em>continuous</em> iff <span class="math inline">\((\forall V \in \mathscr{T}_Y)(f^{-1}(V) \in \mathscr{T}_X)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 映射 <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> 是<em>连续的</em>，当且仅当对于 <span class="math inline">\(Y\)</span> 中的任意开集 <span class="math inline">\(V\)</span>，其原像 <span class="math inline">\(f^{-1}(V)\)</span> 都是 <span class="math inline">\(X\)</span> 中的开集。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.3.0.2 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> A map <span class="math inline">\(f: X \to Y\)</span> between topological spaces is continuous iff <span class="math inline">\((\forall \text{ closed } B \subseteq Y)(f^{-1}(B) \text{ is closed in } X)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 拓扑空间之间的映射 <span class="math inline">\(f: X \to Y\)</span> 是连续的，当且仅当对于 <span class="math inline">\(Y\)</span> 中的任意闭集 <span class="math inline">\(B\)</span>，其原像 <span class="math inline">\(f^{-1}(B)\)</span> 都是 <span class="math inline">\(X\)</span> 中的闭集。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.3.0.3 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> (1) The <em>identity map</em> <span class="math inline">\(\text{id}_X : X \to X, p \mapsto p\)</span>, is continuous; (2) The <em>empty map</em> <span class="math inline">\(e : \emptyset \to X\)</span> is continuous; (3) For any <span class="math inline">\(q \in Y\)</span>, the <em>constant map</em> <span class="math inline">\(c_q : X \to Y, p \mapsto q\)</span>, is continuous; (4) The composition of continuous maps are continuous.</p>
+<p><span class="math display">\[X \xrightarrow{f} Y \xrightarrow{g} Z\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> (1) <em>恒等映射</em> <span class="math inline">\(\text{id}_X : X \to X, p \mapsto p\)</span> 是连续的； (2) <em>空映射</em> <span class="math inline">\(e : \emptyset \to X\)</span> 是连续的； (3) 对于任何 <span class="math inline">\(q \in Y\)</span>，<em>常数映射</em> <span class="math inline">\(c_q : X \to Y, p \mapsto q\)</span> 是连续的； (4) 连续映射的复合仍是连续的。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.3.0.4 Theorem | 定理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem:</strong> Let <span class="math inline">\(\mathscr{T}_1\)</span> and <span class="math inline">\(\mathscr{T}_2\)</span> be two topologies on a set <span class="math inline">\(X\)</span>. Then <span class="math inline">\(\mathscr{T}_1\)</span> is finer than <span class="math inline">\(\mathscr{T}_2\)</span> iff the identity map <span class="math inline">\(\text{id}_X : (X, \mathscr{T}_1) \to (X, \mathscr{T}_2)\)</span> is continuous.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅紫定理块]
+</summary>
+<strong>定理：</strong> 设 <span class="math inline">\(\mathscr{T}_1\)</span> 和 <span class="math inline">\(\mathscr{T}_2\)</span> 是集合 <span class="math inline">\(X\)</span> 上的两个拓扑。则 <span class="math inline">\(\mathscr{T}_1\)</span> 比 <span class="math inline">\(\mathscr{T}_2\)</span> 更细，当且仅当恒等映射 <span class="math inline">\(\text{id}_X : (X, \mathscr{T}_1) \to (X, \mathscr{T}_2)\)</span> 是连续的。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.3.0.5 Corollary | 推论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Corollary:</strong> Let <span class="math inline">\(\mathscr{T}_1\)</span> and <span class="math inline">\(\mathscr{T}_2\)</span> be two topologies on a set <span class="math inline">\(X\)</span>, and <span class="math inline">\(\mathscr{B}_{i,p}\)</span> be a neighborhood base at <span class="math inline">\(p\)</span> for <span class="math inline">\(\mathscr{T}_i, p \in X, i \in I\)</span>. Then <span class="math inline">\(\mathscr{T}_1\)</span> is finer than <span class="math inline">\(\mathscr{T}_2\)</span> iff for any <span class="math inline">\(p \in X\)</span> and for any <span class="math inline">\(U_2 \in \mathscr{B}_{2,p}\)</span> there is an <span class="math inline">\(U_1 \in \mathscr{B}_{1,p}\)</span> such that <span class="math inline">\(U_1 \subseteq U_2\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅橙推论块]
+</summary>
+<strong>推论：</strong> 设 <span class="math inline">\(\mathscr{T}_1\)</span> 和 <span class="math inline">\(\mathscr{T}_2\)</span> 是集合 <span class="math inline">\(X\)</span> 上的两个拓扑，<span class="math inline">\(\mathscr{B}_{i,p}\)</span> 是 <span class="math inline">\(p\)</span> 点关于 <span class="math inline">\(\mathscr{T}_i\)</span> 的邻域基。则 <span class="math inline">\(\mathscr{T}_1\)</span> 比 <span class="math inline">\(\mathscr{T}_2\)</span> 更细，当且仅当对于任何 <span class="math inline">\(p \in X\)</span> 及任何 <span class="math inline">\(U_2 \in \mathscr{B}_{2,p}\)</span>，都存在 <span class="math inline">\(U_1 \in \mathscr{B}_{1,p}\)</span> 使得 <span class="math inline">\(U_1 \subseteq U_2\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.3.0.6 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> A map <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> is continuous at <span class="math inline">\(p \in X\)</span> iff <span class="math inline">\((\forall V_q \in \mathscr{B}_q)(\exists U_p \in \mathscr{N}_{X,p})(f(U_p) \subseteq V_q)\)</span>, where <span class="math inline">\(\mathscr{B}_q\)</span> is a neighborhood base of <span class="math inline">\(\mathscr{T}_Y\)</span> at <span class="math inline">\(q = f(p) \in Y\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 映射 <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> 在 <span class="math inline">\(p \in X\)</span> 点连续，当且仅当对于 <span class="math inline">\(q = f(p)\)</span> 的任一邻域基元素 <span class="math inline">\(V_q \in \mathscr{B}_q\)</span>，都存在 <span class="math inline">\(p\)</span> 的一个邻域 <span class="math inline">\(U_p \in \mathscr{N}_{X,p}\)</span> 使得 <span class="math inline">\(f(U_p) \subseteq V_q\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>3.3.0.7 Corollary | 推论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Corollary:</strong> Let <span class="math inline">\(X\)</span> be a topological space with a neighborhood base <span class="math inline">\(\mathscr{B}_{X,p}\)</span> for <span class="math inline">\(p \in X\)</span>. A function <span class="math inline">\(f: X \to \mathbb{R}^n\)</span> is continuous at <span class="math inline">\(p \in X\)</span> iff <span class="math inline">\((\forall \varepsilon &gt; 0)(\exists U_p \in \mathscr{B}_{X,p})(f(U_p) \subseteq \mathbb{B}^n(f(p), \varepsilon))\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅橙推论块]
+</summary>
+<strong>推论：</strong> 设 <span class="math inline">\(X\)</span> 是一个在 <span class="math inline">\(p \in X\)</span> 处具有邻域基 <span class="math inline">\(\mathscr{B}_{X,p}\)</span> 的拓扑空间。函数 <span class="math inline">\(f: X \to \mathbb{R}^n\)</span> 在 <span class="math inline">\(p\)</span> 点连续，当且仅当对于任意 <span class="math inline">\(\varepsilon &gt; 0\)</span>，都存在 <span class="math inline">\(U_p \in \mathscr{B}_{X,p}\)</span> 使得 <span class="math inline">\(f(U_p) \subseteq \mathbb{B}^n(f(p), \varepsilon)\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.3.0.8 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> We could define sequential convergence in topological spaces. A sequence <span class="math inline">\((p_n)_{n \in \mathbb{N}}\)</span> in a topological space <span class="math inline">\(X\)</span> converges to <span class="math inline">\(p \in X\)</span>, denoted by <span class="math inline">\(p_n \to p\)</span>, iff for any <span class="math inline">\(U \in \mathscr{N}_{X,p}\)</span> there is <span class="math inline">\(N \in \mathbb{N}\)</span> such that <span class="math inline">\(p_n \in U\)</span> for any <span class="math inline">\(n \geq N\)</span>. However, the sequential convergence lacks important properties it has in <span class="math inline">\(\mathbb{R}\)</span>, and is less fundamental. For instance, under the cofinite topology, a sequence may converge to any element in <span class="math inline">\(X\)</span>; under the cocountable topology, an uncountable proper subset <span class="math inline">\(A\)</span> is dense but no sequence in <span class="math inline">\(A\)</span> converges to any <span class="math inline">\(p \in X \setminus A\)</span> being an accumulation point of <span class="math inline">\(A\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 我们可以在拓扑空间中定义序列收敛。拓扑空间 <span class="math inline">\(X\)</span> 中的序列 <span class="math inline">\((p_n)_{n \in \mathbb{N}}\)</span> 收敛于 <span class="math inline">\(p \in X\)</span>（记作 <span class="math inline">\(p_n \to p\)</span>），当且仅当对于 <span class="math inline">\(p\)</span> 的任何邻域 <span class="math inline">\(U \in \mathscr{N}_{X,p}\)</span>，都存在 <span class="math inline">\(N \in \mathbb{N}\)</span> 使得当 <span class="math inline">\(n \geq N\)</span> 时有 <span class="math inline">\(p_n \in U\)</span>。然而，序列收敛在拓扑空间中缺乏其在 <span class="math inline">\(\mathbb{R}\)</span> 中所具有的重要性质，且不够基础。例如，在余有限拓扑下，一个序列可能收敛于 <span class="math inline">\(X\)</span> 中的任何元素；在余可数拓扑下，一个不可数的真子集 <span class="math inline">\(A\)</span> 可以是稠密的，但 <span class="math inline">\(A\)</span> 中没有任何序列能收敛于 <span class="math inline">\(A\)</span> 的聚点 <span class="math inline">\(p \in X \setminus A\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.3.0.9 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> The sequential convergence is not good to define continuous maps in topological spaces. If <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> is continuous at <span class="math inline">\(p \in X\)</span>, then <span class="math inline">\(p_n \to p\)</span> implies <span class="math inline">\(f(p_n) \to f(p)\)</span>. The converse is not true. For instance, let <span class="math inline">\(f\)</span> be injective, <span class="math inline">\(X\)</span> is uncountable and <span class="math inline">\(\mathscr{T}_X\)</span> is the cocountable topology, and <span class="math inline">\(\mathscr{T}_Y\)</span> is discrete.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 在拓扑空间中，序列收敛并不适合用来定义连续映射。如果 <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> 在 <span class="math inline">\(p \in X\)</span> 处连续，那么 <span class="math inline">\(p_n \to p\)</span> 可以推导出 <span class="math inline">\(f(p_n) \to f(p)\)</span>。但其逆命题并不成立。例如，设 <span class="math inline">\(f\)</span> 是单射，<span class="math inline">\(X\)</span> 是不可数集，<span class="math inline">\(\mathscr{T}_X\)</span> 是余可数拓扑，而 <span class="math inline">\(\mathscr{T}_Y\)</span> 是离散拓扑。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.3.0.10 Remark | 备注
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark:</strong> Recall that in Section 1.2 we stated that in topology we study properties invariant under operations such as thickening, stretching, bending and twisting, but not identifying and tearing. However, a continuous map may identify points but cannot tear points apart. The operations that make topological properties invariant are homeomorphisms.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄备注块]
+</summary>
+<strong>备注：</strong> 回想我们在 1.2 节中提到的，拓扑学研究的是在诸如加厚、拉伸、弯曲和扭转等操作下保持不变的性质，但不包括粘合（identifying）和撕裂（tearing）。然而，连续映射可能会将点粘合在一起，但不能将点撕裂。使拓扑性质保持不变的操作是同胚（homeomorphisms）。
+</details>
+</div>
+</div>
+</section>
+<section id="homeomorphisms-同胚" class="level2">
+<h2 class="anchored" data-anchor-id="homeomorphisms-同胚">3.4 Homeomorphisms | 同胚</h2>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.4.0.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A <em>homeomorphism</em> is an isomorphism in <span class="math inline">\(\mathsf{Top}\)</span>. A topological space <span class="math inline">\(X\)</span> is <em>homeomorphic</em> to <span class="math inline">\(Y\)</span>, denoted by <span class="math inline">\(X \simeq Y\)</span> iff there is a homeomorphism <span class="math inline">\(f: X \to Y\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> <em>同胚</em>（homeomorphism）是 <span class="math inline">\(\mathsf{Top}\)</span> 范畴中的同构。若存在同胚映射 <span class="math inline">\(f: X \to Y\)</span>，则称拓扑空间 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> <em>同胚</em>，记作 <span class="math inline">\(X \simeq Y\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.2 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> A map <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> is a homeomorphism iff <span class="math inline">\(f\)</span> is bijective and both <span class="math inline">\(f\)</span> and <span class="math inline">\(f^{-1}\)</span> are continuous.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 映射 <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> 是同胚，当且仅当 <span class="math inline">\(f\)</span> 是双射且 <span class="math inline">\(f\)</span> 与 <span class="math inline">\(f^{-1}\)</span> 均连续。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.3 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> A map <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> is a homeomorphism iff <span class="math inline">\(f: \mathscr{P}(X) \to \mathscr{P}(Y)\)</span> and <span class="math inline">\(f^{-1}: \mathscr{P}(Y) \to \mathscr{P}(X)\)</span> has submaps <span class="math inline">\(f|_{\mathscr{T}_X, \mathscr{T}_Y}\)</span> and <span class="math inline">\(f^{-1}|_{\mathscr{T}_Y, \mathscr{T}_X}\)</span> that are inverse to each other.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 映射 <span class="math inline">\(f: (X, \mathscr{T}_X) \to (Y, \mathscr{T}_Y)\)</span> 是同胚，当且仅当映射 <span class="math inline">\(f: \mathscr{P}(X) \to \mathscr{P}(Y)\)</span> 及其逆 <span class="math inline">\(f^{-1}: \mathscr{P}(Y) \to \mathscr{P}(X)\)</span> 具有相互可逆的子映射 <span class="math inline">\(f|_{\mathscr{T}_X, \mathscr{T}_Y}\)</span> 与 <span class="math inline">\(f^{-1}|_{\mathscr{T}_Y, \mathscr{T}_X}\)</span>。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.4 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> Let <span class="math inline">\(\mathrm{Homeo}(X, \mathscr{T}_X)\)</span> be the set of homeomorphisms <span class="math inline">\((X, \mathscr{T}_X) \to (X, \mathscr{T}_X)\)</span>, then <span class="math inline">\((\mathrm{Homeo}(X, \mathscr{T}_X), \circ)\)</span> is a group, called the <em>homeomorphism group</em> of <span class="math inline">\((X, \mathscr{T}_X)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 设 <span class="math inline">\(\mathrm{Homeo}(X, \mathscr{T}_X)\)</span> 为从 <span class="math inline">\((X, \mathscr{T}_X)\)</span> 到其自身的同胚集合，则 <span class="math inline">\((\mathrm{Homeo}(X, \mathscr{T}_X), \circ)\)</span> 构成一个群，称为 <span class="math inline">\((X, \mathscr{T}_X)\)</span> 的<em>同胚群</em>。
+</details>
+</div>
+</div>
+<p><strong>3.4.0.5 Question:</strong> Describe the homeomorphism group of</p>
+<ul>
+<li><p>a space with the discrete topology;</p></li>
+<li><p>a space with the trivial topology;</p></li>
+<li><p>a space with the cofinite topology;</p></li>
+<li><p>a space with the cocountable topology;</p></li>
+<li><p>an open interval with the standard topology;</p></li>
+<li><p>a closed interval with the standard topology.</p></li>
+</ul>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.6 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> Let <span class="math inline">\(f: X \to Y\)</span> be a continuous bijection between topological spaces. Then the following are equivalent: * the map <span class="math inline">\(f\)</span> is a homeomorphism;</p>
+<ul>
+<li><p>the map <span class="math inline">\(f\)</span> is open;</p></li>
+<li><p>the map <span class="math inline">\(f\)</span> is closed;</p></li>
+<li><p><span class="math inline">\((\forall A \in \mathscr{P}(X))(f(\overline{A}) = \overline{f(A)})\)</span>;</p></li>
+<li><p><span class="math inline">\((\forall A \in \mathscr{P}(X))(f(A^\circ) = f(A)^\circ)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+</summary>
+<p><strong>命题：</strong> 设 <span class="math inline">\(f: X \to Y\)</span> 是拓扑空间之间的连续双射。则以下各项是等价的：</p></details></li>
+<li><p>映射 <span class="math inline">\(f\)</span> 是同胚；</p></li>
+<li><p>映射 <span class="math inline">\(f\)</span> 是开映射；</p></li>
+<li><p>映射 <span class="math inline">\(f\)</span> 是闭映射；</p></li>
+<li><p>对于任意 <span class="math inline">\(A \subseteq X\)</span>，有 <span class="math inline">\(f(\overline{A}) = \overline{f(A)}\)</span>（即闭包的像是像的闭包）；</p></li>
+<li><p>对于任意 <span class="math inline">\(A \subseteq X\)</span>，有 <span class="math inline">\(f(A^\circ) = f(A)^\circ\)</span>（即内部的像是像的内部）。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.7 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> Being homeomorphic is an equivalence relation among topological spaces.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> “同胚”是拓扑空间之间的一种等价关系。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.8 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The map <span class="math inline">\(f: [0, 2\pi[ \to \mathbb{S}^1, t \mapsto (\cos t, \sin t)\)</span> is continuous bijective but not open, and therefore is not a homeomorphism.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 映射 <span class="math inline">\(f: [0, 2\pi[ \to \mathbb{S}^1, t \mapsto (\cos t, \sin t)\)</span> 是连续双射但不是开映射，因此它不是同胚。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.9 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The spaces <span class="math inline">\(\mathbb{Z}, \mathbb{Q}, \mathbb{R} \setminus \mathbb{Q}, \mathbb{R}, \mathbb{R}^2\)</span>, the Cantor set <span class="math inline">\(C\)</span>, the real numbers with lower limit topology <span class="math inline">\(\mathbb{R}_l = (\mathbb{R}, \mathscr{T}_{\text{lower}})\)</span>, the cofinite space <span class="math inline">\(\mathbb{R}_{\text{cof}} = (\mathbb{R}, \mathscr{T}_{\text{cof}})\)</span>, the cocountable space <span class="math inline">\(\mathbb{R}_{\text{coc}} = (\mathbb{R}, \mathscr{T}_{\text{coc}})\)</span> are not homeomorphic to any other.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 空间 <span class="math inline">\(\mathbb{Z}, \mathbb{Q}, \mathbb{R} \setminus \mathbb{Q}, \mathbb{R}, \mathbb{R}^2\)</span>、康托尔集 <span class="math inline">\(C\)</span>、具有下限拓扑的实数集 <span class="math inline">\(\mathbb{R}_l\)</span>、余有限空间 <span class="math inline">\(\mathbb{R}_{\text{cof}}\)</span> 以及余可数空间 <span class="math inline">\(\mathbb{R}_{\text{coc}}\)</span> 之中，任意两个空间互不同胚。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>3.4.0.10 Proposition | 命题
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Proposition:</strong> The following groups of spaces are homeomorphic:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{Z}\)</span> and <span class="math inline">\(\mathbb{N}\)</span>;</li>
+<li>the real line and open intervals;</li>
+<li>the graph of a continuous map and its domain;</li>
+<li>the punctured sphere <span class="math inline">\(\mathbb{S}^n \setminus \{p\}\)</span> and <span class="math inline">\(\mathbb{R}^n\)</span>;</li>
+<li>open balls and open boxes in a fixed dimension;</li>
+<li>Riemann mapping theorem.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅红命题块]
+</summary>
+<strong>命题：</strong> 以下各组空间是同胚的： * <span class="math inline">\(\mathbb{Z}\)</span> 与 <span class="math inline">\(\mathbb{N}\)</span>； * 实直线与开区间； * 连续映射的图像与其定义域； * 去点球面 <span class="math inline">\(\mathbb{S}^n \setminus \{p\}\)</span> 与 <span class="math inline">\(\mathbb{R}^n\)</span>； * 固定维度下的开球与开框（open boxes）； * 黎曼映射定理（涉及的空间）。
+</details>
+</div>
+</div>
+<p><strong>3.4.0.11 Question:</strong> Classify intervals of <span class="math inline">\(\mathbb{R}\)</span> with the standard topology by homeomorphisms. What about <span class="math inline">\(\mathbb{R}\)</span> equipped with the lower limit topology?</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>问题：</strong> 按同胚关系对具有标准拓扑的 <span class="math inline">\(\mathbb{R}\)</span> 区间进行分类。对于配备下限拓扑的 <span class="math inline">\(\mathbb{R}\)</span> 又是如何分类的？
+</details>
+<p><strong>3.4.0.12 Question:</strong> Classify the topologies on <span class="math inline">\(X = \{a, b, c\}\)</span> under homeomorphisms. For each class of topologies, what is its homeomorphism group (up to group isomorphisms)?</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>问题：</strong> 按同胚关系对 <span class="math inline">\(X = \{a, b, c\}\)</span> 上的拓扑进行分类。对于每一类拓扑，其同胚群是什么（在群同构意义下）？
+</details>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>3.4.0.13 Subspaces of <span class="math inline">\(\mathbb{R}^n\)</span> | <span class="math inline">\(\mathbb{R}^n\)</span> 的子空间
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Subspaces of <span class="math inline">\(\mathbb{R}^n\)</span>:</strong> All open intervals of <span class="math inline">\(\mathbb{R}\)</span> are homeomorphic, and especially to <span class="math inline">\(\mathbb{R}\)</span> itself. For open domains of <span class="math inline">\(\mathbb{R}^2\)</span> there is Riemann mapping theorem, stating that, any simply connected nonempty proper open subset of <span class="math inline">\(\mathbb{C}\)</span> is biholomorphic to the unit disk <span class="math inline">\(\mathbb{D}\)</span>. As a consequence, one shows that, any subset of <span class="math inline">\(\mathbb{R}^2\)</span> is homeomorphic to <span class="math inline">\(\mathbb{R}^2\)</span> iff it is nonempty, simply connected, and open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅黄块]
+</summary>
+<strong><span class="math inline">\(\mathbb{R}^n\)</span> 的子空间：</strong> <span class="math inline">\(\mathbb{R}\)</span> 的所有开区间都是同胚的，特别是它们都与 <span class="math inline">\(\mathbb{R}\)</span> 自身同胚。 对于 <span class="math inline">\(\mathbb{R}^2\)</span> 的开区域，有黎曼映射定理，该定理指出：<span class="math inline">\(\mathbb{C}\)</span> 的任何单连通非空真开子集都与单位圆盘 <span class="math inline">\(\mathbb{D}\)</span> 双全纯等价。 因此可以证明，<span class="math inline">\(\mathbb{R}^2\)</span> 的任何子集与 <span class="math inline">\(\mathbb{R}^2\)</span> 同胚，当且仅当该子集是非空、单连通且开的。
+</details>
+</div>
+</div>
+</section>
+<section id="topological-properties-拓扑性质" class="level2">
+<h2 class="anchored" data-anchor-id="topological-properties-拓扑性质">3.5 Topological properties | 拓扑性质</h2>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.5.0.1 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A <em>topological invariant</em> is a quantity of a topological space which is invariant under homeomorphisms. A <em>topological property</em> is a property of a topological space which is preserved under homeomorphisms.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> <em>拓扑不变量</em>是指拓扑空间在同胚映射下保持不变的量。<em>拓扑性质</em>是指拓扑空间在同胚映射下保持不变的性质。
+</details>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.5.0.2 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> The <em>character</em> <span class="math inline">\(\chi(\mathscr{T})\)</span> of <span class="math inline">\(\mathscr{T}\)</span> is the supremum of the minimal cardinality of neighborhood bases if <span class="math inline">\(\mathscr{T}\)</span> at all points. The <em>weight</em> <span class="math inline">\(w(\mathscr{T})\)</span> of a topology <span class="math inline">\(\mathscr{T}\)</span> is the minimal cardinality of bases of <span class="math inline">\(\mathscr{T}\)</span>. The <em>density</em> <span class="math inline">\(d(\mathscr{T})\)</span> of a topology <span class="math inline">\(\mathscr{T}\)</span> on <span class="math inline">\(X\)</span> is the minimal cardinality of dense subsets of <span class="math inline">\(X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 拓扑 <span class="math inline">\(\mathscr{T}\)</span> 的<em>特征</em>（character） <span class="math inline">\(\chi(\mathscr{T})\)</span> 是指所有点处最小邻域基势的基数上界。拓扑 <span class="math inline">\(\mathscr{T}\)</span> 的<em>权重</em>（weight） <span class="math inline">\(w(\mathscr{T})\)</span> 是指 <span class="math inline">\(\mathscr{T}\)</span> 的基的最小基数。拓扑 <span class="math inline">\(\mathscr{T}\)</span> 在 <span class="math inline">\(X\)</span> 上的<em>稠密度</em>（density） <span class="math inline">\(d(\mathscr{T})\)</span> 是指 <span class="math inline">\(X\)</span> 的稠密子集的最小基数。
+</details>
+</div>
+</div>
+<p>Topological properties and invariants can be used to classify a family of topological spaces, and to distinguish two spaces. What topological properties/invariants do we know? Let <span class="math inline">\((X, \mathscr{T})\)</span> be a topological space. The set-theoretic invariants, preserved by bijections, are only:</p>
+<ul>
+<li>the cardinality <span class="math inline">\(\mathrm{Card}(X) = |X|\)</span> of <span class="math inline">\(X\)</span>.</li>
+</ul>
+<p>Other ones include:</p>
+<ul>
+<li>the cardinality <span class="math inline">\(\mathrm{Card}(\mathscr{T}) = |\mathscr{T}|\)</span> of <span class="math inline">\(\mathscr{T}\)</span>;</li>
+<li>whether it is homeomorphic to a certain topological space, for instance, whether <span class="math inline">\(\mathscr{T}\)</span> is trivial, discrete, cofinite, cocountable, or Cantor (homeomorphic to the Cantor set);</li>
+<li>the minimum cardinality for subsets of <span class="math inline">\(X\)</span> with accumulation points, for instance, it equals <span class="math inline">\(|\mathbb{N}|\)</span> for <span class="math inline">\(\mathbb{R}\)</span> but is finite for some finite topological spaces;</li>
+<li>the density, weight, and character of <span class="math inline">\(\mathscr{T}\)</span>;</li>
+<li>whether <span class="math inline">\(\mathscr{T}\)</span> has a minimal base, for instance, <span class="math inline">\(\mathbb{R}\)</span> is not the case;</li>
+<li>whether there is a surjection from a certain topological space onto <span class="math inline">\(X\)</span>, for instance, Peano spaces;</li>
+<li>the isomorphism class of the homeomorphism group <span class="math inline">\((\mathrm{Homeo}(X), \circ)\)</span> of <span class="math inline">\(X\)</span>;</li>
+<li>the isomorphism class of the <span class="math inline">\(\mathbb{R}\)</span>-algebra of continuous functions <span class="math inline">\(\mathrm{C}(X; \mathbb{R})\)</span> on <span class="math inline">\(X\)</span>;</li>
+<li>whether every continuous self-bijection of <span class="math inline">\(X\)</span> is a homeomorphism;</li>
+<li>whether <span class="math inline">\(X\)</span> is a retract of a certain topological space, or whether a certain topological space is a retract of <span class="math inline">\(X\)</span>.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 列表内容参考]
+</summary>
+<p>拓扑性质和不变量可用于对一系列拓扑空间进行分类，以及区分两个空间。我们已知哪些拓扑性质/不变量？设 <span class="math inline">\((X, \mathscr{T})\)</span> 为一个拓扑空间。仅由双射保持的集合论不变量包括：</p>
+<ul>
+<li><span class="math inline">\(X\)</span> 的基数 <span class="math inline">\(\mathrm{Card}(X) = |X|\)</span>。</li>
+</ul>
+<p>其他不变量/性质包括：</p>
+<ul>
+<li>拓扑 <span class="math inline">\(\mathscr{T}\)</span> 的基数 <span class="math inline">\(\mathrm{Card}(\mathscr{T}) = |\mathscr{T}|\)</span>；</li>
+<li>是否与某个特定拓扑空间同胚，例如 <span class="math inline">\(\mathscr{T}\)</span> 是否为平凡的、离散的、余有限的、余可数的或康托尔空间（与康托尔集同胚）；</li>
+<li>具有聚点的 <span class="math inline">\(X\)</span> 子集的最小基数。例如 <span class="math inline">\(\mathbb{R}\)</span> 等于 <span class="math inline">\(|\mathbb{N}|\)</span>，但对于某些有限拓扑空间则是有限的；</li>
+<li><span class="math inline">\(\mathscr{T}\)</span> 的稠密度、权重和特征；</li>
+<li><span class="math inline">\(\mathscr{T}\)</span> 是否具有最小基。例如 <span class="math inline">\(\mathbb{R}\)</span> 则没有；</li>
+<li>是否存在从某个特定拓扑空间到 <span class="math inline">\(X\)</span> 的满射，例如皮亚诺（Peano）空间；</li>
+<li><span class="math inline">\(X\)</span> 的同胚群 <span class="math inline">\((\mathrm{Homeo}(X), \circ)\)</span> 的同构类；</li>
+<li><span class="math inline">\(X\)</span> 上连续函数构成的 <span class="math inline">\(\mathbb{R}\)</span>-代数 <span class="math inline">\(\mathrm{C}(X; \mathbb{R})\)</span> 的同构类；</li>
+<li><span class="math inline">\(X\)</span> 的每个连续自双射是否都是同胚；</li>
+<li><span class="math inline">\(X\)</span> 是否是某个特定拓扑空间的收缩核（retract），或者某个特定拓扑空间是否是 <span class="math inline">\(X\)</span> 的收缩核。
+</li></ul></details>
+
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3.5.0.3 Definition | 定义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Definition:</strong> A topological property is <em>hereditary</em> iff it is inherited by any of its subspaces; it is <em>closed-hereditary</em> iff it is inherited by any of its closed subspaces.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>定义：</strong> 如果一个拓扑性质被其任何子空间继承，则称该性质是<em>遗传的</em>（hereditary）；如果它被其任何闭子空间继承，则称该性质是<em>闭遗传的</em>（closed-hereditary）。
+</details>
+</div>
+</div>
+<p><strong>Question:</strong> Which of the above topological propeties are hereditary? Which are closed-hereditary?</p>
+<p>In the future chapters we will focus on various definitions and study a lot of topological properties and invariants and the interactions among them.</p>
+</section>
+</section>
+<section id="category-theory-范畴论" class="level1">
+<h1>4 CATEGORY THEORY | 范畴论</h1>
+<section id="categories-范畴" class="level2">
+<h2 class="anchored" data-anchor-id="categories-范畴">4.1 Categories | 范畴</h2>
+<p>Category theory is an appropriate setting where to discuss an age-old question.</p>
+<p><strong>4.1.0.1 Question:</strong> When are two objects really the same?</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>问题：</strong> 两个对象何时才是真正的“相同”？
+</details>
+<p>The concept of “sameness” being a special kind of relationship means that objects are the same if there is a particular morphism between them. How we talk about sameness is at the heart of category theory. We take Wittgenstein’s (1922) critique, roughly speaking, to say of two things that they are identical is nonsense, and to say of one thing that it is identical with itself is to say nothing at all as an invitation to ask for less, namely isomorphic (or uniquely isomorphic) objects, rather than identical objects. In this chapter, which is mostly adapted from [9, Chapter I], we will give the formal definition of a category along with several examples.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 正文部分]
+</summary>
+“相同性”的概念作为一种特殊的关系，意味着如果对象之间存在某种特定的态射，那么它们就是相同的。我们如何讨论相同性是范畴论的核心。我们采纳维特根斯坦（1922）的批判，粗略地说，认为两个事物是恒等的是无意义的，而说一个事物与其自身恒等则什么也没表达；这启发我们去追求更弱的条件，即同构（或唯一同构）的对象，而非完全恒等的对象。在本章（主要改编自 [9, 第一章]）中，我们将给出范畴的正规定义以及若干示例。
+</details>
+<section id="metacategories-元范畴" class="level3">
+<h3 class="anchored" data-anchor-id="metacategories-元范畴">4.1.1 Metacategories | 元范畴</h3>
+<p>First we describe categories directly by means of axioms, without using any set theory, and call them “metacategories”. Actually, we begin with a simpler notion, a metagraph.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+首先，我们直接通过公理而不使用任何集合论来描述范畴，并称之为“元范畴”。实际上，我们从一个更简单的概念——元图（metagraph）开始。
+</details>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>4.1.1.1 Metagraphs | 元图
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Metagraphs:</strong> A <em>metagraph</em> consists of <em>objects</em> <span class="math inline">\(a, b, c, \dots\)</span>, <em>morphisms</em> (or <em>arrows</em>) <span class="math inline">\(f, g, h, \dots\)</span>, and two operations, as follows:</p>
+<ul>
+<li><em>Domain</em>, which assigns to each morphism <span class="math inline">\(f\)</span> an object <span class="math inline">\(a = \text{dom } f\)</span>;</li>
+<li><em>Codomain</em>, which assigns to each morphism <span class="math inline">\(f\)</span> an object <span class="math inline">\(b = \text{cod } f\)</span>.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译 - 浅绿定义块]
+</summary>
+<strong>元图：</strong> 一个<em>元图</em>由<em>对象</em> <span class="math inline">\(a, b, c, \dots\)</span>，<em>态射</em>（或称<em>箭头</em>） <span class="math inline">\(f, g, h, \dots\)</span> 以及以下两种操作组成： * <em>定义域</em>（Domain）：为每个态射 <span class="math inline">\(f\)</span> 指定一个对象 <span class="math inline">\(a = \text{dom } f\)</span>； * <em>陪域</em>（Codomain）：为每个态射 <span class="math inline">\(f\)</span> 指定一个对象 <span class="math inline">\(b = \text{cod } f\)</span>。
+</details>
+</div>
+</div>
+<p>These operations on <span class="math inline">\(f\)</span> are indicated by displaying <span class="math inline">\(f\)</span> as an actual morphism starting at its <em>domain</em> (or <em>source</em>) and ending at its <em>codomain</em> (or <em>target</em>) as <span class="math display">\[f: a \to b \quad \text{or} \quad a \xrightarrow{f} b.\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+针对 <span class="math inline">\(f\)</span> 的这些操作通过将 <span class="math inline">\(f\)</span> 展示为一个从其<em>定义域</em>（或称<em>源</em>）开始并终止于其<em>陪域</em>（或称<em>靶</em>）的实际态射来表示： <span class="math display">\[f: a \to b \quad \text{或} \quad a \xrightarrow{f} b。\]</span>
+</details>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -4,7 +4,6 @@ project:
 
 website:
   title: "拓扑学讲义翻译"
-  site-url: https://LZOI-ZJX.github.io/CourseNoteBeta/topology/
   sidebar:
     style: "floating"
     collapse-level: 2
@@ -43,7 +42,9 @@ website:
         href: sec18.qmd
       - text: "19. TOPOLOGY OF FUNCTION SPACES"
         href: sec19.qmd
-      - text: "Exercise"
+      - text: "Exercise 2-6"
+        href: Probset1.qmd
+      - text: "Exercise 11-15"
         href: Probset.qmd
       - text: "Quiz"
         href: Quiz.qmd

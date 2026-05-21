@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-04-06">
+
+<title>Fuzzy Mathematics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Fuzzy_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Fuzzy_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Fuzzy_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Fuzzy_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Fuzzy_files/libs/quarto-html/popper.min.js"></script>
+<script src="Fuzzy_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Fuzzy_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Fuzzy_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Fuzzy_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Fuzzy_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Fuzzy_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Fuzzy_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#模糊集合的基本概念与表示" id="toc-模糊集合的基本概念与表示" class="nav-link active" data-scroll-target="#模糊集合的基本概念与表示"><span class="header-section-number">1</span> 模糊集合的基本概念与表示</a>
+  <ul class="collapse">
+  <li><a href="#模糊集合的表示方法" id="toc-模糊集合的表示方法" class="nav-link" data-scroll-target="#模糊集合的表示方法"><span class="header-section-number">1.1</span> 模糊集合的表示方法</a></li>
+  </ul></li>
+  <li><a href="#分明集合与模糊集合的关系" id="toc-分明集合与模糊集合的关系" class="nav-link" data-scroll-target="#分明集合与模糊集合的关系"><span class="header-section-number">2</span> 分明集合与模糊集合的关系</a>
+  <ul class="collapse">
+  <li><a href="#分明集合及其特征函数" id="toc-分明集合及其特征函数" class="nav-link" data-scroll-target="#分明集合及其特征函数"><span class="header-section-number">2.1</span> 分明集合及其特征函数</a></li>
+  <li><a href="#模糊集合的包含与相等" id="toc-模糊集合的包含与相等" class="nav-link" data-scroll-target="#模糊集合的包含与相等"><span class="header-section-number">2.2</span> 模糊集合的包含与相等</a></li>
+  <li><a href="#模糊集合的基本运算-zadeh-算子" id="toc-模糊集合的基本运算-zadeh-算子" class="nav-link" data-scroll-target="#模糊集合的基本运算-zadeh-算子"><span class="header-section-number">2.3</span> <mark>模糊集合的基本运算 (Zadeh 算子)</mark></a></li>
+  </ul></li>
+  <li><a href="#截集与模糊度" id="toc-截集与模糊度" class="nav-link" data-scroll-target="#截集与模糊度"><span class="header-section-number">3</span> 截集与模糊度</a>
+  <ul class="collapse">
+  <li><a href="#截集-cut-sets" id="toc-截集-cut-sets" class="nav-link" data-scroll-target="#截集-cut-sets"><span class="header-section-number">3.1</span> 截集 (Cut Sets)</a></li>
+  <li><a href="#hamming-模糊度" id="toc-hamming-模糊度" class="nav-link" data-scroll-target="#hamming-模糊度"><span class="header-section-number">3.2</span> Hamming 模糊度</a></li>
+  </ul></li>
+  <li><a href="#偏序集与格-基础补充" id="toc-偏序集与格-基础补充" class="nav-link" data-scroll-target="#偏序集与格-基础补充"><span class="header-section-number">4</span> 偏序集与格 (基础补充)</a></li>
+  <li><a href="#模糊集合的运算规律" id="toc-模糊集合的运算规律" class="nav-link" data-scroll-target="#模糊集合的运算规律"><span class="header-section-number">5</span> 模糊集合的运算规律</a></li>
+  <li><a href="#偏序集的特殊元素与哈斯图" id="toc-偏序集的特殊元素与哈斯图" class="nav-link" data-scroll-target="#偏序集的特殊元素与哈斯图"><span class="header-section-number">6</span> 偏序集的特殊元素与哈斯图</a></li>
+  <li><a href="#模糊集合的支撑集核与分解定理" id="toc-模糊集合的支撑集核与分解定理" class="nav-link" data-scroll-target="#模糊集合的支撑集核与分解定理"><span class="header-section-number">7</span> 模糊集合的支撑集、核与分解定理</a></li>
+  <li><a href="#集合套与表现定理" id="toc-集合套与表现定理" class="nav-link" data-scroll-target="#集合套与表现定理"><span class="header-section-number">8</span> 集合套与表现定理</a></li>
+  <li><a href="#集合套的等价类与商集" id="toc-集合套的等价类与商集" class="nav-link" data-scroll-target="#集合套的等价类与商集"><span class="header-section-number">9</span> 集合套的等价类与商集</a></li>
+  <li><a href="#扩展原理-extension-principle" id="toc-扩展原理-extension-principle" class="nav-link" data-scroll-target="#扩展原理-extension-principle"><span class="header-section-number">10</span> 扩展原理 (Extension Principle)</a></li>
+  <li><a href="#模糊数的四则运算" id="toc-模糊数的四则运算" class="nav-link" data-scroll-target="#模糊数的四则运算"><span class="header-section-number">11</span> 模糊数的四则运算</a></li>
+  <li><a href="#模糊模式识别原则" id="toc-模糊模式识别原则" class="nav-link" data-scroll-target="#模糊模式识别原则"><span class="header-section-number">12</span> 模糊模式识别原则</a>
+  <ul class="collapse">
+  <li><a href="#最大隶属原则" id="toc-最大隶属原则" class="nav-link" data-scroll-target="#最大隶属原则"><span class="header-section-number">12.1</span> 最大隶属原则</a></li>
+  <li><a href="#阈值原则" id="toc-阈值原则" class="nav-link" data-scroll-target="#阈值原则"><span class="header-section-number">12.2</span> 阈值原则</a></li>
+  <li><a href="#最大隶属原则-ii" id="toc-最大隶属原则-ii" class="nav-link" data-scroll-target="#最大隶属原则-ii"><span class="header-section-number">12.3</span> <mark>最大隶属原则 II</mark></a></li>
+  </ul></li>
+  <li><a href="#贴近度与内积外积" id="toc-贴近度与内积外积" class="nav-link" data-scroll-target="#贴近度与内积外积"><span class="header-section-number">13</span> 贴近度与内积、外积</a></li>
+  <li><a href="#格贴近度及其公理化定义" id="toc-格贴近度及其公理化定义" class="nav-link" data-scroll-target="#格贴近度及其公理化定义"><span class="header-section-number">14</span> 格贴近度及其公理化定义</a></li>
+  <li><a href="#择近原则" id="toc-择近原则" class="nav-link" data-scroll-target="#择近原则"><span class="header-section-number">15</span> 择近原则</a></li>
+  <li><a href="#模糊关系与合成" id="toc-模糊关系与合成" class="nav-link" data-scroll-target="#模糊关系与合成"><span class="header-section-number">16</span> 模糊关系与合成</a></li>
+  <li><a href="#模糊关系合成的截集" id="toc-模糊关系合成的截集" class="nav-link" data-scroll-target="#模糊关系合成的截集"><span class="header-section-number">17</span> 模糊关系合成的截集</a></li>
+  <li><a href="#关系的性质-自反对称传递" id="toc-关系的性质-自反对称传递" class="nav-link" data-scroll-target="#关系的性质-自反对称传递"><span class="header-section-number">18</span> 关系的性质 (自反、对称、传递)</a>
+  <ul class="collapse">
+  <li><a href="#经典分明关系-r-subseteq-x-times-x" id="toc-经典分明关系-r-subseteq-x-times-x" class="nav-link" data-scroll-target="#经典分明关系-r-subseteq-x-times-x"><span class="header-section-number">18.1</span> 经典分明关系 <span class="math inline">\(R \subseteq X \times X\)</span></a></li>
+  <li><a href="#模糊关系的自反对称传递" id="toc-模糊关系的自反对称传递" class="nav-link" data-scroll-target="#模糊关系的自反对称传递"><span class="header-section-number">18.2</span> <mark>模糊关系的自反、对称、传递</mark></a></li>
+  </ul></li>
+  <li><a href="#对称闭包与传递闭包" id="toc-对称闭包与传递闭包" class="nav-link" data-scroll-target="#对称闭包与传递闭包"><span class="header-section-number">19</span> 对称闭包与传递闭包</a></li>
+  <li><a href="#关系的投影与截影" id="toc-关系的投影与截影" class="nav-link" data-scroll-target="#关系的投影与截影"><span class="header-section-number">20</span> 关系的投影与截影</a>
+  <ul class="collapse">
+  <li><a href="#分明关系的投影与截影" id="toc-分明关系的投影与截影" class="nav-link" data-scroll-target="#分明关系的投影与截影"><span class="header-section-number">20.1</span> 分明关系的投影与截影</a></li>
+  <li><a href="#模糊关系的投影与截影" id="toc-模糊关系的投影与截影" class="nav-link" data-scroll-target="#模糊关系的投影与截影"><span class="header-section-number">20.2</span> 模糊关系的投影与截影</a></li>
+  </ul></li>
+  <li><a href="#映射及其图像" id="toc-映射及其图像" class="nav-link" data-scroll-target="#映射及其图像"><span class="header-section-number">21</span> 映射及其图像</a>
+  <ul class="collapse">
+  <li><a href="#分明映射与集值映射" id="toc-分明映射与集值映射" class="nav-link" data-scroll-target="#分明映射与集值映射"><span class="header-section-number">21.1</span> 分明映射与集值映射</a></li>
+  <li><a href="#模糊集值映射" id="toc-模糊集值映射" class="nav-link" data-scroll-target="#模糊集值映射"><span class="header-section-number">21.2</span> 模糊集值映射</a></li>
+  </ul></li>
+  <li><a href="#模糊线性变换及其表示" id="toc-模糊线性变换及其表示" class="nav-link" data-scroll-target="#模糊线性变换及其表示"><span class="header-section-number">22</span> 模糊线性变换及其表示</a></li>
+  <li><a href="#模糊关系方程" id="toc-模糊关系方程" class="nav-link" data-scroll-target="#模糊关系方程"><span class="header-section-number">23</span> 模糊关系方程</a></li>
+  <li><a href="#つかもと法-塚本模糊推理法" id="toc-つかもと法-塚本模糊推理法" class="nav-link" data-scroll-target="#つかもと法-塚本模糊推理法"><span class="header-section-number">24</span> つかもと法 (塚本模糊推理法)</a>
+  <ul class="collapse">
+  <li><a href="#规则形式" id="toc-规则形式" class="nav-link" data-scroll-target="#规则形式"><span class="header-section-number">24.1</span> 规则形式</a></li>
+  <li><a href="#计算步骤" id="toc-计算步骤" class="nav-link" data-scroll-target="#计算步骤"><span class="header-section-number">24.2</span> 计算步骤</a></li>
+  <li><a href="#特点总结" id="toc-特点总结" class="nav-link" data-scroll-target="#特点总结"><span class="header-section-number">24.3</span> 特点总结</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fuzzy Mathematics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 6, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="模糊集合的基本概念与表示" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="模糊集合的基本概念与表示"><span class="header-section-number">1</span> 模糊集合的基本概念与表示</h2>
+<p><strong>定义</strong>：设论域为 <span class="math inline">\(X\)</span>，若对任意 <span class="math inline">\(x \in X\)</span>，存在唯一确定的 <span class="math inline">\(\mu_{\underset{\sim}{A}}(x) \in [0, 1]\)</span> 与之对应，则称映射： <span class="math display">\[
+\mu_{\underset{\sim}{A}}: X \to [0, 1], \quad x \mapsto \mu_{\underset{\sim}{A}}(x)
+\]</span></p>
+<p>确定了一个 <span class="math inline">\(X\)</span> 上的<strong>模糊集合</strong> <span class="math inline">\(\underset{\sim}{A}\)</span>。</p>
+<p>对任意的 <span class="math inline">\(x \in X\)</span>，<span class="math inline">\(\mu_{\underset{\sim}{A}}\)</span> 在 <span class="math inline">\(x\)</span> 处的函数值 <span class="math inline">\(\mu_{\underset{\sim}{A}}(x)\)</span> 称为 <span class="math inline">\(x\)</span> 对 <span class="math inline">\(\underset{\sim}{A}\)</span> 的<strong>隶属度</strong>，而映射 <span class="math inline">\(\mu_{\underset{\sim}{A}}\)</span> 称为模糊集合 <span class="math inline">\(\underset{\sim}{A}\)</span> 的<strong>隶属函数</strong>。</p>
+<section id="模糊集合的表示方法" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="模糊集合的表示方法"><span class="header-section-number">1.1</span> 模糊集合的表示方法</h3>
+<p>记 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>（<span class="math inline">\(\mathcal{F}(X)\)</span> 表示 <span class="math inline">\(X\)</span> 的模糊幂集）。</p>
+<p><strong>1. Zadeh 记法</strong> 对于有限集 <span class="math inline">\(X = \{x_1, x_2, \dots, x_n\}\)</span>： <span class="math display">\[
+\underset{\sim}{A} = \frac{\mu_{\underset{\sim}{A}}(x_1)}{x_1} + \frac{\mu_{\underset{\sim}{A}}(x_2)}{x_2} + \dots + \frac{\mu_{\underset{\sim}{A}}(x_n)}{x_n} = \sum_{i=1}^n \frac{\mu_{\underset{\sim}{A}}(x_i)}{x_i}
+\]</span> 对无穷集类似，若 <span class="math inline">\(X = [a, b] \subseteq \mathbb{R}\)</span>，则： <span class="math display">\[
+\underset{\sim}{A} = \int_X \frac{\mu_{\underset{\sim}{A}}(x)}{x}
+\]</span> <em>(注：这里的“<span class="math inline">\(+\)</span>”、“<span class="math inline">\(\sum\)</span>”、“<span class="math inline">\(\int\)</span>”以及分数线均为形式记号，不代表常规的加法、积分和除法运算。)</em></p>
+<p><strong>2. 序对表示法</strong> <span class="math display">\[
+\underset{\sim}{A} = \{(x, \mu_{\underset{\sim}{A}}(x)) \mid x \in X\}
+\]</span></p>
+<p><strong>3. 向量表示法</strong>（隶属度为 0 的项不可省略） 当 <span class="math inline">\(X = \{x_1, x_2, \dots, x_n\}\)</span> 时： <span class="math display">\[
+\underset{\sim}{A} = (\mu_{\underset{\sim}{A}}(x_1), \mu_{\underset{\sim}{A}}(x_2), \dots, \mu_{\underset{\sim}{A}}(x_n))
+\]</span></p>
+<hr>
+</section>
+</section>
+<section id="分明集合与模糊集合的关系" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="分明集合与模糊集合的关系"><span class="header-section-number">2</span> 分明集合与模糊集合的关系</h2>
+<section id="分明集合及其特征函数" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="分明集合及其特征函数"><span class="header-section-number">2.1</span> 分明集合及其特征函数</h3>
+<p>对于 <span class="math inline">\(A \in \mathscr{P}(X)\)</span>（<span class="math inline">\(\mathscr{P}(X)\)</span> 为经典幂集），定义 <span class="math inline">\(\chi_A: X \to \{0, 1\}, x \mapsto \chi_A(x)\)</span>，其中： <span class="math display">\[
+\chi_A(x) = \begin{cases}
+1 &amp; x \in A \\
+0 &amp; x \notin A
+\end{cases}
+\]</span> <span class="math inline">\(\chi_A\)</span> 称为集合 <span class="math inline">\(A\)</span> 的特征函数。</p>
+<ul>
+<li>空集 <span class="math inline">\(\emptyset\)</span> 的特征函数：<span class="math inline">\(\chi_{\emptyset}(x) = 0 \quad (\forall x \in X)\)</span></li>
+<li>全集 <span class="math inline">\(X\)</span> 的特征函数：<span class="math inline">\(\chi_X(x) = 1 \quad (\forall x \in X)\)</span></li>
+</ul>
+<p><strong>集合的相关关系</strong>：</p>
+<ul>
+<li><strong>相等</strong>：<span class="math inline">\(A = B \iff \chi_A(x) = \chi_B(x) \quad (\forall x \in X)\)</span></li>
+<li><strong>包含</strong>：<span class="math inline">\(A \subseteq B \iff \chi_A(x) \le \chi_B(x) \quad (\forall x \in X)\)</span></li>
+<li><strong>真包含</strong>：<span class="math inline">\(A \subsetneq B \iff A \subseteq B \text{ 且 } A \neq B \iff \chi_A(x) \le \chi_B(x) \ (\forall x \in X) \text{ 且 } \exists x_0 \in X \text{ s.t. } \chi_A(x_0) \neq \chi_B(x_0)\)</span></li>
+</ul>
+</section>
+<section id="模糊集合的包含与相等" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="模糊集合的包含与相等"><span class="header-section-number">2.2</span> 模糊集合的包含与相等</h3>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，则：</p>
+<ul>
+<li><strong>包含</strong>：<span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B} \iff \mu_{\underset{\sim}{A}}(x) \le \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)\)</span></li>
+<li><strong>相等</strong>：<span class="math inline">\(\underset{\sim}{A} = \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{B} \subseteq \underset{\sim}{A} \iff \mu_{\underset{\sim}{A}}(x) = \mu_{\underset{\sim}{B}}(x) \quad (\forall x \in X)\)</span></li>
+<li><strong>真包含</strong>：<span class="math inline">\(\underset{\sim}{A} \subsetneq \underset{\sim}{B} \iff \underset{\sim}{A} \subseteq \underset{\sim}{B} \text{ 且 } \underset{\sim}{A} \neq \underset{\sim}{B}\)</span></li>
+</ul>
+</section>
+<section id="模糊集合的基本运算-zadeh-算子" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="模糊集合的基本运算-zadeh-算子"><span class="header-section-number">2.3</span> <mark>模糊集合的基本运算 (Zadeh 算子)</mark></h3>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，Zadeh 提出了模糊集合最经典的三大基本运算（即 <strong>Zadeh 算子</strong>）：</p>
+<ul>
+<li><p><mark>并集 (Union)</mark>：<span class="math inline">\(\underset{\sim}{A} \cup \underset{\sim}{B}\)</span></p>
+<p>其隶属函数定义为<strong>取大</strong>运算：</p></li>
+</ul>
+<p><span class="math display">\[
+\mu_{\underset{\sim}{A} \cup \underset{\sim}{B}}(x) = \mu_{\underset{\sim}{A}}(x) \vee \mu_{\underset{\sim}{B}}(x) = \max\{\mu_{\underset{\sim}{A}}(x), \mu_{\underset{\sim}{B}}(x)\}
+\]</span></p>
+<ul>
+<li><p><mark>交集 (Intersection)</mark>：<span class="math inline">\(\underset{\sim}{A} \cap \underset{\sim}{B}\)</span></p>
+<p>其隶属函数定义为<strong>取小</strong>运算：</p></li>
+</ul>
+<p><span class="math display">\[
+\mu_{\underset{\sim}{A} \cap \underset{\sim}{B}}(x) = \mu_{\underset{\sim}{A}}(x) \wedge \mu_{\underset{\sim}{B}}(x) = \min\{\mu_{\underset{\sim}{A}}(x), \mu_{\underset{\sim}{B}}(x)\}
+\]</span></p>
+<ul>
+<li><p><mark>补集 (Complement)</mark>：<span class="math inline">\(\underset{\sim}{A}^c\)</span></p>
+<p>其隶属函数定义为：</p>
+<p><span class="math display">\[\mu_{\underset{\sim}{A}^c}(x) = 1 - \mu_{\underset{\sim}{A}}(x)\]</span></p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="截集与模糊度" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="截集与模糊度"><span class="header-section-number">3</span> 截集与模糊度</h2>
+<section id="截集-cut-sets" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="截集-cut-sets"><span class="header-section-number">3.1</span> 截集 (Cut Sets)</h3>
+<ul>
+<li><p><strong><span class="math inline">\(\lambda\)</span>-截集</strong>： <span class="math display">\[
+A_\lambda = \{x \in X \mid \mu_{\underset{\sim}{A}}(x) \ge \lambda\}
+\]</span></p></li>
+<li><p><strong>强 <span class="math inline">\(\lambda\)</span>-截集</strong>： <span class="math display">\[
+  A_{\dot{\lambda}} = \{x \in X \mid \mu_{\underset{\sim}{A}}(x) &gt; \lambda\}
+\]</span></p></li>
+</ul>
+<p><strong>截集的性质</strong>： 若 <span class="math inline">\(\lambda_1 &lt; \lambda_2\)</span>，则有： <span class="math display">\[
+A_{\lambda_2} \subseteq A_{\dot{\lambda}_1} \subseteq A_{\lambda_1}
+\]</span></p>
+</section>
+<section id="hamming-模糊度" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="hamming-模糊度"><span class="header-section-number">3.2</span> Hamming 模糊度</h3>
+<p><strong>定义</strong>： <span class="math display">\[
+d_1(\underset{\sim}{A}) = \frac{2}{n} \sum_{i=1}^n |\mu_{\underset{\sim}{A}}(x_i) - \chi_{A_{0.5}}(x_i)|
+\]</span></p>
+<p>其中，<span class="math inline">\(\chi_{A_{0.5}}(x_i)\)</span> 是分明集合 <span class="math inline">\(A_{0.5}\)</span>（即 0.5-截集）的特征函数：</p>
+<p><span class="math display">\[
+\chi_{A_{0.5}}(x_i) = \begin{cases}
+1 &amp; \mu_{\underset{\sim}{A}}(x_i) \ge 0.5 \\
+0 &amp; \mu_{\underset{\sim}{A}}(x_i) &lt; 0.5
+\end{cases}
+\]</span></p>
+<hr>
+</section>
+</section>
+<section id="偏序集与格-基础补充" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="偏序集与格-基础补充"><span class="header-section-number">4</span> 偏序集与格 (基础补充)</h2>
+<p><strong>定义</strong>：设 <span class="math inline">\((X, \le)\)</span> 是一个偏序集， <span class="math inline">\(A \subseteq X\)</span>。</p>
+<ul>
+<li><strong>上界 (下界)</strong>：若存在 <span class="math inline">\(\alpha \in X\)</span>，s.t. <span class="math inline">\(\forall x \in A\)</span>，<span class="math inline">\(x \le \alpha\)</span> (<span class="math inline">\(\alpha \le x\)</span>)，则称 <span class="math inline">\(\alpha\)</span> 是 <span class="math inline">\(A\)</span> 的一个上界 (下界)。</li>
+<li><strong>上确界 (下确界)</strong>：若 <span class="math inline">\(\alpha\)</span> 是 <span class="math inline">\(A\)</span> 的一个上界 (下界)，且对于 <span class="math inline">\(A\)</span> 的任意上界 (下界) <span class="math inline">\(u\)</span>，都有 <span class="math inline">\(\alpha \le u\)</span> (<span class="math inline">\(u \le \alpha\)</span>)，则称 <span class="math inline">\(\alpha\)</span> 是 <span class="math inline">\(A\)</span> 的上确界 (下确界)。
+<ul>
+<li><span class="math inline">\(\alpha = \sup \{x \mid x \in A\}\)</span></li>
+<li>(<span class="math inline">\(\alpha = \inf \{x \mid x \in A\}\)</span>)</li>
+</ul></li>
+<li>若 <span class="math inline">\(A\)</span> 的上、下确界都存在，记：
+<ul>
+<li><span class="math inline">\(\vee A = \vee \{x \mid x \in A\} = \sup A\)</span></li>
+<li><span class="math inline">\(\wedge A = \wedge \{x \mid x \in A\} = \inf A\)</span></li>
+</ul></li>
+</ul>
+<p><strong>格 (Lattice) 的定义</strong>：</p>
+<p><span class="math inline">\((X, \le)\)</span> 是偏序集，若对 <span class="math inline">\(\forall x, y \in X\)</span>，子集 <span class="math inline">\(\{x, y\}\)</span> 的上下确界都存在，则称 <span class="math inline">\((X, \le)\)</span> 是一个格。</p>
+</section>
+<section id="模糊集合的运算规律" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="模糊集合的运算规律"><span class="header-section-number">5</span> 模糊集合的运算规律</h2>
+<p>设 <mark><span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)\)</span></mark></p>
+<ul>
+<li><mark>幂等律</mark>： <span class="math display">\[ \underset{\sim}{A} \cup \underset{\sim}{A} = \underset{\sim}{A}, \quad \underset{\sim}{A} \cap \underset{\sim}{A} = \underset{\sim}{A} \]</span></li>
+<li><mark>交换律</mark>： <span class="math display">\[ \underset{\sim}{A} \cup \underset{\sim}{B} = \underset{\sim}{B} \cup \underset{\sim}{A}, \quad \underset{\sim}{A} \cap \underset{\sim}{B} = \underset{\sim}{B} \cap \underset{\sim}{A} \]</span></li>
+<li><mark>结合律</mark>： <span class="math display">\[ (\underset{\sim}{A} \cup \underset{\sim}{B}) \cup \underset{\sim}{C} = \underset{\sim}{A} \cup (\underset{\sim}{B} \cup \underset{\sim}{C}) \]</span> <span class="math display">\[ (\underset{\sim}{A} \cap \underset{\sim}{B}) \cap \underset{\sim}{C} = \underset{\sim}{A} \cap (\underset{\sim}{B} \cap \underset{\sim}{C}) \]</span></li>
+<li><mark>吸收律</mark>： <span class="math display">\[ \underset{\sim}{A} \cup (\underset{\sim}{A} \cap \underset{\sim}{B}) = \underset{\sim}{A}, \quad \underset{\sim}{A} \cap (\underset{\sim}{A} \cup \underset{\sim}{B}) = \underset{\sim}{A} \]</span></li>
+<li><mark>分配律</mark>： <span class="math display">\[ \underset{\sim}{A} \cap (\underset{\sim}{B} \cup \underset{\sim}{C}) = (\underset{\sim}{A} \cap \underset{\sim}{B}) \cup (\underset{\sim}{A} \cap \underset{\sim}{C}) \]</span> <span class="math display">\[ \underset{\sim}{A} \cup (\underset{\sim}{B} \cap \underset{\sim}{C}) = (\underset{\sim}{A} \cup \underset{\sim}{B}) \cap (\underset{\sim}{A} \cup \underset{\sim}{C}) \]</span></li>
+<li><mark>两极律</mark>： <span class="math display">\[ \underset{\sim}{A} \cup X = X, \quad \underset{\sim}{A} \cap \emptyset = \emptyset \]</span> <span class="math display">\[ \underset{\sim}{A} \cap X = \underset{\sim}{A}, \quad \underset{\sim}{A} \cup \emptyset = \underset{\sim}{A} \]</span></li>
+<li><mark>对偶律</mark>： <span class="math display">\[ (\underset{\sim}{A} \cup \underset{\sim}{B})^c = \underset{\sim}{A}^c \cap \underset{\sim}{B}^c, \quad (\underset{\sim}{A} \cap \underset{\sim}{B})^c = \underset{\sim}{A}^c \cup \underset{\sim}{B}^c \]</span></li>
+</ul>
+<hr>
+</section>
+<section id="偏序集的特殊元素与哈斯图" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="偏序集的特殊元素与哈斯图"><span class="header-section-number">6</span> 偏序集的特殊元素与哈斯图</h2>
+<p><mark>def.</mark> <span class="math inline">\((X, \le)\)</span> 是一个偏序集。</p>
+<ul>
+<li>若存在 <span class="math inline">\(u \in X\)</span>，s.t. 对 <span class="math inline">\(\forall x \in X\)</span> 有 <span class="math inline">\(x \le u \ (u \le x)\)</span>，则称 <span class="math inline">\(u\)</span> 是 <span class="math inline">\((X, \le)\)</span> 的<mark>最大元 (最小元)</mark>。</li>
+<li>若对 <span class="math inline">\(u \in X\)</span>，s.t. <span class="math inline">\(\forall x \in X\)</span>，若 <span class="math inline">\(u \le x \ (x \le u)\)</span>，则 <span class="math inline">\(u = x\)</span>，则称 <span class="math inline">\(u\)</span> 是 <span class="math inline">\((X, \le)\)</span> 的<mark>极大元 (极小元)</mark>。</li>
+</ul>
+<p><mark>哈斯图</mark>：表示有限偏序集关系的图。</p>
+<p>省略环，省去传递边，箭头（以上下位置关系表示）。</p>
+<p><em>(示例图意：底部为1，中间为2, 3，顶部为4, 6)</em></p>
+<hr>
+</section>
+<section id="模糊集合的支撑集核与分解定理" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="模糊集合的支撑集核与分解定理"><span class="header-section-number">7</span> 模糊集合的支撑集、核与分解定理</h2>
+<p><mark>def.</mark> <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span></p>
+<ul>
+<li>称 <span class="math inline">\(A_0\)</span> 为 <mark><span class="math inline">\(\underset{\sim}{A}\)</span> 的支撑集 (Supp <span class="math inline">\(\underset{\sim}{A}\)</span>)</mark>： <span class="math display">\[ \operatorname{Supp} \underset{\sim}{A} = A_0 = \{x \in X \mid \underset{\sim}{A}(x) &gt; 0\} \]</span></li>
+<li>称 <span class="math inline">\(A_1\)</span> 为 <mark><span class="math inline">\(\underset{\sim}{A}\)</span> 的核 (Ker <span class="math inline">\(\underset{\sim}{A}\)</span>)</mark>： <span class="math display">\[ \operatorname{Ker} \underset{\sim}{A} = A_1 = \{x \in X \mid \underset{\sim}{A}(x) = 1\} \]</span></li>
+</ul>
+<p><mark>def.</mark> 设 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>, <span class="math inline">\(\lambda \in [0, 1]\)</span>。称 <span class="math inline">\(\lambda \underset{\sim}{A}\)</span> 为数 <span class="math inline">\(\lambda\)</span> 与模糊集合 <span class="math inline">\(\underset{\sim}{A}\)</span> 的<mark>数乘模糊集</mark>，其隶属函数为：</p>
+<p><span class="math display">\[
+(\lambda \underset{\sim}{A})(x) = \lambda \wedge \underset{\sim}{A}(x), \quad x \in X
+\]</span></p>
+<p><mark>prop.</mark></p>
+<ul>
+<li><span class="math inline">\(\lambda_1 &lt; \lambda_2 \implies \lambda_1 \underset{\sim}{A} \subseteq \lambda_2 \underset{\sim}{A}\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B} \implies \lambda \underset{\sim}{A} \subseteq \lambda \underset{\sim}{B}\)</span></li>
+</ul>
+<p><mark>Thm. 分解定理</mark>：设 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则：</p>
+<p><span class="math display">\[ \underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda A_\lambda \]</span></p>
+<p><mark>cor.</mark> 若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则：</p>
+<p><span class="math display">\[ \underset{\sim}{A}(x) = \bigvee \{\lambda \in [0, 1] \mid x \in A_\lambda\}, \quad x \in X \]</span></p>
+<p><mark>Thm.</mark> 若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则利用强截集也有：</p>
+<p><span class="math display">\[ \underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda A_{\dot{\lambda}} \]</span></p>
+<p><mark>cor.</mark></p>
+<p><span class="math display">\[ \underset{\sim}{A}(x) = \bigvee \{\lambda \in [0, 1] \mid x \in A_{\dot{\lambda}}\}, \quad x \in X \]</span></p>
+<hr>
+</section>
+<section id="集合套与表现定理" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="集合套与表现定理"><span class="header-section-number">8</span> 集合套与表现定理</h2>
+<p><mark>def. 集合套</mark></p>
+<p>设集值映射 <span class="math inline">\(H: [0, 1] \to \mathscr{P}(X), \lambda \mapsto H(\lambda)\)</span>。</p>
+<p>对 <span class="math inline">\(\forall \lambda_1, \lambda_2 \in [0, 1]\)</span>，若：</p>
+<p><span class="math display">\[ \lambda_1 &lt; \lambda_2 \implies H(\lambda_2) \subseteq H(\lambda_1) \]</span></p>
+<p>则称集值映射 <span class="math inline">\(H\)</span> 是 <span class="math inline">\(X\)</span> 上的一个<strong>集合套</strong>。也称集合族 <span class="math inline">\(\{H(\lambda)\}_{\lambda \in [0, 1]}\)</span> 是 <span class="math inline">\(X\)</span> 上的一个集合套。</p>
+<p><span class="math inline">\(X\)</span> 上集合套的全体记为 <mark><span class="math inline">\(\mathcal{U}(X)\)</span></mark>。</p>
+<p><mark>def.</mark> 集合套的并与交运算：</p>
+<p><span class="math display">\[ (H_1 \cup H_2)(\lambda) = H_1(\lambda) \cup H_2(\lambda), \quad \lambda \in [0, 1] \ (\text{并}) \]</span> <span class="math display">\[ (H_1 \cap H_2)(\lambda) = H_1(\lambda) \cap H_2(\lambda), \quad \lambda \in [0, 1] \ (\text{交}) \]</span></p>
+<p><mark>Thm.</mark> <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，集值映射 <span class="math inline">\(H: [0, 1] \to \mathscr{P}(X), \lambda \mapsto H(\lambda)\)</span>。且对任意的 <span class="math inline">\(\lambda \in [0, 1]\)</span> 有 <span class="math inline">\(A_{\dot{\lambda}} \subseteq H(\lambda) \subseteq A_\lambda\)</span>，则：</p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{A} = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)\)</span></li>
+<li><span class="math inline">\(0 \le \lambda_1 &lt; \lambda_2 \le 1 \implies H(\lambda_2) \subseteq H(\lambda_1)\)</span></li>
+<li><span class="math inline">\(\lambda \in (0, 1] \implies A_\lambda = \bigcap_{\alpha &lt; \lambda} H(\alpha)\)</span> <span class="math inline">\(\lambda \in [0, 1) \implies A_{\dot{\lambda}} = \bigcup_{\alpha &gt; \lambda} H(\alpha)\)</span></li>
+</ol>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，记 <span class="math inline">\(\lambda_x = \underset{\sim}{A}(x)\)</span> (<span class="math inline">\(x \in X\)</span>)，则：</p>
+<p><span class="math display">\[ \underset{\sim}{A} = \bigcup_{x \in X} \lambda_x \{x\} \]</span></p>
+<p><mark>Thm. 表现定理</mark></p>
+<p>令 <span class="math inline">\(T: \mathcal{U}(X) \to \mathcal{F}(X), H \mapsto T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)\)</span></p>
+<p>则 <span class="math inline">\(T\)</span> 是从 <span class="math inline">\((\mathcal{U}(X), \cup, \cap, {}^c)\)</span> 到 <span class="math inline">\((\mathcal{F}(X), \cup, \cap, {}^c)\)</span> 的<mark>同态满射</mark>，且：</p>
+<ol type="1">
+<li><span class="math inline">\(\forall \lambda \in [0, 1]\)</span>，有 <span class="math inline">\(T(H)_{\dot{\lambda}} \subseteq H(\lambda) \subseteq T(H)_\lambda\)</span></li>
+<li>若 <span class="math inline">\(\lambda \in (0, 1]\)</span>，则 <span class="math inline">\(T(H)_\lambda = \bigcap_{\alpha &lt; \lambda} H(\alpha)\)</span></li>
+<li>若 <span class="math inline">\(\lambda \in [0, 1)\)</span>，则 <span class="math inline">\(T(H)_{\dot{\lambda}} = \bigcup_{\alpha &gt; \lambda} H(\alpha)\)</span></li>
+</ol>
+<p>表现定理提供了一种构造模糊集合的方法。</p>
+<p>若 <span class="math inline">\(H\)</span> 是 <span class="math inline">\(X\)</span> 上的一个集合套，则 <span class="math inline">\(T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda)\)</span> 是 <span class="math inline">\(X\)</span> 上的一个模糊集合。其隶属函数为：</p>
+<p><span class="math display">\[ T(H)(x) = \bigvee \{\lambda \in [0, 1] \mid x \in H(\lambda)\}, \quad x \in X \]</span></p>
+<p>称 <span class="math inline">\(T(H)\)</span> 是<strong>由集合套 <span class="math inline">\(H\)</span> 所确定的模糊集合</strong>。</p>
+</section>
+<section id="集合套的等价类与商集" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="集合套的等价类与商集"><span class="header-section-number">9</span> 集合套的等价类与商集</h2>
+<p><mark>集合套的等价类</mark></p>
+<p>定义：<span class="math inline">\(H' \sim H \iff T(H') = T(H)\)</span></p>
+<p>“<span class="math inline">\(\sim\)</span>” 是集合套全体 <span class="math inline">\(\mathcal{U}(X)\)</span> 上的一个<mark>等价关系</mark>。</p>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(H_1, H_2 \in \mathcal{U}(X)\)</span>，则下列条件等价：</p>
+<ol type="1">
+<li><span class="math inline">\(H_1 \sim H_2\)</span></li>
+<li><span class="math inline">\(\bigcap_{\alpha &lt; \lambda} H_1(\alpha) = \bigcap_{\alpha &lt; \lambda} H_2(\alpha), \quad \lambda \in (0, 1]\)</span></li>
+<li><span class="math inline">\(\bigcup_{\alpha &gt; \lambda} H_1(\alpha) = \bigcup_{\alpha &gt; \lambda} H_2(\alpha), \quad \lambda \in [0, 1)\)</span></li>
+</ol>
+<p><mark>商集</mark>：<span class="math inline">\(\mathcal{U}'(X) = \mathcal{U}(X) / \sim\)</span></p>
+<p>商集 <span class="math inline">\(\mathcal{U}'(X)\)</span> 中的<mark>并、交、补运算</mark>：</p>
+<ul>
+<li><span class="math inline">\([H_1] \cup [H_2] := [H_1 \cup H_2]\)</span></li>
+<li><span class="math inline">\([H_1] \cap [H_2] := [H_1 \cap H_2]\)</span></li>
+<li><span class="math inline">\([H]^c := [H^c]\)</span></li>
+</ul>
+<p><em>(注：上述运算与代表元的选取无关)</em></p>
+<p><mark>Prop.</mark> 令映射：</p>
+<p><span class="math display">\[ T': \mathcal{U}'(X) \to \mathcal{F}(X) \]</span></p>
+<p><span class="math display">\[ [H] \mapsto T(H) = \bigcup_{\lambda \in [0, 1]} \lambda H(\lambda) \]</span> 则 <span class="math inline">\(T'\)</span> 是从 <span class="math inline">\((\mathcal{U}'(X), \cup, \cap, {}^c)\)</span> 到 <span class="math inline">\((\mathcal{F}(X), \cup, \cap, {}^c)\)</span> 的<mark>同构映射</mark>。</p>
+<hr>
+</section>
+<section id="扩展原理-extension-principle" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="扩展原理-extension-principle"><span class="header-section-number">10</span> 扩展原理 (Extension Principle)</h2>
+<p><mark>def.</mark> 设映射 <span class="math inline">\(f: X \to Y\)</span></p>
+<ol type="1">
+<li>若 <span class="math inline">\(A \in \mathscr{P}(X)\)</span>，则 <span class="math inline">\(f(A) = \{y \in Y \mid \exists x \in A \text{ s.t. } f(x) = y\}\)</span>。称 <span class="math inline">\(f(A)\)</span> 为分明集合 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(f\)</span> 下的<mark>像</mark>。</li>
+<li>若 <span class="math inline">\(B \in \mathscr{P}(Y)\)</span>，则 <span class="math inline">\(f^{-1}(B) = \{x \in X \mid f(x) \in B\}\)</span>。称为分明集合 <span class="math inline">\(B\)</span> 在 <span class="math inline">\(f\)</span> 下的<mark>原像或逆像</mark>。</li>
+</ol>
+<p><mark>Lemma.</mark> 对于映射 <span class="math inline">\(f: X \to Y\)</span>：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(A \in \mathscr{P}(X)\)</span>，则 <span class="math inline">\(f(A)\)</span> 的特征函数为：<span class="math inline">\(\chi_{f(A)}(y) = \bigvee_{f(x)=y} \chi_A(x), \quad y \in Y\)</span></li>
+<li>若 <span class="math inline">\(B \in \mathscr{P}(Y)\)</span>，则 <span class="math inline">\(f^{-1}(B)\)</span> 的特征函数为：<span class="math inline">\(\chi_{f^{-1}(B)}(x) = \chi_B(f(x)), \quad x \in X\)</span></li>
+</ol>
+<p><mark>def. 扩展原理 (隶属函数形式)</mark></p>
+<p>设映射 <span class="math inline">\(f: X \to Y, x \mapsto f(x) = y\)</span>。则由 <span class="math inline">\(f\)</span> 可以诱导如下两个映射：</p>
+<ul>
+<li><span class="math inline">\(f: \mathcal{F}(X) \to \mathcal{F}(Y), \quad \underset{\sim}{A} \mapsto f(\underset{\sim}{A})\)</span></li>
+<li><span class="math inline">\(f^{-1}: \mathcal{F}(Y) \to \mathcal{F}(X), \quad \underset{\sim}{B} \mapsto f^{-1}(\underset{\sim}{B})\)</span></li>
+</ul>
+<p>其中 <span class="math inline">\(f(\underset{\sim}{A})\)</span> 的隶属函数为：</p>
+<p><span class="math display">\[ f(\underset{\sim}{A})(y) = \bigvee_{f(x)=y} \underset{\sim}{A}(x), \quad y \in Y \]</span></p>
+<p>称为模糊集合 <span class="math inline">\(\underset{\sim}{A}\)</span> 在 <span class="math inline">\(f\)</span> 下的像。</p>
+<p><span class="math inline">\(f^{-1}(\underset{\sim}{B})\)</span> 的隶属函数为：</p>
+<p><span class="math display">\[ f^{-1}(\underset{\sim}{B})(x) = \underset{\sim}{B}(f(x)), \quad x \in X \]</span></p>
+<p><strong>推导思路</strong>：设 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，对 <span class="math inline">\(\forall \lambda \in [0, 1]\)</span>，由经典扩展原理：</p>
+<p><span class="math display">\[ f(A_\lambda) = \{y \in Y \mid \exists x \in A_\lambda \text{ s.t. } f(x)=y\} = \{f(x) \mid x \in A_\lambda\} \]</span></p>
+<p>由于 <span class="math inline">\(\lambda_1 &lt; \lambda_2 \implies A_{\lambda_2} \subseteq A_{\lambda_1} \implies f(A_{\lambda_2}) \subseteq f(A_{\lambda_1})\)</span>，故 <span class="math inline">\(\{f(A_\lambda)\}_{\lambda \in [0, 1]}\)</span> 是 <span class="math inline">\(Y\)</span> 上的集合套。由表现定理，<span class="math inline">\(\{f(A_\lambda)\}_{\lambda \in [0, 1]}\)</span> 唯一确定 <span class="math inline">\(Y\)</span> 上一个模糊集合 <span class="math inline">\(\bigcup_{\lambda \in [0, 1]} \lambda f(A_\lambda)\)</span>。（对 <span class="math inline">\(\underset{\sim}{B} \in \mathcal{F}(Y)\)</span> 同理）</p>
+<p><mark>Thm. 扩展原理 I (截集形式)</mark></p>
+<p>设 <span class="math inline">\(f: X \to Y\)</span>：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则 <span class="math inline">\(f(\underset{\sim}{A}) = \bigcup_{\lambda \in [0, 1]} \lambda f(A_\lambda)\)</span></li>
+<li>若 <span class="math inline">\(\underset{\sim}{B} \in \mathcal{F}(Y)\)</span>，则 <span class="math inline">\(f^{-1}(\underset{\sim}{B}) = \bigcup_{\lambda \in [0, 1]} \lambda f^{-1}(B_\lambda)\)</span></li>
+</ol>
+<p><mark>Cor.</mark> 设 <span class="math inline">\(f: X \to Y\)</span>：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则 <span class="math inline">\(f(\underset{\sim}{A})(y) = \bigvee \{\lambda \in [0, 1] \mid y \in f(A_\lambda)\}, \quad y \in Y\)</span></li>
+<li>若 <span class="math inline">\(\underset{\sim}{B} \in \mathcal{F}(Y)\)</span>，则 <span class="math inline">\(f^{-1}(\underset{\sim}{B})(x) = \bigvee \{\lambda \in [0, 1] \mid x \in f^{-1}(B_\lambda)\}, \quad x \in X\)</span></li>
+</ol>
+<p><mark>Thm. 扩展原理 II (强截集/一般集套形式)</mark></p>
+<p>设 <span class="math inline">\(f: X \to Y\)</span>：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，对 <span class="math inline">\(\forall \lambda \in [0, 1]\)</span>，有 <span class="math inline">\(A_{\dot{\lambda}} \subseteq H_A(\lambda) \subseteq A_\lambda\)</span> 则 <span class="math inline">\(f(\underset{\sim}{A}) = \bigcup_{\lambda \in [0, 1]} \lambda f(H_A(\lambda))\)</span></li>
+</ol>
+<p>且满足：</p>
+<ul>
+<li><span class="math inline">\(\forall \lambda \in [0, 1], \quad f(\underset{\sim}{A})_{\dot{\lambda}} \subseteq f(H_A(\lambda)) \subseteq f(\underset{\sim}{A})_\lambda\)</span></li>
+<li>若 <span class="math inline">\(\lambda \in (0, 1]\)</span>，则 <span class="math inline">\(f(\underset{\sim}{A})_\lambda = \bigcap_{\alpha &lt; \lambda} f(H_A(\alpha))\)</span></li>
+<li>若 <span class="math inline">\(\lambda \in [0, 1)\)</span>，则 <span class="math inline">\(f(\underset{\sim}{A})_{\dot{\lambda}} = \bigcup_{\alpha &gt; \lambda} f(H_A(\alpha))\)</span></li>
+</ul>
+<ol start="2" type="1">
+<li>对 <span class="math inline">\(\underset{\sim}{B} \in \mathcal{F}(Y)\)</span> 同理。</li>
+</ol>
+<hr>
+</section>
+<section id="模糊数的四则运算" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="模糊数的四则运算"><span class="header-section-number">11</span> 模糊数的四则运算</h2>
+<p><mark>模糊加法</mark></p>
+<p><span class="math display">\[ \underset{\sim}{A} + \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda + B_\lambda) \]</span></p>
+<p><span class="math display">\[ (\underset{\sim}{A} + \underset{\sim}{B})(z) = \bigvee_{x+y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{x \in \mathbb{R}} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(z-x)), \quad z \in \mathbb{R} \]</span></p>
+<p><mark>模糊减法</mark></p>
+<p><span class="math display">\[ \underset{\sim}{A} - \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda - B_\lambda) \]</span></p>
+<p><span class="math display">\[ (\underset{\sim}{A} - \underset{\sim}{B})(z) = \bigvee_{x-y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{x \in \mathbb{R}} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(x-z)), \quad z \in \mathbb{R} \]</span></p>
+<p><mark>模糊乘法</mark></p>
+<p><span class="math display">\[ \underset{\sim}{A} \cdot \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda \cdot B_\lambda) \]</span></p>
+<p><span class="math display">\[
+(\underset{\sim}{A} \cdot \underset{\sim}{B})(z) = \bigvee_{x \cdot y = z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) =
+\begin{cases}
+\bigvee_{x \neq 0} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(z/x)), &amp; z \neq 0 \\
+\left( \underset{\sim}{A}(0) \wedge \big( \bigvee_{y \in \mathbb{R}} \underset{\sim}{B}(y) \big) \right) \vee \left( \underset{\sim}{B}(0) \wedge \big( \bigvee_{x \in \mathbb{R}} \underset{\sim}{A}(x) \big) \right), &amp; z = 0
+\end{cases}
+\]</span></p>
+<p><mark>模糊除法</mark></p>
+<p><span class="math display">\[ \underset{\sim}{A} / \underset{\sim}{B} = \bigcup_{\lambda \in [0, 1]} \lambda (A_\lambda / B_\lambda), \quad 0 \notin \operatorname{Supp} \underset{\sim}{B} \]</span></p>
+<p><span class="math display">\[ (\underset{\sim}{A} / \underset{\sim}{B})(z) = \bigvee_{x/y=z} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(y)) = \bigvee_{y \in \operatorname{Supp} \underset{\sim}{B}} (\underset{\sim}{A}(yz) \wedge \underset{\sim}{B}(y)) \]</span></p>
+<p><mark>Thm. 连续函数的截集性质</mark></p>
+<p>设 <span class="math inline">\(f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}\)</span> 为连续函数，<span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \tilde{\mathbb{R}}\)</span>（<span class="math inline">\(\tilde{\mathbb{R}}\)</span> 为实数域上的模糊数集）。则：</p>
+<p><span class="math display">\[ f(\underset{\sim}{A}, \underset{\sim}{B})_\lambda = f(A_\lambda, B_\lambda), \quad \lambda \in (0, 1] \]</span></p>
+<p><mark>Cor.</mark> 对 <span class="math inline">\(\forall \lambda \in (0, 1]\)</span> 有：</p>
+<ul>
+<li><span class="math inline">\((\underset{\sim}{A} \pm \underset{\sim}{B})_\lambda = A_\lambda \pm B_\lambda\)</span></li>
+<li><span class="math inline">\((\underset{\sim}{A} \cdot \underset{\sim}{B})_\lambda = A_\lambda \cdot B_\lambda\)</span></li>
+<li><span class="math inline">\((\underset{\sim}{A} / \underset{\sim}{B})_\lambda = A_\lambda / B_\lambda \quad (0 \notin \operatorname{Supp} \underset{\sim}{B})\)</span></li>
+<li><span class="math inline">\((k\underset{\sim}{A})_\lambda = k A_\lambda, \quad k \in \mathbb{R}\)</span></li>
+</ul>
+</section>
+<section id="模糊模式识别原则" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="模糊模式识别原则"><span class="header-section-number">12</span> 模糊模式识别原则</h2>
+<section id="最大隶属原则" class="level3" data-number="12.1">
+<h3 data-number="12.1" class="anchored" data-anchor-id="最大隶属原则"><span class="header-section-number">12.1</span> 最大隶属原则</h3>
+<p>设 <span class="math inline">\(\tilde{A}_1, \tilde{A}_2, \dots, \tilde{A}_n \in \mathcal{F}(X)\)</span> 为 <span class="math inline">\(n\)</span> 个标准模式。</p>
+<p><span class="math inline">\(x_0 \in X\)</span> 为待识别元素。</p>
+<p>若存在 <span class="math inline">\(i_0 \in \{1, 2, \dots, n\}\)</span>，s.t.</p>
+<p><span class="math display">\[\tilde{A}_{i_0}(x_0) = \max\{\tilde{A}_1(x_0), \tilde{A}_2(x_0), \dots, \tilde{A}_n(x_0)\}\]</span></p>
+<p>则认为 <span class="math inline">\(x_0\)</span> 相对地归属于 模式 <span class="math inline">\(\tilde{A}_{i_0}\)</span>。</p>
+</section>
+<section id="阈值原则" class="level3" data-number="12.2">
+<h3 data-number="12.2" class="anchored" data-anchor-id="阈值原则"><span class="header-section-number">12.2</span> 阈值原则</h3>
+<p><strong>I型：</strong></p>
+<p>设 <span class="math inline">\(\tilde{A}_1, \tilde{A}_2, \dots, \tilde{A}_n \in \mathcal{F}(X)\)</span> 为 <span class="math inline">\(n\)</span> 个标准模式。</p>
+<p><span class="math inline">\(x_0 \in X\)</span> 为待识别元素。取定 <span class="math inline">\(\beta \in (0, 1]\)</span>。若存在 <span class="math inline">\(i_1, i_2, \dots, i_k \in \{1, 2, \dots, n\}\)</span> s.t.</p>
+<p><span class="math display">\[\min\{\tilde{A}_{i_1}(x_0), \tilde{A}_{i_2}(x_0), \dots, \tilde{A}_{i_k}(x_0)\} \ge \beta\]</span></p>
+<p>则判定 <span class="math inline">\(x_0\)</span> 相对地隶属于 模式 <span class="math inline">\(\tilde{A}_{i_1} \cap \tilde{A}_{i_2} \cap \dots \cap \tilde{A}_{i_k}\)</span>。</p>
+<p><strong>II型：</strong></p>
+<p>取定 <span class="math inline">\(\alpha \in [0, 1)\)</span>。若</p>
+<p><span class="math display">\[\max\{\tilde{A}_1(x_0), \tilde{A}_2(x_0), \dots, \tilde{A}_n(x_0)\} &lt; \alpha\]</span></p>
+<p>则判定不能识别 <span class="math inline">\(x_0\)</span>。</p>
+<p><strong>III型：</strong></p>
+<p>设 <span class="math inline">\(\alpha, \beta \in [0, 1]\)</span></p>
+<ol type="1">
+<li>若存在 <span class="math inline">\(i_1, i_2, \dots, i_k \in \{1, 2, \dots, n\}\)</span> s.t.</li>
+</ol>
+<p><span class="math display">\[ \min\{\underset{\sim}{A}(x_{i_1}), \underset{\sim}{A}(x_{i_2}), \dots, \underset{\sim}{A}(x_{i_k})\} \ge \alpha \]</span></p>
+<p>则认为 <span class="math inline">\(x_{i_1}, x_{i_2}, \dots, x_{i_k}\)</span> 相对地隶属于 模式 <span class="math inline">\(\underset{\sim}{A}\)</span>。</p>
+<ol start="2" type="1">
+<li>若</li>
+</ol>
+<p><span class="math display">\[
+\max\{\underset{\sim}{A}(x_{i_1}), \dots\} &lt; \beta
+\]</span></p>
+<p>则认为它们 <mark>不属于</mark> 模式 <span class="math inline">\(\underset{\sim}{A}\)</span>。</p>
+</section>
+<section id="最大隶属原则-ii" class="level3" data-number="12.3">
+<h3 data-number="12.3" class="anchored" data-anchor-id="最大隶属原则-ii"><span class="header-section-number">12.3</span> <mark>最大隶属原则 II</mark></h3>
+<p>设 <span class="math inline">\(x_1, x_2, \dots, x_n \in X\)</span>，<span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span> 为标准模式。</p>
+<p>若 <span class="math inline">\(i_0 \in \{1, 2, \dots, n\}\)</span> s.t.</p>
+<p><span class="math display">\[
+\underset{\sim}{A}(x_{i_0}) = \max\{\underset{\sim}{A}(x_1), \underset{\sim}{A}(x_2), \dots, \underset{\sim}{A}(x_n)\}
+\]</span></p>
+<p>则认为 <span class="math inline">\(x_{i_0}\)</span> 相对地 <mark>优先隶属于</mark> 模式 <span class="math inline">\(\underset{\sim}{A}\)</span>。</p>
+<hr>
+</section>
+</section>
+<section id="贴近度与内积外积" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="贴近度与内积外积"><span class="header-section-number">13</span> 贴近度与内积、外积</h2>
+<p><mark>def. 内积与外积</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{A}\)</span> 与 <span class="math inline">\(\underset{\sim}{B}\)</span> 的 <mark>内积</mark>： <span class="math inline">\(\underset{\sim}{A} \circ \underset{\sim}{B} = \bigvee_{x \in X} (\underset{\sim}{A}(x) \wedge \underset{\sim}{B}(x))\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{A}\)</span> 与 <span class="math inline">\(\underset{\sim}{B}\)</span> 的 <mark>外积</mark>： <span class="math inline">\(\underset{\sim}{A} \odot \underset{\sim}{B} = \bigwedge_{x \in X} (\underset{\sim}{A}(x) \vee \underset{\sim}{B}(x))\)</span></li>
+</ol>
+<p><mark>def. 峰值与谷值</mark></p>
+<ul>
+<li><mark><span class="math inline">\(\underset{\sim}{A}\)</span> 的峰值</mark>： <span class="math inline">\(\overline{A} = \bigvee_{x \in X} \underset{\sim}{A}(x)\)</span></li>
+<li><mark><span class="math inline">\(\underset{\sim}{A}\)</span> 的谷值</mark>： <span class="math inline">\(\underline{A} = \bigwedge_{x \in X} \underset{\sim}{A}(x)\)</span></li>
+</ul>
+<p><mark>prop.</mark> <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，则：</p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{A} \circ \underset{\sim}{B} = \underset{\sim}{B} \circ \underset{\sim}{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} = \underset{\sim}{B} \odot \underset{\sim}{A}\)</span></li>
+<li><span class="math inline">\((\underset{\sim}{A} \circ \underset{\sim}{B})^c = \underset{\sim}{A}^c \odot \underset{\sim}{B}^c, \quad (\underset{\sim}{A} \odot \underset{\sim}{B})^c = \underset{\sim}{A}^c \circ \underset{\sim}{B}^c\)</span></li>
+</ol>
+<p><mark>prop.</mark> 若 <span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B}\)</span>，则：</p>
+<p><span class="math display">\[ \underset{\sim}{A} \circ \underset{\sim}{B} = \overline{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} = \underline{B} \]</span></p>
+<p><mark>cor.</mark> 若 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，则：</p>
+<p><span class="math display">\[ \underset{\sim}{A} \circ \underset{\sim}{A} = \overline{A}, \quad \underset{\sim}{A} \odot \underset{\sim}{A} = \underline{A} \]</span></p>
+<p><mark>prop.</mark> <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，则：</p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{A} \circ \underset{\sim}{B} \le \overline{A} \wedge \overline{B}, \quad \underset{\sim}{A} \odot \underset{\sim}{B} \ge \underline{A} \vee \underline{B}\)</span></li>
+<li><span class="math inline">\(\bigvee_{\underset{\sim}{B} \in \mathcal{F}(X)} (\underset{\sim}{A} \circ \underset{\sim}{B}) = \overline{A}, \quad \bigwedge_{\underset{\sim}{B} \in \mathcal{F}(X)} (\underset{\sim}{A} \odot \underset{\sim}{B}) = \underline{A}\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{A} \circ \underset{\sim}{A}^c \le 0.5, \quad \underset{\sim}{A} \odot \underset{\sim}{A}^c \ge 0.5\)</span></li>
+</ol>
+<hr>
+</section>
+<section id="格贴近度及其公理化定义" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="格贴近度及其公理化定义"><span class="header-section-number">14</span> 格贴近度及其公理化定义</h2>
+<p><mark>def. 格贴近度</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，称：</p>
+<p><span class="math display">\[ N_L(\underset{\sim}{A}, \underset{\sim}{B}) = (\underset{\sim}{A} \circ \underset{\sim}{B}) \wedge (\underset{\sim}{A} \odot \underset{\sim}{B})^c \]</span></p>
+<p>为 <span class="math inline">\(\underset{\sim}{A}\)</span> 与 <span class="math inline">\(\underset{\sim}{B}\)</span> 的 <mark>格贴近度</mark>。</p>
+<p><mark>prop. 格贴近度的性质</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)\)</span>，则：</p>
+<ol type="1">
+<li><span class="math inline">\(0 \le N_L(\underset{\sim}{A}, \underset{\sim}{B}) \le 1\)</span></li>
+<li><span class="math inline">\(N_L(\underset{\sim}{A}, \underset{\sim}{B}) = N_L(\underset{\sim}{B}, \underset{\sim}{A})\)</span></li>
+<li><span class="math inline">\(N_L(X, \emptyset) = 0\)</span></li>
+<li><span class="math inline">\(N_L(\underset{\sim}{A}, \underset{\sim}{A}) = \overline{A} \wedge (1 - \underline{A})\)</span>。特别地，当 <span class="math inline">\(\overline{A}=1, \underline{A}=0\)</span> 时，<span class="math inline">\(N_L(\underset{\sim}{A}, \underset{\sim}{A}) = 1\)</span></li>
+<li>若 <span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B} \subseteq \underset{\sim}{C}\)</span>，则 <span class="math inline">\(N_L(\underset{\sim}{A}, \underset{\sim}{C}) \le N_L(\underset{\sim}{A}, \underset{\sim}{B}) \wedge N_L(\underset{\sim}{B}, \underset{\sim}{C})\)</span></li>
+</ol>
+<p><mark>def. 贴近度的公理化定义</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B}, \underset{\sim}{C} \in \mathcal{F}(X)\)</span>。若映射 <span class="math inline">\(N: \mathcal{F}(X) \times \mathcal{F}(X) \to [0, 1], (\underset{\sim}{A}, \underset{\sim}{B}) \mapsto N(\underset{\sim}{A}, \underset{\sim}{B})\)</span> 满足以下四条公理：</p>
+<ol type="1">
+<li><span class="math inline">\(N(\underset{\sim}{A}, \underset{\sim}{B}) = N(\underset{\sim}{B}, \underset{\sim}{A})\)</span> <em>(对称性)</em></li>
+<li><span class="math inline">\(N(\underset{\sim}{A}, \underset{\sim}{A}) = 1\)</span> <em>(自反性)</em></li>
+<li><span class="math inline">\(N(X, \emptyset) = 0\)</span> <em>(边界性)</em></li>
+<li><span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B} \subseteq \underset{\sim}{C} \implies N(\underset{\sim}{A}, \underset{\sim}{C}) \le N(\underset{\sim}{A}, \underset{\sim}{B}) \wedge N(\underset{\sim}{B}, \underset{\sim}{C})\)</span> <em>(单调性)</em> 则称 <span class="math inline">\(N(\cdot, \cdot)\)</span> 为 <span class="math inline">\(\mathcal{F}(X)\)</span> 上的 <mark>贴近度函数</mark>，<span class="math inline">\(N(\underset{\sim}{A}, \underset{\sim}{B})\)</span> 为 <span class="math inline">\(\underset{\sim}{A}\)</span> 与 <span class="math inline">\(\underset{\sim}{B}\)</span> 的 <mark>贴近度</mark>。</li>
+</ol>
+<hr>
+</section>
+<section id="择近原则" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="择近原则"><span class="header-section-number">15</span> 择近原则</h2>
+<p><mark>择近原则</mark></p>
+<p>设 <span class="math inline">\({\underset{\sim}{A_1}}, {\underset{\sim}{A_2}}, \dots, {\underset{\sim}{A_n}} \in \mathcal{F}(X)\)</span> 为 <span class="math inline">\(n\)</span> 个标准模式，<span class="math inline">\({\underset{\sim}{B}} \in \mathcal{F}(X)\)</span> 为待识别对象。</p>
+<p>若存在 <span class="math inline">\(i_0 \in \{1, 2, \dots, n\}\)</span>，s.t.</p>
+<p><span class="math display">\[ N(\underset{\sim}{A_{i_0}}, \underset{\sim}{B}) = \max\{N(\underset{\sim}{A_1}, \underset{\sim}{B}), \dots, N(\underset{\sim}{A_n}, \underset{\sim}{B})\} \]</span></p>
+<p>则认为 <span class="math inline">\(\underset{\sim}{B}\)</span> 相对地归属于 模式 <span class="math inline">\(\underset{\sim}{A_{i_0}}\)</span>。</p>
+</section>
+<section id="模糊关系与合成" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="模糊关系与合成"><span class="header-section-number">16</span> 模糊关系与合成</h2>
+<p><mark>def.</mark> 设 <span class="math inline">\(X, Y, Z\)</span> 为论域。若 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times Y), \underset{\sim}{Q} \in \mathcal{F}(Y \times Z)\)</span>。</p>
+<p>则称模糊关系 <span class="math inline">\(\underset{\sim}{R} \circ \underset{\sim}{Q}\)</span> 为 <span class="math inline">\(\underset{\sim}{R}\)</span> 和 <span class="math inline">\(\underset{\sim}{Q}\)</span> 的 <mark>合成或复合</mark>，其中：</p>
+<p><span class="math display">\[ (\underset{\sim}{R} \circ \underset{\sim}{Q})(x, z) = \bigvee_{y \in Y} (\underset{\sim}{R}(x, y) \wedge \underset{\sim}{Q}(y, z)), \quad (x, z) \in X \times Z \]</span></p>
+<p><mark>prop.</mark></p>
+<ul>
+<li><span class="math inline">\(I \circ \underset{\sim}{R} = \underset{\sim}{R} \circ I = \underset{\sim}{R}\)</span> （<span class="math inline">\(I\)</span> 为单位关系）</li>
+<li><span class="math inline">\(\emptyset \circ \underset{\sim}{R} = \underset{\sim}{R} \circ \emptyset = \emptyset\)</span></li>
+</ul>
+<p><mark>prop.</mark> 逆关系性质：</p>
+<p><span class="math display">\[ (\underset{\sim}{R} \circ \underset{\sim}{Q})^{-1} = \underset{\sim}{Q}^{-1} \circ \underset{\sim}{R}^{-1} \]</span></p>
+<p><mark>cor.</mark> 单调性：</p>
+<ul>
+<li><span class="math inline">\(R_1 \subseteq R_2 \implies R_1 \circ Q \subseteq R_2 \circ Q\)</span></li>
+<li><span class="math inline">\(Q_1 \subseteq Q_2 \implies R \circ Q_1 \subseteq R \circ Q_2\)</span></li>
+</ul>
+<p><mark>prop.</mark> 结合律：</p>
+<p><span class="math display">\[ (\underset{\sim}{R} \circ \underset{\sim}{S}) \circ \underset{\sim}{Q} = \underset{\sim}{R} \circ (\underset{\sim}{S} \circ \underset{\sim}{Q}) \]</span></p>
+<p><mark>cor.</mark> 幂运算性质：</p>
+<ul>
+<li><span class="math inline">\(\underset{\sim}{R}^{n+m} = \underset{\sim}{R}^n \circ \underset{\sim}{R}^m\)</span></li>
+<li><span class="math inline">\((\underset{\sim}{R}^n)^{-1} = (\underset{\sim}{R}^{-1})^n\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{R} \subseteq \underset{\sim}{Q} \implies \underset{\sim}{R}^n \subseteq \underset{\sim}{Q}^n\)</span></li>
+</ul>
+<p><mark>prop.</mark> 对交集和并集的分配律：</p>
+<p>设 <span class="math inline">\(\underset{\sim}{R_i} \in \mathcal{F}(X \times Y), \underset{\sim}{Q_i} \in \mathcal{F}(Y \times Z)\)</span></p>
+<ul>
+<li>交集（仅包含于）： <span class="math display">\[ \underset{\sim}{R} \circ (\bigcap_{i \in I} \underset{\sim}{Q_i}) \subseteq \bigcap_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q_i}) \]</span> <span class="math display">\[ (\bigcap_{i \in I} \underset{\sim}{R_i}) \circ \underset{\sim}{Q} \subseteq \bigcap_{i \in I} (\underset{\sim}{R_i} \circ \underset{\sim}{Q}) \]</span></li>
+<li>并集（相等）： <span class="math display">\[ \underset{\sim}{R} \circ (\bigcup_{i \in I} \underset{\sim}{Q_i}) = \bigcup_{i \in I} (\underset{\sim}{R} \circ \underset{\sim}{Q_i}) \]</span> <span class="math display">\[ (\bigcup_{i \in I} \underset{\sim}{R_i}) \circ \underset{\sim}{Q} = \bigcup_{i \in I} (\underset{\sim}{R_i} \circ \underset{\sim}{Q}) \]</span></li>
+</ul>
+<p><mark>prop.</mark> 数乘的结合性：</p>
+<p><span class="math display">\[ \lambda (\underset{\sim}{R} \circ \underset{\sim}{Q}) = (\lambda \underset{\sim}{R}) \circ \underset{\sim}{Q} = \underset{\sim}{R} \circ (\lambda \underset{\sim}{Q}) \]</span></p>
+<hr>
+</section>
+<section id="模糊关系合成的截集" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="模糊关系合成的截集"><span class="header-section-number">17</span> 模糊关系合成的截集</h2>
+<p><mark>Thm.</mark> 模糊合成的截集包含关系：</p>
+<p><span class="math display">\[ (\underset{\sim}{R} \circ \underset{\sim}{Q})_{\dot{\lambda}} = R_{\dot{\lambda}} \circ Q_{\dot{\lambda}} \subseteq R_\lambda \circ Q_\lambda \subseteq (\underset{\sim}{R} \circ \underset{\sim}{Q})_\lambda \]</span></p>
+<p><mark>cor.</mark> 根据表现定理，模糊合成关系可表示为：</p>
+<p><span class="math display">\[ \underset{\sim}{R} \circ \underset{\sim}{Q} = \bigcup_{\lambda \in [0, 1]} \lambda (R_{\dot{\lambda}} \circ Q_{\dot{\lambda}}) = \bigcup_{\lambda \in [0, 1]} \lambda (R_\lambda \circ Q_\lambda) \]</span></p>
+<p><mark>Thm.</mark> 模糊关系 <span class="math inline">\(k\)</span> 次幂的隶属函数：</p>
+<p><span class="math display">\[ \underset{\sim}{R}^k(x, y) = \bigvee_{x_1 \in X} \dots \bigvee_{x_{k-1} \in X} (\underset{\sim}{R}(x, x_1) \wedge \dots \wedge \underset{\sim}{R}(x_{k-1}, y)) \]</span></p>
+<hr>
+</section>
+<section id="关系的性质-自反对称传递" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="关系的性质-自反对称传递"><span class="header-section-number">18</span> 关系的性质 (自反、对称、传递)</h2>
+<section id="经典分明关系-r-subseteq-x-times-x" class="level3" data-number="18.1">
+<h3 data-number="18.1" class="anchored" data-anchor-id="经典分明关系-r-subseteq-x-times-x"><span class="header-section-number">18.1</span> 经典分明关系 <span class="math inline">\(R \subseteq X \times X\)</span></h3>
+<ol type="1">
+<li><p><mark>自反性</mark>： <span class="math inline">\((x, x) \in R \quad \forall x \in X\)</span></p></li>
+<li><p><mark>对称性</mark>： <span class="math inline">\((x, y) \in R \implies (y, x) \in R\)</span></p></li>
+<li><p><mark>传递性</mark>： <span class="math inline">\((x, y) \in R, (y, z) \in R \implies (x, z) \in R\)</span></p></li>
+</ol>
+<p><strong>Bool 矩阵的自反、对称及传递性</strong> <span class="math inline">\(R = (r_{ij})_{n \times n}\)</span>：</p>
+<ol type="1">
+<li>自反： <span class="math inline">\(r_{ii} = 1, \quad i = 1, 2, \dots, n\)</span></li>
+<li>对称： <span class="math inline">\(r_{ij} = r_{ji}\)</span></li>
+<li>传递： <span class="math inline">\(r_{ij} = 1, r_{jk} = 1 \implies r_{ik} = 1\)</span></li>
+</ol>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(R \subseteq X \times X\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(R\)</span> 自反 <span class="math inline">\(\iff R(x, x) = 1 \quad \forall x \in X\)</span></li>
+<li><span class="math inline">\(R\)</span> 对称 <span class="math inline">\(\iff R(x, y) = R(y, x) \quad \forall x, y \in X\)</span></li>
+<li><span class="math inline">\(R\)</span> 传递 <span class="math inline">\(\iff R^2(x, z) \le R(x, z) \quad \forall x, z \in X\)</span></li>
+</ol>
+<p><mark>Thm.</mark></p>
+<ol type="1">
+<li><span class="math inline">\(R\)</span> 自反 <span class="math inline">\(\iff I \subseteq R\)</span></li>
+<li><span class="math inline">\(R\)</span> 对称 <span class="math inline">\(\iff R = R^{-1}\)</span></li>
+<li><span class="math inline">\(R\)</span> 传递 <span class="math inline">\(\iff R^2 \subseteq R\)</span></li>
+</ol>
+</section>
+<section id="模糊关系的自反对称传递" class="level3" data-number="18.2">
+<h3 data-number="18.2" class="anchored" data-anchor-id="模糊关系的自反对称传递"><span class="header-section-number">18.2</span> <mark>模糊关系的自反、对称、传递</mark></h3>
+<p><mark>def.</mark> 设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> <strong>自反</strong> <span class="math inline">\(\iff \underset{\sim}{R}(x, x) = 1 \quad x \in X\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> <strong>对称</strong> <span class="math inline">\(\iff \underset{\sim}{R}(x, y) = \underset{\sim}{R}(y, x)\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> <strong>传递</strong> <span class="math inline">\(\iff \underset{\sim}{R}^2 \subseteq \underset{\sim}{R}\)</span> (即 <span class="math inline">\(\underset{\sim}{R}^2(x, z) \le \underset{\sim}{R}(x, z)\)</span>)</li>
+</ol>
+<p><mark>def. 模糊矩阵表示</mark> <span class="math inline">\(\underset{\sim}{R} = (r_{ij})_{n \times n} \in M_{n \times n}\)</span></p>
+<ol type="1">
+<li>自反： <span class="math inline">\(r_{ii} = 1\)</span></li>
+<li>对称： <span class="math inline">\(r_{ij} = r_{ji}\)</span></li>
+<li>传递： <span class="math inline">\(\underset{\sim}{R}^2 \subseteq \underset{\sim}{R}\)</span>，即 <span class="math inline">\(\bigvee_{k=1}^n (r_{ik} \wedge r_{kj}) \le r_{ij}\)</span></li>
+</ol>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{R_i} \in \mathcal{F}(X \times X), \ i \in I\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\underset{\sim}{R_i}\)</span> 自反 <span class="math inline">\(\implies \bigcup_{i \in I} \underset{\sim}{R_i}\)</span> 与 <span class="math inline">\(\bigcap_{i \in I} \underset{\sim}{R_i}\)</span> 自反</li>
+<li><span class="math inline">\(\underset{\sim}{R_i}\)</span> 对称 <span class="math inline">\(\implies \bigcup_{i \in I} \underset{\sim}{R_i}\)</span> 与 <span class="math inline">\(\bigcap_{i \in I} \underset{\sim}{R_i}\)</span> 对称</li>
+<li><span class="math inline">\(\underset{\sim}{R_i}\)</span> 传递 <span class="math inline">\(\implies \bigcap_{i \in I} \underset{\sim}{R_i}\)</span> 传递</li>
+</ol>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span></p>
+<p><span class="math inline">\(\underset{\sim}{R}\)</span> 自反/对称/传递 <span class="math inline">\(\implies \underset{\sim}{R}^k\)</span> 自反/对称/传递</p>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span>，则：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\underset{\sim}{R}\)</span> 自反，则 <span class="math inline">\(I \subseteq \underset{\sim}{R} \subseteq \underset{\sim}{R}^2 \subseteq \dots \subseteq \underset{\sim}{R}^k \subseteq \dots\)</span></li>
+<li>若 <span class="math inline">\(\underset{\sim}{R}\)</span> 传递，则 <span class="math inline">\(\underset{\sim}{R} \supseteq \underset{\sim}{R}^2 \supseteq \dots \supseteq \underset{\sim}{R}^k \supseteq \dots\)</span></li>
+<li>若 <span class="math inline">\(\underset{\sim}{R}\)</span> 自反且传递，则 <span class="math inline">\(\underset{\sim}{R} = \underset{\sim}{R}^2 = \dots = \underset{\sim}{R}^k = \dots\)</span></li>
+</ol>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span></p>
+<p><span class="math inline">\(\underset{\sim}{R}\)</span> 自反/对称/传递 <span class="math inline">\(\iff \forall \lambda \in (0, 1], R_\lambda\)</span> 自反/对称/传递</p>
+<hr>
+</section>
+</section>
+<section id="对称闭包与传递闭包" class="level2" data-number="19">
+<h2 data-number="19" class="anchored" data-anchor-id="对称闭包与传递闭包"><span class="header-section-number">19</span> 对称闭包与传递闭包</h2>
+<p><mark>def. 对称闭包</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span>。包含 <span class="math inline">\(\underset{\sim}{R}\)</span> 的最小的对称模糊关系，称为 <span class="math inline">\(\underset{\sim}{R}\)</span> 的 <mark>对称闭包</mark> <span class="math inline">\(S(\underset{\sim}{R})\)</span>。</p>
+<p>满足：</p>
+<ul>
+<li>包含性： <span class="math inline">\(\underset{\sim}{R} \subseteq S(\underset{\sim}{R})\)</span></li>
+<li>对称性： <span class="math inline">\((S(\underset{\sim}{R}))^{-1} = S(\underset{\sim}{R})\)</span></li>
+<li>最小性： 若 <span class="math inline">\(\underset{\sim}{Q}^{-1} = \underset{\sim}{Q}\)</span> 且 <span class="math inline">\(\underset{\sim}{R} \subseteq \underset{\sim}{Q}\)</span>，则 <span class="math inline">\(S(\underset{\sim}{R}) \subseteq \underset{\sim}{Q}\)</span></li>
+</ul>
+<p><mark>def. 传递闭包</mark></p>
+<p>设 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times X)\)</span>。包含 <span class="math inline">\(\underset{\sim}{R}\)</span> 的最小的具有传递性的模糊关系，称为 <span class="math inline">\(\underset{\sim}{R}\)</span> 的 <mark>传递闭包</mark> <span class="math inline">\(t(\underset{\sim}{R})\)</span>。</p>
+<p>满足：</p>
+<ul>
+<li>包含性： <span class="math inline">\(\underset{\sim}{R} \subseteq t(\underset{\sim}{R})\)</span></li>
+<li>传递性： <span class="math inline">\(t(\underset{\sim}{R}) \circ t(\underset{\sim}{R}) \subseteq t(\underset{\sim}{R})\)</span></li>
+<li>最小性： 若 <span class="math inline">\(\underset{\sim}{Q}^2 \subseteq \underset{\sim}{Q}\)</span> 且 <span class="math inline">\(\underset{\sim}{R} \subseteq \underset{\sim}{Q}\)</span>，则 <span class="math inline">\(t(\underset{\sim}{R}) \subseteq \underset{\sim}{Q}\)</span></li>
+</ul>
+<p><mark>Thm.</mark> 传递闭包的一般构造：</p>
+<p><span class="math display">\[ t(\underset{\sim}{R}) = \bigcup_{k=1}^\infty \underset{\sim}{R}^k \]</span></p>
+<p><mark>Lemma.</mark></p>
+<p><span class="math display">\[ t(\underset{\sim}{R}) = \bigcup_{k=1}^n \underset{\sim}{R}^k \implies \bigcup_{k=1}^n \underset{\sim}{R}^k \supseteq \underset{\sim}{R}^{n+1} \]</span></p>
+<p><mark>Thm.</mark> 设 <span class="math inline">\(\underset{\sim}{R} \in M_{n \times n}\)</span> (有限模糊矩阵)，则：</p>
+<p><span class="math display">\[ t(\underset{\sim}{R}) = \bigcup_{k=1}^n \underset{\sim}{R}^k \]</span></p>
+<p><mark>Thm.</mark> 若 <span class="math inline">\(I \subseteq \underset{\sim}{R}\)</span> (即 <span class="math inline">\(\underset{\sim}{R}\)</span> 自反)，则存在最小的 <span class="math inline">\(k \in \{1, 2, \dots, n\}\)</span>，s.t. <span class="math inline">\(t(\underset{\sim}{R}) = \underset{\sim}{R}^k\)</span></p>
+<p>且对 <span class="math inline">\(\forall l \in \mathbb{N}, l \ge k\)</span>，有 <span class="math inline">\(\underset{\sim}{R}^l = \underset{\sim}{R}^k\)</span>。</p>
+<p>特别地， <span class="math inline">\(t(\underset{\sim}{R}) = \underset{\sim}{R}^n\)</span>。</p>
+<p><mark>Thm.</mark> (循环终止条件)</p>
+<p>若存在 <span class="math inline">\(k, l \in \mathbb{N}, k &lt; l\)</span> s.t. <span class="math inline">\(\underset{\sim}{R}^k = \underset{\sim}{R}^l\)</span>，</p>
+<p>则 <span class="math inline">\(t(\underset{\sim}{R}) = \underset{\sim}{R}^k\)</span>。</p>
+</section>
+<section id="关系的投影与截影" class="level2" data-number="20">
+<h2 data-number="20" class="anchored" data-anchor-id="关系的投影与截影"><span class="header-section-number">20</span> 关系的投影与截影</h2>
+<section id="分明关系的投影与截影" class="level3" data-number="20.1">
+<h3 data-number="20.1" class="anchored" data-anchor-id="分明关系的投影与截影"><span class="header-section-number">20.1</span> 分明关系的投影与截影</h3>
+<p>设 <span class="math inline">\(R \subseteq X \times Y\)</span>, <span class="math inline">\(x_0 \in X, y_0 \in Y\)</span>。</p>
+<ul>
+<li><span class="math inline">\(R\)</span> 在 <span class="math inline">\(X (Y)\)</span> 中的<mark>投影</mark>： <span class="math display">\[R_X = \{x \in X \mid \exists y \in Y \text{ s.t. } (x, y) \in R\}\]</span></li>
+<li><span class="math inline">\(R\)</span> 在 <span class="math inline">\(x_0\)</span> 处的<mark>截影</mark>： <span class="math display">\[R|_{x_0} = \{y \in Y \mid (x_0, y) \in R\}\]</span></li>
+</ul>
+<p><mark>性质 1</mark>. 设 <span class="math inline">\(R \subseteq X \times Y\)</span>，则特征函数满足：</p>
+<p><span class="math display">\[R_X(x) = \bigvee_{y \in Y} R(x, y), \quad x \in X\]</span> <span class="math display">\[R_Y(y) = \bigvee_{x \in X} R(x, y), \quad y \in Y\]</span></p>
+<p><mark>性质 2</mark>. <span class="math inline">\(R|_{x_0}(y) = R(x_0, y), \quad y \in Y\)</span></p>
+<p><mark>性质 3</mark>. 投影与截影的关系：</p>
+<p><span class="math display">\[
+R_X = \bigcup_{y \in Y} R|_y
+\]</span></p>
+<p><mark>性质 4</mark>. 截影的代数表示：</p>
+<p><span class="math display">\[
+R|_{x_0} = ((\{x_0\} \times Y) \cap R)_Y
+\]</span> <span class="math display">\[
+R|_{y_0} = ((X \times \{y_0\}) \cap R)_X
+\]</span></p>
+<p><mark>性质 5</mark>. 关系的还原：</p>
+<p><span class="math display">\[R = \bigcup_{x \in X} (\{x\} \times R|_x) = \bigcup_{y \in Y} (R|_y \times \{y\})\]</span></p>
+<p><mark>性质 6</mark>. 设 <span class="math inline">\(R_1, R_2 \subseteq X \times Y\)</span>, <span class="math inline">\(x_0 \in X, y_0 \in Y\)</span>。若 <span class="math inline">\(R_1 \subseteq R_2\)</span>，则：</p>
+<ol type="1">
+<li><p><span class="math inline">\((R_1)_X \subseteq (R_2)_X \quad\)</span> 且 <span class="math inline">\(\quad (R_1)_Y \subseteq (R_2)_Y\)</span></p></li>
+<li><p><span class="math inline">\(R_1|_{x_0} \subseteq R_2|_{x_0} \quad\)</span> 且 <span class="math inline">\(\quad R_1|_{y_0} \subseteq R_2|_{y_0}\)</span></p></li>
+</ol>
+<hr>
+</section>
+<section id="模糊关系的投影与截影" class="level3" data-number="20.2">
+<h3 data-number="20.2" class="anchored" data-anchor-id="模糊关系的投影与截影"><span class="header-section-number">20.2</span> 模糊关系的投影与截影</h3>
+<p>设 <span class="math inline">\(\underset{\sim}{R}\)</span> 是 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的模糊关系。对于 <span class="math inline">\(\forall \lambda \in (0, 1]\)</span>，<span class="math inline">\(\underset{\sim}{R}\)</span> 的 <span class="math inline">\(\lambda\)</span>-截集 <span class="math inline">\(R_\lambda\)</span> 是 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的分明关系。</p>
+<p>且 <span class="math inline">\(R_\lambda\)</span> 在 <span class="math inline">\(X\)</span> 中的投影 <span class="math inline">\((R_\lambda)_X\)</span> 满足嵌套性质：</p>
+<p><span class="math display">\[\lambda_1 &lt; \lambda_2 \implies R_{\lambda_2} \subseteq R_{\lambda_1} \implies (R_{\lambda_2})_X \subseteq (R_{\lambda_1})_X\]</span></p>
+<p><mark>def. 模糊投影</mark> <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times Y)\)</span></p>
+<ul>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> 在 <span class="math inline">\(X\)</span> 中的投影： <span class="math inline">\(\underset{\sim}{R_X} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda)_X\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> 在 <span class="math inline">\(Y\)</span> 中的投影： <span class="math inline">\(\underset{\sim}{R_Y} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda)_Y\)</span></li>
+</ul>
+<p><mark>def. 模糊截影</mark> <span class="math inline">\(x_0 \in X, y_0 \in Y\)</span></p>
+<ul>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> 在 <span class="math inline">\(x_0\)</span> 处的截影： <span class="math inline">\(\underset{\sim}{R}|_{x_0} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda|_{x_0})\)</span></li>
+<li><span class="math inline">\(\underset{\sim}{R}\)</span> 在 <span class="math inline">\(y_0\)</span> 处的截影： <span class="math inline">\(\underset{\sim}{R}|_{y_0} = \bigcup_{\lambda \in (0, 1]} \lambda (R_\lambda|_{y_0})\)</span></li>
+</ul>
+<p><em>(对应分明关系的性质扩展：)</em></p>
+<p><mark>性质 7</mark>. 隶属函数表达：</p>
+<p><span class="math display">\[\underset{\sim}{R_X(x)} = \bigvee_{y \in Y} \underset{\sim}{R}(x, y)\]</span> <span class="math display">\[\underset{\sim}{R_Y(y)} = \bigvee_{x \in X} \underset{\sim}{R}(x, y)\]</span></p>
+<p><mark>性质 8</mark>. <span class="math inline">\(\underset{\sim}{R}|_{x_0}(y) = \underset{\sim}{R}(x_0, y), \quad \underset{\sim}{R}|_{y_0}(x) = \underset{\sim}{R}(x, y_0)\)</span></p>
+<p><mark>性质 9</mark>. <span class="math inline">\(\underset{\sim}{R_X} = \bigcup_{y \in Y} \underset{\sim}{R}|_y, \quad \underset{\sim}{R_Y} = \bigcup_{x \in X} \underset{\sim}{R}|_x\)</span></p>
+<p><mark>性质 10</mark>.</p>
+<p><span class="math display">\[\underset{\sim}{R}|_{x_0} = ((\{x_0\} \times Y) \cap \underset{\sim}{R})_Y\]</span> <span class="math display">\[\underset{\sim}{R}|_{y_0} = ((X \times \{y_0\}) \cap \underset{\sim}{R})_X\]</span></p>
+<p><mark>性质 11</mark>. <span class="math inline">\(\underset{\sim}{R} = \bigcup_{x \in X} (\{x\} \times \underset{\sim}{R}|_x) = \bigcup_{y \in Y} (\underset{\sim}{R}|_y \times \{y\})\)</span></p>
+<p><mark>性质 12</mark>. <span class="math inline">\(\underset{\sim}{R_1}, \underset{\sim}{R_2} \in \mathcal{F}(X \times Y), x_0 \in X, y_0 \in Y\)</span>。若 <span class="math inline">\(\underset{\sim}{R_1} \subseteq \underset{\sim}{R_2}\)</span>，则：</p>
+<p><span class="math display">\[(\underset{\sim}{R_1})_X \subseteq (\underset{\sim}{R_2})_X \quad \text{且} \quad (\underset{\sim}{R_1})_Y \subseteq (\underset{\sim}{R_2})_Y\]</span> <span class="math display">\[\underset{\sim}{R_1}|_{x_0} \subseteq \underset{\sim}{R_2}|_{x_0} \quad \text{且} \quad \underset{\sim}{R_1}|_{y_0} \subseteq \underset{\sim}{R_2}|_{y_0}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="映射及其图像" class="level2" data-number="21">
+<h2 data-number="21" class="anchored" data-anchor-id="映射及其图像"><span class="header-section-number">21</span> 映射及其图像</h2>
+<section id="分明映射与集值映射" class="level3" data-number="21.1">
+<h3 data-number="21.1" class="anchored" data-anchor-id="分明映射与集值映射"><span class="header-section-number">21.1</span> 分明映射与集值映射</h3>
+<p><mark>Thm.</mark> 设映射 <span class="math inline">\(f: X \to Y, x \mapsto f(x)=y\)</span>。则 <span class="math inline">\(f\)</span> 唯一确定一个 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的关系 <span class="math inline">\(R_f\)</span> (称为 <span class="math inline">\(f\)</span> 的<mark>图像</mark>)，满足：</p>
+<ol type="1">
+<li><span class="math inline">\((R_f)_X = X\)</span> (定义域为全集)</li>
+<li><span class="math inline">\(\forall x \in X, \ R_f|_x = \{f(x)\}\)</span> 是单点集。</li>
+</ol>
+<p><mark>Thm.</mark> 给定关系 <span class="math inline">\(R \subseteq X \times Y\)</span>，满足：</p>
+<ol type="1">
+<li><span class="math inline">\(R_X = X\)</span></li>
+<li><span class="math inline">\(\forall x \in X, \ R|_x = \{y_x\}\)</span> 是单点集。</li>
+</ol>
+<p>则关系 <span class="math inline">\(R\)</span> 唯一确定一个映射 <span class="math inline">\(f_R: X \to Y\)</span>，其图像为 <span class="math inline">\(R\)</span>，且对任意的 <span class="math inline">\(x \in X\)</span> 有 <span class="math inline">\(R|_x = \{f_R(x)\}\)</span>。</p>
+<p><mark>def.</mark> 称映射 <span class="math inline">\(\overline{f}: X \to \mathscr{P}(Y), x \mapsto \overline{f}(x)\)</span> 为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的<mark>集值映射</mark>。</p>
+<p><mark>Thm.</mark> 设集值映射 <span class="math inline">\(\overline{f}: X \to \mathscr{P}(Y), x \mapsto \overline{f}(x)\)</span>。<span class="math inline">\(\overline{f}\)</span> 可唯一确定一个 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的关系 <span class="math inline">\(R_{\overline{f}}\)</span> (<span class="math inline">\(f\)</span> 的图像) 满足：</p>
+<p><span class="math display">\[\forall x \in X, \text{有 } R_{\overline{f}}|_x = \overline{f}(x)\]</span></p>
+<p><mark>Thm.</mark> 给定关系 <span class="math inline">\(R \subseteq X \times Y\)</span>，可唯一确定一个集值映射 <span class="math inline">\(\overline{f}_R: X \to \mathscr{P}(Y)\)</span>，其图像为 <span class="math inline">\(R\)</span>，且 <span class="math inline">\(\overline{f}_R(x) = R|_x\)</span>。</p>
+</section>
+<section id="模糊集值映射" class="level3" data-number="21.2">
+<h3 data-number="21.2" class="anchored" data-anchor-id="模糊集值映射"><span class="header-section-number">21.2</span> 模糊集值映射</h3>
+<p><mark>def.</mark> 称映射 <span class="math inline">\(\tilde{f}: X \to \mathcal{F}(Y), x \mapsto \tilde{f}(x)\)</span> 为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的<mark>模糊集值映射</mark>。</p>
+<p><mark>Thm.</mark> 给定模糊集值映射 <span class="math inline">\(\tilde{f}: X \to \mathcal{F}(Y), x \mapsto \tilde{f}(x)\)</span>。可唯一确定一个模糊关系 <span class="math inline">\(\underset{\sim}{R_{\tilde{f}}} \in \mathcal{F}(X \times Y)\)</span> (<span class="math inline">\(\tilde{f}\)</span> 的图像)，满足对 <span class="math inline">\(\forall x \in X\)</span> 有：</p>
+<p><span class="math display">\[\underset{\sim}{R_{\tilde{f}}}|_x = \tilde{f}(x)\]</span></p>
+<p><mark>Thm.</mark> 给定模糊关系 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times Y)\)</span>，可唯一确定一个模糊集值映射 <span class="math inline">\(\tilde{f}_{\underset{\sim}{R}}: X \to \mathcal{F}(Y)\)</span>，其图像为 <span class="math inline">\(\underset{\sim}{R}\)</span>，且对 <span class="math inline">\(\forall x \in X\)</span> 有：</p>
+<p><span class="math display">\[\tilde{f}_{\underset{\sim}{R}}(x) = \underset{\sim}{R}|_x\]</span></p>
+</section>
+</section>
+<section id="模糊线性变换及其表示" class="level2" data-number="22">
+<h2 data-number="22" class="anchored" data-anchor-id="模糊线性变换及其表示"><span class="header-section-number">22</span> 模糊线性变换及其表示</h2>
+<p><strong>def.</strong> 称映射 <span class="math inline">\(\tilde{T}: \mathcal{F}(X) \rightarrow \mathcal{F}(Y)\)</span> <span class="math display">\[\underset{\sim}{A} \mapsto \tilde{T}(\underset{\sim}{A})\]</span> 为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的模糊变换。</p>
+<p><strong>def.</strong> 设 <span class="math inline">\(\tilde{T}\)</span> 为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的模糊变换，对于任意指标集 <span class="math inline">\(i \in I\)</span>，<span class="math inline">\(\lambda_i \in [0,1]\)</span>，<span class="math inline">\(\underset{\sim}{A_i} \in \mathcal{F}(X)\)</span>，若： <span class="math display">\[\tilde{T}\left(\bigcup_{i \in I} \lambda_i \underset{\sim}{A_i}\right) = \bigcup_{i \in I} \lambda_i \tilde{T}(\underset{\sim}{A_i})\]</span> 则称 <span class="math inline">\(\tilde{T}\)</span> 为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的模糊线性变换。</p>
+<p><strong>性质：</strong> 1. <span class="math inline">\(\lambda \in [0,1]\)</span>，<span class="math inline">\(\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)\)</span>，则： (1) <span class="math inline">\(\tilde{T}(\underset{\sim}{A} \cup \underset{\sim}{B}) = \tilde{T}(\underset{\sim}{A}) \cup \tilde{T}(\underset{\sim}{B})\)</span> (2) <span class="math inline">\(\tilde{T}(\lambda \underset{\sim}{A}) = \lambda \tilde{T}(\underset{\sim}{A})\)</span> (3) <span class="math inline">\(\underset{\sim}{A} \subseteq \underset{\sim}{B} \Rightarrow \tilde{T}(\underset{\sim}{A}) \subseteq \tilde{T}(\underset{\sim}{B})\)</span></p>
+<p><strong>模糊线性变换的表示：</strong> 设 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span>，<span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(X \times Y)\)</span>，则 <span class="math inline">\(\underset{\sim}{A} \circ \underset{\sim}{R} \in \mathcal{F}(Y)\)</span> 隶属函数： <span class="math display">\[(\underset{\sim}{A} \circ \underset{\sim}{R})(y) = \bigvee_{x \in X} (\underset{\sim}{A}(x) \wedge \underset{\sim}{R}(x,y)), \quad y \in Y\]</span></p>
+<p><strong>def.</strong> 若任一 <span class="math inline">\(\underset{\sim}{A} \in \mathcal{F}(X)\)</span> 有 <span class="math inline">\(\tilde{T}(\underset{\sim}{A}) = \underset{\sim}{A} \circ \underset{\sim}{R}\)</span>， 则称 <span class="math inline">\(\underset{\sim}{R}\)</span> 是 <span class="math inline">\(\tilde{T}\)</span> 的 <mark>表示</mark>，也称 <span class="math inline">\(\tilde{T}\)</span> 是由 <span class="math inline">\(\underset{\sim}{R}\)</span> <mark>导出</mark>的。</p>
+<p><strong>Thm.</strong> 给定 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(Y\)</span> 的模糊线性变换 <span class="math inline">\(\tilde{T}\)</span>，可唯一确定一个模糊关系 <span class="math inline">\(\underset{\sim}{R_{\tilde{T}}} \in \mathcal{F}(X \times Y)\)</span>，s.t. <span class="math inline">\(\underset{\sim}{R_{\tilde{T}}}\)</span> 是 <span class="math inline">\(\tilde{T}\)</span> 的表示。</p>
+<p><strong>Thm.</strong> 给定模糊关系 <span class="math inline">\(\underset{\sim}{R}\)</span> 可唯一确定模糊线性变换。</p>
+</section>
+<section id="模糊关系方程" class="level2" data-number="23">
+<h2 data-number="23" class="anchored" data-anchor-id="模糊关系方程"><span class="header-section-number">23</span> 模糊关系方程</h2>
+<p>设论域为 <span class="math inline">\(U, V, W\)</span>，模糊关系 <span class="math inline">\(\underset{\sim}{X} \in \mathcal{F}(U \times V)\)</span>，<span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(V \times W)\)</span>，<span class="math inline">\(\underset{\sim}{S} \in \mathcal{F}(U \times W)\)</span> 满足： <span class="math display">\[\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}\]</span> 或者 模糊关系 <span class="math inline">\(\underset{\sim}{R} \in \mathcal{F}(U \times V)\)</span>，<span class="math inline">\(\underset{\sim}{X} \in \mathcal{F}(V \times W)\)</span>，<span class="math inline">\(\underset{\sim}{S} \in \mathcal{F}(U \times W)\)</span> 满足： <span class="math display">\[\underset{\sim}{R} \circ \underset{\sim}{X} = \underset{\sim}{S}\]</span></p>
+<p>若一个模糊关系方程有解，也称方程 <mark>相容</mark>； 无解，也称方程 <mark>不相容</mark>。</p>
+<p>若存在 <span class="math inline">\(\underset{\sim}{X} \in \mathcal{F}(U \times V)\)</span> s.t. <span class="math inline">\(\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}\)</span>，即对于 <span class="math inline">\(\forall (u,w) \in U \times W\)</span> 有： <span class="math display">\[\color{red}{\bigvee_{v \in V} (\underset{\sim}{X}(u,v) \wedge \underset{\sim}{R}(v,w)) = \underset{\sim}{S}(u,w)}\]</span> 则称 <span class="math inline">\(\underset{\sim}{X}\)</span> 是 <span class="math inline">\(\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}\)</span> 的一个解。</p>
+<p><strong>prop.</strong> 设 <span class="math inline">\(\mathcal{X}\)</span> 是模糊关系方程 <span class="math inline">\(\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}\)</span> 的解集合，<span class="math inline">\(\underset{\sim}{X_1}, \underset{\sim}{X_2} \in \mathcal{X}\)</span>。 若 <span class="math inline">\(\underset{\sim}{X_1} \subseteq \underset{\sim}{X_2}\)</span>，则对于任意的 <span class="math inline">\(\underset{\sim}{X}\)</span>，若 <span class="math display">\[\color{red}{\underset{\sim}{X_1} \subseteq \underset{\sim}{X} \subseteq \underset{\sim}{X_2}}\]</span> 有 <span class="math inline">\(\underset{\sim}{X} \in \mathcal{X}\)</span>。</p>
+<p><strong>def.</strong> 若 <span class="math inline">\(\forall \underset{\sim}{X}' \in \mathcal{X}\)</span>，有 <span class="math inline">\(\underset{\sim}{X}' \subseteq \underset{\sim}{X}\)</span>，则称 <span class="math inline">\(\underset{\sim}{X}\)</span> 是解的 <mark>最大解</mark>。 若 <span class="math inline">\(\forall \underset{\sim}{X}' \in \mathcal{X}\)</span>，有 <span class="math inline">\(\underset{\sim}{X} \subseteq \underset{\sim}{X}'\)</span>，则称 <span class="math inline">\(\underset{\sim}{X}\)</span> 是解的 <mark>最小解</mark>。 若 <span class="math inline">\(\forall \underset{\sim}{X}' \in \mathcal{X}\)</span>，若 <span class="math inline">\(\underset{\sim}{X} \subseteq \underset{\sim}{X}'\)</span> 必有 <span class="math inline">\(\underset{\sim}{X} = \underset{\sim}{X}'\)</span>，则称 <span class="math inline">\(\underset{\sim}{X}\)</span> 是 <mark>极大解</mark>。</p>
+<p><strong>cor.</strong> 设 <span class="math inline">\(\underset{\sim}{X} = (x_1, x_2, \dots, x_m)\)</span>，<span class="math inline">\(\underset{\sim}{R} = (r_{kj})_{m \times l}\)</span>，<span class="math inline">\(\underset{\sim}{S} = (s_1, s_2, \dots, s_l)\)</span>。 则模糊关系方程 <span class="math inline">\(\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}\)</span> 相容当且仅当 <span class="math inline">\(\bar{\underset{\sim}{X}} \in \mathcal{X}\)</span> 且 <span class="math inline">\(\bar{\underset{\sim}{X}} = (\bar{x}_1, \bar{x}_2, \dots, \bar{x}_m)\)</span> 是最大解。 其中： <span class="math display">\[\color{red}{\bar{x}_k = \bigwedge_{j=1}^l \{s_j \mid r_{kj} &gt; s_j \}} \quad \color{red}{k = 1, 2, \dots, m}\]</span></p>
+</section>
+<section id="つかもと法-塚本模糊推理法" class="level2" data-number="24">
+<h2 data-number="24" class="anchored" data-anchor-id="つかもと法-塚本模糊推理法"><span class="header-section-number">24</span> つかもと法 (塚本模糊推理法)</h2>
+<p><strong>Tsukamoto法</strong>是模糊控制和模糊推理中常用的一种基础方法（与Mamdani法、Sugeno法齐名）。它最核心的特点是：<strong>模糊规则的后件（结论部分）对应的隶属函数必须是严格单调的</strong>。</p>
+<section id="规则形式" class="level3" data-number="24.1">
+<h3 data-number="24.1" class="anchored" data-anchor-id="规则形式"><span class="header-section-number">24.1</span> 规则形式</h3>
+<p>假设系统有如下形式的模糊规则 <span class="math inline">\(R_i\)</span>（以双输入 <span class="math inline">\(x, y\)</span> 单输出 <span class="math inline">\(z\)</span> 为例）：</p>
+<ul>
+<li><strong><span class="math inline">\(R_i\)</span>:</strong> If <span class="math inline">\(x\)</span> is <span class="math inline">\(A_i\)</span> and <span class="math inline">\(y\)</span> is <span class="math inline">\(B_i\)</span>, then <span class="math inline">\(z\)</span> is <span class="math inline">\(C_i\)</span></li>
+<li><strong>先决条件</strong>：后件模糊集 <span class="math inline">\(C_i\)</span> 的隶属函数 <span class="math inline">\(\mu_{C_i}(z)\)</span> 必须是<strong>单调递增</strong>或<strong>单调递减</strong>的。</li>
+</ul>
+</section>
+<section id="计算步骤" class="level3" data-number="24.2">
+<h3 data-number="24.2" class="anchored" data-anchor-id="计算步骤"><span class="header-section-number">24.2</span> 计算步骤</h3>
+<p>给定确切的输入值 <span class="math inline">\((x_0, y_0)\)</span>，Tsukamoto法的推理过程如下：</p>
+<p><strong>(1) 计算触发强度 (前件匹配)</strong> 利用取小运算（<span class="math inline">\(\wedge\)</span>）或乘积，计算每条规则 <span class="math inline">\(i\)</span> 的激活度（权重） <span class="math inline">\(\alpha_i\)</span>： <span class="math display">\[\alpha_i = \mu_{A_i}(x_0) \wedge \mu_{B_i}(y_0)\]</span></p>
+<p><strong>(2) 反解单规则输出 (后件推理)</strong> 由于 <span class="math inline">\(C_i\)</span> 的隶属函数是单调的，其逆函数 <span class="math inline">\(\mu_{C_i}^{-1}\)</span> 必然存在。根据该规则的触发强度 <span class="math inline">\(\alpha_i\)</span>，可以<strong>唯一确定</strong>一个清晰的局部输出值 <span class="math inline">\(z_i\)</span>： <span class="math display">\[\mu_{C_i}(z_i) = \alpha_i \implies z_i = \mu_{C_i}^{-1}(\alpha_i)\]</span></p>
+<p><strong>(3) 解模糊化 (加权平均)</strong> 将所有规则求得的局部输出 <span class="math inline">\(z_i\)</span> 按照对应的触发强度 <span class="math inline">\(\alpha_i\)</span> 进行加权平均，即可得到系统最终的清晰输出 <span class="math inline">\(Z\)</span>： <span class="math display">\[Z = \frac{\sum_{i=1}^n \alpha_i z_i}{\sum_{i=1}^n \alpha_i}\]</span></p>
+</section>
+<section id="特点总结" class="level3" data-number="24.3">
+<h3 data-number="24.3" class="anchored" data-anchor-id="特点总结"><span class="header-section-number">24.3</span> 特点总结</h3>
+<ul>
+<li><strong>优点</strong>：由于最后一步解模糊化直接使用了简单的加权平均公式，<strong>避免了复杂的求积分运算</strong>（相比于Mamdani法的重心法），计算非常高效且易于编程实现。</li>
+<li><strong>缺点</strong>：强制要求后件必须是单调函数，这在表达某些自然语言或人类经验（如“温度适中”，通常是三角形或钟形）时显得不够灵活。</li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

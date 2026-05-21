@@ -1,5 +1,5 @@
 ---
-title: "抛物型方程的差分方法（4）"
+title: "变系数方程"
 number-sections: false
 ---
 

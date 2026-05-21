@@ -1,5 +1,5 @@
 ---
-title: "椭圆型方程的差分方法（2–3）"
+title: "差分格式性质 边界条件处理"
 number-sections: false
 ---
 

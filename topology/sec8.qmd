@@ -272,7 +272,7 @@ Compare Proposition 8.2.2.2 with these definitions. A map $f: Z \to X$ between t
 ::: {.callout-note appearance="simple"}
 **8.2.2.4 The universal property of embeddings:** An injection $f: Z \to X$ between topological spaces is an embedding iff for any map $h: Y \to Z$, it is continuous iff the composition $g = f \circ h: Y \to X$ is continuous.
 
-![](pic/8224.jpg)
+![](pic\8224.jpg)
 
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
@@ -399,7 +399,7 @@ $$ \mathcal{B}_{X \times Y} = \{U \times V : U \in \mathcal{T}_X, V \in \mathcal
 ::: {.callout-note appearance="simple"}
 **8.3.1.4 The universal property of the product topology of two spaces:** The product topology on $X \times Y$ is characterized by the following property. For any topological space $Z$ and a map $h: Z \to X \times Y$, $h$ is continuous iff $g_X = \text{pr}_X \circ h: Z \to X$ and $g_Y = \text{pr}_Y \circ h: Z \to Y$ are continuous.
 
-![](pic/8314.jpg)
+![](pic\8314.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.3.1.4 两个空间乘积拓扑的泛性质：** $X \times Y$ 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Z \to X \times Y$，$h$ 连续当且仅当 $g_X = \text{pr}_X \circ h: Z \to X$ 且 $g_Y = \text{pr}_Y \circ h: Z \to Y$ 均连续。
@@ -535,7 +535,7 @@ $$\begin{aligned} \mathcal{B}_{\prod_{i \in I} X_i} &= \left\{ \prod_{j \in J} U
 ::: {.callout-note appearance="simple"}
 **8.3.2.4 The universal property of the product topology:** The product topology on $\prod_{i \in I} X_i$ is characterized by the following property. For any topological space $Z$ and a map $h: Z \to \prod_{i \in I} X_i$, $h$ is continuous iff $g_i = \text{pr}_i \circ h: Z \to X_i$ is continuous for any $i \in I$.
 
-![](pic/8324.jpg)
+![](pic\8324.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.3.2.4 乘积拓扑的泛性质：** $\prod_{i \in I} X_i$ 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Z \to \prod_{i \in I} X_i$，$h$ 连续当且仅当对任何 $i \in I$，复合映射 $g_i = \text{pr}_i \circ h: Z \to X_i$ 均连续。
@@ -673,7 +673,7 @@ $$\left\{ (\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i) : i \in I, p_{\hat
 ::: {.callout-note appearance="simple"}
 **8.4.1.4 The universal property of the quotient topology:** The quotient topology on $Y$ is characterized by the following property. For any topological space $Z$ and a map $h: Y \to Z$, $h$ is continuous iff $g = h \circ \pi: X \to Z$ is continuous.
 
-![](pic/8414.jpg)
+![](pic\8414.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.4.1.4 商拓扑的泛性质：** $Y$ 上的商拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: Y \to Z$，$h$ 连续当且仅当 $g = h \circ \pi: X \to Z$ 连续。
@@ -719,7 +719,7 @@ Compare Proposition 8.4.2.2 with these definitions. A map $g: X \to Y$ between t
 ::: {.callout-note appearance="simple"}
 **8.4.2.4 The universal property of quotient maps:** An surjection $g: X \to Y$ between topological spaces is a quotient map iff for any map $h: Y \to Z$, it is continuous iff the composition $f = h \circ g: X \to Z$ is continuous.
 
-![](pic/8424.jpg)
+![](pic\8424.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.4.2.4 商映射的泛性质：** 拓扑空间之间的满射 $g: X \to Y$ 是商映射，当且仅当对于任何映射 $h: Y \to Z$，$h$ 连续当且仅当复合映射 $f = h \circ g: X \to Z$ 连续。
@@ -878,7 +878,7 @@ Recall for two sets $X$ and $Y$, their *disjoint union* is the set of elements i
 ::: {.callout-note appearance="simple"}
 **8.5.1.2 The universal property of the coproduct topology of two spaces:** The coproduct topology on $X \sqcup Y$ is characterized by the following property. For any topological space $Z$ and a map $h: X \sqcup Y \to Z$, $h$ is continuous iff $f_X = h \circ \iota_X: X \to Z$ and $f_Y = h \circ \iota_Y: Y \to Z$ are continuous.
 
-![](pic/8512.jpg)
+![](pic\8512.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.5.1.2 两个空间余积拓扑的泛性质：** $X \sqcup Y$ 上的余积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: X \sqcup Y \to Z$，$h$ 连续当且仅当 $f_X = h \circ \iota_X: X \to Z$ 且 $f_Y = h \circ \iota_Y: Y \to Z$ 均连续。
@@ -909,7 +909,7 @@ $$\mathcal{S}_{\sqcup_{i \in I} X_i} = \bigsqcup_{i \in I} \mathcal{S}_i。$$
 ::: {.callout-note appearance="simple"}
 **8.5.2.2 The universal property of the coproduct topology:** The coproduct topology on $\bigsqcup_{i \in I} X_i$ is characterized by the following property. For any topological space $Z$ and a map $h: \bigsqcup_{i \in I} X_i \to Z$, $h$ is continuous iff $f_i = h \circ \iota_i: X_i \to Z$ is continuous for any $i \in I$.
 
-![](pic/8522.jpg)
+![](pic\8522.jpg)
 
 <details><summary style="color: gray; cursor: pointer;">[点击展开翻译]</summary>
 **8.5.2.2 余积拓扑的泛性质：** $\bigsqcup_{i \in I} X_i$ 上的余积拓扑由以下性质刻画：对于任何拓扑空间 $Z$ 及映射 $h: \bigsqcup_{i \in I} X_i \to Z$，$h$ 连续当且仅当对任何 $i \in I$，复合映射 $f_i = h \circ \iota_i: X_i \to Z$ 均连续。
