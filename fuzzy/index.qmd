@@ -1,6 +1,6 @@
 ---
 title: "Fuzzy Mathematics"
-date: "2026-05-07"
+date: "2026-04-06"
 format:
   html:
     toc: true
@@ -427,9 +427,9 @@ $$ f(\underset{\sim}{A}, \underset{\sim}{B})_\lambda = f(A_\lambda, B_\lambda), 
 *   $(\underset{\sim}{A} / \underset{\sim}{B})_\lambda = A_\lambda / B_\lambda \quad (0 \notin \operatorname{Supp} \underset{\sim}{B})$
 *   $(k\underset{\sim}{A})_\lambda = k A_\lambda, \quad k \in \mathbb{R}$
 
-## 12. 模糊模式识别原则
+## 模糊模式识别原则
 
-### 12.1 最大隶属原则
+### 最大隶属原则
 
 设 $\tilde{A}_1, \tilde{A}_2, \dots, \tilde{A}_n \in \mathcal{F}(X)$ 为 $n$ 个标准模式。
 
@@ -441,7 +441,7 @@ $$\tilde{A}_{i_0}(x_0) = \max\{\tilde{A}_1(x_0), \tilde{A}_2(x_0), \dots, \tilde
 
 则认为 $x_0$ 相对地归属于 模式 $\tilde{A}_{i_0}$。
 
-### 12.2 阈值原则
+### 阈值原则
 
 **I型：**
 
@@ -871,3 +871,89 @@ $$\underset{\sim}{R_{\tilde{f}}}|_x = \tilde{f}(x)$$
 <mark>Thm.</mark> 给定模糊关系 $\underset{\sim}{R} \in \mathcal{F}(X \times Y)$，可唯一确定一个模糊集值映射 $\tilde{f}_{\underset{\sim}{R}}: X \to \mathcal{F}(Y)$，其图像为 $\underset{\sim}{R}$，且对 $\forall x \in X$ 有：
 
 $$\tilde{f}_{\underset{\sim}{R}}(x) = \underset{\sim}{R}|_x$$
+
+## 模糊线性变换及其表示
+
+**def.** 称映射 $\tilde{T}: \mathcal{F}(X) \rightarrow \mathcal{F}(Y)$
+$$\underset{\sim}{A} \mapsto \tilde{T}(\underset{\sim}{A})$$
+为 $X$ 到 $Y$ 的模糊变换。
+
+**def.** 设 $\tilde{T}$ 为 $X$ 到 $Y$ 的模糊变换，对于任意指标集 $i \in I$，$\lambda_i \in [0,1]$，$\underset{\sim}{A_i} \in \mathcal{F}(X)$，若：
+$$\tilde{T}\left(\bigcup_{i \in I} \lambda_i \underset{\sim}{A_i}\right) = \bigcup_{i \in I} \lambda_i \tilde{T}(\underset{\sim}{A_i})$$
+则称 $\tilde{T}$ 为 $X$ 到 $Y$ 的模糊线性变换。
+
+**性质：**
+1. $\lambda \in [0,1]$，$\underset{\sim}{A}, \underset{\sim}{B} \in \mathcal{F}(X)$，则：
+   (1) $\tilde{T}(\underset{\sim}{A} \cup \underset{\sim}{B}) = \tilde{T}(\underset{\sim}{A}) \cup \tilde{T}(\underset{\sim}{B})$
+   (2) $\tilde{T}(\lambda \underset{\sim}{A}) = \lambda \tilde{T}(\underset{\sim}{A})$
+   (3) $\underset{\sim}{A} \subseteq \underset{\sim}{B} \Rightarrow \tilde{T}(\underset{\sim}{A}) \subseteq \tilde{T}(\underset{\sim}{B})$
+
+**模糊线性变换的表示：**
+设 $\underset{\sim}{A} \in \mathcal{F}(X)$，$\underset{\sim}{R} \in \mathcal{F}(X \times Y)$，则 $\underset{\sim}{A} \circ \underset{\sim}{R} \in \mathcal{F}(Y)$
+隶属函数：
+$$(\underset{\sim}{A} \circ \underset{\sim}{R})(y) = \bigvee_{x \in X} (\underset{\sim}{A}(x) \wedge \underset{\sim}{R}(x,y)), \quad y \in Y$$
+
+**def.** 若任一 $\underset{\sim}{A} \in \mathcal{F}(X)$ 有 $\tilde{T}(\underset{\sim}{A}) = \underset{\sim}{A} \circ \underset{\sim}{R}$，
+则称 $\underset{\sim}{R}$ 是 $\tilde{T}$ 的 <mark>表示</mark>，也称 $\tilde{T}$ 是由 $\underset{\sim}{R}$ <mark>导出</mark>的。
+
+**Thm.** 给定 $X$ 到 $Y$ 的模糊线性变换 $\tilde{T}$，可唯一确定一个模糊关系 $\underset{\sim}{R_{\tilde{T}}} \in \mathcal{F}(X \times Y)$，s.t. $\underset{\sim}{R_{\tilde{T}}}$ 是 $\tilde{T}$ 的表示。
+
+**Thm.** 给定模糊关系 $\underset{\sim}{R}$ 可唯一确定模糊线性变换。
+
+## 模糊关系方程
+
+设论域为 $U, V, W$，模糊关系 $\underset{\sim}{X} \in \mathcal{F}(U \times V)$，$\underset{\sim}{R} \in \mathcal{F}(V \times W)$，$\underset{\sim}{S} \in \mathcal{F}(U \times W)$ 满足：
+$$\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}$$
+或者 模糊关系 $\underset{\sim}{R} \in \mathcal{F}(U \times V)$，$\underset{\sim}{X} \in \mathcal{F}(V \times W)$，$\underset{\sim}{S} \in \mathcal{F}(U \times W)$ 满足：
+$$\underset{\sim}{R} \circ \underset{\sim}{X} = \underset{\sim}{S}$$
+
+若一个模糊关系方程有解，也称方程 <mark>相容</mark>；
+无解，也称方程 <mark>不相容</mark>。
+
+若存在 $\underset{\sim}{X} \in \mathcal{F}(U \times V)$ s.t. $\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}$，即对于 $\forall (u,w) \in U \times W$ 有：
+$$\color{red}{\bigvee_{v \in V} (\underset{\sim}{X}(u,v) \wedge \underset{\sim}{R}(v,w)) = \underset{\sim}{S}(u,w)}$$
+则称 $\underset{\sim}{X}$ 是 $\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}$ 的一个解。
+
+**prop.** 设 $\mathcal{X}$ 是模糊关系方程 $\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}$ 的解集合，$\underset{\sim}{X_1}, \underset{\sim}{X_2} \in \mathcal{X}$。
+若 $\underset{\sim}{X_1} \subseteq \underset{\sim}{X_2}$，则对于任意的 $\underset{\sim}{X}$，若
+$$\color{red}{\underset{\sim}{X_1} \subseteq \underset{\sim}{X} \subseteq \underset{\sim}{X_2}}$$
+有 $\underset{\sim}{X} \in \mathcal{X}$。
+
+**def.** 若 $\forall \underset{\sim}{X}' \in \mathcal{X}$，有 $\underset{\sim}{X}' \subseteq \underset{\sim}{X}$，则称 $\underset{\sim}{X}$ 是解的 <mark>最大解</mark>。
+若 $\forall \underset{\sim}{X}' \in \mathcal{X}$，有 $\underset{\sim}{X} \subseteq \underset{\sim}{X}'$，则称 $\underset{\sim}{X}$ 是解的 <mark>最小解</mark>。
+若 $\forall \underset{\sim}{X}' \in \mathcal{X}$，若 $\underset{\sim}{X} \subseteq \underset{\sim}{X}'$ 必有 $\underset{\sim}{X} = \underset{\sim}{X}'$，则称 $\underset{\sim}{X}$ 是 <mark>极大解</mark>。
+
+**cor.** 设 $\underset{\sim}{X} = (x_1, x_2, \dots, x_m)$，$\underset{\sim}{R} = (r_{kj})_{m \times l}$，$\underset{\sim}{S} = (s_1, s_2, \dots, s_l)$。
+则模糊关系方程 $\underset{\sim}{X} \circ \underset{\sim}{R} = \underset{\sim}{S}$ 相容当且仅当 $\bar{\underset{\sim}{X}} \in \mathcal{X}$ 且 $\bar{\underset{\sim}{X}} = (\bar{x}_1, \bar{x}_2, \dots, \bar{x}_m)$ 是最大解。
+其中：
+$$\color{red}{\bar{x}_k = \bigwedge_{j=1}^l \{s_j \mid r_{kj} > s_j \}} \quad \color{red}{k = 1, 2, \dots, m}$$
+
+## つかもと法 (塚本模糊推理法)
+
+**Tsukamoto法**是模糊控制和模糊推理中常用的一种基础方法（与Mamdani法、Sugeno法齐名）。它最核心的特点是：**模糊规则的后件（结论部分）对应的隶属函数必须是严格单调的**。
+
+### 规则形式
+假设系统有如下形式的模糊规则 $R_i$（以双输入 $x, y$ 单输出 $z$ 为例）：
+
+* **$R_i$:** If $x$ is $A_i$ and $y$ is $B_i$, then $z$ is $C_i$
+* **先决条件**：后件模糊集 $C_i$ 的隶属函数 $\mu_{C_i}(z)$ 必须是**单调递增**或**单调递减**的。
+
+### 计算步骤
+给定确切的输入值 $(x_0, y_0)$，Tsukamoto法的推理过程如下：
+
+**(1) 计算触发强度 (前件匹配)**
+利用取小运算（$\wedge$）或乘积，计算每条规则 $i$ 的激活度（权重） $\alpha_i$：
+$$\alpha_i = \mu_{A_i}(x_0) \wedge \mu_{B_i}(y_0)$$
+
+**(2) 反解单规则输出 (后件推理)**
+由于 $C_i$ 的隶属函数是单调的，其逆函数 $\mu_{C_i}^{-1}$ 必然存在。根据该规则的触发强度 $\alpha_i$，可以**唯一确定**一个清晰的局部输出值 $z_i$：
+$$\mu_{C_i}(z_i) = \alpha_i \implies z_i = \mu_{C_i}^{-1}(\alpha_i)$$
+
+**(3) 解模糊化 (加权平均)**
+将所有规则求得的局部输出 $z_i$ 按照对应的触发强度 $\alpha_i$ 进行加权平均，即可得到系统最终的清晰输出 $Z$：
+$$Z = \frac{\sum_{i=1}^n \alpha_i z_i}{\sum_{i=1}^n \alpha_i}$$
+
+### 特点总结
+
+* **优点**：由于最后一步解模糊化直接使用了简单的加权平均公式，**避免了复杂的求积分运算**（相比于Mamdani法的重心法），计算非常高效且易于编程实现。
+* **缺点**：强制要求后件必须是单调函数，这在表达某些自然语言或人类经验（如“温度适中”，通常是三角形或钟形）时显得不够灵活。
